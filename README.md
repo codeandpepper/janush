@@ -11,10 +11,8 @@ You can find detailed instructions on using Create React App and many tips [its 
 ```sh
 npm install -g @angular-devkit/schematics-cli
 
-yarn install && yarn build
-
 schematics .:app --debug=false
-schematics .:web --debug=false
+schematics .:application --name=fancy-app --types={web,cloud} --debug=false
 ```
 
 Currently, to generate a project, you must first  run the `yarn install` command and after `yarn build`. In root directory you can create your own project via schematic commands.
