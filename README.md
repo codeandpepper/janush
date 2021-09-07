@@ -7,7 +7,10 @@ You can find detailed instructions on using Create React App and many tips [its 
 
 ## Quick Overview
 
+
 ```sh
+npm install -g @angular-devkit/schematics-cli
+
 yarn install && yarn build
 
 schematics .:app --debug=false
