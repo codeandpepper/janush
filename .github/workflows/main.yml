@@ -1,0 +1,20 @@
+name: Verify project generation
+on:
+  push:
+    branches:
+      - main
+      - cicd
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    name: Test schematics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test
