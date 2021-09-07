@@ -17,6 +17,7 @@
       "type": "array",
       "description": "Application type(s)",
       "uniqueItems": true,
+      "default": ["web", "cloud"],
       "x-prompt": {
         "message": "Which application type would you like to use?",
         "type": "list",
