@@ -12,7 +12,7 @@
   ],
   "author": "",
   "license": "MIT",
-  "schematics": "./collection.json",
+  "schematics": "./packages/collection.json",
   "dependencies": {
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",
