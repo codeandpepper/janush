@@ -1,3 +1,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-# janush
-Set up a modern identity project by running one command.
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2021, [Code & Pepper](https://codeandpepper.com/)
