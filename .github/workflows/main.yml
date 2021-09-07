@@ -1,4 +1,4 @@
-name: Verify project generation
+name: Test application generation
 
 on:
   push:
@@ -39,3 +39,22 @@ jobs:
         with:
           name: janush-app
           path: janush-app
+
+  test-web:
+    name: Test web
+    needs: [generate-application]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download generated application
+        uses: actions/download-artifact@master
+        with:
+          name: janush-app
+          path: janush-app
+      - name: Install dependencies
+        working-directory: ./janush-app/web
+        run: npm install
+      - name: Run tests
+        working-directory: ./janush-app/web
+        run: npm run test -- --watchAll=false
+        env:
+          CI: true
