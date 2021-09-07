@@ -4,6 +4,18 @@
 
 You can find detailed instructions on using Create React App and many tips [its documentation](https://codeandpepper.github.io/janush/).
 
+
+## Quick Overview
+
+```sh
+yarn install && yarn build
+
+schematics .:app --debug=false
+schematics .:web --debug=false
+```
+
+Currently, to generate a project, you must first  run the `yarn install` command and after `yarn build`. In root directory you can create your own project via schematic commands.
+
 ## What’s Included?
 
 Your environment will have everything you need to build a modern single-page React app with built-in Identity/AuthN/AuthZ features.
