@@ -1,4 +1,5 @@
 name: Verify project generation
+
 on:
   push:
     branches:
@@ -8,7 +9,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  test:
+  test-schematics:
     name: Test schematics
     runs-on: ubuntu-latest
     steps:
@@ -16,5 +17,25 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
-      - name: Run tests
+      - name: Run schematics tests
         run: npm run test
+
+  generate-application:
+    name: Generate application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Install schematics CLI
+        run: npm install -g @angular-devkit/schematics-cli
+      - name: Build schematics
+        run: npm run build
+      - name: Generate application
+        run: schematics .:application --name=janush-app --types={web,cloud} --debug=false
+      - name: Upload generated application
+        uses: actions/upload-artifact@master
+        with:
+          name: janush-app
+          path: janush-app
