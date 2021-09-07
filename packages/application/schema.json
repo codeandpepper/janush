@@ -1,0 +1,34 @@
+{
+  "$id": "ApplicationSchematics",
+  "title": "Application Options Schema",
+  "type": "object",
+  "description": "Creates application",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Application name?"
+    },
+    "types": {
+      "type": "array",
+      "description": "Application type(s)",
+      "uniqueItems": true,
+      "x-prompt": {
+        "message": "Which application type would you like to use?",
+        "type": "list",
+        "items": [
+          { "value": "cloud",  "label": "Cloud" },
+          { "value": "web",  "label": "Web" }
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "types"
+  ]
+}

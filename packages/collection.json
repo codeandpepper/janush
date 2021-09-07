@@ -1,0 +1,16 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "application": {
+      "aliases": ["app"],
+      "description": "A blank appplication.",
+      "factory": "./application/index#generateApplication",
+      "schema": "./application/schema.json"
+    },
+    "web": {
+      "description": "A blank web application.",
+      "factory": "./web/index#generateWeb",
+      "schema": "./web/schema.json"
+    }
+  }
+}

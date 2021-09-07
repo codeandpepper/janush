@@ -1,0 +1,38 @@
+.AppTsx {
+  text-align: center;
+}
+
+.AppTsx-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .AppTsx-logo {
+    animation: AppTsx-logo-spin infinite 20s linear;
+  }
+}
+
+.AppTsx-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.AppTsx-link {
+  color: #61dafb;
+}
+
+@keyframes AppTsx-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
