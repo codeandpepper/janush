@@ -1,0 +1,28 @@
+{
+  "name": "janush",
+  "version": "0.1.0",
+  "description": "A blank schematics",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "yarn build && jasmine packages/**/*_spec.js",
+    "create": "yarn build && schematics .:application"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./packages/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^12.2.4",
+    "@angular-devkit/schematics": "^12.2.4",
+    "@schematics/angular": "^12.2.4",
+    "typescript": "~4.3.2"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~3.8.0",
+    "@types/node": "^12.11.1",
+    "jasmine": "^3.5.0",
+    "prettier": "^2.3.2"
+  }
+}
