@@ -3,8 +3,8 @@
   "schematics": {
     "application": {
       "aliases": ["app"],
-      "description": "A blank appplication.",
-      "factory": "./application/index#generateApplication",
+      "description": "A blank application.",
+      "factory": "./application/index#generateApp",
       "schema": "./application/schema.json"
     },
     "web": {

@@ -19,7 +19,7 @@ import { Schema } from "./schema";
 
 export const isWeb = (options: Schema) => options.types.includes(Schematic.WEB);
 
-export function generateApplication(options: Schema): Rule {
+export function generateApp(options: Schema): Rule {
   return (_: Tree, _context: SchematicContext) => {
     const sourceTemplates = url("./files");
 
