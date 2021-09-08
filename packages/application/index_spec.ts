@@ -34,7 +34,22 @@ describe("application", () => {
       )
       .toPromise();
 
-    // TODO already cloud implementation is empty only README file
-    expect(tree.files.length).toEqual(1);
+    expect(tree.files.length).toEqual(11);
+  });
+
+  it("generate both structures", async () => {
+    const runner = new SchematicTestRunner("schematics", collectionPath);
+    const tree = await runner
+      .runSchematicAsync(
+        "application",
+        {
+          name: "janush-app",
+          types: ["cloud", "web"],
+        },
+        Tree.empty(),
+      )
+      .toPromise();
+
+    expect(tree.files.length).toEqual(30);
   });
 });
