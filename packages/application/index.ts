@@ -19,7 +19,7 @@ import { Schema } from "./schema";
 
 export const isWeb = (options: Schema) => options.types.includes(Schematic.WEB);
 
-export function generateApp(options: Schema): Rule {
+const applicationGenerator = (options: Schema): Rule => {
   return (_: Tree, _context: SchematicContext) => {
     const sourceTemplates = url("./files");
 
@@ -37,4 +37,6 @@ export function generateApp(options: Schema): Rule {
         : noop(),
     ]);
   };
-}
+};
+
+export default applicationGenerator;
