@@ -1,10 +1,10 @@
 import * as cdk from 'aws-cdk-lib';
-import * as Cloud from '../lib/cloud-stack';
+import * as <%= classify(name) %> from '../lib/<%= dasherize(name) %>-stack';
 
 test('Empty Stack', () => {
     const app = new cdk.App();
     // WHEN
-    const stack = new Cloud.CloudStack(app, 'MyTestStack');
+    const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(app, 'MyTestStack');
     // THEN
     const actual = app.synth().getStackArtifact(stack.artifactId).template;
     expect(actual.Resources ?? {}).toEqual({});
