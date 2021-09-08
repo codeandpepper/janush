@@ -1,4 +1,4 @@
-# Janush ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+# Janush ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) [![Test application generation](https://github.com/codeandpepper/janush/actions/workflows/main.yml/badge.svg)](https://github.com/codeandpepper/janush/actions/workflows/main.yml)
 
 ## User Guide
 
