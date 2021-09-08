@@ -4,12 +4,17 @@
     "application": {
       "aliases": ["app"],
       "description": "A blank application.",
-      "factory": "./application/index#generateApp",
+      "factory": "./application/index#applicationGenerator",
       "schema": "./application/schema.json"
+    },
+    "cloud": {
+      "description": "A blank cloud application.",
+      "factory": "./cloud/index#cloudGenerator",
+      "schema": "./cloud/schema.json"
     },
     "web": {
       "description": "A blank web application.",
-      "factory": "./web/index#generateWeb",
+      "factory": "./web/index#webGenerator",
       "schema": "./web/schema.json"
     }
   }

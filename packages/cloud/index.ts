@@ -12,7 +12,7 @@ import { strings } from "@angular-devkit/core";
 
 import { Schema } from "./schema";
 
-export const webGenerator = (options: Schema): Rule => {
+export const cloudGenerator = (options: Schema): Rule => {
   return (_: Tree, _context: SchematicContext) => {
     if (!options.name) {
       throw new SchematicsException(`Invalid options, "name" is required.`);
