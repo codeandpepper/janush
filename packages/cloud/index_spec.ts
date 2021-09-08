@@ -11,6 +11,6 @@ describe("cloud", () => {
       .runSchematicAsync("cloud", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
-    expect(tree.files.length).toEqual(0);
+    expect(tree.files.length).toEqual(10);
   });
 });
