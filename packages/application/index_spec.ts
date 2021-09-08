@@ -7,7 +7,7 @@ import { expectedFiles as expectedWebFiles } from "../web/index_spec";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 const name = "janush-app";
-const expectedFiles = ["/janush-app/README.md"];
+const expectedFiles = [`/${name}/README.md`];
 
 describe("application", () => {
   it("generate web structure", async () => {
