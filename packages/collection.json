@@ -14,7 +14,7 @@
     },
     "web": {
       "description": "A blank web application.",
-      "factory": "./web/index#generateWeb",
+      "factory": "./web/index#webGenerator",
       "schema": "./web/schema.json"
     }
   }
