@@ -7,7 +7,7 @@ import { expectedFiles as expectedWebFiles } from "../web/index_spec";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 const name = "janush-app";
-const expectedFiles = [`/${name}/README.md`];
+const expectedFiles = [`/${name}/README.md`, `/${name}/janush.json`];
 
 describe("application", () => {
   it("generate web structure", async () => {
@@ -23,7 +23,9 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]);
+    expect(tree.files).toEqual(
+      jasmine.arrayContaining([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]),
+    );
   });
 
   it("generate cloud structure", async () => {
@@ -39,10 +41,9 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([
-      ...expectedFiles,
-      ...expectedCloudFiles.map((f) => `/${name}${f}`),
-    ]);
+    expect(tree.files).toEqual(
+      jasmine.arrayContaining([...expectedFiles, ...expectedCloudFiles.map((f) => `/${name}${f}`)]),
+    );
   });
 
   it("generate both structures", async () => {
@@ -58,10 +59,12 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([
-      ...expectedFiles,
-      ...expectedCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedWebFiles.map((f) => `/${name}${f}`),
-    ]);
+    expect(tree.files).toEqual(
+      jasmine.arrayContaining([
+        ...expectedFiles,
+        ...expectedCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedWebFiles.map((f) => `/${name}${f}`),
+      ]),
+    );
   });
 });

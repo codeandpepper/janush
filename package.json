@@ -4,8 +4,7 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "yarn build && jasmine packages/**/*_spec.js",
-    "create": "yarn build && schematics .:application"
+    "test": "npm run build && jasmine packages/**/*_spec.js"
   },
   "keywords": [
     "schematics"

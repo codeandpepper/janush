@@ -1,6 +1,9 @@
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
+import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
+
+import * as janush from "../../utils/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
@@ -20,10 +23,26 @@ export const expectedFiles = [
 describe("cloud", () => {
   it("works", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
+
+    spyOn(janush, "readJanushJSON").and.returnValue({ name: "janush-app" });
+    spyOn(janush, "updateJanushJSON");
+
     const tree = await runner
       .runSchematicAsync("cloud", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
     expect(tree.files).toEqual(expectedFiles);
+  });
+
+  it("should throw not found exception of janush.json", async () => {
+    const runner = new SchematicTestRunner("schematics", collectionPath);
+    let thrownError: FileDoesNotExistException | null = null;
+    try {
+      await runner.runSchematicAsync("web", { name: "janush-app" }, Tree.empty()).toPromise();
+    } catch (err) {
+      thrownError = err;
+    }
+
+    expect(thrownError).toBeDefined();
   });
 });
