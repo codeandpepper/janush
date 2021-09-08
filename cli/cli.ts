@@ -1,14 +1,16 @@
-import * as path from "path";
-import { spawn, exec } from "child_process";
+import { spawn } from "child_process";
 
 export function cli() {
-  console.log(path.join(__dirname, "../"));
-
   console.log(__dirname);
-  exec("npm link");
 
-  spawn(`schematics @codeandpepper/janush/packages/collection.json:app`, {
-    stdio: "inherit",
-    shell: true,
-  });
+  if (__dirname) {
+    const path = __dirname.split("@")[1];
+
+    console.log(path);
+
+    spawn(`schematics @${path}packages/collection.json:app`, {
+      stdio: "inherit",
+      shell: true,
+    });
+  }
 }
