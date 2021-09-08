@@ -9,10 +9,10 @@ export function cli() {
     directory = `@${path.join(__dirname, "..").split("@")[1]}`;
   } else {
     // installed project
-    directory = `${path.join(__dirname, "..")}/`;
+    directory = path.join(__dirname, "..");
   }
 
-  spawn(`schematics ${directory}packages/collection.json:app`, {
+  spawn(`schematics ${directory}/packages/collection.json:app`, {
     stdio: "inherit",
     shell: true,
   });

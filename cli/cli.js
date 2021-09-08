@@ -11,9 +11,9 @@ function cli() {
     }
     else {
         // installed project
-        directory = `${path.join(__dirname, "..")}/`;
+        directory = path.join(__dirname, "..");
     }
-    child_process_1.spawn(`schematics ${directory}packages/collection.json:app`, {
+    child_process_1.spawn(`schematics ${directory}/packages/collection.json:app`, {
         stdio: "inherit",
         shell: true,
     });
