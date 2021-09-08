@@ -1,5 +1,5 @@
 {
-  "name": "janush",
+  "name": "@codeandpepper/janush",
   "version": "0.1.0",
   "description": "A blank schematics",
   "scripts": {
@@ -10,10 +10,19 @@
   "keywords": [
     "schematics"
   ],
+  "main": "cli/index.js",
+  "bin": {
+    "@codeandpepper/janush": "bin/janush",
+    "janush": "bin/janush"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "",
   "license": "MIT",
-  "schematics": "./packages/collection.json",
+  "schematics": "@codeandpepper/janush/packages/collection.json",
   "dependencies": {
+    "esm": "^3.2.25",
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",
     "@schematics/angular": "^12.2.4",
