@@ -7,7 +7,7 @@ function cli() {
     console.log(path.join(__dirname, "../"));
     console.log(__dirname);
     child_process_1.exec("npm link");
-    child_process_1.spawn(`schematics ${path.join(__dirname, "..")}/packages/collection.json:app`, {
+    child_process_1.spawn(`schematics @codeandpepper/janush/packages/collection.json:app`, {
         stdio: "inherit",
         shell: true,
     });

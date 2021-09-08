@@ -7,7 +7,7 @@ export function cli() {
   console.log(__dirname);
   exec("npm link");
 
-  spawn(`schematics ${path.join(__dirname, "..")}/packages/collection.json:app`, {
+  spawn(`schematics @codeandpepper/janush/packages/collection.json:app`, {
     stdio: "inherit",
     shell: true,
   });
