@@ -24,8 +24,6 @@ export const applicationGenerator = (options: Schema): Rule => {
   return (_: Tree, _context: SchematicContext) => {
     const sourceTemplates = url("./files");
 
-    console.log(__dirname);
-
     return chain([
       mergeWith(
         apply(sourceTemplates, [
