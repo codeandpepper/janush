@@ -12,9 +12,11 @@ function parseArgumentsIntoOptions(rawArgs) {
         '--command': String,
         '--name': String,
         '--types': [String],
+        '--debug': Boolean,
         '--c': '--command',
         '--n': '--name',
         '--t': '--types',
+        '--d': '--debug',
     }, {
         // @ts-ignore
         argv: rawArgs.slice[PATH_ARGS],

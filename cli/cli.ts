@@ -11,6 +11,7 @@ interface Options {
   command?: string;
   name?: string;
   types?: string[];
+  debug?: boolean;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -19,9 +20,11 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       '--command': String,
       '--name': String,
       '--types': [String],
+      '--debug': Boolean,
       '--c': '--command',
       '--n': '--name',
       '--t': '--types',
+      '--d': '--debug',
     },
     {
       // @ts-ignore
