@@ -4,21 +4,21 @@ import {
   mergeWith,
   Rule,
   SchematicContext,
-  SchematicsException,
   Tree,
   url,
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
+import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
 import { readJanushJSON, updateJanushJSON } from "../../utils/janush";
 
+import { Schematic } from "../../types/enum/Schematic";
 import { Schema } from "./schema";
 
 export const cloudGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    if (!options.name) {
-      throw new SchematicsException(`Invalid options, "name" is required.`);
-    }
+    const name = strings.dasherize(options.name);
+    const sourceTemplates = url("./files");
 
     const janushFile = readJanushJSON(tree);
 
@@ -27,7 +27,14 @@ export const cloudGenerator = (options: Schema): Rule => {
       cloud: true,
     });
 
-    const sourceTemplates = url("./files");
+    if (options.install)
+      _context.addTask(
+        new NodePackageInstallTask({
+          workingDirectory: `${name}/${Schematic.CLOUD}`,
+          hideOutput: false,
+        }),
+        [],
+      );
 
     return mergeWith(
       apply(sourceTemplates, [

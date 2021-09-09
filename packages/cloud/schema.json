@@ -13,6 +13,12 @@
         "index": 0
       },
       "x-prompt": "Application name?"
+    },
+    "install": {
+      "type": "boolean",
+      "description": "npm run install after project generation.",
+      "default": true,
+      "x-prompt": "Do you want to execute the `npm run install` command after generating the project?"
     }
   },
   "required": [
