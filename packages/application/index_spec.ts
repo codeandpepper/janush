@@ -23,9 +23,7 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual(
-      jasmine.arrayContaining([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]),
-    );
+    expect(tree.files).toEqual([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]);
   });
 
   it("generate cloud structure", async () => {
@@ -41,9 +39,10 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual(
-      jasmine.arrayContaining([...expectedFiles, ...expectedCloudFiles.map((f) => `/${name}${f}`)]),
-    );
+    expect(tree.files).toEqual([
+      ...expectedFiles,
+      ...expectedCloudFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 
   it("generate both structures", async () => {

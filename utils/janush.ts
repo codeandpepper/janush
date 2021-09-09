@@ -4,7 +4,7 @@ import { FileDoesNotExistException } from "@angular-devkit/core";
 import { JANUSH_JSON_PATH } from "../const";
 import { Janush } from "../types/interfaces/Janush";
 
-export const readJanushJSON = (tree: Tree, path: string = JANUSH_JSON_PATH) => {
+export const readJanushJSON = (tree: Tree, path: string = JANUSH_JSON_PATH): Janush => {
   try {
     const janushFile = tree.read(path);
     if (!janushFile) {
@@ -16,7 +16,7 @@ export const readJanushJSON = (tree: Tree, path: string = JANUSH_JSON_PATH) => {
   }
 };
 
-export const updateJanushJSON = (tree: Tree, values: Janush) => {
+export const updateJanushJSON = (tree: Tree, values: Janush): void => {
   try {
     tree.overwrite(JANUSH_JSON_PATH, JSON.stringify(values));
   } catch {

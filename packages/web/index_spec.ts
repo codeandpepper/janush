@@ -39,7 +39,7 @@ describe("web", () => {
       .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
-    expect(tree.files).toEqual(jasmine.arrayContaining(expectedFiles));
+    expect(tree.files).toEqual(expectedFiles);
   });
 
   it("should throw not found exception of janush.json", async () => {

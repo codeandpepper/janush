@@ -21,7 +21,7 @@ export const expectedFiles = [
 ];
 
 describe("cloud", () => {
-  it("works", async () => {
+  it("should generate all files properly", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue({ name: "janush-app" });
