@@ -22,10 +22,11 @@
   "license": "MIT",
   "schematics": "@codeandpepper/janush/packages/collection.json",
   "dependencies": {
-    "esm": "^3.2.25",
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",
     "@schematics/angular": "^12.2.4",
+    "arg": "^5.0.1",
+    "esm": "^3.2.25",
     "typescript": "~4.3.2"
   },
   "devDependencies": {

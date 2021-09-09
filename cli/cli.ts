@@ -1,18 +1,66 @@
 import * as path from "path";
+import * as arg from 'arg';
 import { spawn } from "child_process";
 
-export function cli() {
+const PATH_ARGUMENT = 1;
+const PATH_ARGS = 2;
+const COMMAND = 'command';
+
+interface Options {
+  //INFO: Change 'command' to more suitable name for schematics' type
+  command?: string;
+  name?: string;
+  types?: string[];
+}
+
+function parseArgumentsIntoOptions(rawArgs: string[]): Options {
+  const args = arg(
+    {
+      '--command': String,
+      '--name': String,
+      '--types': [String],
+      '--c': '--command',
+      '--n': '--name',
+      '--t': '--types',
+    },
+    {
+      // @ts-ignore
+      argv: rawArgs.slice[PATH_ARGS],
+    }
+  );
+  return {
+    command: args['--command'] || "app",
+    name: args['--name'],
+    types: args['--types']
+  }
+}
+
+function encodeCommand(command: string, options: Options) {
+  return Object.entries(options).reduce((prev, [key, value]) => {
+    if (!value || key === COMMAND) {
+      return prev;
+    }
+    if (Array.isArray(value)) {
+      return prev + ` --${key}={${value}}`;
+    }
+    return prev + ` --${key}=${value}`;
+  }, command)
+}
+
+export function cli(args: string[]) {
   let directory;
 
   if (__dirname.includes("@")) {
-    // npx via github
-    directory = `@${path.join(__dirname, "..").split("@")[1]}`;
+    //INFO: npx via github
+    directory = `@${path.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
   } else {
-    // installed project
+    //INFO: installed project
     directory = path.join(__dirname, "..");
   }
 
-  spawn(`schematics ${directory}/packages/collection.json:app`, {
+  const options = parseArgumentsIntoOptions(args);
+
+  spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
     stdio: "inherit",
     shell: true,
   });
