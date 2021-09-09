@@ -28,7 +28,7 @@ export const webGenerator = (options: Schema): Rule => {
       web: true,
     });
 
-    if (options.install)
+    if (!options.skipInstall)
       _context.addTask(
         new NodePackageInstallTask({
           workingDirectory: `${name}/${Schematic.WEB}`,
