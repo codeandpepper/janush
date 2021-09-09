@@ -8,6 +8,15 @@ You can find detailed instructions on using Create React App and many tips [its 
 ## Quick Overview
 
 
+### Using npx
+You can run the project directly using npx command below:
+
+```sh
+npx codeandpepper/janush janush
+```
+
+### Local development
+
 ```sh
 npm install -g @angular-devkit/schematics-cli
 
