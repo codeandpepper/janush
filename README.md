@@ -26,6 +26,18 @@ schematics .:application --name=fancy-app --types={web,cloud} --debug=false
 
 Currently, to generate a project, you must first  run the `yarn install` command and after `yarn build`. In root directory you can create your own project via schematic commands.
 
+#### Linking to local npm repositories
+
+It's possible to link a package into your local npm packages by running:
+```sh
+yarn build
+npm link
+```
+and then easily use it:
+```sh
+janush --name=fancy-app --types={web,cloud} --debug=false
+```
+
 ## What’s Included?
 
 Your environment will have everything you need to build a modern single-page React app with built-in Identity/AuthN/AuthZ features.
