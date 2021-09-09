@@ -16,7 +16,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "npm run install after project generation.",
+      "description": "Install all package dependencies",
       "default": false
     }
   },
