@@ -6,16 +6,10 @@
       "description": "A blank application.",
       "factory": "./application/index#applicationGenerator",
       "schema": "./application/schema.json"
-    },
-    "cloud": {
-      "description": "A blank cloud application.",
-      "factory": "./cloud/index#cloudGenerator",
-      "schema": "./cloud/schema.json"
-    },
-    "web": {
-      "description": "A blank web application.",
-      "factory": "./web/index#webGenerator",
-      "schema": "./web/schema.json"
     }
-  }
+  },
+  "extends": [
+    "./cloud/cloud-collection.json",
+    "./web/web-collection.json"
+  ]
 }

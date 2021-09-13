@@ -2,8 +2,8 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
-import { expectedFiles as expectedCloudFiles } from "../cloud/index_spec";
-import { expectedFiles as expectedWebFiles } from "../web/index_spec";
+import { expectedFiles as expectedCloudFiles } from "../cloud/template/index_spec";
+import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 const name = "janush-app";

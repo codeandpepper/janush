@@ -10,13 +10,12 @@ import {
 import { strings } from "@angular-devkit/core";
 
 import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
+import { readJanushJSON, updateJanushJSON } from "../../../utils/janush";
 
-import { readJanushJSON, updateJanushJSON } from "../../utils/janush";
-
-import { Schematic } from "../../types/enum/Schematic";
+import { Schematic } from "../../../types/enum/Schematic";
 import { Schema } from "./schema";
 
-export const webGenerator = (options: Schema): Rule => {
+export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const name = strings.dasherize(options.name);
     const sourceTemplates = url("./files");
@@ -25,13 +24,13 @@ export const webGenerator = (options: Schema): Rule => {
 
     updateJanushJSON(tree, {
       ...janushFile,
-      web: true,
+      cloud: true,
     });
 
     if (!options.skipInstall)
       _context.addTask(
         new NodePackageInstallTask({
-          workingDirectory: `${name}/${Schematic.WEB}`,
+          workingDirectory: `${name}/${Schematic.CLOUD}`,
           hideOutput: false,
         }),
         [],

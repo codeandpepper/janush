@@ -34,10 +34,10 @@ export const applicationGenerator = (options: Schema): Rule => {
         ]),
       ),
       isCloud(options)
-        ? schematic(Schematic.CLOUD, options, { scope: dasherize(options.name) })
+        ? schematic(Schematic.CLOUD + ".template", options, { scope: dasherize(options.name) })
         : noop(),
       isWeb(options)
-        ? schematic(Schematic.WEB, options, { scope: dasherize(options.name) })
+        ? schematic(Schematic.WEB + ".template", options, { scope: dasherize(options.name) })
         : noop(),
     ]);
   };
