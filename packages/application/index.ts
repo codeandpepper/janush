@@ -14,7 +14,7 @@ import {
 import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import { strings } from "@angular-devkit/core";
 
-import { Schematic } from "../../types/enum/Schematic";
+import { Schematic } from "../../types/enums/Schematic";
 import { Schema } from "./schema";
 
 export const isCloud = (options: Schema) => options.types.includes(Schematic.CLOUD);
@@ -34,10 +34,10 @@ export const applicationGenerator = (options: Schema): Rule => {
         ]),
       ),
       isCloud(options)
-        ? schematic(Schematic.CLOUD + ".template", options, { scope: dasherize(options.name) })
+        ? schematic(Schematic.CLOUD, options, { scope: dasherize(options.name) })
         : noop(),
       isWeb(options)
-        ? schematic(Schematic.WEB + ".template", options, { scope: dasherize(options.name) })
+        ? schematic(Schematic.WEB, options, { scope: dasherize(options.name) })
         : noop(),
     ]);
   };

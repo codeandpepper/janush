@@ -9,11 +9,11 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
-import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
-import { readJanushJSON, updateJanushJSON } from "../../../utils/janush";
+import { readJanushJSON, updateJanushJSON } from "../../utility/janush-json";
 
-import { Schematic } from "../../../types/enum/Schematic";
+import { Schematic } from "../../../types/enums/Schematic";
 import { Schema } from "./schema";
+import { installNodePackages } from "../../utility/scripts";
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -27,14 +27,9 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
       cloud: true,
     });
 
-    if (!options.skipInstall)
-      _context.addTask(
-        new NodePackageInstallTask({
-          workingDirectory: `${name}/${Schematic.CLOUD}`,
-          hideOutput: false,
-        }),
-        [],
-      );
+    if (!options.skipInstall) {
+      _context.addTask(installNodePackages(`${name}/${Schematic.CLOUD}`), []);
+    }
 
     return mergeWith(
       apply(sourceTemplates, [

@@ -2,6 +2,7 @@
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "cloud.template": {
+      "aliases": ["cloud"],
       "description": "A blank cloud application.",
       "factory": "./template/index#cloudTemplateGenerator",
       "schema": "./template/schema.json"

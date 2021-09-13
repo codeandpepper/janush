@@ -9,7 +9,7 @@
     }
   },
   "extends": [
-    "./cloud/cloud-collection.json",
-    "./web/web-collection.json"
+    "./cloud/collection.json",
+    "./web/collection.json"
   ]
 }
