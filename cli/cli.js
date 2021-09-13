@@ -42,7 +42,7 @@ function encodeCommand(command, options) {
             return prev + ` --skipInstall`;
         }
         if (Array.isArray(value)) {
-            return prev + ` --${key}={${value}}`;
+            return prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, ' ');
         }
         return prev + ` --${key}=${value}`;
     }, command);
