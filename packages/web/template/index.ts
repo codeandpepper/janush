@@ -13,7 +13,7 @@ import { readJanushJSON, updateJanushJSON } from "../../utility/janush-json";
 
 import { Schematic } from "../../../types/enums/Schematic";
 import { Schema } from "./schema";
-import { installNodePackages } from "../../utility/scripts";
+import { installDependencies } from "../../utility/scripts";
 
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -28,7 +28,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
     });
 
     if (!options.skipInstall) {
-      _context.addTask(installNodePackages(`${name}/${Schematic.WEB}`), []);
+      _context.addTask(installDependencies(`${name}/${Schematic.WEB}`), []);
     }
 
     return mergeWith(
