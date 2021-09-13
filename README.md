@@ -12,7 +12,7 @@ You can find detailed instructions on using Create React App and many tips [its 
 You can run the project directly using npx command below:
 
 ```sh
-npx codeandpepper/janush janush
+npx codeandpepper/janush
 ```
 
 ### Local development
@@ -35,7 +35,7 @@ npm link
 ```
 and then easily use it:
 ```sh
-janush --name=fancy-app --types={web,cloud} --debug=false
+janush --name=fancy-app --types={web,cloud}
 ```
 
 ## What’s Included?

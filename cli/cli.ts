@@ -5,36 +5,43 @@ import { spawn } from "child_process";
 const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = 'command';
+const SKIP_INSTALL = 'skipInstall';
 
 interface Options {
   //INFO: Change 'command' to more suitable name for schematics' type
   command?: string;
+  debug?: string;
   name?: string;
+  skipInstall?: boolean;
   types?: string[];
-  debug?: boolean;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
   const args = arg(
     {
       '--command': String,
+      '--debug': String,
       '--name': String,
+      '--skipInstall': Boolean,
       '--types': [String],
-      '--debug': Boolean,
       '--c': '--command',
-      '--n': '--name',
-      '--t': '--types',
       '--d': '--debug',
+      '--n': '--name',
+      '--s': '--skipInstall',
+      '--t': '--types',
     },
     {
       // @ts-ignore
       argv: rawArgs.slice[PATH_ARGS],
+      permissive: true,
     }
   );
   return {
     command: args['--command'] || "app",
+    debug: args['--debug'] || "false",
     name: args['--name'],
-    types: args['--types']
+    skipInstall: args['--skipInstall'],
+    types: args['--types'],
   }
 }
 
@@ -42,6 +49,9 @@ function encodeCommand(command: string, options: Options) {
   return Object.entries(options).reduce((prev, [key, value]) => {
     if (!value || key === COMMAND) {
       return prev;
+    }
+    if (key === SKIP_INSTALL) {
+      return prev + ` --skipInstall`;
     }
     if (Array.isArray(value)) {
       return prev + ` --${key}={${value}}`;
