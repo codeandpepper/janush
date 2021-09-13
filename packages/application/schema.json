@@ -27,6 +27,11 @@
           { "value": "web",  "label": "Web" }
         ]
       }
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Install all package dependencies",
+      "default": false
     }
   },
   "required": [

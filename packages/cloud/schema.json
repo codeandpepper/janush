@@ -13,6 +13,11 @@
         "index": 0
       },
       "x-prompt": "Application name?"
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Install all package dependencies",
+      "default": false
     }
   },
   "required": [
