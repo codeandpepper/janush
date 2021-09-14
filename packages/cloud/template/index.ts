@@ -14,7 +14,7 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
-import { readJanushJSON } from "../../utility/janush-json";
+import { readJanushJSON, updateJanushJSON } from "../../utility/janush-json";
 import { installDependencies } from "../../utility/scripts";
 
 import { CloudSchematic, Schematic } from "../../../types/enums/Schematic";
@@ -27,11 +27,16 @@ const isAuthorizationModule = (options: Schema) => options.modules.includes(Modu
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    const janushFile = readJanushJSON(tree);
+    let janushFile = readJanushJSON(tree);
 
     const name = strings.dasherize(janushFile.name);
 
     const workingDirectory = `${name}/${Schematic.CLOUD}`;
+
+    if (!isEmptyModules(options)) {
+      janushFile.cloud.module[Module.AUTHORIZATION] = isAuthorizationModule(options);
+      updateJanushJSON(tree, janushFile);
+    }
 
     if (!options.skipInstall) {
       _context.addTask(installDependencies(workingDirectory), []);

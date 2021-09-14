@@ -4,6 +4,7 @@ import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
 
 import * as janush from "../../utility/janush-json";
+import { emptyJanush, moduleJanush } from "../../../mocks/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
@@ -42,7 +43,7 @@ describe("cloud", () => {
   it("should generate all template files properly", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue({ name: "janush-app" });
+    spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
     spyOn(janush, "updateJanushJSON");
 
     const tree = await runner
@@ -55,7 +56,7 @@ describe("cloud", () => {
   it("should generate all janush files properly", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue({ name: "janush-app" });
+    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
 
     const tree = await runner
