@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "web.template": {
+      "aliases": ["web"],
+      "description": "A blank web application.",
+      "factory": "./template/index#webTemplateGenerator",
+      "schema": "./template/schema.json"
+    }
+  }
+}

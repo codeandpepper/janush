@@ -1,0 +1,26 @@
+{
+  "$id": "ApplicationSchematics",
+  "title": "Application Options Schema",
+  "type": "object",
+  "description": "Creates application",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Application name?"
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Install all package dependencies",
+      "default": false
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
