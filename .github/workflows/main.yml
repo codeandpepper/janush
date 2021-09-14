@@ -32,6 +32,8 @@ jobs:
         run: npm install -g @angular-devkit/schematics-cli
       - name: Build schematics
         run: npm run build
+      - name: Link npm package
+        run: npm link
       - name: Generate application
         run: janush --name=janush-app --types={web,cloud} --modules={authorization,} --skipInstall
       - name: Upload generated application
