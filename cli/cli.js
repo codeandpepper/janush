@@ -15,6 +15,7 @@ function parseArgumentsIntoOptions(rawArgs) {
         "--name": String,
         "--skipInstall": Boolean,
         "--types": [String],
+        "--modules": [String],
         "--c": "--command",
         "--d": "--debug",
         "--n": "--name",
@@ -31,6 +32,7 @@ function parseArgumentsIntoOptions(rawArgs) {
         name: args["--name"],
         skipInstall: args["--skipInstall"],
         types: args["--types"],
+        modules: args["--modules"],
     };
 }
 function encodeCommand(command, options) {
