@@ -32,8 +32,10 @@ jobs:
         run: npm install -g @angular-devkit/schematics-cli
       - name: Build schematics
         run: npm run build
+      - name: Link npm package
+        run: npm link
       - name: Generate application
-        run: schematics .:application --name=janush-app --types={web,cloud} --skipInstall --debug=false
+        run: janush --name=janush-app --types={web,cloud} --skipInstall
       - name: Upload generated application
         uses: actions/upload-artifact@master
         with:
