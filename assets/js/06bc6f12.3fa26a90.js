@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkjanush=self.webpackChunkjanush||[]).push([[890],{7337:function(e){e.exports=JSON.parse('{"permalink":"/janush/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
