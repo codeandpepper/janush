@@ -33,7 +33,7 @@ jobs:
       - name: Build schematics
         run: npm run build
       - name: Generate application
-        run: schematics .:application --name=janush-app --types={web,cloud} --skipInstall --debug=false
+        run: schematics .:application --name=janush-app --types={web,cloud} --modules={authorization,} --skipInstall --debug=false
       - name: Upload generated application
         uses: actions/upload-artifact@master
         with:

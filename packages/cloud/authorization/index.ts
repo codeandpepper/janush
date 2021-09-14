@@ -1,6 +1,7 @@
 import {
   apply,
   applyTemplates,
+  MergeStrategy,
   mergeWith,
   move,
   Rule,
@@ -12,21 +13,14 @@ import { strings } from "@angular-devkit/core";
 
 import { readJanushJSON } from "../../utility/janush-json";
 
-import { Schematic } from "../../../types/enums/Schematic";
 import { Schema } from "./schema";
-import { installDependencies } from "../../utility/scripts";
+import { Schematic } from "../../../types/enums/Schematic";
 
-export const webTemplateGenerator = (options: Schema): Rule => {
+export const cloudAuthorizationGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
-    const name = strings.dasherize(janushFile.name);
-
-    const workingDirectory = `${name}/${Schematic.CLOUD}`;
-
-    if (!options.skipInstall) {
-      _context.addTask(installDependencies(workingDirectory), []);
-    }
+    options.name = strings.dasherize(janushFile.name);
 
     return mergeWith(
       apply(url("./files"), [
@@ -34,8 +28,9 @@ export const webTemplateGenerator = (options: Schema): Rule => {
           ...options,
           ...strings,
         }),
-        move(Schematic.WEB),
+        move(Schematic.CLOUD),
       ]),
+      MergeStrategy.Overwrite,
     );
   };
 };

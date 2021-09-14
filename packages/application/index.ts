@@ -2,6 +2,7 @@ import {
   apply,
   applyTemplates,
   chain,
+  MergeStrategy,
   mergeWith,
   noop,
   Rule,
@@ -22,23 +23,20 @@ export const isWeb = (options: Schema) => options.types.includes(Schematic.WEB);
 
 export const applicationGenerator = (options: Schema): Rule => {
   return (_: Tree, _context: SchematicContext) => {
-    const sourceTemplates = url("./files");
+    const scope = dasherize(options.name);
 
     return chain([
       mergeWith(
-        apply(sourceTemplates, [
+        apply(url("./files"), [
           applyTemplates({
             ...options,
             ...strings,
           }),
         ]),
+        MergeStrategy.Overwrite,
       ),
-      isCloud(options)
-        ? schematic(Schematic.CLOUD, options, { scope: dasherize(options.name) })
-        : noop(),
-      isWeb(options)
-        ? schematic(Schematic.WEB, options, { scope: dasherize(options.name) })
-        : noop(),
+      isCloud(options) ? schematic(Schematic.CLOUD, options, { scope }) : noop(),
+      isWeb(options) ? schematic(Schematic.WEB, options, { scope }) : noop(),
     ]);
   };
 };

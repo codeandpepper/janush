@@ -2,7 +2,8 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
-import { expectedFiles as expectedCloudFiles } from "../cloud/template/index_spec";
+import { expectedJanushTemplateFiles as expectedCloudFiles } from "../cloud/template/index_spec";
+
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
 const collectionPath = path.join(__dirname, "../collection.json");
@@ -18,6 +19,7 @@ describe("application", () => {
         {
           name,
           types: ["web"],
+          modules: ["authorization"],
         },
         Tree.empty(),
       )
@@ -34,10 +36,14 @@ describe("application", () => {
         {
           name,
           types: ["cloud"],
+          modules: ["authorization"],
+          skipInstall: true,
         },
         Tree.empty(),
       )
       .toPromise();
+
+    console.log(tree.files);
 
     expect(tree.files).toEqual([
       ...expectedFiles,
@@ -53,17 +59,16 @@ describe("application", () => {
         {
           name,
           types: ["cloud", "web"],
+          modules: ["authorization"],
         },
         Tree.empty(),
       )
       .toPromise();
 
-    expect(tree.files).toEqual(
-      jasmine.arrayContaining([
-        ...expectedFiles,
-        ...expectedCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedWebFiles.map((f) => `/${name}${f}`),
-      ]),
-    );
+    expect(tree.files).toEqual([
+      ...expectedFiles,
+      ...expectedCloudFiles.map((f) => `/${name}${f}`),
+      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 });
