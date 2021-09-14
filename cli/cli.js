@@ -35,6 +35,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     name: args["--name"],
     skipInstall: args["--skipInstall"],
     types: args["--types"],
+    modules: args["--modules"],
   };
 }
 function encodeCommand(command, options) {
