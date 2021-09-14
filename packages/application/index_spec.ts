@@ -43,8 +43,6 @@ describe("application", () => {
       )
       .toPromise();
 
-    console.log(tree.files);
-
     expect(tree.files).toEqual([
       ...expectedFiles,
       ...expectedCloudFiles.map((f) => `/${name}${f}`),

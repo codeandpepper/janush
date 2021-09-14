@@ -18,12 +18,12 @@ import { readJanushJSON } from "../../utility/janush-json";
 import { installDependencies } from "../../utility/scripts";
 
 import { CloudSchematic, Schematic } from "../../../types/enums/Schematic";
-import { Module } from "../../../types/enums/Module";
+// import { Module } from "../../../types/enums/Module";
 
 import { Schema } from "./schema";
 
 const isEmptyModules = (options: Schema) => options.modules.length === 0;
-const isAuthorizationModule = (options: Schema) => options.modules.includes(Module.AUTHORIZATION);
+// const isAuthorizationModule = (options: Schema) => options.modules.includes(Module.AUTHORIZATION);
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -53,9 +53,9 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
             name: options.name,
           })
         : noop(),
-      isAuthorizationModule(options)
-        ? schematic(CloudSchematic.AUTHORIZATION, options, { scope: workingDirectory })
-        : noop(),
+      // isAuthorizationModule(options)
+      //   ? schematic(CloudSchematic.AUTHORIZATION, options, { scope: workingDirectory })
+      //   : noop(),
     ]);
   };
 };
