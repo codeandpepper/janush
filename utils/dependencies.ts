@@ -31,6 +31,16 @@ export const JanushTemplateNodeDependencies: NodeDependency[] = [
     name: "prettier",
     version: "^2.2.1",
   },
+  {
+    type: NodeDependencyType.Dev,
+    name: "tsconfig-paths",
+    version: "^3.9.0",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "typescript",
+    version: "^4.2.4",
+  },
 ];
 
 export const AuthorizationNodeDependencies: NodeDependency[] = [];

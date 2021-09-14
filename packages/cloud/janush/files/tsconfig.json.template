@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "commonjs",
-    "lib": ["es2018"],
+    "lib": [
+      "es2018"
+    ],
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -18,14 +20,15 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types"],
-    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@consts/*": ["./consts/*"],
       "@enums/*": ["./enums/*"],
-      "@interfaces/*": ["./interfaces/*"],
-      "@utils/*": ["./utils/*"]
     }
   },
-  "exclude": ["cdk.out"]
+  "exclude": [
+    "node_modules",
+    "cdk.out"
+  ]
 }
+
