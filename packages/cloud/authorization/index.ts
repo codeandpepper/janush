@@ -14,10 +14,10 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
-import { readJanushJSON } from "../../utility/janush-json";
+import { readJanushJSON } from "@utility/janush-json";
 
-import { CloudSchematic, Schematic } from "../../../types/enums/Schematic";
-import { Janush } from "../../../types/interfaces/Janush";
+import { CloudSchematic, Schematic } from "@enums/Schematic";
+import { Janush } from "@interfaces/Janush";
 
 import { Schema } from "./schema";
 

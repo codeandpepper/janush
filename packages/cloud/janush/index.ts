@@ -12,14 +12,13 @@ import {
 import { strings } from "@angular-devkit/core";
 
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
+import { readJanushJSON } from "@utility/janush-json";
 
-import { readJanushJSON } from "../../utility/janush-json";
+import { janushTemplateNodeDependencies } from "@utils/dependencies";
 
-import { janushTemplateNodeDependencies } from "../../../utils/dependencies";
+import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 
-import { CLOUD_PACKAGE_JSON_PATH } from "../../../const/index";
-
-import { Schematic } from "../../../types/enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 
 export const cloudJanushGenerator = (options: Schema): Rule => {

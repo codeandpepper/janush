@@ -22,10 +22,12 @@
     "outDir": ".",
     "paths": {
       "@consts/*": ["./consts/*"],
+      "@packages/*": ["./packages/*"],
+      "@utility/*": ["./packages/utility/*"],
       "@enums/*": ["./types/enums/*"],
       "@interfaces/*": ["./types/interfaces/*"],
       "@utils/*": ["./utils/*"],
-      "@utility/*": ["./packages/utility/*"]
+
     }
   },
   "include": [

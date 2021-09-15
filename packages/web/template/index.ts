@@ -10,11 +10,11 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
-import { readJanushJSON } from "../../utility/janush-json";
+import { readJanushJSON } from "@utility/janush-json";
+import { installDependencies } from "@utility/scripts";
 
-import { Schematic } from "../../../types/enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
-import { installDependencies } from "../../utility/scripts";
 
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {

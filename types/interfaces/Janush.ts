@@ -1,4 +1,4 @@
-import { Module } from "../enums/Module";
+import { Module } from "@enums/Module";
 
 export interface Janush {
   name: string;

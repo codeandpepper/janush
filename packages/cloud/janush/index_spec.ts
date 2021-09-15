@@ -2,7 +2,7 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { Tree } from "@angular-devkit/schematics";
 import * as path from "path";
 
-import * as janush from "../../utility/janush-json";
+import * as janush from "@utility/janush-json";
 import { moduleJanush } from "../../../mocks/janush";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 

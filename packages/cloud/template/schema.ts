@@ -1,5 +1,5 @@
-import { Schema as AppSchema } from "../../application/schema";
-import { Module } from "../../../types/enums/Module";
+import { Schema as AppSchema } from "@packages/application/schema";
+import { Module } from "@enums/Module";
 
 export interface Schema extends Partial<AppSchema> {
   skipInstall: boolean;

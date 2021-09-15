@@ -1,5 +1,5 @@
-import { Janush } from "../types/interfaces/Janush";
-import { Module } from "../types/enums/Module";
+import { Janush } from "@interfaces/Janush";
+import { Module } from "@enums/Module";
 
 export const emptyJanush: Janush = {
   name: "janush-app",

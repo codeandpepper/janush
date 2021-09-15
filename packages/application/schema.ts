@@ -1,4 +1,4 @@
-import { Schematic } from "../../types/enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 
 export interface Schema {
   name: string;

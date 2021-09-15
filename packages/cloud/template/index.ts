@@ -14,11 +14,11 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
-import { readJanushJSON, updateJanushJSON } from "../../utility/janush-json";
-import { installDependencies } from "../../utility/scripts";
+import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
+import { installDependencies } from "@utility/scripts";
 
-import { CloudSchematic, Schematic } from "../../../types/enums/Schematic";
-import { Module } from "../../../types/enums/Module";
+import { CloudSchematic, Schematic } from "@enums/Schematic";
+import { Module } from "@enums/Module";
 
 import { Schema } from "./schema";
 

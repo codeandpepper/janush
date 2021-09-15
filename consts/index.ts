@@ -1,4 +1,4 @@
-import { Schematic } from "../types/enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 
 export const JANUSH_JSON_PATH = "janush.json";
 

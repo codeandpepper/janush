@@ -2,7 +2,7 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
-import * as janush from "../../utility/janush-json";
+import * as janush from "@utility/janush-json";
 import { emptyJanush } from "../../../mocks/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
