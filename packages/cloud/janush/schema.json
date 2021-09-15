@@ -1,8 +1,8 @@
 {
-  "$id": "ApplicationSchematics",
-  "title": "Application Options Schema",
+  "$id": "CloudJanushSchematics",
+  "title": "Cloud Janush Schema",
   "type": "object",
-  "description": "Creates application",
+  "description": "Creates janush template",
   "properties": {
     "name": {
       "type": "string",
