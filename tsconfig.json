@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "tsconfig",
+    "baseUrl": ".",
     "lib": ["es2018", "dom"],
     "declaration": true,
     "module": "commonjs",
@@ -18,7 +18,15 @@
     "strictNullChecks": true,
     "target": "es6",
     "types": ["jasmine", "node"],
-    "jsx": "react"
+    "jsx": "react",
+    "outDir": ".",
+    "paths": {
+      "@consts/*": ["./consts/*"],
+      "@enums/*": ["./types/enums/*"],
+      "@interfaces/*": ["./types/interfaces/*"],
+      "@utils/*": ["./utils/*"],
+      "@utility/*": ["./packages/utility/*"]
+    }
   },
   "include": [
     "**/*"

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A blank schematics",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc && tsc-alias --silent",
     "test": "npm run build && jasmine packages/**/*_spec.js",
     "create": "npm run build && schematics .:application"
   },
@@ -33,6 +33,7 @@
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "jasmine": "^3.5.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "tsc-alias": "^1.3.9"
   }
 }
