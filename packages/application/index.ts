@@ -14,7 +14,7 @@ import {
 import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import { strings } from "@angular-devkit/core";
 
-import { Schematic } from "../../types/enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 
 export const isCloud = (options: Schema) => options.types.includes(Schematic.CLOUD);
