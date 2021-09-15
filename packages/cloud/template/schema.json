@@ -1,18 +1,21 @@
 {
-  "$id": "ApplicationSchematics",
-  "title": "Application Options Schema",
+  "$id": "CloudSchematics",
+  "title": "Cloud Template Schema",
   "type": "object",
-  "description": "Creates application",
+  "description": "Creates template",
   "properties": {
-    "name": {
-      "type": "string",
-      "description": "The name of the application",
-      "default": "janush-app",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "Application name?"
+    "modules": {
+      "type": "array",
+      "description": "Modules",
+      "uniqueItems": true,
+      "default": ["authorization"],
+      "x-prompt": {
+        "message": "Which modules would you like to use? You can add this later.",
+        "type": "list",
+        "items": [
+          "authorization"
+        ]
+      }
     },
     "skipInstall": {
       "type": "boolean",

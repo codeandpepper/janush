@@ -1,6 +1,12 @@
+import { Module } from "@enums/Module";
+
 export interface Janush {
   name: string;
-  // TODO refactor when arguments come
-  cloud?: boolean;
-  web?: boolean;
+  cloud: {
+    module: {
+      [Module.AUTHORIZATION]: boolean;
+    };
+  };
+  // TODO refactor when argument come
+  web: boolean;
 }

@@ -1,5 +1,7 @@
+import { Schematic } from "@enums/Schematic";
+
 export interface Schema {
   name: string;
-  types: string[];
   skipInstall: boolean;
+  types: Schematic[];
 }

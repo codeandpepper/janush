@@ -7,6 +7,7 @@ import { Janush } from "@interfaces/Janush";
 export const readJanushJSON = (tree: Tree, path: string = JANUSH_JSON_PATH): Janush => {
   try {
     const janushFile = tree.read(path);
+
     if (!janushFile) {
       throw new Error();
     }

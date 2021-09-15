@@ -1,8 +1,13 @@
 import {
   apply,
   applyTemplates,
+  chain,
+  MergeStrategy,
   mergeWith,
+  move,
+  noop,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -12,32 +17,48 @@ import { strings } from "@angular-devkit/core";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
 
-import { Schematic } from "@enums/Schematic";
+import { CloudSchematic, Schematic } from "@enums/Schematic";
+import { Module } from "@enums/Module";
+
 import { Schema } from "./schema";
+
+const isEmptyModules = (options: Schema) => options.modules.length === 0;
+const isAuthorizationModule = (options: Schema) => options.modules.includes(Module.AUTHORIZATION);
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    const name = strings.dasherize(options.name);
-    const sourceTemplates = url("./files");
+    let janushFile = readJanushJSON(tree);
 
-    const janushFile = readJanushJSON(tree);
+    const name = strings.dasherize(janushFile.name);
 
-    updateJanushJSON(tree, {
-      ...janushFile,
-      cloud: true,
-    });
+    const workingDirectory = `${name}/${Schematic.CLOUD}`;
 
-    if (!options.skipInstall) {
-      _context.addTask(installDependencies(`${name}/${Schematic.CLOUD}`), []);
+    if (!isEmptyModules(options)) {
+      janushFile.cloud.module[Module.AUTHORIZATION] = isAuthorizationModule(options);
+      updateJanushJSON(tree, janushFile);
     }
 
-    return mergeWith(
-      apply(sourceTemplates, [
-        applyTemplates({
-          ...options,
-          ...strings,
-        }),
-      ]),
-    );
+    if (!options.skipInstall) {
+      _context.addTask(installDependencies(workingDirectory), []);
+    }
+
+    return chain([
+      mergeWith(
+        apply(url("./files"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(Schematic.CLOUD),
+        ]),
+        MergeStrategy.Overwrite,
+      ),
+      !isEmptyModules(options)
+        ? schematic(CloudSchematic.JANUSH, {
+            name: options.name,
+          })
+        : noop(),
+      isAuthorizationModule(options) ? schematic(CloudSchematic.AUTHORIZATION, options) : noop(),
+    ]);
   };
 };

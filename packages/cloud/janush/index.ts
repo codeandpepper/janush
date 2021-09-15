@@ -1,6 +1,7 @@
 import {
   apply,
   applyTemplates,
+  MergeStrategy,
   mergeWith,
   move,
   Rule,
@@ -10,22 +11,24 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 
+import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { readJanushJSON } from "@utility/janush-json";
-import { installDependencies } from "@utility/scripts";
+
+import { janushTemplateNodeDependencies } from "@utils/dependencies";
+
+import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 
 import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 
-export const webTemplateGenerator = (options: Schema): Rule => {
+export const cloudJanushGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
-    const name = strings.dasherize(janushFile.name);
+    options.name = strings.dasherize(janushFile.name);
 
-    const workingDirectory = `${name}/${Schematic.CLOUD}`;
-
-    if (!options.skipInstall) {
-      _context.addTask(installDependencies(workingDirectory), []);
+    for (let nodeDependency of janushTemplateNodeDependencies) {
+      addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 
     return mergeWith(
@@ -34,8 +37,9 @@ export const webTemplateGenerator = (options: Schema): Rule => {
           ...options,
           ...strings,
         }),
-        move(Schematic.WEB),
+        move(Schematic.CLOUD),
       ]),
+      MergeStrategy.Overwrite,
     );
   };
 };
