@@ -15,7 +15,7 @@ import { addPackageJsonDependency } from "@schematics/angular/utility/dependenci
 
 import { readJanushJSON } from "../../utility/janush-json";
 
-import { JanushTemplateNodeDependencies } from "../../../utils/dependencies";
+import { janushTemplateNodeDependencies } from "../../../utils/dependencies";
 
 import { CLOUD_PACKAGE_JSON_PATH } from "../../../const/index";
 
@@ -28,7 +28,7 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
 
     options.name = strings.dasherize(janushFile.name);
 
-    for (let nodeDependency of JanushTemplateNodeDependencies) {
+    for (let nodeDependency of janushTemplateNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 

@@ -1,6 +1,6 @@
 import { NodeDependency, NodeDependencyType } from "@schematics/angular/utility/dependencies";
 
-export const JanushTemplateNodeDependencies: NodeDependency[] = [
+export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@typescript-eslint/eslint-plugin",
@@ -43,4 +43,4 @@ export const JanushTemplateNodeDependencies: NodeDependency[] = [
   },
 ];
 
-export const AuthorizationNodeDependencies: NodeDependency[] = [];
+export const authorizationNodeDependencies: NodeDependency[] = [];
