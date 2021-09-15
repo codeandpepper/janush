@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A blank schematics",
   "scripts": {
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json --silent",
+    "build": "tsc && tsc-alias --silent",
     "test": "npm run build && jasmine packages/**/*_spec.js",
     "create": "npm run build && schematics .:application"
   },
