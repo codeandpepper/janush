@@ -16,9 +16,10 @@ import { strings } from "@angular-devkit/core";
 
 import { readJanushJSON } from "../../utility/janush-json";
 
-import { Schema } from "./schema";
 import { CloudSchematic, Schematic } from "../../../types/enums/Schematic";
 import { Janush } from "../../../types/interfaces/Janush";
+
+import { Schema } from "./schema";
 
 const checkModuleExists = (janush: Janush) =>
   Object.entries(janush.cloud.module).some(([_, moduleExist]) => moduleExist);

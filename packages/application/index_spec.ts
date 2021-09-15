@@ -2,7 +2,7 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
-import { expectedJanushTemplateFiles as expectedCloudFiles } from "../cloud/template/index_spec";
+import { expectedJanushTemplateFiles as expectedCloudFiles } from "../cloud/janush/index_spec";
 
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
