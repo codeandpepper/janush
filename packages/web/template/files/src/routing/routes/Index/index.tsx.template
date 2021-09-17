@@ -1,0 +1,14 @@
+import React from "react";
+import { Typography } from "@mui/material";
+
+import PageLayout from "@layouts/PageLayout";
+
+const Index: React.FC = () => {
+  return (
+    <PageLayout pb={5}>
+      <Typography variant="h1">Index page</Typography>
+    </PageLayout>
+  );
+};
+
+export default Index;

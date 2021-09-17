@@ -1,0 +1,46 @@
+import React from "react";
+
+import { NavLink } from "react-router-dom";
+
+import Logo from "@layouts/Logo";
+import Paths from "@routing/paths";
+
+import { AppBar, Button, IconButton, Toolbar } from "@mui/material";
+import { Menu } from "@mui/icons-material";
+
+import useStyles from "./styles";
+
+export interface Props {
+  onMenuButtonClick(): void;
+}
+
+const TopAppBar: React.FC<Props> = ({ onMenuButtonClick }) => {
+  const classes = useStyles();
+
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          aria-label="menu"
+          color="inherit"
+          data-testid="open-button-in-side-menu"
+          onClick={onMenuButtonClick}>
+          <Menu />
+        </IconButton>
+        <Logo dataTestId="logo-link-in-top-app-bar" />
+
+        <Button
+          data-testid="sign-in-button-on-app-bar"
+          component={NavLink}
+          to={Paths.BASE}
+          color="inherit">
+          Sign in
+        </Button>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default TopAppBar;

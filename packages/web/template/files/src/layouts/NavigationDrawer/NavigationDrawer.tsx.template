@@ -1,0 +1,103 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+import Logo from "@layouts/Logo";
+import Paths from "@routing/paths";
+
+import useStyles from "./styles";
+import {
+  AppBar,
+  Box,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  SwipeableDrawer,
+  Toolbar,
+} from "@mui/material";
+import { Close, Help, Settings } from "@mui/icons-material";
+
+interface Props {
+  open: boolean;
+  onDrawerOpen(): void;
+  onDrawerClose(): void;
+}
+
+const NavigationDrawer: React.FC<Props> = ({
+  open,
+  onDrawerOpen,
+  onDrawerClose,
+}) => {
+  const classes = useStyles();
+
+  return (
+    <SwipeableDrawer
+      className={classes.drawer}
+      variant="temporary"
+      anchor="left"
+      open={open}
+      data-testid="side-menu-drawer-container"
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+      onOpen={onDrawerOpen}
+      onClose={onDrawerClose}>
+      <Box
+        role="presentation"
+        onClick={onDrawerClose}
+        onKeyDown={onDrawerClose}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100%">
+        <Box>
+          <AppBar position="static" color="default">
+            <Toolbar>
+              <IconButton
+                edge="start"
+                data-testid="close-button-in-side-menu"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={onDrawerClose}>
+                <Close />
+              </IconButton>
+              <Logo />
+            </Toolbar>
+          </AppBar>
+          <Divider />
+          <List>
+            <ListItem
+              button
+              data-testid="settings-button-in-side-menu"
+              component={NavLink}
+              to={Paths.BASE}
+              exact
+              activeClassName={classes.active}>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+            </ListItem>
+            <ListItem
+              button
+              data-testid="help-button-in-side-menu"
+              component={NavLink}
+              to={Paths.BASE}
+              exact
+              activeClassName={classes.active}>
+              <ListItemIcon>
+                <Help />
+              </ListItemIcon>
+              <ListItemText primary="Help" />
+            </ListItem>
+          </List>
+        </Box>
+      </Box>
+    </SwipeableDrawer>
+  );
+};
+
+export default NavigationDrawer;

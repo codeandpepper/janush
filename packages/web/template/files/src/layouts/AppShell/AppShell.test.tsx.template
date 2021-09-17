@@ -1,0 +1,34 @@
+import React from "react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+
+import defaultTheme from "@themes/defaultTheme";
+import { ThemeProvider } from "@mui/styles";
+import AppShell from "@layouts/AppShell/AppShell";
+import Paths from "@routing/paths";
+
+describe("<AppShell />", () => {
+  it("should render", async () => {
+    const innerContent = <AppShell />;
+
+    const shell = render(
+      <ThemeProvider theme={defaultTheme()}>
+        <MemoryRouter>{innerContent}</MemoryRouter>
+      </ThemeProvider>
+    );
+
+    const openButton = shell.getByTestId("open-button-in-side-menu");
+
+    await act(async () => {
+      fireEvent.click(openButton);
+    });
+
+    const closeButton = shell.getByTestId("close-button-in-side-menu");
+
+    await act(async () => {
+      fireEvent.click(closeButton);
+    });
+
+    expect(shell).toBeDefined();
+  });
+});

@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+import { useRouteMatch } from "react-router-dom";
+
+import Paths from "@routing/paths";
+import TopAppBar from "@layouts/TopAppBar";
+import NavigationDrawer from "@layouts/NavigationDrawer";
+
+const AppShell: React.FC = ({ children }) => {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  return (
+    <>
+      <TopAppBar onMenuButtonClick={handleDrawerOpen} />
+      <NavigationDrawer
+        open={drawerOpen}
+        onDrawerOpen={handleDrawerOpen}
+        onDrawerClose={handleDrawerClose}
+      />
+      {children}
+    </>
+  );
+};
+
+export default AppShell;
