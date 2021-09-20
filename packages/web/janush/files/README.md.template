@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Getting Started with <%= name %> app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to React project bootstrapped with [Janush](https://github.com/codeandpepper/janush).
+
+## First launch
+
+If you skipped the automatic installation of dependencies, please run command below:
+
+### `yarn install`
 
 ## Available Scripts
 
@@ -41,6 +47,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Janush documentation](https://janush.dev).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

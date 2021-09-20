@@ -1,11 +1,15 @@
 {
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "web.template": {
-      "aliases": ["web"],
+    "web": {
       "description": "A blank web application.",
       "factory": "./template/index#webTemplateGenerator",
       "schema": "./template/schema.json"
+    },
+    "web.janush": {
+      "description": "A basic janush web codebase.",
+      "factory": "./janush/index#webJanushGenerator",
+      "schema": "./janush/schema.json"
     }
   }
 }
