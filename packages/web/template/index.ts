@@ -35,7 +35,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
           ...strings,
         }),
         move(Schematic.WEB),
-      ]),
+      ])
     );
   };
 };

@@ -47,7 +47,9 @@ describe("web", () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
     let thrownError: FileDoesNotExistException | null = null;
     try {
-      await runner.runSchematicAsync("web", { name: "janush-app" }, Tree.empty()).toPromise();
+      await runner
+        .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
+        .toPromise();
     } catch (err) {
       thrownError = err;
     }

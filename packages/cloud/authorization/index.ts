@@ -46,7 +46,7 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.CLOUD),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Overwrite
       ),
     ]);
   };

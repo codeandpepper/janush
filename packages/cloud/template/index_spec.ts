@@ -29,7 +29,11 @@ describe("cloud", () => {
     spyOn(janush, "updateJanushJSON");
 
     const tree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: [] },
+        Tree.empty()
+      )
       .toPromise();
 
     expect(tree.files).toEqual(expectedTemplateFiles);
@@ -40,7 +44,11 @@ describe("cloud", () => {
     let thrownError: FileDoesNotExistException | null = null;
     try {
       await runner
-        .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
+        .runSchematicAsync(
+          "cloud",
+          { name: "janush-app", modules: [] },
+          Tree.empty()
+        )
         .toPromise();
     } catch (err) {
       thrownError = err;

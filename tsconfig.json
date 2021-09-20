@@ -26,14 +26,9 @@
       "@utility/*": ["./packages/utility/*"],
       "@enums/*": ["./types/enums/*"],
       "@interfaces/*": ["./types/interfaces/*"],
-      "@utils/*": ["./utils/*"],
-
+      "@utils/*": ["./utils/*"]
     }
   },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "**/files/**/*"
-  ]
+  "include": ["**/*"],
+  "exclude": ["**/files/**/*"]
 }

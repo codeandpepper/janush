@@ -23,7 +23,8 @@ import { Module } from "@enums/Module";
 import { Schema } from "./schema";
 
 const isEmptyModules = (options: Schema) => options.modules.length === 0;
-const isAuthorizationModule = (options: Schema) => options.modules.includes(Module.AUTHORIZATION);
+const isAuthorizationModule = (options: Schema) =>
+  options.modules.includes(Module.AUTHORIZATION);
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -34,7 +35,8 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
     const workingDirectory = `${name}/${Schematic.CLOUD}`;
 
     if (!isEmptyModules(options)) {
-      janushFile.cloud.module[Module.AUTHORIZATION] = isAuthorizationModule(options);
+      janushFile.cloud.module[Module.AUTHORIZATION] =
+        isAuthorizationModule(options);
       updateJanushJSON(tree, janushFile);
     }
 
@@ -51,14 +53,16 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.CLOUD),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Overwrite
       ),
       !isEmptyModules(options)
         ? schematic(CloudSchematic.JANUSH, {
             name: options.name,
           })
         : noop(),
-      isAuthorizationModule(options) ? schematic(CloudSchematic.AUTHORIZATION, options) : noop(),
+      isAuthorizationModule(options)
+        ? schematic(CloudSchematic.AUTHORIZATION, options)
+        : noop(),
     ]);
   };
 };

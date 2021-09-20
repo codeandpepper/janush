@@ -36,7 +36,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       // @ts-ignore
       argv: rawArgs.slice[PATH_ARGS],
       permissive: true,
-    },
+    }
   );
   return {
     command: args["--command"] || "app",
@@ -57,7 +57,9 @@ function encodeCommand(command: string, options: Options) {
       return prev + ` --skipInstall`;
     }
     if (Array.isArray(value)) {
-      return prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ");
+      return (
+        prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ")
+      );
     }
     return prev + ` --${key}=${value}`;
   }, command);
@@ -77,10 +79,13 @@ export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
   spawn(
-    encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options),
+    encodeCommand(
+      `schematics ${directory}/packages/collection.json:${options.command}`,
+      options
+    ),
     {
       stdio: "inherit",
       shell: true,
-    },
+    }
   );
 }

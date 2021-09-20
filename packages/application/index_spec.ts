@@ -21,11 +21,14 @@ describe("application", () => {
           types: ["web"],
           modules: ["authorization"],
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
-    expect(tree.files).toEqual([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]);
+    expect(tree.files).toEqual([
+      ...expectedFiles,
+      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 
   it("generate cloud structure", async () => {
@@ -39,7 +42,7 @@ describe("application", () => {
           modules: ["authorization"],
           skipInstall: true,
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
@@ -59,7 +62,7 @@ describe("application", () => {
           types: ["cloud", "web"],
           modules: ["authorization"],
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 

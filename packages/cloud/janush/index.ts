@@ -39,7 +39,7 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
         }),
         move(Schematic.CLOUD),
       ]),
-      MergeStrategy.Overwrite,
+      MergeStrategy.Overwrite
     );
   };
 };
