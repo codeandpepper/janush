@@ -6,9 +6,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 (
   module.exports = {
     title: "Janush",
-    tagline: "Set up a modern identity project by running one command.",
-    url: "https://codeandpepper.github.io/janush",
-    baseUrl: "/janush/",
+    tagline:
+      "Set up a modern codebase for cloud-native web app with authentication features by running one command",
+    url: "https://janush.dev",
+    baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.ico",
@@ -24,14 +25,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
             // Please change this to your repo.
-            editUrl:
-              "https://github.com/facebook/docusaurus/edit/main/website/",
+            editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
           },
           blog: {
             showReadingTime: true,
             // Please change this to your repo.
-            editUrl:
-              "https://github.com/facebook/docusaurus/edit/main/website/blog/",
+            editUrl: "https://github.com/facebook/docusaurus/edit/main/website/blog/",
           },
           theme: {
             customCss: require.resolve("./src/css/custom.css"),
@@ -42,77 +41,78 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-      ({
+      {
+        colorMode: {
+          defaultMode: "dark",
+          disableSwitch: true,
+        },
         navbar: {
-          title: "My Site",
-          logo: {
-            alt: "My Site Logo",
-            src: "img/logo.svg",
-          },
+          title: "Janush",
+          // logo: {
+          //   alt: "Janush logo",
+          //   src: "img/logo.svg",
+          // },
           items: [
             {
               type: "doc",
               docId: "intro",
-              position: "left",
-              label: "Tutorial",
+              position: "right",
+              label: "Docs",
             },
-            { to: "/blog", label: "Blog", position: "left" },
+            {
+              href: "https://janush.app",
+              label: "Demo",
+              position: "right",
+            },
             {
               href: "https://github.com/codeandpepper/janush",
               label: "GitHub",
               position: "right",
+              className: "header-github-link",
             },
           ],
         },
         footer: {
           style: "dark",
-          links: [
-            {
-              title: "Docs",
-              items: [
-                {
-                  label: "Tutorial",
-                  to: "/docs/intro",
-                },
-              ],
-            },
-            {
-              title: "Community",
-              items: [
-                {
-                  label: "Stack Overflow",
-                  href: "https://stackoverflow.com/questions/tagged/docusaurus",
-                },
-                {
-                  label: "Discord",
-                  href: "https://discordapp.com/invite/docusaurus",
-                },
-                {
-                  label: "Twitter",
-                  href: "https://twitter.com/docusaurus",
-                },
-              ],
-            },
-            {
-              title: "More",
-              items: [
-                {
-                  label: "Blog",
-                  to: "/blog",
-                },
-                {
-                  label: "GitHub",
-                  href: "https://github.com/facebook/docusaurus",
-                },
-              ],
-            },
-          ],
-          copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+          // links: [
+          //   {
+          //     title: "Docs",
+          //     items: [
+          //       {
+          //         label: "Tutorial",
+          //         to: "/docs/intro",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     title: "Community",
+          //     items: [
+          //       {
+          //         label: "Twitter",
+          //         href: "https://twitter.com/codeandpepper",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     title: "More",
+          //     items: [
+          //       {
+          //         label: "Blog",
+          //         to: "/blog",
+          //       },
+          //       {
+          //         label: "GitHub",
+          //         href: "https://github.com/codeandpepper/janush",
+          //       },
+          //     ],
+          //   },
+          // ],
+          copyright: `Copyright © ${new Date().getFullYear()} Code & Pepper`,
         },
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
         },
-      }),
+      },
   }
 );
