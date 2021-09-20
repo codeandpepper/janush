@@ -4,16 +4,16 @@ import { Typography } from "@mui/material";
 
 import useStyles from "./styles";
 
-interface Props {
-  dataTestId?: string;
-}
-
-const Logo: React.FC<Props> = ({ dataTestId = "logo-link-in-side-menu" }) => {
+const Logo: React.FC = () => {
   const classes = useStyles();
 
   return (
     <Typography variant="h6" className={classes.title}>
-      <Link to="/" data-testid={dataTestId} className={classes.logotype}>
+      <Link
+        to="/"
+        data-testid="logo-link-in-side-menu"
+        className={classes.logotype}
+      >
         <%= name %>
       </Link>
     </Typography>

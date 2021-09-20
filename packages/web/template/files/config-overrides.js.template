@@ -19,14 +19,7 @@ module.exports.jest = (config) => {
   ];
   config.collectCoverageFrom = [
     "src/**/*.{js,jsx,ts,tsx}",
-    "!src/consts/*.{js,jsx,ts,tsx}",
     "!src/features/**/*.{js,jsx,ts,tsx}",
-    "!src/types/enums/*.{js,jsx,ts,tsx}",
-    "!src/types/generated/*.{js,jsx,ts,tsx}",
-    "!src/types/interfaces/*.{js,jsx,ts,tsx}",
-    "!src/i18n/*.{js,jsx,ts,tsx}",
-    "!src/mocks/*.{js,jsx,ts,tsx}",
-    "!src/__mocks__/*.{js,jsx,ts,tsx}",
     "!src/**/*.generated.{ts,tsx}",
     "!src/**/*State.ts",
     "!src/awsConfig.ts",
