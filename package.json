@@ -10,10 +10,14 @@
   "keywords": [
     "schematics"
   ],
-  "main": "index.js",
+  "main": "cli/index.js",
   "bin": {
-    "janush": "./index.js"
+    "@codeandpepper/janush": "bin/janush",
+    "janush": "bin/janush"
   },
+  "files": [
+    "**/*.ts"
+  ],
   "publishConfig": {
     "access": "public"
   },
