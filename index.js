@@ -48,7 +48,7 @@ function encodeCommand(command, options) {
     }, command);
 }
 const options = parseArgumentsIntoOptions(process.argv);
-const directory = process.cwd();
+const directory = __dirname;
 child_process_1.spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
     stdio: "inherit",
     shell: true,
