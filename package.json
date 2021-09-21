@@ -6,7 +6,7 @@
     "build": "tsc && tsc-alias --silent",
     "test": "npm run build && jasmine packages/**/*_spec.js",
     "create": "npm run build && schematics .:application",
-    "postinstall": "npm run build"
+    "postinstall": "npm install && npm run build"
   },
   "keywords": [
     "schematics"
