@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as arg from "arg";
 import { spawn } from "child_process";
 
