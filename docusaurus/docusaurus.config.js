@@ -43,19 +43,20 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       {
         colorMode: {
-          defaultMode: "dark",
+          defaultMode: "light",
           disableSwitch: true,
         },
         navbar: {
-          title: "Janush",
-          // logo: {
-          //   alt: "Janush logo",
-          //   src: "img/logo.svg",
-          // },
+          style: "dark",
+          // title: "Janush",
+          logo: {
+            alt: "Janush logo",
+            src: "img/logo-light.svg",
+          },
           items: [
             {
               type: "doc",
-              docId: "intro",
+              docId: "getting-started/getting-started",
               position: "right",
               label: "Docs",
             },

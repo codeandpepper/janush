@@ -12,17 +12,43 @@ function HomepageHeader() {
     <header className={clsx("hero hero--dark hero-main", styles.heroBanner)}>
       <div className="container text--left">
         <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/intro">
-            Quick Start Guide
-          </Link>
-          <Link
-            className="button button--outline button--lg"
-            to="https://github.com/codeandpepper/janush"
-          >
-            GitHub
-          </Link>
+        <div className="row">
+          <div className="col col--6">
+            <p className="hero__subtitle">
+              Set up a modern codebase for cloud-native web app with authentication features by{" "}
+              <b>running one command</b>
+            </p>
+            <div className={styles.buttons}>
+              <Link
+                className="button button--primary button--lg"
+                to="/docs/getting-started/getting-started"
+              >
+                Quick Start Guide
+              </Link>
+              <Link
+                className="button button--outline button--primary button--lg"
+                to="https://github.com/codeandpepper/janush"
+              >
+                <span className="hero-github-link">GitHub</span>
+              </Link>
+            </div>
+          </div>
+          <div className="col col--6">
+            <img
+              src="img/terminal.png"
+              loading="lazy"
+              width="661"
+              height="348"
+              className="terminal"
+            />
+            {/* <img
+              src="img/terminal.svg"
+              loading="lazy"
+              width="628"
+              height="447"
+              className="terminal"
+            /> */}
+          </div>
         </div>
       </div>
     </header>
@@ -30,7 +56,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  document.querySelector("html").setAttribute("data-theme", "dark");
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title={siteConfig.tagline} description={siteConfig.tagline}>
@@ -56,7 +81,10 @@ export default function Home(): JSX.Element {
                 quisquam ab maxime. Culpa rerum in ducimus.
               </p>
               <div className="codeBlockContent_1u-d">
-                <Link className="button button--primary button--lg" to="/docs/intro">
+                <Link
+                  className="button button--primary button--lg"
+                  to="/docs/getting-started/getting-started"
+                >
                   Quick Start Guide
                 </Link>
               </div>
@@ -79,7 +107,10 @@ export default function Home(): JSX.Element {
                 dignissimos iure natus sapiente. Iste quo sint distinctio exercitationem.
               </p>
               <div className="codeBlockContent_1u-d">
-                <Link className="button button--primary button--lg" to="/docs/intro">
+                <Link
+                  className="button button--primary button--lg"
+                  to="/docs/getting-started/getting-started"
+                >
                   Quick Start Guide
                 </Link>
               </div>
