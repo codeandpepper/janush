@@ -8,7 +8,9 @@ export const emptyJanush: Janush = {
       [Module.AUTHORIZATION]: false,
     },
   },
-  web: false,
+  web: {
+    module: {}
+  },
 };
 
 export const moduleJanush: Janush = {
@@ -18,5 +20,7 @@ export const moduleJanush: Janush = {
       [Module.AUTHORIZATION]: true,
     },
   },
-  web: true,
+  web: {
+    module: {}
+  },
 };

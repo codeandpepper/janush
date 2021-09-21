@@ -7,6 +7,7 @@ export interface Janush {
       [Module.AUTHORIZATION]: boolean;
     };
   };
-  // TODO refactor when argument come
-  web: boolean;
+  web: {
+    module: {}
+  };
 }

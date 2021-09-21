@@ -1,0 +1,21 @@
+import React from "react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+
+import defaultTheme from "@themes/defaultTheme";
+import { ThemeProvider } from "@mui/styles";
+import AppShell from "@layouts/AppShell/AppShell";
+
+describe("<AppShell />", () => {
+  it("should render", async () => {
+    const innerContent = <AppShell />;
+
+    const shell = render(
+      <ThemeProvider theme={defaultTheme()}>
+        <MemoryRouter>{innerContent}</MemoryRouter>
+      </ThemeProvider>
+    );
+
+    expect(shell).toBeDefined();
+  });
+});
