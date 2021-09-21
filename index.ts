@@ -1,8 +1,6 @@
-import * as path from "path";
 import * as arg from "arg";
 import { spawn } from "child_process";
 
-const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SKIP_INSTALL = "skipInstall";
@@ -63,24 +61,9 @@ function encodeCommand(command: string, options: Options) {
   }, command);
 }
 
-export function cli(args: string[]) {
-  let directory;
+const options = parseArgumentsIntoOptions(process.argv);
 
-  if (__dirname.includes("@")) {
-    //INFO: npx via github
-    directory = `@${path.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
-  } else {
-    //INFO: installed project
-    directory = path.join(__dirname, "..");
-  }
-
-  const options = parseArgumentsIntoOptions(args);
-
-  spawn(
-    encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options),
-    {
-      stdio: "inherit",
-      shell: true,
-    },
-  );
-}
+spawn(encodeCommand(`schematics ./packages/collection.json:${options.command}`, options), {
+  stdio: "inherit",
+  shell: true,
+});

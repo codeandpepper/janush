@@ -1,10 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cli = void 0;
-const path = require("path");
 const arg = require("arg");
 const child_process_1 = require("child_process");
-const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SKIP_INSTALL = "skipInstall";
@@ -49,21 +46,9 @@ function encodeCommand(command, options) {
         return prev + ` --${key}=${value}`;
     }, command);
 }
-function cli(args) {
-    let directory;
-    if (__dirname.includes("@")) {
-        //INFO: npx via github
-        directory = `@${path.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
-    }
-    else {
-        //INFO: installed project
-        directory = path.join(__dirname, "..");
-    }
-    const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
-        stdio: "inherit",
-        shell: true,
-    });
-}
-exports.cli = cli;
-//# sourceMappingURL=cli.js.map
+const options = parseArgumentsIntoOptions(process.argv);
+child_process_1.spawn(encodeCommand(`schematics ./packages/collection.json:${options.command}`, options), {
+    stdio: "inherit",
+    shell: true,
+});
+//# sourceMappingURL=index.js.map
