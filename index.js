@@ -48,7 +48,8 @@ function encodeCommand(command, options) {
     }, command);
 }
 const options = parseArgumentsIntoOptions(process.argv);
-child_process_1.spawn(encodeCommand(`schematics ./packages/collection.json:${options.command}`, options), {
+const directory = process.cwd();
+child_process_1.spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
     stdio: "inherit",
     shell: true,
 });

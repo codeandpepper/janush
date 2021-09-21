@@ -64,8 +64,12 @@ function encodeCommand(command: string, options: Options) {
 }
 
 const options = parseArgumentsIntoOptions(process.argv);
+const directory = process.cwd();
 
-spawn(encodeCommand(`schematics ./packages/collection.json:${options.command}`, options), {
-  stdio: "inherit",
-  shell: true,
-});
+spawn(
+  encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options),
+  {
+    stdio: "inherit",
+    shell: true,
+  },
+);
