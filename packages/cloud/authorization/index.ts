@@ -51,6 +51,18 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
+      // TODO temporary solution for service provider enum with one module (authorization),
+      //  when other modules come need to move this into "addCognitoConstructCToCloudStack" function
+      mergeWith(
+        apply(url("./other-files/service-provider"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(`${Schematic.CLOUD}/enums`),
+        ]),
+        MergeStrategy.Overwrite,
+      ),
       addCognitoConstructToCloudStack(name),
     ]);
   };
