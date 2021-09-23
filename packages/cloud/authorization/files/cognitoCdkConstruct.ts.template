@@ -108,8 +108,6 @@ export class CognitoCdkConstruct extends Construct {
       }
     );
 
-    `${envName}-RoleForAuthenticatedCognitoUser`,
-
     // IAM Role for authorized Cognito users
     const authorizedCognitoUserRole = new iam.Role(
       this,

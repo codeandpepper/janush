@@ -45,7 +45,7 @@ describe("application", () => {
       .toPromise();
 
     expect(tree.files).toEqual(
-      jasmine.arrayContaining([
+      jasmine.arrayWithExactContents([
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
@@ -68,7 +68,7 @@ describe("application", () => {
       .toPromise();
 
     expect(tree.files).toEqual(
-      jasmine.arrayContaining([
+      jasmine.arrayWithExactContents([
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
