@@ -11,7 +11,7 @@ const collectionPath = path.join(__dirname, "../collection.json");
 
 export const expectedAuthorizationTemplateFiles = [
   "/cloud/lib/authorization/cognitoCdkConstruct.ts",
-  "/cloud/enums/ServiceProvider.ts",
+  "/cloud/enums/ServicePurpose.ts",
 ];
 
 describe("cloud.authorization", () => {

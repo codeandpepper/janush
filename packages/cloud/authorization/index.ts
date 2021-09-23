@@ -50,10 +50,10 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      // TODO temporary solution for service provider enum with one module (authorization),
+      // TODO temporary solution for service purpose enum with one module (authorization),
       //  when other modules come need to move this into "addCognitoConstructCToCloudStack" function
       mergeWith(
-        apply(url("./other-files/service-provider"), [
+        apply(url("./other-files/service-purpose"), [
           applyTemplates({
             ...options,
             ...strings,

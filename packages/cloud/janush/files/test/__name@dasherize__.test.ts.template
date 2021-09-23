@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as <%= classify(name) %> from '../lib/<%= dasherize(name) %>-stack';
 
-import { EnvName } from "@enums/EnvName";
+import { EnvName } from "../enums/EnvName";
 
 test('Empty Stack', () => {
     const app = new cdk.App();
