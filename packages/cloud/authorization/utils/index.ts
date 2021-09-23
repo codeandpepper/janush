@@ -85,7 +85,7 @@ const addCognitoConstructToCloudStackRules = (
     sourceFile,
     context.cloudStackPath,
     "CognitoCdkConstruct",
-    "./authorization/cognitoCdkConstruct.ts",
+    "./authorization/cognitoCdkConstruct",
   ) as InsertChange;
 
   return { constructChange, importChange };
