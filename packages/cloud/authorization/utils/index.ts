@@ -52,14 +52,14 @@ const addCognitoConstructToCloudStackRules = (
 
   const sourceCloudStackText = cloudStackText.toString("utf-8");
 
-  let sourceFile = ts.createSourceFile(
+  const sourceFile = ts.createSourceFile(
     context.cloudStackPath,
     sourceCloudStackText,
     ts.ScriptTarget.Latest,
     true,
   );
 
-  let nodes: ts.Node[] = getSourceNodes(sourceFile);
+  const nodes: ts.Node[] = getSourceNodes(sourceFile);
 
   const stackConstructorNode = nodes.find((n) => n.kind === ts.SyntaxKind.Constructor);
 
