@@ -35,7 +35,6 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
     options.name = name;
 
     return chain([
-      noop(),
       !checkModuleExists(janushFile)
         ? schematic(CloudSchematic.JANUSH, {
             name,
