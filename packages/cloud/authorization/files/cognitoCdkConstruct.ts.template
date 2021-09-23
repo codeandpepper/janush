@@ -1,21 +1,19 @@
 import { Construct } from "constructs";
-import {
-  StackProps,
-  Duration,
-  aws_cognito as cognito,
-  aws_iam as iam,
-} from "aws-cdk-lib";
+import { StackProps } from "aws-cdk-lib";
+
+import { CognitoCdkUserPoolConstruct } from "./cognitoCdkUserPoolConstruct";
+import { CognitoCdkIdentityPoolConstruct } from "./cognitoCdkIdentityPoolConstruct";
+
+import { applyTagsToResource } from "../../utils/functions";
 
 import { EnvName } from "../../enums/EnvName";
 import { ServicePurpose } from "../../enums/ServicePurpose";
-import { applyTagsToResource } from "../../utils/functions";
 
 interface CognitoProps {
   envName: EnvName;
 }
 
 export class CognitoCdkConstruct extends Construct {
-  public userPool: cognito.UserPool;
   constructor(
     scope: Construct,
     id: string,
@@ -23,138 +21,25 @@ export class CognitoCdkConstruct extends Construct {
   ) {
     super(scope, id);
 
-    this.userPool = new cognito.UserPool(this, `${envName}-CognitoUserPool`, {
-      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
-      autoVerify: {
-        email: true,
-      },
-      passwordPolicy: {
-        minLength: 10,
-        requireLowercase: true,
-        requireUppercase: true,
-        requireDigits: true,
-        requireSymbols: false,
-        tempPasswordValidity: Duration.days(3),
-      },
-      selfSignUpEnabled: true,
-      signInAliases: {
-        email: true,
-      },
-      standardAttributes: {
-        email: {
-          mutable: true,
-          required: false,
-        },
-      },
-    });
-
-    const cognitoUserPoolClient = new cognito.UserPoolClient(
+    const { userPool, userPoolClient } = new CognitoCdkUserPoolConstruct(
       this,
-      `${envName}-CognitoUserPoolClient`,
-      {
-        disableOAuth: false,
-        supportedIdentityProviders: [
-          cognito.UserPoolClientIdentityProvider.COGNITO,
-        ],
-        preventUserExistenceErrors: true,
-        userPool: this.userPool,
-      }
+      `${envName}-CognitoUserPool`,
+      { envName }
     );
 
-    cognitoUserPoolClient.node.addDependency(this.userPool);
-
-    const cognitoIdentityPool = new cognito.CfnIdentityPool(
-      this,
-      `${envName}-CognitoIdentityPool`,
-      {
-        allowClassicFlow: false,
-        allowUnauthenticatedIdentities: true,
-        cognitoIdentityProviders: [
-          {
-            clientId: cognitoUserPoolClient.userPoolClientId,
-            providerName: this.userPool.userPoolProviderName,
-            serverSideTokenCheck: false,
-          },
-        ],
-      }
-    );
-
-    cognitoIdentityPool.node.addDependency(cognitoUserPoolClient);
-    cognitoIdentityPool.node.addDependency(this.userPool);
-
-    // IAM Role for unauthorized Cognito users
-    const unauthorizedCognitoUserRole = new iam.Role(
-      this,
-      `${envName}-RoleForUnauthenticatedCognitoUser`,
-      {
-        description: "Default role for anonymous users",
-        assumedBy: new iam.FederatedPrincipal(
-          "cognito-identity.amazonaws.com",
-          {
-            StringEquals: {
-              "cognito-identity.amazonaws.com:aud": cognitoIdentityPool.ref,
-            },
-            "ForAnyValue:StringLike": {
-              "cognito-identity.amazonaws.com:amr": "unauthenticated",
-            },
-          },
-          "sts:AssumeRoleWithWebIdentity"
-        ),
-        managedPolicies: [
-          iam.ManagedPolicy.fromAwsManagedPolicyName(
-            "service-role/AWSLambdaBasicExecutionRole"
-          ),
-        ],
-      }
-    );
-
-    // IAM Role for authorized Cognito users
-    const authorizedCognitoUserRole = new iam.Role(
-      this,
-      "RoleForAuthenticatedCognitoUser",
-      {
-        description: "Default role for authenticated users",
-        assumedBy: new iam.FederatedPrincipal(
-          "cognito-identity.amazonaws.com",
-          {
-            StringEquals: {
-              "cognito-identity.amazonaws.com:aud": cognitoIdentityPool.ref,
-            },
-            "ForAnyValue:StringLike": {
-              "cognito-identity.amazonaws.com:amr": "authenticated",
-            },
-          },
-          "sts:AssumeRoleWithWebIdentity"
-        ),
-        managedPolicies: [
-          iam.ManagedPolicy.fromAwsManagedPolicyName(
-            "service-role/AWSLambdaBasicExecutionRole"
-          ),
-        ],
-      }
-    );
-
-    // Set unauthenticated / authenticated roles for Cognito Identity Pool
-    const cognitoPoolRoleAttachment = new cognito.CfnIdentityPoolRoleAttachment(
-      this,
-      `${envName}-CognitoPoolRoleAttachment`,
-      {
-        identityPoolId: cognitoIdentityPool.ref,
-        roles: {
-          unauthenticated: unauthorizedCognitoUserRole.roleArn,
-          authenticated: authorizedCognitoUserRole.roleArn,
-        },
-      }
-    );
+    const { identityPool, identityPoolRoleAttachment } =
+      new CognitoCdkIdentityPoolConstruct(
+        this,
+        `${envName}-CognitoIdentityPool`,
+        {
+          envName,
+          userPool,
+          userPoolClient,
+        }
+      );
 
     applyTagsToResource(
-      [
-        this.userPool,
-        cognitoUserPoolClient,
-        unauthorizedCognitoUserRole,
-        authorizedCognitoUserRole,
-        cognitoPoolRoleAttachment,
-      ],
+      [userPool, userPoolClient, identityPool, identityPoolRoleAttachment],
       {
         envName,
         purpose: ServicePurpose.Authorization,
