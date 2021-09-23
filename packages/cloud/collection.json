@@ -9,7 +9,8 @@
     "cloud.janush": {
       "description": "A basic janush cloud codebase.",
       "factory": "./janush/index#cloudJanushGenerator",
-      "schema": "./janush/schema.json"
+      "schema": "./janush/schema.json",
+      "hidden": true
     },
     "cloud.authorization": {
       "description": "AWS cognito and emails.",

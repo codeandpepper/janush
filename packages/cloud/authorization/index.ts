@@ -17,8 +17,10 @@ import { strings } from "@angular-devkit/core";
 import { readJanushJSON } from "@utility/janush-json";
 
 import { CloudSchematic, Schematic } from "@enums/Schematic";
-import { Janush } from "@interfaces/Janush";
 
+import { addCognitoConstructToCloudStack } from "@packages/cloud/authorization/utils";
+
+import { Janush } from "@interfaces/Janush";
 import { Schema } from "./schema";
 
 const checkModuleExists = (janush: Janush) =>
@@ -44,10 +46,23 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
             ...options,
             ...strings,
           }),
-          move(Schematic.CLOUD),
+          move(`${Schematic.CLOUD}/lib/authorization`),
         ]),
         MergeStrategy.Overwrite,
       ),
+      // TODO temporary solution for service purpose enum with one module (authorization),
+      //  when other modules come need to move this into "addCognitoConstructCToCloudStack" function
+      mergeWith(
+        apply(url("./other-files/service-purpose"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(`${Schematic.CLOUD}/enums`),
+        ]),
+        MergeStrategy.Overwrite,
+      ),
+      addCognitoConstructToCloudStack(name),
     ]);
   };
 };

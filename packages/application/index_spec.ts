@@ -2,7 +2,8 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
-import { expectedJanushTemplateFiles as expectedCloudFiles } from "../cloud/janush/index_spec";
+import { expectedJanushTemplateFiles as expectedJanushCloudFiles } from "../cloud/janush/index_spec";
+import { expectedAuthorizationTemplateFiles as expectedAuthorizationCloudFiles } from "../cloud/authorization/index_spec";
 
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
@@ -43,10 +44,13 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([
-      ...expectedFiles,
-      ...expectedCloudFiles.map((f) => `/${name}${f}`),
-    ]);
+    expect(tree.files).toEqual(
+      jasmine.arrayWithExactContents([
+        ...expectedFiles,
+        ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
+      ]),
+    );
   });
 
   it("generate both structures", async () => {
@@ -63,10 +67,13 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([
-      ...expectedFiles,
-      ...expectedCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedWebFiles.map((f) => `/${name}${f}`),
-    ]);
+    expect(tree.files).toEqual(
+      jasmine.arrayWithExactContents([
+        ...expectedFiles,
+        ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedWebFiles.map((f) => `/${name}${f}`),
+      ]),
+    );
   });
 });
