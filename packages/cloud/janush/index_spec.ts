@@ -38,12 +38,7 @@ describe("cloud.janush", () => {
       .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    console.log(templateTree.files);
-
     const tree = await runner.runSchematicAsync("cloud.janush", {}, templateTree).toPromise();
-
-    console.log(templateTree.files);
-    console.log(tree.files);
 
     expect(tree.files).toEqual(expectedJanushTemplateFiles);
   });
