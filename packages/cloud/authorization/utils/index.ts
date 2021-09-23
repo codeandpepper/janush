@@ -27,7 +27,9 @@ const createCognitoConstructContext = (projectName: string): CognitoConstructCon
   const serviceProviderPath = `${Schematic.CLOUD}/enums/EnvName.ts`;
 
   const construct = fs
-    .readFileSync(path.join(__dirname, "..", "other-files/cloud-stack/authorization-construct.txt"))
+    .readFileSync(
+      path.join(__dirname, "..", "other-files/cloud-stack/authorization-construct.template"),
+    )
     .toString("utf-8");
 
   return {

@@ -63,7 +63,9 @@ describe("cloud.authorization", () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     const authorizationConstruct = fs
-      .readFileSync(path.join(__dirname, "other-files/cloud-stack/authorization-construct.txt"))
+      .readFileSync(
+        path.join(__dirname, "other-files/cloud-stack/authorization-construct.template"),
+      )
       .toString("utf-8");
 
     const importStatement =
