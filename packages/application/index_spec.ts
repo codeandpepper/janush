@@ -4,6 +4,7 @@ import * as path from "path";
 
 import { expectedJanushTemplateFiles as expectedJanushCloudFiles } from "../cloud/janush/index_spec";
 import { expectedAuthorizationTemplateFiles as expectedAuthorizationCloudFiles } from "../cloud/authorization/index_spec";
+import { expectedAuthorizationEmailsTemplateFiles } from "@packages/cloud/authorization-emails/index_spec";
 
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
@@ -39,6 +40,7 @@ describe("application", () => {
           types: ["cloud"],
           modules: ["authorization"],
           skipInstall: true,
+          emails: true,
         },
         Tree.empty(),
       )
@@ -49,6 +51,7 @@ describe("application", () => {
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthorizationEmailsTemplateFiles.map((f) => `/${name}${f}`),
       ]),
     );
   });
@@ -72,6 +75,7 @@ describe("application", () => {
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthorizationEmailsTemplateFiles.map((f) => `/${name}${f}`),
         ...expectedWebFiles.map((f) => `/${name}${f}`),
       ]),
     );

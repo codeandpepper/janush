@@ -8,18 +8,19 @@ import { expectedJanushTemplateFiles } from "@packages/cloud/janush/index_spec";
 
 import { emptyJanush, moduleJanush } from "../../../mocks/janush";
 import { Schematic } from "@enums/Schematic";
+import { expectedAuthorizationEmailsTemplateFiles } from "@packages/cloud/authorization-emails/index_spec";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
 export const expectedAuthorizationTemplateFiles = [
   "/cloud/lib/authorization/cognitoCdkConstruct.ts",
-  "/cloud/lib/authorization/cognitoCdkUserPoolConstruct.ts",
-  "/cloud/lib/authorization/cognitoCdkIdentityPoolConstruct.ts",
+  "/cloud/lib/authorization/cognitoUserPoolCdkConstruct.ts",
+  "/cloud/lib/authorization/cognitoIdentityPoolCdkConstruct.ts",
   "/cloud/enums/ServicePurpose.ts",
 ];
 
 describe("cloud.authorization", () => {
-  it("should generate authorization without janush template", async () => {
+  it("should generate authorization without janush template and emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
@@ -30,8 +31,17 @@ describe("cloud.authorization", () => {
       .toPromise();
 
     const authorizationTree = await runner
-      .runSchematicAsync("cloud.authorization", {}, templateTree)
+      .runSchematicAsync("cloud.authorization", { emails: false }, templateTree)
       .toPromise();
+
+    console.log(authorizationTree.files);
+
+    console.log(
+      jasmine.arrayWithExactContents([
+        ...expectedJanushTemplateFiles,
+        ...expectedAuthorizationTemplateFiles,
+      ]),
+    );
 
     expect(authorizationTree.files).toEqual(
       jasmine.arrayWithExactContents([
@@ -41,7 +51,7 @@ describe("cloud.authorization", () => {
     );
   });
 
-  it("should generate authorization with janush template", async () => {
+  it("should generate authorization with janush template and emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
@@ -49,6 +59,29 @@ describe("cloud.authorization", () => {
 
     const templateTree = await runner
       .runSchematicAsync("cloud", { name: "janush-app", modules: ["authorization"] }, Tree.empty())
+      .toPromise();
+
+    expect(templateTree.files).toEqual(
+      jasmine.arrayWithExactContents([
+        ...expectedJanushTemplateFiles,
+        ...expectedAuthorizationTemplateFiles,
+        ...expectedAuthorizationEmailsTemplateFiles,
+      ]),
+    );
+  });
+
+  it("should generate authorization with janush template and without emails", async () => {
+    const runner = new SchematicTestRunner("schematics", collectionPath);
+
+    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
+    spyOn(janush, "updateJanushJSON");
+
+    const templateTree = await runner
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: ["authorization"], emails: false },
+        Tree.empty(),
+      )
       .toPromise();
 
     expect(templateTree.files).toEqual(
