@@ -1,8 +1,8 @@
 {
-  "$id": "CloudAuthorizationSchematics",
-  "title": "Cloud Authorization Schema",
+  "$id": "CloudAuthenticationSchematics",
+  "title": "Cloud Authentication Schema",
   "type": "object",
-  "description": "Creates authorization module",
+  "description": "Creates authentication module",
   "properties": {
     "name": {
       "type": "string",

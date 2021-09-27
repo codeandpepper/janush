@@ -57,7 +57,7 @@ export class EmailsCdkConstruct extends Construct {
       ],
       {
         envName,
-        purpose: ServicePurpose.Authorization,
+        purpose: ServicePurpose.Authentication,
       }
     );
   }

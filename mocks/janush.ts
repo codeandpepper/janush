@@ -5,11 +5,11 @@ export const emptyJanush: Janush = {
   name: "janush-app",
   cloud: {
     module: {
-      [Module.AUTHORIZATION]: false,
+      [Module.AUTHENTICATION]: false,
     },
   },
   web: {
-    module: {}
+    module: {},
   },
 };
 
@@ -17,10 +17,10 @@ export const moduleJanush: Janush = {
   name: "janush-app",
   cloud: {
     module: {
-      [Module.AUTHORIZATION]: true,
+      [Module.AUTHENTICATION]: true,
     },
   },
   web: {
-    module: {}
+    module: {},
   },
 };

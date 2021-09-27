@@ -16,7 +16,7 @@ export class EmailsS3CdkConstruct extends Construct {
     super(scope, id);
 
     this.emailTemplatesBucket = new s3.Bucket(this, "Bucket", {
-      bucketName: `${envName}-janush-app-email-templates`,
+      bucketName: `${envName}-<%= dasherize(name) %>-email-templates`,
     });
 
     this.emailTemplatesBucketDeployment = new s3deploy.BucketDeployment(

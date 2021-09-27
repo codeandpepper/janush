@@ -4,10 +4,10 @@ export interface Janush {
   name: string;
   cloud: {
     module: {
-      [Module.AUTHORIZATION]: boolean;
+      [Module.AUTHENTICATION]: boolean;
     };
   };
   web: {
-    module: {}
+    module: {};
   };
 }

@@ -35,7 +35,7 @@ jobs:
       - name: Link npm package
         run: npm link
       - name: Generate application
-        run: janush --name=janush-app --types={web,cloud} --modules={authorization,} --skipInstall
+        run: janush --name=janush-app --types={web,cloud} --modules={authentication,} --skipInstall
       - name: Upload generated application
         uses: actions/upload-artifact@master
         with:

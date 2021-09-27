@@ -1,8 +1,8 @@
 {
-  "$id": "CloudAuthorizationEmailsSchematics",
-  "title": "Cloud Authorization Emails Schema",
+  "$id": "CloudAuthenticationEmailsSchematics",
+  "title": "Cloud Authentication Emails Schema",
   "type": "object",
-  "description": "Creates authorization emails custom message trigger.",
+  "description": "Creates authentication emails custom message trigger.",
   "properties": {
     "name": {
       "type": "string",

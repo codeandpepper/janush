@@ -12,18 +12,18 @@ import {
 } from "@angular-devkit/schematics";
 import { strings } from "@angular-devkit/core";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
+import { authenticationEmailsNodeDependencies } from "@utils/dependencies";
+import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 
 import { Schematic } from "@enums/Schematic";
 
 import { Schema } from "./schema";
 
-import { authorizationEmailsNodeDependencies } from "@utils/dependencies";
-import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
-import { addEmailsConstructToCognitoConstruct } from "@packages/cloud/authorization-emails/utils";
+import { addEmailsConstructToCognitoConstruct } from "./utils";
 
-export const cloudAuthorizationEmailsGenerator = (options: Schema): Rule => {
+export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    for (let nodeDependency of authorizationEmailsNodeDependencies) {
+    for (let nodeDependency of authenticationEmailsNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 
@@ -34,7 +34,7 @@ export const cloudAuthorizationEmailsGenerator = (options: Schema): Rule => {
             ...options,
             ...strings,
           }),
-          move(`${Schematic.CLOUD}/lib/authorization/emails`),
+          move(`${Schematic.CLOUD}/lib/authentication/emails`),
         ]),
         MergeStrategy.Overwrite,
       ),

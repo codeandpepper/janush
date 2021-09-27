@@ -48,7 +48,7 @@ export const janushTemplateNodeDependencies: NodeDependency[] = [
   },
 ];
 
-export const authorizationEmailsNodeDependencies: NodeDependency[] = [
+export const authenticationEmailsNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "mjml",

@@ -65,7 +65,7 @@ export const handler: CustomMessageTriggerHandler = async (
 
       const activationLink = generateCodeLink(triggerSource, email);
 
-      event.response.emailSubject = "Janush App | Verify account";
+      event.response.emailSubject = "<%= classify(name) %> | Verify account";
       event.response.emailMessage = await generateEmailFromS3Template(
         s3,
         EmailTemplate.EMAIL_VERIFICATION,
@@ -80,7 +80,7 @@ export const handler: CustomMessageTriggerHandler = async (
 
       const resetLink = generateCodeLink(triggerSource, email);
 
-      event.response.emailSubject = "Janush App | Reset password";
+      event.response.emailSubject = "<%= classify(name) %> | Reset password";
       event.response.emailMessage = await generateEmailFromS3Template(
         s3,
         EmailTemplate.RESET_PASSWORD,

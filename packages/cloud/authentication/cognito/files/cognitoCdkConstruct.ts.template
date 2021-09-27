@@ -42,7 +42,7 @@ export class CognitoCdkConstruct extends Construct {
       [userPool, userPoolClient, identityPool, identityPoolRoleAttachment],
       {
         envName,
-        purpose: ServicePurpose.Authorization,
+        purpose: ServicePurpose.Authentication,
       }
     );
   }

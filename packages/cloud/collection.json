@@ -12,16 +12,9 @@
       "factory": "./janush/index#cloudJanushGenerator",
       "schema": "./janush/schema.json",
       "hidden": true
-    },
-    "cloud.authorization": {
-      "description": "AWS cognito user pool and identity pool.",
-      "factory": "./authorization/index#cloudAuthorizationGenerator",
-      "schema": "./authorization/schema.json"
-    },
-    "cloud.authorization.emails": {
-      "description": "AWS cognito custom message emails.",
-      "factory": "./authorization-emails/index#cloudAuthorizationEmailsGenerator",
-      "schema": "./authorization-emails/schema.json"
     }
-  }
+  },
+  "extends": [
+    "./authentication/collection.json"
+  ]
 }

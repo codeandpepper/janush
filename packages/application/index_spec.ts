@@ -3,8 +3,8 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
 import { expectedJanushTemplateFiles as expectedJanushCloudFiles } from "../cloud/janush/index_spec";
-import { expectedAuthorizationTemplateFiles as expectedAuthorizationCloudFiles } from "../cloud/authorization/index_spec";
-import { expectedAuthorizationEmailsTemplateFiles } from "@packages/cloud/authorization-emails/index_spec";
+import { expectedAuthenticationTemplateFiles as expectedAuthenticationCloudFiles } from "../cloud/authentication/cognito/index_spec";
+import { expectedAuthenticationEmailsTemplateFiles } from "@packages/cloud/authentication/emails/index_spec";
 
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 
@@ -21,7 +21,7 @@ describe("application", () => {
         {
           name,
           types: ["web"],
-          modules: ["authorization"],
+          modules: ["authentication"],
         },
         Tree.empty(),
       )
@@ -38,7 +38,7 @@ describe("application", () => {
         {
           name,
           types: ["cloud"],
-          modules: ["authorization"],
+          modules: ["authentication"],
           skipInstall: true,
           emails: true,
         },
@@ -50,8 +50,8 @@ describe("application", () => {
       jasmine.arrayWithExactContents([
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthorizationEmailsTemplateFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
       ]),
     );
   });
@@ -64,7 +64,7 @@ describe("application", () => {
         {
           name,
           types: ["cloud", "web"],
-          modules: ["authorization"],
+          modules: ["authentication"],
         },
         Tree.empty(),
       )
@@ -74,8 +74,8 @@ describe("application", () => {
       jasmine.arrayWithExactContents([
         ...expectedFiles,
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthorizationCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthorizationEmailsTemplateFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
+        ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
         ...expectedWebFiles.map((f) => `/${name}${f}`),
       ]),
     );

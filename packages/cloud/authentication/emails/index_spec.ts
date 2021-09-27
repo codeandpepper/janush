@@ -5,28 +5,28 @@ import * as janush from "@utility/janush-json";
 import * as fs from "fs";
 
 import { expectedJanushTemplateFiles } from "@packages/cloud/janush/index_spec";
-import { expectedAuthorizationTemplateFiles } from "@packages/cloud/authorization/index_spec";
+import { expectedAuthenticationTemplateFiles } from "@packages/cloud/authentication/cognito/index_spec";
 
-import { emptyJanush, moduleJanush } from "../../../mocks/janush";
+import { emptyJanush, moduleJanush } from "@mocks/janush";
 import { Schematic } from "@enums/Schematic";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../../collection.json");
 
-export const expectedAuthorizationEmailsTemplateFiles = [
-  "/cloud/lib/authorization/emails/emailsCdkConstruct.ts",
-  "/cloud/lib/authorization/emails/emailsLambda.ts",
-  "/cloud/lib/authorization/emails/emailsS3CdkConstruct.ts",
-  "/cloud/lib/authorization/emails/utils/index.ts",
-  "/cloud/lib/authorization/emails/templates/emailVerification.html",
-  "/cloud/lib/authorization/emails/templates/emailVerification.mjml",
-  "/cloud/lib/authorization/emails/templates/resetPassword.html",
-  "/cloud/lib/authorization/emails/templates/resetPassword.mjml",
+export const expectedAuthenticationEmailsTemplateFiles = [
+  "/cloud/lib/authentication/emails/emailsCdkConstruct.ts",
+  "/cloud/lib/authentication/emails/emailsLambda.ts",
+  "/cloud/lib/authentication/emails/emailsS3CdkConstruct.ts",
+  "/cloud/lib/authentication/emails/utils/index.ts",
+  "/cloud/lib/authentication/emails/templates/emailVerification.html",
+  "/cloud/lib/authentication/emails/templates/emailVerification.mjml",
+  "/cloud/lib/authentication/emails/templates/resetPassword.html",
+  "/cloud/lib/authentication/emails/templates/resetPassword.mjml",
   "/cloud/enums/CognitoMessageTriggerSource.ts",
   "/cloud/enums/EmailTemplate.ts",
 ];
 
-describe("cloud.authorization.emails", () => {
-  it("should generate authorization emails", async () => {
+describe("cloud.authentication.emails", () => {
+  it("should generate authentication emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
@@ -36,19 +36,19 @@ describe("cloud.authorization.emails", () => {
       .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    const authorizationTree = await runner
-      .runSchematicAsync("cloud.authorization", { emails: false }, templateTree)
+    const authenticationTree = await runner
+      .runSchematicAsync("cloud.authentication", { emails: false }, templateTree)
       .toPromise();
 
-    const authorizationEmailsTree = await runner
-      .runSchematicAsync("cloud.authorization.emails", {}, authorizationTree)
+    const authenticationEmailsTree = await runner
+      .runSchematicAsync("cloud.authentication.emails", {}, authenticationTree)
       .toPromise();
 
-    expect(authorizationEmailsTree.files).toEqual(
+    expect(authenticationEmailsTree.files).toEqual(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
-        ...expectedAuthorizationTemplateFiles,
-        ...expectedAuthorizationEmailsTemplateFiles,
+        ...expectedAuthenticationTemplateFiles,
+        ...expectedAuthenticationEmailsTemplateFiles,
       ]),
     );
   });
@@ -68,13 +68,13 @@ describe("cloud.authorization.emails", () => {
     const templateTree = await runner
       .runSchematicAsync(
         "cloud",
-        { name: "janush-app", modules: ["authorization"], emails: true },
+        { name: "janush-app", modules: ["authentication"], emails: true },
         Tree.empty(),
       )
       .toPromise();
 
     const cloudStackFile = templateTree.readContent(
-      `${Schematic.CLOUD}/lib/authorization/cognitoUserPoolCdkConstruct.ts`,
+      `${Schematic.CLOUD}/lib/authentication/cognitoUserPoolCdkConstruct.ts`,
     );
 
     expect(cloudStackFile).toContain(importStatement);

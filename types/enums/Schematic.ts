@@ -7,12 +7,12 @@ export enum Schematic {
 export enum CloudSchematic {
   TEMPLATE = "cloud.template",
   JANUSH = "cloud.janush",
-  AUTHORIZATION = "cloud.authorization",
-  AUTHORIZATION_EMAILS = "cloud.authorization.emails",
+  AUTHENTICATION = "cloud.authentication",
+  AUTHENTICATION_EMAILS = "cloud.authentication.emails",
 }
 
 export enum WebSchematic {
   TEMPLATE = "web.template",
   JANUSH = "web.janush",
-  AUTHORIZATION = "web.authorization",
+  AUTHENTICATION = "web.authentication",
 }

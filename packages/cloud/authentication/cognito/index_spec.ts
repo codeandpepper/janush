@@ -6,21 +6,21 @@ import * as fs from "fs";
 
 import { expectedJanushTemplateFiles } from "@packages/cloud/janush/index_spec";
 
-import { emptyJanush, moduleJanush } from "../../../mocks/janush";
+import { emptyJanush, moduleJanush } from "@mocks/janush";
 import { Schematic } from "@enums/Schematic";
-import { expectedAuthorizationEmailsTemplateFiles } from "@packages/cloud/authorization-emails/index_spec";
+import { expectedAuthenticationEmailsTemplateFiles } from "@packages/cloud/authentication/emails/index_spec";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../../collection.json");
 
-export const expectedAuthorizationTemplateFiles = [
-  "/cloud/lib/authorization/cognitoCdkConstruct.ts",
-  "/cloud/lib/authorization/cognitoUserPoolCdkConstruct.ts",
-  "/cloud/lib/authorization/cognitoIdentityPoolCdkConstruct.ts",
+export const expectedAuthenticationTemplateFiles = [
+  "/cloud/lib/authentication/cognitoCdkConstruct.ts",
+  "/cloud/lib/authentication/cognitoUserPoolCdkConstruct.ts",
+  "/cloud/lib/authentication/cognitoIdentityPoolCdkConstruct.ts",
   "/cloud/enums/ServicePurpose.ts",
 ];
 
-describe("cloud.authorization", () => {
-  it("should generate authorization without janush template and emails", async () => {
+describe("cloud.authentication", () => {
+  it("should generate authentication without janush template and emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
@@ -30,47 +30,47 @@ describe("cloud.authorization", () => {
       .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    const authorizationTree = await runner
-      .runSchematicAsync("cloud.authorization", { emails: false }, templateTree)
+    const authenticationTree = await runner
+      .runSchematicAsync("cloud.authentication", { emails: false }, templateTree)
       .toPromise();
 
-    console.log(authorizationTree.files);
+    console.log(authenticationTree.files);
 
     console.log(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
-        ...expectedAuthorizationTemplateFiles,
+        ...expectedAuthenticationTemplateFiles,
       ]),
     );
 
-    expect(authorizationTree.files).toEqual(
+    expect(authenticationTree.files).toEqual(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
-        ...expectedAuthorizationTemplateFiles,
+        ...expectedAuthenticationTemplateFiles,
       ]),
     );
   });
 
-  it("should generate authorization with janush template and emails", async () => {
+  it("should generate authentication with janush template and emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authorization"] }, Tree.empty())
+      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
       .toPromise();
 
     expect(templateTree.files).toEqual(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
-        ...expectedAuthorizationTemplateFiles,
-        ...expectedAuthorizationEmailsTemplateFiles,
+        ...expectedAuthenticationTemplateFiles,
+        ...expectedAuthenticationEmailsTemplateFiles,
       ]),
     );
   });
 
-  it("should generate authorization with janush template and without emails", async () => {
+  it("should generate authentication with janush template and without emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
@@ -79,7 +79,7 @@ describe("cloud.authorization", () => {
     const templateTree = await runner
       .runSchematicAsync(
         "cloud",
-        { name: "janush-app", modules: ["authorization"], emails: false },
+        { name: "janush-app", modules: ["authentication"], emails: false },
         Tree.empty(),
       )
       .toPromise();
@@ -87,7 +87,7 @@ describe("cloud.authorization", () => {
     expect(templateTree.files).toEqual(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
-        ...expectedAuthorizationTemplateFiles,
+        ...expectedAuthenticationTemplateFiles,
       ]),
     );
   });
@@ -95,26 +95,26 @@ describe("cloud.authorization", () => {
   it("should check inserted construct to stack", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    const authorizationConstruct = fs
+    const authenticationConstruct = fs
       .readFileSync(
-        path.join(__dirname, "other-files/cloud-stack/authorization-construct.template"),
+        path.join(__dirname, "other-files/cloud-stack/authentication-construct.template"),
       )
       .toString("utf-8");
 
     const importStatement =
-      "import { CognitoCdkConstruct } from './authorization/cognitoCdkConstruct'";
+      "import { CognitoCdkConstruct } from './authentication/cognitoCdkConstruct'";
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authorization"] }, Tree.empty())
+      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
       .toPromise();
 
     const cloudStackFile = templateTree.readContent(`${Schematic.CLOUD}/lib/janush-app-stack.ts`);
 
     expect(cloudStackFile).toContain(importStatement);
 
-    expect(cloudStackFile).toContain(authorizationConstruct);
+    expect(cloudStackFile).toContain(authenticationConstruct);
   });
 });

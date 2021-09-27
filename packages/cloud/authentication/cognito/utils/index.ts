@@ -15,41 +15,44 @@ interface CognitoConstructChangeRules {
   constructChange: InsertChange;
 }
 
-interface EmailConstructContext {
-  cognitoUserPoolConstructPath: string;
+interface CognitoConstructContext {
+  cloudStackPath: string;
+  serviceProviderPath: string;
   construct: string;
+  projectName: string;
 }
 
-const COGNITO_USER_POOL_CONSTRUCT = "cognitoUserPoolCdkConstruct.ts";
-
-const createEmailsConstructContext = (): EmailConstructContext => {
-  const cognitoUserPoolConstructPath = `${Schematic.CLOUD}/lib/authorization/${COGNITO_USER_POOL_CONSTRUCT}`;
+const createCognitoConstructContext = (projectName: string): CognitoConstructContext => {
+  const cloudStackPath = `${Schematic.CLOUD}/lib/${projectName}-stack.ts`;
+  const serviceProviderPath = `${Schematic.CLOUD}/enums/EnvName.ts`;
 
   const construct = fs
     .readFileSync(
-      path.join(__dirname, "../other-files/cognito-user-pool/emails-construct.template"),
+      path.join(__dirname, "..", "other-files/cloud-stack/authentication-construct.template"),
     )
     .toString("utf-8");
 
   return {
-    cognitoUserPoolConstructPath,
+    cloudStackPath,
+    serviceProviderPath,
     construct,
+    projectName,
   };
 };
 
-const addEmailsConstructToCognitoConstructRules = (
+const addCognitoConstructToCloudStackRules = (
   tree: Tree,
-  context: EmailConstructContext,
+  context: CognitoConstructContext,
 ): CognitoConstructChangeRules => {
-  let userPoolConstructText = tree.read(context.cognitoUserPoolConstructPath);
+  let cloudStackText = tree.read(context.cloudStackPath);
 
-  if (!userPoolConstructText) throw new FileDoesNotExistException(COGNITO_USER_POOL_CONSTRUCT);
+  if (!cloudStackText) throw new FileDoesNotExistException(context.projectName);
 
-  const sourceUserPoolConstructText = userPoolConstructText.toString("utf-8");
+  const sourceCloudStackText = cloudStackText.toString("utf-8");
 
   const sourceFile = ts.createSourceFile(
-    context.cognitoUserPoolConstructPath,
-    sourceUserPoolConstructText,
+    context.cloudStackPath,
+    sourceCloudStackText,
     ts.ScriptTarget.Latest,
     true,
   );
@@ -57,30 +60,27 @@ const addEmailsConstructToCognitoConstructRules = (
   const stackEndCloseBraceToken = getEndCloseBraceTokenInConstruct(sourceFile);
 
   const constructChange = new InsertChange(
-    context.cognitoUserPoolConstructPath,
+    context.cloudStackPath,
     stackEndCloseBraceToken.getStart(),
     context.construct,
   );
 
   const importChange = insertImport(
     sourceFile,
-    context.cognitoUserPoolConstructPath,
-    "EmailsCdkConstruct",
-    "./emails/emailsCdkConstruct",
+    context.cloudStackPath,
+    "CognitoCdkConstruct",
+    "./authentication/cognitoCdkConstruct",
   ) as InsertChange;
 
   return { constructChange, importChange };
 };
 
-export const addEmailsConstructToCognitoConstruct = (): Rule => {
+export const addCognitoConstructToCloudStack = (projectName: string): Rule => {
   return (tree: Tree) => {
-    const context = createEmailsConstructContext();
-    const { constructChange, importChange } = addEmailsConstructToCognitoConstructRules(
-      tree,
-      context,
-    );
+    const context = createCognitoConstructContext(projectName);
+    const { constructChange, importChange } = addCognitoConstructToCloudStackRules(tree, context);
 
-    const declarationRecorder = tree.beginUpdate(context.cognitoUserPoolConstructPath);
+    const declarationRecorder = tree.beginUpdate(context.cloudStackPath);
 
     declarationRecorder.insertLeft(constructChange.pos, constructChange.toAdd);
     declarationRecorder.insertLeft(importChange.pos, importChange.toAdd);

@@ -25,9 +25,9 @@
       "@packages/*": ["./packages/*"],
       "@utility/*": ["./packages/utility/*"],
       "@enums/*": ["./types/enums/*"],
+      "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
       "@utils/*": ["./utils/*"],
-
     }
   },
   "include": [
