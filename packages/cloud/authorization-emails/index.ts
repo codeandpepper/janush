@@ -13,23 +13,16 @@ import {
 import { strings } from "@angular-devkit/core";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 
-import { readJanushJSON } from "@utility/janush-json";
-
 import { Schematic } from "@enums/Schematic";
 
 import { Schema } from "./schema";
 
 import { authorizationEmailsNodeDependencies } from "@utils/dependencies";
 import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
+import { addEmailsConstructToCognitoConstruct } from "@packages/cloud/authorization-emails/utils";
 
 export const cloudAuthorizationEmailsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    const janushFile = readJanushJSON(tree);
-
-    const name = strings.dasherize(janushFile.name);
-
-    options.name = name;
-
     for (let nodeDependency of authorizationEmailsNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
@@ -55,6 +48,7 @@ export const cloudAuthorizationEmailsGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
+      addEmailsConstructToCognitoConstruct(),
     ]);
   };
 };
