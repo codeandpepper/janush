@@ -1,7 +1,7 @@
 import { S3 } from "aws-sdk";
 import { CustomMessageTriggerHandler } from "aws-lambda";
 
-import { generateEmailFromS3Template } from "../../../utils/functions";
+import { generateEmailFromS3Template } from "./utils";
 
 import { CognitoMessageTriggerSource } from "../../../enums/CognitoMessageTriggerSource";
 import { EmailTemplate } from "../../../enums/EmailTemplate";
