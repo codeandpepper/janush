@@ -1,0 +1,18 @@
+{
+  "$id": "CloudAuthorizationEmailsSchematics",
+  "title": "Cloud Authorization Emails Schema",
+  "type": "object",
+  "description": "Creates authorization emails custom message trigger.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app"
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Install all package dependencies",
+      "default": false
+    }
+  }
+}

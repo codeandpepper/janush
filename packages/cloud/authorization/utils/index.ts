@@ -8,7 +8,7 @@ import * as path from "path";
 import { InsertChange } from "@schematics/angular/utility/change";
 import { Schematic } from "@enums/Schematic";
 
-import { getEndCloseBraceTokenInCloudStack } from "@utility/functions";
+import { getEndCloseBraceTokenInConstruct } from "@utility/functions";
 
 interface CognitoConstructChangeRules {
   importChange: InsertChange;
@@ -57,7 +57,7 @@ const addCognitoConstructToCloudStackRules = (
     true,
   );
 
-  const stackEndCloseBraceToken = getEndCloseBraceTokenInCloudStack(sourceFile);
+  const stackEndCloseBraceToken = getEndCloseBraceTokenInConstruct(sourceFile);
 
   const constructChange = new InsertChange(
     context.cloudStackPath,

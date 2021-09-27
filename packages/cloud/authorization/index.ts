@@ -63,6 +63,7 @@ export const cloudAuthorizationGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       addCognitoConstructToCloudStack(name),
+      options.emails ? schematic(CloudSchematic.AUTHORIZATION_EMAILS, { name }) : noop(),
     ]);
   };
 };

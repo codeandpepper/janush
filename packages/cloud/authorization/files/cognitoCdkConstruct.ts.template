@@ -1,8 +1,8 @@
 import { Construct } from "constructs";
 import { StackProps } from "aws-cdk-lib";
 
-import { CognitoCdkUserPoolConstruct } from "./cognitoCdkUserPoolConstruct";
-import { CognitoCdkIdentityPoolConstruct } from "./cognitoCdkIdentityPoolConstruct";
+import { CognitoUserPoolCdkConstruct } from "./cognitoUserPoolCdkConstruct";
+import { CognitoIdentityPoolCdkConstruct } from "./cognitoIdentityPoolCdkConstruct";
 
 import { applyTagsToResource } from "../../utils/functions";
 
@@ -21,14 +21,14 @@ export class CognitoCdkConstruct extends Construct {
   ) {
     super(scope, id);
 
-    const { userPool, userPoolClient } = new CognitoCdkUserPoolConstruct(
+    const { userPool, userPoolClient } = new CognitoUserPoolCdkConstruct(
       this,
       `${envName}-CognitoUserPool`,
       { envName }
     );
 
     const { identityPool, identityPoolRoleAttachment } =
-      new CognitoCdkIdentityPoolConstruct(
+      new CognitoIdentityPoolCdkConstruct(
         this,
         `${envName}-CognitoIdentityPool`,
         {

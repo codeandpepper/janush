@@ -41,6 +41,28 @@ export const janushTemplateNodeDependencies: NodeDependency[] = [
     name: "typescript",
     version: "^4.2.4",
   },
+  {
+    type: NodeDependencyType.Dev,
+    name: "esbuild",
+    version: "^0.13.2",
+  },
 ];
 
-export const authorizationNodeDependencies: NodeDependency[] = [];
+export const authorizationEmailsNodeDependencies: NodeDependency[] = [
+  {
+    type: NodeDependencyType.Dev,
+    name: "mjml",
+    version: "^4.9.3",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/aws-lambda",
+    version: "^8.10.83",
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "aws-sdk",
+    version: "2.995.0",
+    overwrite: true,
+  },
+];

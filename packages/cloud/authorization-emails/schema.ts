@@ -1,4 +1,4 @@
 export interface Schema {
   name: string;
-  emails: boolean;
+  skipInstall: boolean;
 }
