@@ -2,7 +2,7 @@ import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeSc
 import { getSourceNodes } from "@schematics/angular/utility/ast-utils";
 import { SchematicsException } from "@angular-devkit/schematics";
 
-export const getEndCloseBraceTokenInCloudStack = (
+export const getEndCloseBraceTokenInConstruct = (
   sourceFile: ts.SourceFile,
   errorMessage: string = "It is impossible to add construct to your stack.",
 ): ts.Node => {

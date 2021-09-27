@@ -1,0 +1,85 @@
+<mjml>
+  <mj-head>
+    <!-- {username} {####} -->
+    <mj-title><%= classify(name) %> | Confirm your registration now</mj-title>
+    <mj-style>
+      body {
+        font-family: Roboto,sans-serif;
+      }
+
+      .mui-title div {
+        color: black !important;
+
+        font-size: 34px !important;
+        line-height: 36px !important;
+      }
+
+      .mui-app-name {
+        padding: 10px 0 !important;
+      }
+
+      .mui-mail div {
+        color: #3F51B5 !important;
+
+        font-size: 16px !important;
+        line-height: 24px !important;
+        text-decoration: none !important;
+      }
+
+      .mui-text div {
+        color: black !important;
+
+        font-size: 16px !important;
+        line-height: 24px !important;
+      }
+
+      .mui-container {
+        background: #FFFFFF;
+        box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 0;
+      }
+
+      .mui-button table {
+        width: 100%;
+        height: 36px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+      }
+
+    </mj-style>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text css-class="mui-title mui-app-name"><%= classify(name) %></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper css-class="mui-container">
+      <mj-section>
+        <mj-column>
+          <mj-text css-class="mui-title">Email Verification</mj-text>
+
+          <mj-text css-class="mui-mail">{username}</mj-text>
+
+          <mj-text css-class="mui-text">We are almost done with setting up your account. Please, confirm your email to continue.</mj-text>
+
+          <mj-button
+                  css-class="mui-button"
+                  font-size="14px"
+                  line-height="16px"
+                  letter-spacing="1.25px"
+                  text-transform="uppercase"
+                  background-color="#3F51B5"
+                  href="%ACTIVATION%">
+            Confirm email address
+          </mj-button>
+
+          <mj-text css-class="mui-text">The link will expire in 24 h.</mj-text>
+
+          <mj-text css-class="mui-text">Cheers!</mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

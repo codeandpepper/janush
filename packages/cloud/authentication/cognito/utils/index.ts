@@ -8,7 +8,7 @@ import * as path from "path";
 import { InsertChange } from "@schematics/angular/utility/change";
 import { Schematic } from "@enums/Schematic";
 
-import { getEndCloseBraceTokenInCloudStack } from "@utility/functions";
+import { getEndCloseBraceTokenInConstruct } from "@utility/functions";
 
 interface CognitoConstructChangeRules {
   importChange: InsertChange;
@@ -28,7 +28,7 @@ const createCognitoConstructContext = (projectName: string): CognitoConstructCon
 
   const construct = fs
     .readFileSync(
-      path.join(__dirname, "..", "other-files/cloud-stack/authorization-construct.template"),
+      path.join(__dirname, "..", "other-files/cloud-stack/authentication-construct.template"),
     )
     .toString("utf-8");
 
@@ -57,7 +57,7 @@ const addCognitoConstructToCloudStackRules = (
     true,
   );
 
-  const stackEndCloseBraceToken = getEndCloseBraceTokenInCloudStack(sourceFile);
+  const stackEndCloseBraceToken = getEndCloseBraceTokenInConstruct(sourceFile);
 
   const constructChange = new InsertChange(
     context.cloudStackPath,
@@ -69,7 +69,7 @@ const addCognitoConstructToCloudStackRules = (
     sourceFile,
     context.cloudStackPath,
     "CognitoCdkConstruct",
-    "./authorization/cognitoCdkConstruct",
+    "./authentication/cognitoCdkConstruct",
   ) as InsertChange;
 
   return { constructChange, importChange };

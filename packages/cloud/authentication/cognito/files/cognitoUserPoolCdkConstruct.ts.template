@@ -3,7 +3,6 @@ import {
   StackProps,
   Duration,
   aws_cognito as cognito,
-  aws_iam as iam,
 } from "aws-cdk-lib";
 
 import { EnvName } from "../../enums/EnvName";
@@ -12,7 +11,7 @@ interface CognitoUserPoolProps {
   envName: EnvName;
 }
 
-export class CognitoCdkUserPoolConstruct extends Construct {
+export class CognitoUserPoolCdkConstruct extends Construct {
   public userPool: cognito.UserPool;
   public userPoolClient: cognito.UserPoolClient;
   constructor(

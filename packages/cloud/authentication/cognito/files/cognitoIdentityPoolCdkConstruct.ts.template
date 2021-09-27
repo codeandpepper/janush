@@ -13,7 +13,7 @@ interface CognitoIdentityPoolProps {
   userPoolClient: cognito.UserPoolClient;
 }
 
-export class CognitoCdkIdentityPoolConstruct extends Construct {
+export class CognitoIdentityPoolCdkConstruct extends Construct {
   public identityPool: cognito.CfnIdentityPool;
   public identityPoolRoleAttachment: cognito.CfnIdentityPoolRoleAttachment;
   constructor(
