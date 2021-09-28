@@ -1,5 +1,11 @@
+.vscode
+docusaurus
+node_modules
+package.json
+package-lock.json
 /packages/web/files/
 /packages/cloud/files/
 /packages/application/files/
 /README.md
 /CONTRIBUTING.md
+*.d.ts

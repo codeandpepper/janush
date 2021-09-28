@@ -5,10 +5,22 @@ on:
     branches:
       - main
       - cicd
+      - prettier-check-68
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
+  prettier-check:
+    name: Prettier check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run prettier check
+        run: npm run format:check
+
   test-schematics:
     name: Test schematics
     runs-on: ubuntu-latest

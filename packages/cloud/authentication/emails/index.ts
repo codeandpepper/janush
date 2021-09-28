@@ -36,7 +36,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/lib/authentication/emails`),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Overwrite
       ),
       mergeWith(
         apply(url("./other-files/enums"), [
@@ -46,7 +46,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/enums`),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Overwrite
       ),
       addEmailsConstructToCognitoConstruct(),
     ]);

@@ -33,11 +33,19 @@ describe("cloud.authentication.emails", () => {
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: [] },
+        Tree.empty()
+      )
       .toPromise();
 
     const authenticationTree = await runner
-      .runSchematicAsync("cloud.authentication", { emails: false }, templateTree)
+      .runSchematicAsync(
+        "cloud.authentication",
+        { emails: false },
+        templateTree
+      )
       .toPromise();
 
     const authenticationEmailsTree = await runner
@@ -49,7 +57,7 @@ describe("cloud.authentication.emails", () => {
         ...expectedJanushTemplateFiles,
         ...expectedAuthenticationTemplateFiles,
         ...expectedAuthenticationEmailsTemplateFiles,
-      ]),
+      ])
     );
   });
 
@@ -57,10 +65,16 @@ describe("cloud.authentication.emails", () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     const emailsConstruct = fs
-      .readFileSync(path.join(__dirname, "other-files/cognito-user-pool/emails-construct.template"))
+      .readFileSync(
+        path.join(
+          __dirname,
+          "other-files/cognito-user-pool/emails-construct.template"
+        )
+      )
       .toString("utf-8");
 
-    const importStatement = "import { EmailsCdkConstruct } from './emails/emailsCdkConstruct'";
+    const importStatement =
+      "import { EmailsCdkConstruct } from './emails/emailsCdkConstruct'";
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
@@ -69,12 +83,12 @@ describe("cloud.authentication.emails", () => {
       .runSchematicAsync(
         "cloud",
         { name: "janush-app", modules: ["authentication"], emails: true },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
     const cloudStackFile = templateTree.readContent(
-      `${Schematic.CLOUD}/lib/authentication/cognitoUserPoolCdkConstruct.ts`,
+      `${Schematic.CLOUD}/lib/authentication/cognitoUserPoolCdkConstruct.ts`
     );
 
     expect(cloudStackFile).toContain(importStatement);

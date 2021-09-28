@@ -27,13 +27,9 @@
       "@enums/*": ["./types/enums/*"],
       "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
-      "@utils/*": ["./utils/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "**/files/**/*"
-  ]
+  "include": ["**/*"],
+  "exclude": ["**/files/**/*"]
 }

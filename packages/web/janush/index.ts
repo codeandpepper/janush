@@ -1,6 +1,7 @@
 import {
   apply,
-  applyTemplates, MergeStrategy,
+  applyTemplates,
+  MergeStrategy,
   mergeWith,
   move,
   Rule,
@@ -29,7 +30,7 @@ export const webJanushGenerator = (options: Schema): Rule => {
         }),
         move(Schematic.WEB),
       ]),
-      MergeStrategy.Overwrite,
+      MergeStrategy.Overwrite
     );
   };
 };

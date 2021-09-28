@@ -1,4 +1,8 @@
-import { FileDoesNotExistException, Rule, Tree } from "@angular-devkit/schematics";
+import {
+  FileDoesNotExistException,
+  Rule,
+  Tree,
+} from "@angular-devkit/schematics";
 import { insertImport } from "@schematics/angular/utility/ast-utils";
 
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
@@ -22,13 +26,19 @@ interface CognitoConstructContext {
   projectName: string;
 }
 
-const createCognitoConstructContext = (projectName: string): CognitoConstructContext => {
+const createCognitoConstructContext = (
+  projectName: string
+): CognitoConstructContext => {
   const cloudStackPath = `${Schematic.CLOUD}/lib/${projectName}-stack.ts`;
   const serviceProviderPath = `${Schematic.CLOUD}/enums/EnvName.ts`;
 
   const construct = fs
     .readFileSync(
-      path.join(__dirname, "..", "other-files/cloud-stack/authentication-construct.template"),
+      path.join(
+        __dirname,
+        "..",
+        "other-files/cloud-stack/authentication-construct.template"
+      )
     )
     .toString("utf-8");
 
@@ -42,7 +52,7 @@ const createCognitoConstructContext = (projectName: string): CognitoConstructCon
 
 const addCognitoConstructToCloudStackRules = (
   tree: Tree,
-  context: CognitoConstructContext,
+  context: CognitoConstructContext
 ): CognitoConstructChangeRules => {
   let cloudStackText = tree.read(context.cloudStackPath);
 
@@ -54,7 +64,7 @@ const addCognitoConstructToCloudStackRules = (
     context.cloudStackPath,
     sourceCloudStackText,
     ts.ScriptTarget.Latest,
-    true,
+    true
   );
 
   const stackEndCloseBraceToken = getEndCloseBraceTokenInConstruct(sourceFile);
@@ -62,14 +72,14 @@ const addCognitoConstructToCloudStackRules = (
   const constructChange = new InsertChange(
     context.cloudStackPath,
     stackEndCloseBraceToken.getStart(),
-    context.construct,
+    context.construct
   );
 
   const importChange = insertImport(
     sourceFile,
     context.cloudStackPath,
     "CognitoCdkConstruct",
-    "./authentication/cognitoCdkConstruct",
+    "./authentication/cognitoCdkConstruct"
   ) as InsertChange;
 
   return { constructChange, importChange };
@@ -78,7 +88,8 @@ const addCognitoConstructToCloudStackRules = (
 export const addCognitoConstructToCloudStack = (projectName: string): Rule => {
   return (tree: Tree) => {
     const context = createCognitoConstructContext(projectName);
-    const { constructChange, importChange } = addCognitoConstructToCloudStackRules(tree, context);
+    const { constructChange, importChange } =
+      addCognitoConstructToCloudStackRules(tree, context);
 
     const declarationRecorder = tree.beginUpdate(context.cloudStackPath);
 

@@ -23,11 +23,14 @@ describe("application", () => {
           types: ["web"],
           modules: ["authentication"],
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
-    expect(tree.files).toEqual([...expectedFiles, ...expectedWebFiles.map((f) => `/${name}${f}`)]);
+    expect(tree.files).toEqual([
+      ...expectedFiles,
+      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 
   it("generate cloud structure", async () => {
@@ -42,7 +45,7 @@ describe("application", () => {
           skipInstall: true,
           emails: true,
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
@@ -52,7 +55,7 @@ describe("application", () => {
         ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
-      ]),
+      ])
     );
   });
 
@@ -66,7 +69,7 @@ describe("application", () => {
           types: ["cloud", "web"],
           modules: ["authentication"],
         },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
@@ -77,7 +80,7 @@ describe("application", () => {
         ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
         ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
         ...expectedWebFiles.map((f) => `/${name}${f}`),
-      ]),
+      ])
     );
   });
 });

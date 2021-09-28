@@ -27,11 +27,19 @@ describe("cloud.authentication", () => {
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: [] },
+        Tree.empty()
+      )
       .toPromise();
 
     const authenticationTree = await runner
-      .runSchematicAsync("cloud.authentication", { emails: false }, templateTree)
+      .runSchematicAsync(
+        "cloud.authentication",
+        { emails: false },
+        templateTree
+      )
       .toPromise();
 
     console.log(authenticationTree.files);
@@ -40,14 +48,14 @@ describe("cloud.authentication", () => {
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
         ...expectedAuthenticationTemplateFiles,
-      ]),
+      ])
     );
 
     expect(authenticationTree.files).toEqual(
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
         ...expectedAuthenticationTemplateFiles,
-      ]),
+      ])
     );
   });
 
@@ -58,7 +66,11 @@ describe("cloud.authentication", () => {
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: ["authentication"] },
+        Tree.empty()
+      )
       .toPromise();
 
     expect(templateTree.files).toEqual(
@@ -66,7 +78,7 @@ describe("cloud.authentication", () => {
         ...expectedJanushTemplateFiles,
         ...expectedAuthenticationTemplateFiles,
         ...expectedAuthenticationEmailsTemplateFiles,
-      ]),
+      ])
     );
   });
 
@@ -80,7 +92,7 @@ describe("cloud.authentication", () => {
       .runSchematicAsync(
         "cloud",
         { name: "janush-app", modules: ["authentication"], emails: false },
-        Tree.empty(),
+        Tree.empty()
       )
       .toPromise();
 
@@ -88,7 +100,7 @@ describe("cloud.authentication", () => {
       jasmine.arrayWithExactContents([
         ...expectedJanushTemplateFiles,
         ...expectedAuthenticationTemplateFiles,
-      ]),
+      ])
     );
   });
 
@@ -97,7 +109,10 @@ describe("cloud.authentication", () => {
 
     const authenticationConstruct = fs
       .readFileSync(
-        path.join(__dirname, "other-files/cloud-stack/authentication-construct.template"),
+        path.join(
+          __dirname,
+          "other-files/cloud-stack/authentication-construct.template"
+        )
       )
       .toString("utf-8");
 
@@ -108,10 +123,16 @@ describe("cloud.authentication", () => {
     spyOn(janush, "updateJanushJSON");
 
     const templateTree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: ["authentication"] },
+        Tree.empty()
+      )
       .toPromise();
 
-    const cloudStackFile = templateTree.readContent(`${Schematic.CLOUD}/lib/janush-app-stack.ts`);
+    const cloudStackFile = templateTree.readContent(
+      `${Schematic.CLOUD}/lib/janush-app-stack.ts`
+    );
 
     expect(cloudStackFile).toContain(importStatement);
 

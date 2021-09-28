@@ -1,4 +1,7 @@
-import { NodeDependency, NodeDependencyType } from "@schematics/angular/utility/dependencies";
+import {
+  NodeDependency,
+  NodeDependencyType,
+} from "@schematics/angular/utility/dependencies";
 
 export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
