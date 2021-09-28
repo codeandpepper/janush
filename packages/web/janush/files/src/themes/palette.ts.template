@@ -1,0 +1,52 @@
+import createPalette from "@mui/material/styles/createPalette";
+
+const lightPalette = createPalette({
+  primary: {
+    main: "#474747",
+    light: "#474747",
+    dark: "#474747",
+    contrastText: "#474747",
+  },
+  secondary: {
+    main: "#474747",
+    light: "#474747",
+    dark: "#474747",
+    contrastText: "#474747",
+  },
+  error: {
+    main: "#474747",
+  },
+  background: {
+    default: "#474747",
+    paper: "#474747",
+  },
+});
+
+const darkPalette = createPalette({
+  primary: {
+    main: "#474747",
+    light: "#474747",
+    dark: "#474747",
+    contrastText: "#474747",
+  },
+  secondary: {
+    main: "#474747",
+    light: "#474747",
+    dark: "#474747",
+    contrastText: "#474747",
+  },
+  error: {
+    main: "#474747",
+  },
+  background: {
+    default: "#474747",
+    paper: "#474747",
+  },
+});
+
+const palette = {
+  dark: darkPalette,
+  light: lightPalette,
+} as const;
+
+export default palette;

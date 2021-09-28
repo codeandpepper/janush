@@ -23,8 +23,8 @@
         "message": "Which application type would you like to use?",
         "type": "list",
         "items": [
-          { "value": "cloud",  "label": "Cloud" },
-          { "value": "web",  "label": "Web" }
+          { "value": "cloud", "label": "Cloud" },
+          { "value": "web", "label": "Web" }
         ]
       }
     },
@@ -34,8 +34,5 @@
       "default": false
     }
   },
-  "required": [
-    "name",
-    "types"
-  ]
+  "required": ["name", "types"]
 }

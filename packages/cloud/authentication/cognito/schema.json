@@ -1,0 +1,19 @@
+{
+  "$id": "CloudAuthenticationSchematics",
+  "title": "Cloud Authentication Schema",
+  "type": "object",
+  "description": "Creates authentication module",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app"
+    },
+    "emails": {
+      "type": "boolean",
+      "description": "Email custom messages trigger",
+      "default": true,
+      "x-prompt": "Do you want add an auth emails template?"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+
+// ========================================================================
+// Authentication: Amazon Cognito
+// ========================================================================
+
+new CognitoCdkConstruct(this, `${envName}-CognitoUserPool`, {
+   envName,
+});

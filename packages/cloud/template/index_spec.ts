@@ -2,12 +2,13 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
+import * as janush from "@utility/janush-json";
 
-import * as janush from "../../utility/janush-json";
+import { emptyJanush } from "../../../mocks/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
-export const expectedFiles = [
+export const expectedTemplateFiles = [
   "/cloud/.gitignore",
   "/cloud/.npmignore",
   "/cloud/README.md",
@@ -21,24 +22,34 @@ export const expectedFiles = [
 ];
 
 describe("cloud", () => {
-  it("should generate all files properly", async () => {
+  it("should generate all template files properly", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue({ name: "janush-app" });
+    spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
     spyOn(janush, "updateJanushJSON");
 
     const tree = await runner
-      .runSchematicAsync("cloud", { name: "janush-app" }, Tree.empty())
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: [] },
+        Tree.empty()
+      )
       .toPromise();
 
-    expect(tree.files).toEqual(expectedFiles);
+    expect(tree.files).toEqual(expectedTemplateFiles);
   });
 
   it("should throw not found exception of janush.json", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
     let thrownError: FileDoesNotExistException | null = null;
     try {
-      await runner.runSchematicAsync("web", { name: "janush-app" }, Tree.empty()).toPromise();
+      await runner
+        .runSchematicAsync(
+          "cloud",
+          { name: "janush-app", modules: [] },
+          Tree.empty()
+        )
+        .toPromise();
     } catch (err) {
       thrownError = err;
     }

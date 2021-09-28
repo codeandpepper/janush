@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "cloud.authentication.cognito": {
+      "aliases": ["cloud.authentication", "cloud.auth"],
+      "description": "AWS cognito user pool and identity pool.",
+      "factory": "./cognito/index#cloudAuthenticationCognitoGenerator",
+      "schema": "./cognito/schema.json"
+    },
+    "cloud.authentication.emails": {
+      "aliases": ["cloud.auth.emails"],
+      "description": "AWS cognito custom message emails.",
+      "factory": "./emails/index#cloudAuthenticationEmailsGenerator",
+      "schema": "./emails/schema.json"
+    }
+  }
+}

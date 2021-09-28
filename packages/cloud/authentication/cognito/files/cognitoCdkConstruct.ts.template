@@ -1,0 +1,49 @@
+import { Construct } from "constructs";
+import { StackProps } from "aws-cdk-lib";
+
+import { CognitoUserPoolCdkConstruct } from "./cognitoUserPoolCdkConstruct";
+import { CognitoIdentityPoolCdkConstruct } from "./cognitoIdentityPoolCdkConstruct";
+
+import { applyTagsToResource } from "../../utils/functions";
+
+import { EnvName } from "../../enums/EnvName";
+import { ServicePurpose } from "../../enums/ServicePurpose";
+
+interface CognitoProps {
+  envName: EnvName;
+}
+
+export class CognitoCdkConstruct extends Construct {
+  constructor(
+    scope: Construct,
+    id: string,
+    { envName }: StackProps & CognitoProps
+  ) {
+    super(scope, id);
+
+    const { userPool, userPoolClient } = new CognitoUserPoolCdkConstruct(
+      this,
+      `${envName}-CognitoUserPool`,
+      { envName }
+    );
+
+    const { identityPool, identityPoolRoleAttachment } =
+      new CognitoIdentityPoolCdkConstruct(
+        this,
+        `${envName}-CognitoIdentityPool`,
+        {
+          envName,
+          userPool,
+          userPoolClient,
+        }
+      );
+
+    applyTagsToResource(
+      [userPool, userPoolClient, identityPool, identityPoolRoleAttachment],
+      {
+        envName,
+        purpose: ServicePurpose.Authentication,
+      }
+    );
+  }
+}

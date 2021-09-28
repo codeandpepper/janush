@@ -8,8 +8,5 @@
       "schema": "./application/schema.json"
     }
   },
-  "extends": [
-    "./cloud/collection.json",
-    "./web/collection.json"
-  ]
+  "extends": ["./cloud/collection.json", "./web/collection.json"]
 }
