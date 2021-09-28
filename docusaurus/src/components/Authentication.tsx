@@ -27,7 +27,7 @@ export default function Authentication(): JSX.Element {
           </div>
         </div>
         <div className="col col--5 col--offset-1">
-          <img alt="authentication" src="/img/sign-in-and-up.png" />
+          <img alt="authentication" src="/img/sign-up-and-in.png" />
         </div>
       </div>
     </div>
