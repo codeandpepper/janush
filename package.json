@@ -4,7 +4,7 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc && tsc-alias --silent",
-    "test": "npm run build && jasmine packages/**/*_spec.js",
+    "test": "npm run build && jasmine schematics/**/*_spec.js",
     "create": "npm run build && schematics .:application",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json}\""
@@ -22,13 +22,14 @@
   },
   "author": "",
   "license": "MIT",
-  "schematics": "@codeandpepper/janush/packages/collection.json",
+  "schematics": "@codeandpepper/janush/schematics/collection.json",
   "dependencies": {
-    "esm": "^3.2.25",
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",
     "@schematics/angular": "^12.2.4",
     "arg": "^5.0.1",
+    "esm": "^3.2.25",
+    "read-pkg-up": "^8.0.0",
     "typescript": "~4.3.2"
   },
   "devDependencies": {

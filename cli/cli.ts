@@ -80,7 +80,7 @@ export function cli(args: string[]) {
 
   spawn(
     encodeCommand(
-      `schematics ${directory}/packages/collection.json:${options.command}`,
+      `schematics ${directory}/schematics/collection.json:${options.command}`,
       options
     ),
     {
