@@ -2,7 +2,7 @@
   "name": "<%= dasherize(name) %>-cloud",
   "version": "0.1.0",
   "bin": {
-    "cloud": "bin/cloud.js"
+    "cloud": "bin/<%= dasherize(name) %>.js"
   },
   "scripts": {
     "build": "tsc",

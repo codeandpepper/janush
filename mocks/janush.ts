@@ -5,18 +5,22 @@ export const emptyJanush: Janush = {
   name: "janush-app",
   cloud: {
     module: {
-      [Module.AUTHORIZATION]: false,
+      [Module.AUTHENTICATION]: false,
     },
   },
-  web: false,
+  web: {
+    module: {},
+  },
 };
 
 export const moduleJanush: Janush = {
   name: "janush-app",
   cloud: {
     module: {
-      [Module.AUTHORIZATION]: true,
+      [Module.AUTHENTICATION]: true,
     },
   },
-  web: true,
+  web: {
+    module: {},
+  },
 };

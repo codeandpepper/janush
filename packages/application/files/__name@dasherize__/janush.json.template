@@ -2,7 +2,7 @@
   "name": "<%= name %>",
   "cloud": {
     "module": {
-       "authorization": false
+       "authentication": false
     }
   },
   "web": {}

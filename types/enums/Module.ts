@@ -1,3 +1,3 @@
 export enum Module {
-  AUTHORIZATION = "authorization",
+  AUTHENTICATION = "authentication",
 }

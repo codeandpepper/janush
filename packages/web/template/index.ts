@@ -1,6 +1,8 @@
 import {
   apply,
   applyTemplates,
+  chain,
+  MergeStrategy,
   mergeWith,
   move,
   Rule,
@@ -22,20 +24,23 @@ export const webTemplateGenerator = (options: Schema): Rule => {
 
     const name = strings.dasherize(janushFile.name);
 
-    const workingDirectory = `${name}/${Schematic.CLOUD}`;
+    const workingDirectory = `${name}/${Schematic.WEB}`;
 
     if (!options.skipInstall) {
       _context.addTask(installDependencies(workingDirectory), []);
     }
 
-    return mergeWith(
-      apply(url("./files"), [
-        applyTemplates({
-          ...options,
-          ...strings,
-        }),
-        move(Schematic.WEB),
-      ])
-    );
+    return chain([
+      mergeWith(
+        apply(url("./files"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(Schematic.WEB),
+        ]),
+        MergeStrategy.Overwrite
+      ),
+    ]);
   };
 };

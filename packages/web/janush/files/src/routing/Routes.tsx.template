@@ -1,0 +1,14 @@
+import React, { lazy } from "react";
+import { Route, Switch } from "react-router-dom";
+
+const Index = lazy(() => import("./routes/Index"));
+
+const Routes: React.FC = () => {
+  return (
+    <Switch>
+      <Route path="/" component={Index} />
+    </Switch>
+  );
+};
+
+export default Routes;

@@ -24,6 +24,7 @@ export const expectedJanushTemplateFiles = [
   "/cloud/consts/index.ts",
   "/cloud/enums/EnvName.ts",
   "/cloud/scripts/test.txt",
+  "/cloud/utils/functions.ts",
 ];
 
 describe("cloud.janush", () => {
@@ -42,11 +43,7 @@ describe("cloud.janush", () => {
       .toPromise();
 
     const tree = await runner
-      .runSchematicAsync(
-        "cloud.janush",
-        { name: "janush-app", modules: ["authorization"] },
-        templateTree
-      )
+      .runSchematicAsync("cloud.janush", {}, templateTree)
       .toPromise();
 
     expect(tree.files).toEqual(expectedJanushTemplateFiles);

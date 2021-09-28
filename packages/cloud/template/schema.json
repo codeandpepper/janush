@@ -8,11 +8,11 @@
       "type": "array",
       "description": "Modules",
       "uniqueItems": true,
-      "default": ["authorization"],
+      "default": ["authentication"],
       "x-prompt": {
         "message": "Which modules would you like to use? You can add this later.",
         "type": "list",
-        "items": ["authorization"]
+        "items": ["authentication"]
       }
     },
     "skipInstall": {
@@ -20,6 +20,5 @@
       "description": "Install all package dependencies",
       "default": false
     }
-  },
-  "required": ["name"]
+  }
 }

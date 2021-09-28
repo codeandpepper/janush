@@ -1,0 +1,23 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+
+import useStyles from "./styles";
+
+const Logo: React.FC = () => {
+  const classes = useStyles();
+
+  return (
+    <Typography variant="h6" className={classes.title}>
+      <Link
+        to="/"
+        data-testid="logo-link-in-side-menu"
+        className={classes.logotype}
+      >
+        <%= name %>
+      </Link>
+    </Typography>
+  );
+};
+
+export default Logo;

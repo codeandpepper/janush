@@ -8,7 +8,6 @@ import { emptyJanush } from "../../../mocks/janush";
 const collectionPath = path.join(__dirname, "../collection.json");
 
 export const expectedFiles = [
-  "/web/.gitignore",
   "/web/README.md",
   "/web/package.json",
   "/web/tsconfig.json",

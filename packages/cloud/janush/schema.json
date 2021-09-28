@@ -14,6 +14,5 @@
       "description": "Install all package dependencies",
       "default": false
     }
-  },
-  "required": ["name"]
+  }
 }
