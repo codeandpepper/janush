@@ -1,12 +1,5 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 import React from "react";
 import clsx from "clsx";
-import styles from "./HomepageFeatures.module.css";
 
 type FeatureItem = {
   title: string;
@@ -15,7 +8,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Authorization framework",
+    title: "Technology Stack",
     description: (
       <>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro aperiam eius fuga
@@ -24,7 +17,35 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Serverless architecture",
+    title: "Architecture",
+    description: (
+      <>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro aperiam eius fuga
+        repudiandae, quibusdam facilis exercitationem.
+      </>
+    ),
+  },
+
+  {
+    title: "Infrastructure as Code",
+    description: (
+      <>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro aperiam eius fuga
+        repudiandae, quibusdam facilis exercitationem.
+      </>
+    ),
+  },
+  {
+    title: "Testing",
+    description: (
+      <>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro aperiam eius fuga
+        repudiandae, quibusdam facilis exercitationem.
+      </>
+    ),
+  },
+  {
+    title: "Incremental",
     description: (
       <>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro aperiam eius fuga
@@ -54,7 +75,7 @@ function Feature({ title, description }: FeatureItem) {
   );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function Features(): JSX.Element {
   return (
     <section className="hero hero--dark features">
       <div className="container">

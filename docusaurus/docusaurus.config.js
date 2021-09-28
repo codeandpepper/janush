@@ -48,7 +48,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         },
         navbar: {
           style: "dark",
-          // title: "Janush",
           logo: {
             alt: "Janush logo",
             src: "img/logo-light.svg",
@@ -56,7 +55,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           items: [
             {
               type: "doc",
-              docId: "getting-started/getting-started",
+              docId: "getting-started",
               position: "right",
               label: "Docs",
             },
@@ -75,39 +74,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         },
         footer: {
           style: "dark",
-          // links: [
-          //   {
-          //     title: "Docs",
-          //     items: [
-          //       {
-          //         label: "Tutorial",
-          //         to: "/docs/intro",
-          //       },
-          //     ],
-          //   },
-          //   {
-          //     title: "Community",
-          //     items: [
-          //       {
-          //         label: "Twitter",
-          //         href: "https://twitter.com/codeandpepper",
-          //       },
-          //     ],
-          //   },
-          //   {
-          //     title: "More",
-          //     items: [
-          //       {
-          //         label: "Blog",
-          //         to: "/blog",
-          //       },
-          //       {
-          //         label: "GitHub",
-          //         href: "https://github.com/codeandpepper/janush",
-          //       },
-          //     ],
-          //   },
-          // ],
           copyright: `Copyright © ${new Date().getFullYear()} Code & Pepper`,
         },
         prism: {
