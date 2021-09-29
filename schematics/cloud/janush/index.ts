@@ -20,12 +20,16 @@ import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 
 import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
+// @ts-ignore
+import { readPackageUpAsync } from "read-pkg-up";
 
 export const cloudJanushGenerator = (options: Schema): Rule => {
-  return (tree: Tree, _context: SchematicContext) => {
+  return async (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
     options.name = strings.dasherize(janushFile.name);
+
+    console.log(await readPackageUpAsync());
 
     for (let nodeDependency of janushTemplateNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);

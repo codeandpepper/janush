@@ -27,8 +27,9 @@ const isAuthenticationModule = (options: Schema) =>
   options.modules.includes(Module.AUTHENTICATION);
 
 export const cloudTemplateGenerator = (options: Schema): Rule => {
-  return (tree: Tree, _context: SchematicContext) => {
+  return async (tree: Tree, _context: SchematicContext) => {
     let janushFile = readJanushJSON(tree);
+
 
     const name = strings.dasherize(janushFile.name);
 
