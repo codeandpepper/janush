@@ -29,7 +29,6 @@
     "@schematics/angular": "^12.2.4",
     "arg": "^5.0.1",
     "esm": "^3.2.25",
-    "read-pkg-up": "^8.0.0",
     "typescript": "~4.3.2"
   },
   "devDependencies": {
@@ -37,7 +36,6 @@
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.172",
     "@types/node": "^16.10.1",
-    "@types/normalize-package-data": "^2.4.1",
     "@types/prettier": "^2.3.2",
     "jasmine": "^3.5.0",
     "prettier": "^2.3.2",

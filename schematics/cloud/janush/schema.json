@@ -2,7 +2,7 @@
   "$id": "CloudJanushSchematics",
   "title": "Cloud Janush Schema",
   "type": "object",
-  "description": "Creates janush template",
+  "description": "Creates janush basic codebase template",
   "properties": {
     "name": {
       "type": "string",
@@ -11,7 +11,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "Install all package dependencies",
+      "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   }

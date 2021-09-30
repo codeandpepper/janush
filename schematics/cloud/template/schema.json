@@ -2,7 +2,7 @@
   "$id": "CloudSchematics",
   "title": "Cloud Template Schema",
   "type": "object",
-  "description": "Creates template",
+  "description": "Creates template based on aws cdk v2.",
   "properties": {
     "modules": {
       "type": "array",
@@ -17,7 +17,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "Install all package dependencies",
+      "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   }
