@@ -3,40 +3,43 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
 import * as janush from "@utility/janush-json";
-
-import { emptyJanush } from "../../../mocks/janush";
+import { emptyJanush } from "@mocks/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
-export const expectedTemplateFiles = [
-  "/cloud/.gitignore",
-  "/cloud/.npmignore",
-  "/cloud/README.md",
-  "/cloud/cdk.json",
-  "/cloud/jest.config.js",
-  "/cloud/package.json",
-  "/cloud/tsconfig.json",
-  "/cloud/bin/janush-app.ts",
-  "/cloud/lib/janush-app-stack.ts",
-  "/cloud/test/janush-app.test.ts",
+export const expectedFiles = [
+  "/web/README.md",
+  "/web/package.json",
+  "/web/tsconfig.json",
+  "/web/public/favicon.ico",
+  "/web/public/index.html",
+  "/web/public/logo192.png",
+  "/web/public/logo512.png",
+  "/web/public/manifest.json",
+  "/web/public/robots.txt",
+  "/web/src/App.css",
+  "/web/src/App.test.tsx",
+  "/web/src/App.tsx",
+  "/web/src/index.css",
+  "/web/src/index.tsx",
+  "/web/src/logo.svg",
+  "/web/src/react-app-env.d.ts",
+  "/web/src/reportWebVitals.ts",
+  "/web/src/setupTests.ts",
 ];
 
-describe("cloud", () => {
-  it("should generate all template files properly", async () => {
+describe("web", () => {
+  it("should generate all files properly", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
     spyOn(janush, "updateJanushJSON");
 
     const tree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: [] },
-        Tree.empty()
-      )
+      .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
-    expect(tree.files).toEqual(expectedTemplateFiles);
+    expect(tree.files).toEqual(expectedFiles);
   });
 
   it("should throw not found exception of janush.json", async () => {
@@ -44,11 +47,7 @@ describe("cloud", () => {
     let thrownError: FileDoesNotExistException | null = null;
     try {
       await runner
-        .runSchematicAsync(
-          "cloud",
-          { name: "janush-app", modules: [] },
-          Tree.empty()
-        )
+        .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
         .toPromise();
     } catch (err) {
       thrownError = err;

@@ -16,19 +16,20 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "es2020",
     "types": ["jasmine", "node"],
     "jsx": "react",
     "outDir": ".",
     "paths": {
       "@consts/*": ["./consts/*"],
-      "@packages/*": ["./packages/*"],
-      "@utility/*": ["./packages/utility/*"],
+      "@janush-schematics/*": ["./schematics/*"],
+      "@utility/*": ["./schematics/utility/*"],
       "@enums/*": ["./types/enums/*"],
       "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
       "@utils/*": ["./utils/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "include": ["**/*"],
   "exclude": ["**/files/**/*"]

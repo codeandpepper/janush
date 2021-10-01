@@ -22,7 +22,7 @@ import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 
 export const cloudJanushGenerator = (options: Schema): Rule => {
-  return (tree: Tree, _context: SchematicContext) => {
+  return async (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
     options.name = strings.dasherize(janushFile.name);

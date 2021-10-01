@@ -4,11 +4,11 @@ import * as path from "path";
 import * as janush from "@utility/janush-json";
 import * as fs from "fs";
 
-import { expectedJanushTemplateFiles } from "@packages/cloud/janush/index_spec";
+import { expectedJanushTemplateFiles } from "@janush-schematics/cloud/janush/index_spec";
 
 import { emptyJanush, moduleJanush } from "@mocks/janush";
 import { Schematic } from "@enums/Schematic";
-import { expectedAuthenticationEmailsTemplateFiles } from "@packages/cloud/authentication/emails/index_spec";
+import { expectedAuthenticationEmailsTemplateFiles } from "@janush-schematics/cloud/authentication/emails/index_spec";
 
 const collectionPath = path.join(__dirname, "../../../collection.json");
 

@@ -1,8 +1,8 @@
 {
-  "$id": "CloudAuthenticationEmailsSchematics",
-  "title": "Cloud Authentication Emails Schema",
+  "$id": "CloudJanushSchematics",
+  "title": "Cloud Janush Schema",
   "type": "object",
-  "description": "Creates authentication emails custom message trigger.",
+  "description": "Creates janush basic codebase template",
   "properties": {
     "name": {
       "type": "string",
@@ -11,7 +11,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "Install all package dependencies",
+      "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   }

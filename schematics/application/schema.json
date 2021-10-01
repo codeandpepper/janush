@@ -2,7 +2,7 @@
   "$id": "ApplicationSchematics",
   "title": "Application Options Schema",
   "type": "object",
-  "description": "Creates application",
+  "description": "Schema that creates the entire codebase of the application.",
   "properties": {
     "name": {
       "type": "string",
@@ -30,7 +30,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "Install all package dependencies",
+      "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   },
