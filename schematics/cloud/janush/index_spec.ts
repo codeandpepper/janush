@@ -3,10 +3,10 @@ import { Tree } from "@angular-devkit/schematics";
 import * as path from "path";
 
 import * as janush from "@utility/janush-json";
-import { moduleJanush } from "../../../mocks/janush";
+import { moduleJanush } from "@mocks/janush";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../collection.json");
 
 export const expectedJanushTemplateFiles = [
   "/cloud/.gitignore",

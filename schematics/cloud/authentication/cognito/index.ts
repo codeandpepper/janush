@@ -65,6 +65,7 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
       options.emails
         ? schematic(CloudSchematic.AUTHENTICATION_EMAILS, { name })
         : noop(),
+      schematic("apply-prettier", {}),
     ]);
   };
 };

@@ -1,10 +1,12 @@
 import {
   apply,
   applyTemplates,
+  chain,
   MergeStrategy,
   mergeWith,
   move,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -22,15 +24,18 @@ export const webJanushGenerator = (options: Schema): Rule => {
 
     options.name = strings.dasherize(janushFile.name);
 
-    return mergeWith(
-      apply(url("./files"), [
-        applyTemplates({
-          ...options,
-          ...strings,
-        }),
-        move(Schematic.WEB),
-      ]),
-      MergeStrategy.Overwrite
-    );
+    return chain([
+      mergeWith(
+        apply(url("./files"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(Schematic.WEB),
+        ]),
+        MergeStrategy.Overwrite
+      ),
+      schematic("apply-prettier", {}),
+    ]);
   };
 };
