@@ -9,7 +9,6 @@ import { expectedJanushTemplateFiles } from "@janush-schematics/cloud/janush/ind
 import { emptyJanush, moduleJanush } from "@mocks/janush";
 import { Schematic } from "@enums/Schematic";
 import { expectedAuthenticationEmailsTemplateFiles } from "@janush-schematics/cloud/authentication/emails/index_spec";
-import { cloudPrettierConfig } from "@utility/apply-prettier/utils";
 
 const collectionPath = path.join(__dirname, "../../../collection.json");
 
@@ -127,8 +126,7 @@ describe("cloud.authentication", () => {
 
     expect(cloudStackFile).toContain(
       prettier.format(importStatement, {
-        parser: "babel-ts",
-        ...cloudPrettierConfig,
+        parser: "babel-ts"
       })
     );
 
