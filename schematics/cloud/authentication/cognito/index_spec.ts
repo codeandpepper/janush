@@ -126,7 +126,7 @@ describe("cloud.authentication", () => {
 
     expect(cloudStackFile).toContain(
       prettier.format(importStatement, {
-        parser: "babel-ts"
+        parser: "babel-ts",
       })
     );
 
