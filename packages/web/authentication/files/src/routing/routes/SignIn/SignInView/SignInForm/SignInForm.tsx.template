@@ -1,0 +1,85 @@
+import React from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+import Paths from "@routing/paths";
+
+import Link from "@components/Link";
+import Form from "@components/Form";
+import EmailField from "@components/EmailField";
+import PasswordField from "@components/PasswordField";
+
+import signInFormValidationSchema from "./signInFormValidationSchema";
+
+import SignInFormState from "./SignInFormState";
+
+import useStyles from "./styles";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+
+const defaultValues: SignInFormState = {
+  email: "",
+  password: "",
+};
+
+interface Props {
+  error: string;
+  loading: boolean;
+  onSubmit(formData: SignInFormState): void;
+}
+
+const SignInForm: React.FC<Props> = ({ error, loading, onSubmit }) => {
+  const classes = useStyles();
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<SignInFormState>({
+    resolver: yupResolver(signInFormValidationSchema()),
+    defaultValues,
+  });
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <EmailField
+        name="email"
+        autoComplete="email"
+        control={control}
+        error={errors.email?.message}
+        autoFocus
+      />
+      <PasswordField
+        id="password"
+        name="password"
+        control={control}
+        error={errors.password?.message}
+        label="Password"
+        placeholder="Password"
+        autoComplete="current-password"
+      />
+      <Typography color="error" align="center" className={classes.error}>
+        {error ? error : " "}
+      </Typography>
+      <Grid container justifyContent="flex-end" spacing={1}>
+        <Grid item xs={12}>
+          <Button
+            color="primary"
+            type="submit"
+            data-testid="sign-in-button"
+            variant="contained"
+            disabled={loading}
+            fullWidth
+          >
+            Sign in
+          </Button>
+          {loading && (
+            <CircularProgress size={20} className={classes.buttonProgress} />
+          )}
+        </Grid>
+      </Grid>
+    </Form>
+  );
+};
+
+export default SignInForm;

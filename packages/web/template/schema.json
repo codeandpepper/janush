@@ -4,15 +4,16 @@
   "type": "object",
   "description": "Creates application",
   "properties": {
-    "name": {
-      "type": "string",
-      "description": "The name of the application",
-      "default": "janush-app",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "Application name?"
+    "modules": {
+      "type": "array",
+      "description": "Modules",
+      "uniqueItems": true,
+      "default": ["authentication"],
+      "x-prompt": {
+        "message": "Which modules would you like to use? You can add this later.",
+        "type": "list",
+        "items": ["authentication"]
+      }
     },
     "skipInstall": {
       "type": "boolean",

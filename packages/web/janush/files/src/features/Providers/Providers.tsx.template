@@ -2,18 +2,15 @@ import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import AppShell from "@layouts/AppShell";
 import ThemeProvider from "@features/ThemeProvider";
 import SuspenseProvider from "@features/SuspenseProvider";
 
 const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider>
-      <Router>
-        <SuspenseProvider>
-          <AppShell>{children}</AppShell>
-        </SuspenseProvider>
-      </Router>
+        <Router>
+          <SuspenseProvider>{children}</SuspenseProvider>
+        </Router>
     </ThemeProvider>
   );
 };

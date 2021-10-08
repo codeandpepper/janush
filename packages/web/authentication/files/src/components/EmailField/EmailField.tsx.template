@@ -1,0 +1,56 @@
+import React from "react";
+
+import { Control, FieldValues, Path } from "react-hook-form";
+import { InputAdornment } from "@mui/material";
+import { Mail } from "@mui/icons-material";
+
+import GenericInputField from "@components/GenericInputField";
+
+interface Props<T extends FieldValues> {
+  name: Path<T>;
+  control: Control<T>;
+  error?: string;
+  autoFocus?: boolean;
+  type?: "text" | "email";
+  placeholder?: string;
+  label?: string;
+  dataTestId?: string;
+  autoComplete?: string;
+  disabled?: boolean;
+}
+
+const EmailField = <T extends FieldValues>({
+  name,
+  error,
+  control,
+  autoFocus,
+  autoComplete,
+  disabled,
+  dataTestId = "email-input-field",
+  type = "email",
+  placeholder = "Email",
+  label = "Email",
+}: Props<T>): JSX.Element => (
+  <GenericInputField
+    name={name}
+    control={control}
+    autoComplete={autoComplete}
+    error={!!error}
+    helperText={error}
+    label={label}
+    dataTestId={dataTestId}
+    placeHolder={placeholder}
+    type={type}
+    disabled={disabled}
+    InputProps={{
+      startAdornment: (
+        <InputAdornment position="start">
+          <Mail color="secondary" />
+        </InputAdornment>
+      ),
+    }}
+    autoFocus={autoFocus}
+  />
+);
+
+export default EmailField;

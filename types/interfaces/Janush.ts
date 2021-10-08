@@ -8,6 +8,8 @@ export interface Janush {
     };
   };
   web: {
-    module: {};
+    module: {
+      [Module.AUTHENTICATION]: boolean;
+    };
   };
 }

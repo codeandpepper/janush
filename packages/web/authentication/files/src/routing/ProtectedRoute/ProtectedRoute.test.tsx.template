@@ -1,0 +1,56 @@
+import React from "react";
+import { MemoryRouter, Router } from "react-router-dom";
+import ThemeProvider from "@features/ThemeProvider";
+import defaultTheme from "@themes/defaultTheme";
+import { render } from "@testing-library/react";
+import ProtectedRoute from "@routing/ProtectedRoute/ProtectedRoute";
+import { UserContext } from "@features/UserProvider/UserProvider";
+import User from "@interfaces/User";
+
+const setup = (user?: User | null | undefined) => {
+  const push = jest.fn();
+  render(
+    <ThemeProvider theme={defaultTheme()}>
+      <UserContext.Provider
+        value={{
+          user: user,
+          updateUser: () => {},
+        }}
+      >
+        <MemoryRouter>
+          <ProtectedRoute />
+        </MemoryRouter>
+      </UserContext.Provider>
+    </ThemeProvider>
+  );
+};
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+describe("<ProtectedRoute />", () => {
+  it("should render", () => {
+    setup({
+      email: "test@test.com",
+      emailVerified: true,
+      phoneNumber: "+48777888999",
+      sub: "uuid",
+      groups: [],
+    });
+
+    expect(window.location.pathname).toEqual("/");
+  });
+
+  it("user === null", () => {
+    setup(null);
+
+    expect(window.location.pathname).toEqual("/");
+  });
+
+  it("user === undefined", () => {
+    setup(undefined);
+
+    expect(window.location.pathname).toEqual("/");
+  });
+});

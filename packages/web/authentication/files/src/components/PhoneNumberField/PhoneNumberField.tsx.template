@@ -1,0 +1,78 @@
+import React, { useEffect } from "react";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import {
+  UseFormGetValues,
+  UseFormSetValue,
+} from "react-hook-form/dist/types/form";
+import { Box, InputAdornment, TextField } from "@mui/material";
+import { Phone } from "@mui/icons-material";
+
+interface Props<T extends FieldValues> {
+  name: Path<T>;
+  control: Control<T>;
+  error: string | undefined;
+  dataTestId?: string;
+  required?: boolean;
+  setValue: UseFormSetValue<T>;
+  getValues: UseFormGetValues<T>;
+}
+
+const PhoneNumberField = <T extends FieldValues>({
+  name,
+  error,
+  dataTestId = "phone-number-input-field",
+  control,
+  required,
+  setValue,
+  getValues,
+}: Props<T>): JSX.Element => {
+  useEffect(() => {
+    const phoneNumber = getValues(name) ?? "";
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    setValue(name, phoneNumber);
+  }, [setValue, getValues, name]);
+
+  return (
+    <Box display="flex" justifyContent="space-between">
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <>
+            <input type="hidden" value={field.value as string} />
+            <TextField
+              autoComplete="tel"
+              label="Mobile phone"
+              margin="normal"
+              placeholder="Mobile phone"
+              type="text"
+              variant="outlined"
+              color="secondary"
+              error={!!error}
+              InputProps={{
+                inputProps: {
+                  "data-testid": dataTestId,
+                },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Phone color="secondary" />
+                  </InputAdornment>
+                ),
+              }}
+              helperText={error}
+              required={required}
+              onChange={(e) => {
+                field.onChange(e.target.value);
+              }}
+              value={field.value}
+              fullWidth
+            />
+          </>
+        )}
+      />
+    </Box>
+  );
+};
+
+export default PhoneNumberField;

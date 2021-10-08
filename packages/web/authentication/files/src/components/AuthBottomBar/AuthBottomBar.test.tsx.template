@@ -1,0 +1,15 @@
+import React from "react";
+import AuthBottomBar from "@components/AuthBottomBar/AuthBottomBar";
+import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+
+it("should render properly", () => {
+  const bar = render(
+    <MemoryRouter>
+      <AuthBottomBar buttonText="ButtonText" buttonLinkPath="/" text="Text" />
+    </MemoryRouter>
+  );
+
+  expect(bar).toBeDefined();
+});
+describe("<AuthBottomBar />", () => {});

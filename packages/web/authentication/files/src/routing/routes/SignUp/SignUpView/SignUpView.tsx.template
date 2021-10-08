@@ -1,0 +1,43 @@
+import React from "react";
+import { Helmet } from "react-helmet";
+
+import Paths from "@routing/paths";
+
+import AuthLayout from "@layouts/AuthLayout";
+
+import AuthBottomBar from "@components/AuthBottomBar";
+
+import SignUpFormState from "./SignUpForm/SignUpFormState";
+import SignUpForm from "@routing/routes/SignUp/SignUpView/SignUpForm";
+import { Box, Container, Typography } from "@mui/material";
+
+interface Props {
+  loading: boolean;
+  onSignUp(formData: SignUpFormState): void;
+}
+
+const SignUpView: React.FC<Props> = ({ loading, onSignUp }) => {
+  return (
+    <AuthLayout>
+      <Helmet>
+        <title>Create your account</title>
+      </Helmet>
+      <Container maxWidth="xs">
+        <Box px={2} boxSizing="border-box">
+          <Typography color="textPrimary" gutterBottom variant="h4">
+            Create your account
+          </Typography>
+        </Box>
+        <SignUpForm loading={loading} onSubmit={onSignUp} />
+      </Container>
+      <AuthBottomBar
+        text="Already have an account?"
+        buttonLinkPath={Paths.SIGN_IN_PATH}
+        buttonText="Sign in"
+        dataTestId="go-to-sign-in-page-button"
+      />
+    </AuthLayout>
+  );
+};
+
+export default SignUpView;

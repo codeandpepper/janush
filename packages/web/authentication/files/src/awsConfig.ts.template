@@ -1,0 +1,17 @@
+import Amplify, { Auth } from "aws-amplify";
+
+export const authConfig = {
+  Auth: {
+    identityPoolId: "identity-pool-from-cloud-generation",
+    region: "region-from-cloud-generation",
+    userPoolId: "user-pool-id-from-cloud-generation",
+    userPoolWebClientId: "user-pool-web-client-id-from-cloud-generation",
+  },
+};
+
+const configureAws = (): void => {
+  Auth.configure(authConfig);
+  Amplify.Logger.LOG_LEVEL = "DEBUG";
+};
+
+export default configureAws;

@@ -10,6 +10,12 @@
       "description": "A basic janush web codebase.",
       "factory": "./janush/index#webJanushGenerator",
       "schema": "./janush/schema.json"
+    },
+    "web.authentication": {
+      "aliases": ["web.auth"],
+      "description": "auth structure for web app",
+      "factory": "./authentication/index#webAuthenticationGenerator",
+      "schema": "./authentication/schema.json"
     }
   }
 }

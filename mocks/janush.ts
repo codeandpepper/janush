@@ -9,7 +9,9 @@ export const emptyJanush: Janush = {
     },
   },
   web: {
-    module: {},
+    module: {
+      [Module.AUTHENTICATION]: false,
+    },
   },
 };
 
@@ -21,6 +23,8 @@ export const moduleJanush: Janush = {
     },
   },
   web: {
-    module: {},
+    module: {
+      [Module.AUTHENTICATION]: true,
+    },
   },
 };

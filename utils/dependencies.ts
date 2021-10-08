@@ -1,7 +1,4 @@
-import {
-  NodeDependency,
-  NodeDependencyType,
-} from "@schematics/angular/utility/dependencies";
+import { NodeDependency, NodeDependencyType } from "@schematics/angular/utility/dependencies";
 
 export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
@@ -69,3 +66,46 @@ export const authenticationEmailsNodeDependencies: NodeDependency[] = [
     overwrite: true,
   },
 ];
+
+export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
+  {
+    type: NodeDependencyType.Default,
+    name: "@hookform/resolvers",
+    version: "^2.8.1"
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "aws-amplify",
+    version: "^4.2.10"
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "google-libphonenumber",
+    version: "^3.2.23"
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "react-helmet",
+    version: "^6.1.0"
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "react-hook-form",
+    version: "^7.15.4"
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "yup",
+    version: "^0.32.9"
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/google-libphonenumber",
+    version: "^7.4.21"
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/react-helmet",
+    version: "^6.1.2"
+  }
+]

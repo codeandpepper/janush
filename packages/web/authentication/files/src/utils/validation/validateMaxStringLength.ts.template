@@ -1,0 +1,7 @@
+import { MAX_STRING_LENGTH } from "../../consts";
+
+const validateMaxStringLength = (value?: string): boolean => {
+  return typeof value === "undefined" || value.length <= MAX_STRING_LENGTH;
+};
+
+export default validateMaxStringLength;

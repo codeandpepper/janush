@@ -1,0 +1,55 @@
+import React, { useState } from "react";
+
+import { Auth } from "aws-amplify";
+import { useHistory } from "react-router-dom";
+
+import Paths from "@routing/paths";
+
+import removeAllWhitespaces from "@utils/removeAllWhitespaces";
+
+import SignUpView from "./SignUpView";
+import SignUpFormState from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
+import { NUMBER_PREFIX_INPUT_KEY } from "../../../consts";
+
+const SignUp: React.FC = () => {
+  const history = useHistory();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const onSignUp = async ({ email, password, phone }: SignUpFormState) => {
+    if (loading) return;
+
+    setLoading(true);
+
+    const lowerCaseEmail = removeAllWhitespaces(email as string).toLowerCase();
+
+    try {
+      await Auth.signUp({
+        password: password.trim(),
+        username: lowerCaseEmail,
+        attributes: {
+          email: lowerCaseEmail,
+          phone_number: removeAllWhitespaces(phone!),
+        },
+      });
+      setLoading(false);
+
+      history.push(Paths.VERIFY_EMAIL_PATH, {
+        email,
+      });
+      setTimeout(() => {
+        localStorage.removeItem(NUMBER_PREFIX_INPUT_KEY);
+      }, 500);
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      if (error.code === "UsernameExistsException") {
+        history.push(Paths.VERIFY_EMAIL_PATH, { email });
+      }
+      setLoading(false);
+    }
+  };
+
+  return <SignUpView loading={loading} onSignUp={onSignUp} />;
+};
+
+export default SignUp;

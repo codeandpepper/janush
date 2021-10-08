@@ -1,0 +1,41 @@
+import React, { useState } from "react";
+
+import { Auth } from "aws-amplify";
+
+import removeAllWhitespaces from "@utils/removeAllWhitespaces";
+import SignInView from "@routing/routes/SignIn/SignInView";
+import Paths from "@routing/paths";
+import { useHistory } from "react-router-dom";
+import SignInFormState from "./SignInView/SignInForm/SignInFormState";
+
+const SignIn: React.FC = () => {
+  const history = useHistory();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+
+  const onSignIn = async ({ email, password }: SignInFormState) => {
+    try {
+      setLoading(true);
+      setError("");
+
+      await Auth.signIn({
+        password: password.trim(),
+        username: removeAllWhitespaces(email).toLowerCase(),
+      });
+      setLoading(false);
+
+      history.push(Paths.BASE, {
+        email,
+      });
+    } catch (e) {
+      setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setError(e.message);
+    }
+  };
+
+  return <SignInView error={error} loading={loading} onSignIn={onSignIn} />;
+};
+
+export default SignIn;
