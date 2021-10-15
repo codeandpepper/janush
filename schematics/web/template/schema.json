@@ -17,7 +17,7 @@
     },
     "skipInstall": {
       "type": "boolean",
-      "description": "Install all package dependencies",
+      "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   },

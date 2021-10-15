@@ -1,14 +1,25 @@
 import React from "react";
 
-import Logo from "@layouts/Logo";
+import { NavLink } from "react-router-dom";
 
-import { AppBar, Toolbar } from "@mui/material";
+import Logo from "@layouts/Logo";
+import Paths from "@routing/paths";
+
+import { AppBar, Button, Toolbar } from "@mui/material";
 
 const TopAppBar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
         <Logo />
+        <Button
+          data-testid="sign-in-button-on-app-bar"
+          component={NavLink}
+          to={Paths.BASE}
+          color="inherit"
+        >
+          Sign in
+        </Button>
       </Toolbar>
     </AppBar>
   );

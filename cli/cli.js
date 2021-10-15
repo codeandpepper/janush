@@ -60,7 +60,7 @@ function cli(args) {
         directory = path.join(__dirname, "..");
     }
     const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`schematics ${directory}/schematics/collection.json:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
     });

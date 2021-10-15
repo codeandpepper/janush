@@ -22,20 +22,20 @@
   },
   "author": "",
   "license": "MIT",
-  "schematics": "@codeandpepper/janush/packages/collection.json",
+  "schematics": "@codeandpepper/janush/schematics/collection.json",
   "dependencies": {
-    "esm": "^3.2.25",
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",
     "@schematics/angular": "^12.2.4",
     "arg": "^5.0.1",
+    "esm": "^3.2.25",
     "typescript": "~4.3.2"
   },
   "devDependencies": {
     "@types/jasmine": "~3.8.0",
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.172",
-    "@types/node": "^12.11.1",
+    "@types/node": "^16.10.1",
     "@types/prettier": "^2.3.2",
     "jasmine": "^3.5.0",
     "prettier": "^2.3.2",

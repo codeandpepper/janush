@@ -3,7 +3,7 @@
   "schematics": {
     "application": {
       "aliases": ["app"],
-      "description": "A blank application.",
+      "description": "Generating a base application codebase",
       "factory": "./application/index#applicationGenerator",
       "schema": "./application/schema.json"
     }
