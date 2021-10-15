@@ -19,7 +19,7 @@ import {
   changeIndex, changePackageJson, changePaths,
   changeProviders, changeRoutes,
   changeTopAppBar, changeTsConfigPaths,
-} from "@packages/web/authentication/utils";
+} from "../../web/authentication/utils";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";

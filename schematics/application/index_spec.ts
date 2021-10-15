@@ -4,7 +4,7 @@ import * as path from "path";
 
 import { expectedJanushTemplateFiles as expectedJanushCloudFiles } from "../cloud/janush/index_spec";
 import { expectedAuthenticationTemplateFiles as expectedAuthenticationCloudFiles } from "../cloud/authentication/cognito/index_spec";
-import { expectedAuthenticationEmailsTemplateFiles } from "@packages/cloud/authentication/emails/index_spec";
+import { expectedAuthenticationEmailsTemplateFiles } from "../cloud/authentication/emails/index_spec";
 
 import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
 

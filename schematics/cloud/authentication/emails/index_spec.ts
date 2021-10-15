@@ -4,8 +4,8 @@ import * as path from "path";
 import * as janush from "@utility/janush-json";
 import * as fs from "fs";
 
-import { expectedJanushTemplateFiles } from "@packages/cloud/janush/index_spec";
-import { expectedAuthenticationTemplateFiles } from "@packages/cloud/authentication/cognito/index_spec";
+import { expectedJanushTemplateFiles } from "../../../cloud/janush/index_spec";
+import { expectedAuthenticationTemplateFiles } from "../../../cloud/authentication/cognito/index_spec";
 
 import { emptyJanush, moduleJanush } from "@mocks/janush";
 import { Schematic } from "@enums/Schematic";

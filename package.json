@@ -4,7 +4,7 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc && tsc-alias --silent",
-    "test": "npm run build && jasmine packages/**/*_spec.js",
+    "test": "npm run build && jasmine schematics/**/*_spec.js",
     "create": "npm run build && schematics .:application",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json}\""

@@ -22,8 +22,8 @@
     "outDir": ".",
     "paths": {
       "@consts/*": ["./consts/*"],
-      "@packages/*": ["./packages/*"],
-      "@utility/*": ["./packages/utility/*"],
+      "@janush-schematics/*": ["./schematics/*"],
+      "@utility/*": ["./schematics/utility/*"],
       "@enums/*": ["./types/enums/*"],
       "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
