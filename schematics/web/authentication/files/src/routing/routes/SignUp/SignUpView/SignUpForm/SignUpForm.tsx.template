@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "@components/Form";
 import EmailField from "@components/EmailField";
 import PasswordField from "@components/PasswordField";
-import PhoneNumberField from "@components/PhoneNumberField";
 
 import SignUpFormState from "./SignUpFormState";
 import signUpFormValidationSchema from "./signUpFormValidationSchema";
@@ -14,7 +13,6 @@ import { Box, Button, CircularProgress } from "@mui/material";
 
 const defaultValues: SignUpFormState = {
   email: "",
-  phone: "",
   password: "",
   confirmPassword: "",
 };
@@ -30,8 +28,6 @@ const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
   const {
     control,
     handleSubmit,
-    setValue,
-    getValues,
     formState: { errors },
   } = useForm<SignUpFormState>({
     resolver: yupResolver(signUpFormValidationSchema()),
@@ -46,14 +42,6 @@ const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
         control={control}
         error={errors.email?.message}
         autoFocus
-      />
-      <PhoneNumberField
-        setValue={setValue}
-        getValues={getValues}
-        name="phone"
-        control={control}
-        error={errors.phone?.message}
-        required
       />
       <PasswordField
         id="password"

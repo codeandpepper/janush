@@ -404,17 +404,9 @@ export const changePaths = (
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
-    // nodes.forEach((n) => {
-    //   showTree(n);
-    // })
-
     const updatedTree = tree.beginUpdate(filePath);
 
     const enumDeclarations = nodes.filter((n) => n.kind === ts.SyntaxKind.EnumDeclaration);
-
-    enumDeclarations.forEach((n) => {
-      console.log(n.getText());
-    });
 
     const paths = enumDeclarations.find((n) => n.getText().includes("BASE = \"/\","));
 
@@ -455,22 +447,13 @@ export const changeRoutes = (
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
-    // nodes.forEach((n) => {
-    //   showTree(n);
-    // })
-
     const updatedTree = tree.beginUpdate(filePath);
 
     const stringLiterals = nodes.filter((n) => n.kind === ts.SyntaxKind.StringLiteral);
 
-    stringLiterals.forEach((n) => {
-      console.log(n.getText());
-    });
-
     const paths = stringLiterals.find((n) => n.getText().includes("\"./routes/Index\""));
 
     if (paths) {
-      console.log("wejszło");
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd(),
@@ -484,14 +467,9 @@ export const changeRoutes = (
 
     const htmlAttributes = nodes.filter((n) => n.kind === ts.SyntaxKind.JsxSelfClosingElement);
 
-    htmlAttributes.forEach((n) => {
-      console.log(n.getText());
-    });
-
     const attr = htmlAttributes.find((n) => n.getText().includes("Route"));
 
     if (attr) {
-      console.log("wejszło w html");
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         attr.getStart() - 1,

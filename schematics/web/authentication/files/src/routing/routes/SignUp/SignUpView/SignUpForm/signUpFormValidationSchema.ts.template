@@ -4,8 +4,6 @@ import validateMaxStringLength from "@utils/validation/validateMaxStringLength";
 
 import SignUpFormState from "./SignUpFormState";
 import passwordValidation from "@utils/validation/passwordValidation";
-import validatePhoneNumber from "@utils/validation/validatePhoneNumber";
-import { MAX_STRING_LENGTH, PHONE_REGEXP } from "../../../../../consts";
 
 export default (): SchemaOf<SignUpFormState> =>
   <SchemaOf<SignUpFormState>>object({
@@ -13,15 +11,6 @@ export default (): SchemaOf<SignUpFormState> =>
       .required("Field required")
       .email("Email required")
       .test("Maximum email length", validateMaxStringLength),
-    phone: string()
-      .required("Field required")
-      .test(
-        "Phone number format",
-        "Provide a valid phone number",
-        validatePhoneNumber()
-      )
-      .matches(PHONE_REGEXP, "Provide a valid phone number")
-      .max(MAX_STRING_LENGTH, "Phone number too long"),
     password: passwordValidation(),
     confirmPassword: string()
       .required("Field required")

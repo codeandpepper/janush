@@ -15,7 +15,7 @@ const SignUp: React.FC = () => {
   const history = useHistory();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onSignUp = async ({ email, password, phone }: SignUpFormState) => {
+  const onSignUp = async ({ email, password }: SignUpFormState) => {
     if (loading) return;
 
     setLoading(true);
@@ -28,7 +28,6 @@ const SignUp: React.FC = () => {
         username: lowerCaseEmail,
         attributes: {
           email: lowerCaseEmail,
-          phone_number: removeAllWhitespaces(phone!),
         },
       });
       setLoading(false);
