@@ -1,5 +1,5 @@
 import {
-  FileDoesNotExistException,
+  FileDoesNotExistException, Rule,
   Tree,
 } from "@angular-devkit/schematics";
 import { getSourceNodes, insertImport } from "@schematics/angular/utility/ast-utils";
@@ -496,3 +496,16 @@ export const changeRoutes = (
     return tree;
   };
 };
+
+export const authenticationChanges = (name: string): Rule[] => {
+  return [
+    changeTopAppBar(name),
+  changeProviders(name),
+  changeIndex(name),
+  changeConfigOverrides(name),
+  changePackageJson(name),
+  changeTsConfigPaths(name),
+  changePaths(name),
+  changeRoutes(name),
+  ]
+}

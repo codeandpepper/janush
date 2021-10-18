@@ -15,10 +15,7 @@ import { readJanushJSON } from "@utility/janush-json";
 import { Schema } from "./schema";
 import { Schematic } from "@enums/Schematic";
 import {
-  changeConfigOverrides,
-  changeIndex, changePackageJson, changePaths,
-  changeProviders, changeRoutes,
-  changeTopAppBar, changeTsConfigPaths,
+  authenticationChanges,
 } from "../../web/authentication/utils";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
@@ -47,14 +44,7 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      changeTopAppBar(name),
-      changeProviders(name),
-      changeIndex(name),
-      changeConfigOverrides(name),
-      changePackageJson(name),
-      changeTsConfigPaths(name),
-      changePaths(name),
-      changeRoutes(name),
+      ...authenticationChanges(name),
     ]);
   };
 };
