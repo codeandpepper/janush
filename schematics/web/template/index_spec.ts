@@ -58,7 +58,6 @@ export const expectedFiles = [
   "/web/src/routing/paths.ts",
   "/web/src/routing/routes/Index/IndexPage.tsx",
   "/web/src/routing/routes/Index/index.ts",
-  "/web/src/routing/routes/Index/index.tsx",
   "/web/src/routing/routes/SignIn/SignIn.test.tsx",
   "/web/src/routing/routes/SignIn/SignIn.tsx",
   "/web/src/routing/routes/SignIn/index.ts",
