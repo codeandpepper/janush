@@ -21,7 +21,7 @@ export const expectedJanushTemplateFiles = [
   "/cloud/bin/janush-app.ts",
   "/cloud/lib/janush-app-stack.ts",
   "/cloud/test/janush-app.test.ts",
-  "/cloud/consts/index.ts.template",
+  "/cloud/consts/index.ts",
   "/cloud/enums/EnvName.ts",
   "/cloud/scripts/test.txt",
   "/cloud/utils/functions.ts",
