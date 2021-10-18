@@ -1,10 +1,12 @@
 import {
   apply,
   applyTemplates,
+  chain,
   MergeStrategy,
   mergeWith,
   move,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -31,15 +33,18 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 
-    return mergeWith(
-      apply(url("./files"), [
-        applyTemplates({
-          ...options,
-          ...strings,
-        }),
-        move(Schematic.CLOUD),
-      ]),
-      MergeStrategy.Overwrite
-    );
+    return chain([
+      mergeWith(
+        apply(url("./files"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(Schematic.CLOUD),
+        ]),
+        MergeStrategy.Overwrite
+      ),
+      schematic("apply-prettier", {}),
+    ]);
   };
 };

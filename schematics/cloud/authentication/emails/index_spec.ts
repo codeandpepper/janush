@@ -2,7 +2,6 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { Tree } from "@angular-devkit/schematics";
 import * as path from "path";
 import * as janush from "@utility/janush-json";
-import * as fs from "fs";
 
 import { expectedJanushTemplateFiles } from "@janush-schematics/cloud/janush/index_spec";
 import { expectedAuthenticationTemplateFiles } from "@janush-schematics/cloud/authentication/cognito/index_spec";
@@ -64,17 +63,9 @@ describe("cloud.authentication.emails", () => {
   it("should check inserted email construct to cognito user pool", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    const emailsConstruct = fs
-      .readFileSync(
-        path.join(
-          __dirname,
-          "other-files/cognito-user-pool/emails-construct.template"
-        )
-      )
-      .toString("utf-8");
+    const importStatement = `import { EmailsCdkConstruct } from "./emails/emailsCdkConstruct"`;
 
-    const importStatement =
-      "import { EmailsCdkConstruct } from './emails/emailsCdkConstruct'";
+    const emailConstructStatement = "new EmailsCdkConstruct";
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
@@ -93,6 +84,6 @@ describe("cloud.authentication.emails", () => {
 
     expect(cloudStackFile).toContain(importStatement);
 
-    expect(cloudStackFile).toContain(emailsConstruct);
+    expect(cloudStackFile).toContain(emailConstructStatement);
   });
 });

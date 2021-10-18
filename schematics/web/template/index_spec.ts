@@ -5,7 +5,7 @@ import * as path from "path";
 import * as janush from "@utility/janush-json";
 import { emptyJanush } from "@mocks/janush";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../collection.json");
 
 export const expectedFiles = [
   "/web/README.md",

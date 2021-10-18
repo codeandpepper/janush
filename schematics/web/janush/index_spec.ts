@@ -3,9 +3,9 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { FileDoesNotExistException } from "@angular-devkit/core";
 import * as path from "path";
 import * as janush from "@utility/janush-json";
-import { emptyJanush } from "../../../mocks/janush";
+import { emptyJanush } from "@mocks/janush";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../collection.json");
 
 export const expectedFiles = [
   "/web/.eslintignore",

@@ -30,7 +30,6 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
   return async (tree: Tree, _context: SchematicContext) => {
     let janushFile = readJanushJSON(tree);
 
-
     const name = strings.dasherize(janushFile.name);
 
     const workingDirectory = `${name}/${Schematic.CLOUD}`;
@@ -64,6 +63,7 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
       isAuthenticationModule(options)
         ? schematic(CloudSchematic.AUTHENTICATION, options)
         : noop(),
+      schematic("apply-prettier", {}),
     ]);
   };
 };

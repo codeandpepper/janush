@@ -1,8 +1,8 @@
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { Tree } from "@angular-devkit/schematics";
 import * as path from "path";
+import * as prettier from "prettier";
 import * as janush from "@utility/janush-json";
-import * as fs from "fs";
 
 import { expectedJanushTemplateFiles } from "@janush-schematics/cloud/janush/index_spec";
 
@@ -41,8 +41,6 @@ describe("cloud.authentication", () => {
         templateTree
       )
       .toPromise();
-
-    console.log(authenticationTree.files);
 
     console.log(
       jasmine.arrayWithExactContents([
@@ -107,17 +105,9 @@ describe("cloud.authentication", () => {
   it("should check inserted construct to stack", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    const authenticationConstruct = fs
-      .readFileSync(
-        path.join(
-          __dirname,
-          "other-files/cloud-stack/authentication-construct.template"
-        )
-      )
-      .toString("utf-8");
+    const importStatement = `import { CognitoCdkConstruct } from "./authentication/cognitoCdkConstruct"`;
 
-    const importStatement =
-      "import { CognitoCdkConstruct } from './authentication/cognitoCdkConstruct'";
+    const cognitoConstructStatement = "new CognitoCdkConstruct";
 
     spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
     spyOn(janush, "updateJanushJSON");
@@ -134,8 +124,12 @@ describe("cloud.authentication", () => {
       `${Schematic.CLOUD}/lib/janush-app-stack.ts`
     );
 
-    expect(cloudStackFile).toContain(importStatement);
+    expect(cloudStackFile).toContain(
+      prettier.format(importStatement, {
+        parser: "babel-ts",
+      })
+    );
 
-    expect(cloudStackFile).toContain(authenticationConstruct);
+    expect(cloudStackFile).toContain(cognitoConstructStatement);
   });
 });
