@@ -28,9 +28,6 @@ const setup = async (history?: MemoryHistory) => {
   const emailInput = await screen.findByPlaceholderText(/Email/i);
   expect(emailInput).toBeInTheDocument();
 
-  const phoneInput = await screen.findByPlaceholderText(/Mobile phone/i);
-  expect(phoneInput).toBeInTheDocument();
-
   const passwordInput = await screen.findByPlaceholderText(/^Password/i);
   expect(passwordInput).toBeInTheDocument();
 
@@ -44,7 +41,6 @@ const setup = async (history?: MemoryHistory) => {
 
   return {
     emailInput,
-    phoneInput,
     passwordInput,
     confirmPasswordInput,
     signUpButton,
@@ -55,17 +51,11 @@ describe("<SignUp />", () => {
   it("should call Auth.signUp() function on form submit", async () => {
     Auth.signUp = jest.fn();
 
-    const {
-      emailInput,
-      phoneInput,
-      passwordInput,
-      confirmPasswordInput,
-      signUpButton,
-    } = await setup();
+    const { emailInput, passwordInput, confirmPasswordInput, signUpButton } =
+      await setup();
 
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
-      fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
       fireEvent.change(confirmPasswordInput, {
         target: { value: "Test123456" },
@@ -85,24 +75,18 @@ describe("<SignUp />", () => {
 
     const push = jest.fn();
 
-    const {
-      emailInput,
-      phoneInput,
-      passwordInput,
-      confirmPasswordInput,
-      signUpButton,
-    } = await setup({
-      push,
-      createHref: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      location: {},
-      listen: jest.fn(),
-    });
+    const { emailInput, passwordInput, confirmPasswordInput, signUpButton } =
+      await setup({
+        push,
+        createHref: jest.fn(),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        location: {},
+        listen: jest.fn(),
+      });
 
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
-      fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
       fireEvent.change(confirmPasswordInput, {
         target: { value: "Test123456" },
@@ -123,24 +107,18 @@ describe("<SignUp />", () => {
 
     const push = jest.fn();
 
-    const {
-      emailInput,
-      phoneInput,
-      passwordInput,
-      confirmPasswordInput,
-      signUpButton,
-    } = await setup({
-      push,
-      createHref: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      location: {},
-      listen: jest.fn(),
-    });
+    const { emailInput, passwordInput, confirmPasswordInput, signUpButton } =
+      await setup({
+        push,
+        createHref: jest.fn(),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        location: {},
+        listen: jest.fn(),
+      });
 
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
-      fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
       fireEvent.change(confirmPasswordInput, {
         target: { value: "Test123456" },
@@ -160,24 +138,18 @@ describe("<SignUp />", () => {
         () => new Promise<void>((res) => setTimeout(() => res(), 5000))
       );
 
-    const {
-      emailInput,
-      phoneInput,
-      passwordInput,
-      confirmPasswordInput,
-      signUpButton,
-    } = await setup({
-      push: jest.fn(),
-      createHref: jest.fn(),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      location: {},
-      listen: jest.fn(),
-    });
+    const { emailInput, passwordInput, confirmPasswordInput, signUpButton } =
+      await setup({
+        push: jest.fn(),
+        createHref: jest.fn(),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        location: {},
+        listen: jest.fn(),
+      });
 
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
-      fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
       fireEvent.change(confirmPasswordInput, {
         target: { value: "Test123456" },

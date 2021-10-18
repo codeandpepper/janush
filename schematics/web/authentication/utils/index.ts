@@ -1,8 +1,12 @@
 import {
-  FileDoesNotExistException, Rule,
+  FileDoesNotExistException,
+  Rule,
   Tree,
 } from "@angular-devkit/schematics";
-import { getSourceNodes, insertImport } from "@schematics/angular/utility/ast-utils";
+import {
+  getSourceNodes,
+  insertImport,
+} from "@schematics/angular/utility/ast-utils";
 
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import * as fs from "fs";
@@ -13,32 +17,23 @@ import { Schematic } from "@enums/Schematic";
 
 const construct = fs
   .readFileSync(
-    path.join(
-      __dirname,
-      "..",
-      "other-files/TopAppBar/signOut.template",
-    ),
+    path.join(__dirname, "..", "other-files/TopAppBar/signOut.template")
   )
   .toString("utf-8");
 
 const construct2 = fs
   .readFileSync(
-    path.join(
-      __dirname,
-      "..",
-      "other-files/TopAppBar/TopAppBar.template",
-    ),
+    path.join(__dirname, "..", "other-files/TopAppBar/TopAppBar.template")
   )
   .toString("utf-8");
 
-export const changeTopAppBar = (
-  projectName: string,
-) => {
+export const changeTopAppBar = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/src/layouts/TopAppBar/TopAppBar.tsx`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -46,13 +41,18 @@ export const changeTopAppBar = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
-    const htmlSigns = nodes.filter((n) => n.kind === ts.SyntaxKind.JsxSelfClosingElement);
+    const htmlSigns = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.JsxSelfClosingElement
+    );
 
-    const returnKeyword = nodes.find((n) => n.kind === ts.SyntaxKind.ReturnKeyword);
+    const returnKeyword = nodes.find(
+      (n) => n.kind === ts.SyntaxKind.ReturnKeyword
+    );
 
     let changed;
     let logoChanged;
@@ -64,7 +64,7 @@ export const changeTopAppBar = (
         logoChanged = new InsertChange(
           filePath,
           logo?.getEnd() + 1,
-          construct2,
+          construct2
         );
       }
     }
@@ -73,16 +73,15 @@ export const changeTopAppBar = (
       changed = new InsertChange(
         filePath,
         returnKeyword?.getStart() - 2,
-        construct,
+        construct
       );
     }
-
 
     const importAuthFromAmplify = insertImport(
       modifiedFileToSave,
       filePath,
       "Auth",
-      "aws-amplify",
+      "aws-amplify"
     ) as InsertChange;
 
     const importUseUserContext = insertImport(
@@ -90,14 +89,14 @@ export const changeTopAppBar = (
       filePath,
       "useUserContext",
       "@features/UserProvider/useUserContext",
-      true,
+      true
     ) as InsertChange;
 
     const importNavLink = insertImport(
       modifiedFileToSave,
       filePath,
       "NavLink",
-      "react-router-dom",
+      "react-router-dom"
     ) as InsertChange;
 
     const importPaths = insertImport(
@@ -105,48 +104,49 @@ export const changeTopAppBar = (
       filePath,
       "Paths",
       "@routing/paths",
-      true,
+      true
     ) as InsertChange;
 
     const importButton = insertImport(
       modifiedFileToSave,
       filePath,
       "Button",
-      "@mui/material",
+      "@mui/material"
     ) as InsertChange;
-
 
     const declarationRecorder = tree.beginUpdate(filePath);
 
     if (logoChanged) {
       declarationRecorder.insertLeft(logoChanged.pos, logoChanged.toAdd);
     }
-    ;
     if (changed) {
       declarationRecorder.insertLeft(changed.pos, changed.toAdd);
     }
-    declarationRecorder.insertLeft(importAuthFromAmplify.pos, importAuthFromAmplify.toAdd);
-    declarationRecorder.insertLeft(importUseUserContext.pos, importUseUserContext.toAdd);
+    declarationRecorder.insertLeft(
+      importAuthFromAmplify.pos,
+      importAuthFromAmplify.toAdd
+    );
+    declarationRecorder.insertLeft(
+      importUseUserContext.pos,
+      importUseUserContext.toAdd
+    );
     declarationRecorder.insertLeft(importNavLink.pos, importNavLink.toAdd);
     declarationRecorder.insertLeft(importPaths.pos, importPaths.toAdd);
     declarationRecorder.insertLeft(importButton.pos, importButton.toAdd);
 
-
     tree.commitUpdate(declarationRecorder);
-
 
     return tree;
   };
 };
 
-export const changeProviders = (
-  projectName: string,
-) => {
+export const changeProviders = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/src/features/Providers/Providers.tsx`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -154,16 +154,24 @@ export const changeProviders = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
-    const htmlStartingNodes = nodes.filter((n) => n.kind === ts.SyntaxKind.JsxOpeningElement);
-    const htmlEndingNodes = nodes.filter((n) => n.kind === ts.SyntaxKind.JsxClosingElement);
+    const htmlStartingNodes = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.JsxOpeningElement
+    );
+    const htmlEndingNodes = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.JsxClosingElement
+    );
 
-    const openingNode = htmlStartingNodes.find((sign) => sign.getText() === "<ThemeProvider>");
-    const endingNode = htmlEndingNodes.find((sign) => sign.getText() === "</ThemeProvider>");
-
+    const openingNode = htmlStartingNodes.find(
+      (sign) => sign.getText() === "<ThemeProvider>"
+    );
+    const endingNode = htmlEndingNodes.find(
+      (sign) => sign.getText() === "</ThemeProvider>"
+    );
 
     const updatedTree = tree.beginUpdate(filePath);
 
@@ -171,17 +179,23 @@ export const changeProviders = (
       const openingUserProviderChange = new InsertChange(
         filePath,
         openingNode.getEnd(),
-        "\n<UserProvider>",
+        "\n<UserProvider>"
       );
 
       const endingUserProviderChange = new InsertChange(
         filePath,
         endingNode.getStart(),
-        "</UserProvider>\n",
+        "</UserProvider>\n"
       );
 
-      updatedTree.insertLeft(openingUserProviderChange.pos, openingUserProviderChange.toAdd);
-      updatedTree.insertLeft(endingUserProviderChange.pos, endingUserProviderChange.toAdd);
+      updatedTree.insertLeft(
+        openingUserProviderChange.pos,
+        openingUserProviderChange.toAdd
+      );
+      updatedTree.insertLeft(
+        endingUserProviderChange.pos,
+        endingUserProviderChange.toAdd
+      );
     }
 
     const importUserProvider = insertImport(
@@ -189,7 +203,7 @@ export const changeProviders = (
       filePath,
       "UserProvider",
       "@features/UserProvider/UserProvider",
-      true,
+      true
     ) as InsertChange;
 
     updatedTree.insertLeft(importUserProvider.pos, importUserProvider.toAdd);
@@ -200,14 +214,13 @@ export const changeProviders = (
   };
 };
 
-export const changeIndex = (
-  projectName: string,
-) => {
+export const changeIndex = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/src/index.tsx`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -215,20 +228,22 @@ export const changeIndex = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const placementLine = nodes.find((n) => n.kind === ts.SyntaxKind.PropertyAccessExpression);
-
+    const placementLine = nodes.find(
+      (n) => n.kind === ts.SyntaxKind.PropertyAccessExpression
+    );
 
     if (placementLine) {
       const configureAwsChange = new InsertChange(
         filePath,
         placementLine.getStart() - 1,
-        "\nconfigureAws(); \n",
+        "\nconfigureAws(); \n"
       );
 
       updatedTree.insertLeft(configureAwsChange.pos, configureAwsChange.toAdd);
@@ -239,7 +254,7 @@ export const changeIndex = (
       filePath,
       "configureAws",
       "./awsConfig",
-      true,
+      true
     ) as InsertChange;
 
     updatedTree.insertLeft(importUserProvider.pos, importUserProvider.toAdd);
@@ -250,14 +265,13 @@ export const changeIndex = (
   };
 };
 
-export const changeConfigOverrides = (
-  projectName: string,
-) => {
+export const changeConfigOverrides = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/config-overrides.js`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -265,28 +279,36 @@ export const changeConfigOverrides = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const configSpreadOperators = nodes.filter((n) => n.kind === ts.SyntaxKind.SpreadAssignment);
+    const configSpreadOperators = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.SpreadAssignment
+    );
 
-    const configAlias = configSpreadOperators.find((n) => n.getText() === "...config.alias");
+    const configAlias = configSpreadOperators.find(
+      (n) => n.getText() === "...config.alias"
+    );
 
     if (configAlias) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         configAlias.getEnd() + 1,
-        "\n\"@components\": path.resolve(__dirname, \"src/components\"),\n" +
-        "      \"@consts\": path.resolve(__dirname, \"src/consts\"),\n" +
-        "      \"@interfaces\": path.resolve(__dirname, \"src/interfaces\"),\n" +
-        "      \"@types\": path.resolve(__dirname, \"src/types\"),\n" +
-        "      \"@utils\": path.resolve(__dirname, \"src/utils\"),",
+        '\n"@components": path.resolve(__dirname, "src/components"),\n' +
+          '      "@consts": path.resolve(__dirname, "src/consts"),\n' +
+          '      "@interfaces": path.resolve(__dirname, "src/interfaces"),\n' +
+          '      "@types": path.resolve(__dirname, "src/types"),\n' +
+          '      "@utils": path.resolve(__dirname, "src/utils"),'
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
     tree.commitUpdate(updatedTree);
@@ -295,14 +317,13 @@ export const changeConfigOverrides = (
   };
 };
 
-export const changePackageJson = (
-  projectName: string,
-) => {
+export const changePackageJson = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/package.json`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -310,28 +331,36 @@ export const changePackageJson = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const stringLiterals = nodes.filter((n) => n.kind === ts.SyntaxKind.StringLiteral);
+    const stringLiterals = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.StringLiteral
+    );
 
-    const moduleNameMapper = stringLiterals.find((n) => n.getText() === "\"moduleNameMapper\"");
+    const moduleNameMapper = stringLiterals.find(
+      (n) => n.getText() === '"moduleNameMapper"'
+    );
 
     if (moduleNameMapper) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         moduleNameMapper.getEnd() + 4,
-        "\"@components/(.*)\": \"<rootDir>/src/components/$1\",\n" +
-        "      \"@consts/(.*)\": \"<rootDir>/src/consts/$1\",\n" +
-        "      \"@interfaces/(.*)\": \"<rootDir>/src/interfaces/$1\",\n" +
-        "      \"@types/(.*)\": \"<rootDir>/src/types/$1\",\n" +
-        "      \"@utils/(.*)\": \"<rootDir>/src/utils/$1\",\n",
+        '"@components/(.*)": "<rootDir>/src/components/$1",\n' +
+          '      "@consts/(.*)": "<rootDir>/src/consts/$1",\n' +
+          '      "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",\n' +
+          '      "@types/(.*)": "<rootDir>/src/types/$1",\n' +
+          '      "@utils/(.*)": "<rootDir>/src/utils/$1",\n'
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
     tree.commitUpdate(updatedTree);
@@ -340,14 +369,13 @@ export const changePackageJson = (
   };
 };
 
-export const changeTsConfigPaths = (
-  projectName: string,
-) => {
+export const changeTsConfigPaths = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/tsconfig.paths.json`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -355,28 +383,34 @@ export const changeTsConfigPaths = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const stringLiterals = nodes.filter((n) => n.kind === ts.SyntaxKind.StringLiteral);
+    const stringLiterals = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.StringLiteral
+    );
 
-    const paths = stringLiterals.find((n) => n.getText() === "\"paths\"");
+    const paths = stringLiterals.find((n) => n.getText() === '"paths"');
 
     if (paths) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd() + 4,
-        "\"@components/*\": [\"./src/components/*\"],\n" +
-        "      \"@consts/*\": [\".src/consts/*\"],\n" +
-        "      \"@interfaces/*\": [\"./src/interfaces/*\"],\n" +
-        "      \"@types/*\": [\"./src/types/*\"],\n" +
-        "      \"@utils/*\": [\"./src/utils/*\"],\n",
+        '"@components/*": ["./src/components/*"],\n' +
+          '      "@consts/*": [".src/consts/*"],\n' +
+          '      "@interfaces/*": ["./src/interfaces/*"],\n' +
+          '      "@types/*": ["./src/types/*"],\n' +
+          '      "@utils/*": ["./src/utils/*"],\n'
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
     tree.commitUpdate(updatedTree);
@@ -385,14 +419,13 @@ export const changeTsConfigPaths = (
   };
 };
 
-export const changePaths = (
-  projectName: string,
-) => {
+export const changePaths = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/src/routing/paths.ts`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -400,26 +433,34 @@ export const changePaths = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const enumDeclarations = nodes.filter((n) => n.kind === ts.SyntaxKind.EnumDeclaration);
+    const enumDeclarations = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.EnumDeclaration
+    );
 
-    const paths = enumDeclarations.find((n) => n.getText().includes("BASE = \"/\","));
+    const paths = enumDeclarations.find((n) =>
+      n.getText().includes('BASE = "/",')
+    );
 
     if (paths) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd() - 1,
-        "SIGN_IN_PATH = \"\/sign-in\",\n" +
-        "SIGN_UP_PATH = \"\/sign-up\",\n" +
-        "VERIFY_EMAIL_PATH = \"\/verify-email\"\n",
+        'SIGN_IN_PATH = "/sign-in",\n' +
+          'SIGN_UP_PATH = "/sign-up",\n' +
+          'VERIFY_EMAIL_PATH = "/verify-email"\n'
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
     tree.commitUpdate(updatedTree);
@@ -428,14 +469,13 @@ export const changePaths = (
   };
 };
 
-export const changeRoutes = (
-  projectName: string,
-) => {
+export const changeRoutes = (projectName: string) => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/src/routing/Routes.tsx`;
     let fileContent = tree.read(filePath);
 
-    const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
+    const fileContentAsSourceCode =
+      fileContent && fileContent.toString("utf-8");
 
     if (!fileContent) throw new FileDoesNotExistException(projectName);
 
@@ -443,29 +483,39 @@ export const changeRoutes = (
       filePath,
       fileContentAsSourceCode + "\n" ?? "error",
       ts.ScriptTarget.Latest,
-      true);
+      true
+    );
 
     const nodes = getSourceNodes(modifiedFileToSave);
 
     const updatedTree = tree.beginUpdate(filePath);
 
-    const stringLiterals = nodes.filter((n) => n.kind === ts.SyntaxKind.StringLiteral);
+    const stringLiterals = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.StringLiteral
+    );
 
-    const paths = stringLiterals.find((n) => n.getText().includes("\"./routes/Index\""));
+    const paths = stringLiterals.find((n) =>
+      n.getText().includes('"./routes/Index"')
+    );
 
     if (paths) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd(),
-        "));\nconst SignIn = lazy(() => import(\"./routes/SignIn\"));" +
-        "\nconst SignUp = lazy(() => import(\"./routes/SignUp\"));" +
-        "\nconst VerifyEmail = lazy(() => import(\"./routes/VerifyEmail\"",
+        '));\nconst SignIn = lazy(() => import("./routes/SignIn"));' +
+          '\nconst SignUp = lazy(() => import("./routes/SignUp"));' +
+          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail"'
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
-    const htmlAttributes = nodes.filter((n) => n.kind === ts.SyntaxKind.JsxSelfClosingElement);
+    const htmlAttributes = nodes.filter(
+      (n) => n.kind === ts.SyntaxKind.JsxSelfClosingElement
+    );
 
     const attr = htmlAttributes.find((n) => n.getText().includes("Route"));
 
@@ -474,11 +524,14 @@ export const changeRoutes = (
         filePath,
         attr.getStart() - 1,
         "<Route path={Paths.SIGN_IN_PATH} component={SignIn} />\n" +
-        "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
-        "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n",
+          "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
+          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n"
       );
 
-      updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
+      updatedTree.insertLeft(
+        addMissingAbsolutePaths.pos,
+        addMissingAbsolutePaths.toAdd
+      );
     }
 
     const importPaths = insertImport(
@@ -486,7 +539,7 @@ export const changeRoutes = (
       filePath,
       "Paths",
       "@routing/paths",
-      true,
+      true
     ) as InsertChange;
 
     updatedTree.insertLeft(importPaths.pos, importPaths.toAdd);
@@ -500,12 +553,12 @@ export const changeRoutes = (
 export const authenticationChanges = (name: string): Rule[] => {
   return [
     changeTopAppBar(name),
-  changeProviders(name),
-  changeIndex(name),
-  changeConfigOverrides(name),
-  changePackageJson(name),
-  changeTsConfigPaths(name),
-  changePaths(name),
-  changeRoutes(name),
-  ]
-}
+    changeProviders(name),
+    changeIndex(name),
+    changeConfigOverrides(name),
+    changePackageJson(name),
+    changeTsConfigPaths(name),
+    changePaths(name),
+    changeRoutes(name),
+  ];
+};

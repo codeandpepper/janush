@@ -4,8 +4,10 @@ import {
   chain,
   MergeStrategy,
   mergeWith,
-  move, noop,
-  Rule, schematic,
+  move,
+  noop,
+  Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -58,8 +60,8 @@ export const webTemplateGenerator = (options: Schema): Rule => {
       ),
       !isEmptyModules(options)
         ? schematic(WebSchematic.JANUSH, {
-          name: options.name,
-        })
+            name: options.name,
+          })
         : noop(),
       isAuthenticationModule(options)
         ? schematic(WebSchematic.AUTHENTICATION, options)

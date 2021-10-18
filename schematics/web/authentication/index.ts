@@ -14,9 +14,7 @@ import { strings } from "@angular-devkit/core";
 import { readJanushJSON } from "@utility/janush-json";
 import { Schema } from "./schema";
 import { Schematic } from "@enums/Schematic";
-import {
-  authenticationChanges,
-} from "../../web/authentication/utils";
+import { authenticationChanges } from "../../web/authentication/utils";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
@@ -42,7 +40,7 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Overwrite
       ),
       ...authenticationChanges(name),
     ]);
