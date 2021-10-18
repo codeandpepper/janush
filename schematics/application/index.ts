@@ -40,6 +40,7 @@ export const applicationGenerator = (options: Schema): Rule => {
         ? schematic(Schematic.CLOUD, options, { scope })
         : noop(),
       isWeb(options) ? schematic(Schematic.WEB, options, { scope }) : noop(),
+      schematic("apply-prettier", {}, { scope }),
     ]);
   };
 };

@@ -6,6 +6,10 @@
       "description": "Generating a base application codebase",
       "factory": "./application/index#applicationGenerator",
       "schema": "./application/schema.json"
+    },
+    "apply-prettier": {
+      "description": "Run prettier on generated template",
+      "factory": "./utility/apply-prettier/index#applyPrettierUtility"
     }
   },
   "extends": ["./cloud/collection.json", "./web/collection.json"]

@@ -66,6 +66,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
       isAuthenticationModule(options)
         ? schematic(WebSchematic.AUTHENTICATION, options)
         : noop(),
+      schematic("apply-prettier", {}),
     ]);
   };
 };
