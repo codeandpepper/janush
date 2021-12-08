@@ -5,12 +5,12 @@ import { Helmet } from "react-helmet";
 
 import { Auth } from "aws-amplify";
 
-import Paths from "@routing/paths";
+import { Paths } from "@routing/paths";
 
-import Link from "@components/Link";
-import AuthLayout from "@layouts/AuthLayout";
+import { Link } from "@components/Link/Link";
+import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 
-import useStyle from "./styles";
+import { useStyles } from "./styles";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 
 interface LocationState {
@@ -18,7 +18,7 @@ interface LocationState {
 }
 
 const VerifyEmail: React.FC = () => {
-  const classes = useStyle();
+  const classes = useStyles();
   const { state } = useLocation<LocationState>();
 
   const [disabled, setDisabled] = useState<boolean>(false);

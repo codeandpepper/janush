@@ -1,7 +1,7 @@
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   title: {
     flexGrow: 1,
   },
@@ -10,5 +10,3 @@ const useStyles = makeStyles((theme: Theme) => ({
     textDecoration: "none",
   },
 }));
-
-export default useStyles;

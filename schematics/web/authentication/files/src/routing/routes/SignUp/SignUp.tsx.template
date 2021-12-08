@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 
-import Paths from "@routing/paths";
+import { Paths } from "@routing/paths";
 
-import removeAllWhitespaces from "@utils/removeAllWhitespaces";
+import { removeAllWhitespaces } from "@utils/removeAllWhitespaces/removeAllWhitespaces";
 
-import SignUpView from "./SignUpView";
-import SignUpFormState from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
+import { SignUpView } from "./SignUpView/SignUpView";
+import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
 import { NUMBER_PREFIX_INPUT_KEY } from "../../../consts";
 
 const SignUp: React.FC = () => {

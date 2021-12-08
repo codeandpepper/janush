@@ -1,10 +1,10 @@
 import React from "react";
 
-import Logo from "@layouts/Logo";
+import { Logo } from "@layouts/Logo/Logo";
 
 import { AppBar, Toolbar } from "@mui/material";
 
-const TopAppBar: React.FC = () => {
+export const TopAppBar: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -14,4 +14,3 @@ const TopAppBar: React.FC = () => {
   );
 };
 
-export default TopAppBar;

@@ -1,5 +1,3 @@
-enum Paths {
+export enum Paths {
   BASE = "/",
 }
-
-export default Paths;

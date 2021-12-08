@@ -2,13 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import Form from "@components/Form";
-import EmailField from "@components/EmailField";
-import PasswordField from "@components/PasswordField";
+import { Form } from "@components/Form/Form";
+import { EmailField } from "@components/EmailField/EmailField";
+import { PasswordField } from "@components/PasswordField/PasswordField";
 
-import SignUpFormState from "./SignUpFormState";
-import signUpFormValidationSchema from "./signUpFormValidationSchema";
-import useStyles from "./styles";
+import { SignUpFormState } from "./SignUpFormState";
+import { signUpFormValidationSchema } from "./signUpFormValidationSchema";
+import { useStyles } from "./styles";
 import { Box, Button, CircularProgress } from "@mui/material";
 
 const defaultValues: SignUpFormState = {
@@ -22,7 +22,7 @@ interface Props {
   onSubmit(formData: SignUpFormState): void;
 }
 
-const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
+export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
   const classes = useStyles();
 
   const {
@@ -82,5 +82,3 @@ const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
     </Form>
   );
 };
-
-export default SignUpForm;

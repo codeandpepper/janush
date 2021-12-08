@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { Auth, Hub } from "aws-amplify";
 
-import User from "@interfaces/User";
+import { User } from "@interfaces/User";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import HubEvent from "@types/enums/HubEvent";
+import { HubEvent } from "@types/enums/HubEvent";
 
 export interface UserContextValue {
   user?: User | null;
@@ -17,7 +17,7 @@ export const UserContext = React.createContext<UserContextValue>({
   updateUser: () => {},
 });
 
-const UserProvider: React.FC = ({ children }) => {
+export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | undefined | null>();
 
   const refreshUser = async () => {
@@ -84,5 +84,3 @@ const UserProvider: React.FC = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-export default UserProvider;

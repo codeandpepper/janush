@@ -3,12 +3,12 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Box, Container, Typography } from "@mui/material";
 
-import Paths from "@routing/paths";
-import AuthLayout from "@layouts/AuthLayout";
-import AuthBottomBar from "@components/AuthBottomBar";
+import { Paths } from "@routing/paths";
+import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
+import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
 
-import SignInForm from "./SignInForm";
-import SignInFormState from "./SignInForm/SignInFormState";
+import { SignInForm } from "./SignInForm/SignInForm";
+import { SignInFormState } from "./SignInForm/SignInFormState";
 
 interface Props {
   error: string;
@@ -16,7 +16,7 @@ interface Props {
   onSignIn(formData: SignInFormState): void;
 }
 
-const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
+export const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
   return (
     <AuthLayout>
       <Helmet>
@@ -39,5 +39,3 @@ const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
     </AuthLayout>
   );
 };
-
-export default SignInView;

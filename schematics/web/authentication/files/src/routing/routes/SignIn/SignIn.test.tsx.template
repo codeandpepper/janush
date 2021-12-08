@@ -3,17 +3,17 @@ import { Auth } from "aws-amplify";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
-import defaultTheme from "@themes/defaultTheme";
+import { createDefaultTheme } from "@themes/defaultTheme";
 
 import SignIn from "./SignIn";
-import ThemeProvider from "@features/ThemeProvider";
+import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
 
 describe("<SignIn />", () => {
   it("should call Auth.signIn() function on form submit", async () => {
     Auth.signIn = jest.fn();
 
     render(
-      <ThemeProvider theme={defaultTheme()}>
+      <ThemeProvider theme={createDefaultTheme()}>
         <MemoryRouter>
           <SignIn />
         </MemoryRouter>
@@ -44,7 +44,7 @@ describe("<SignIn />", () => {
     });
 
     render(
-      <ThemeProvider theme={defaultTheme()}>
+      <ThemeProvider theme={createDefaultTheme()}>
         <MemoryRouter>
           <SignIn />
         </MemoryRouter>

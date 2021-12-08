@@ -44,9 +44,8 @@ const darkPalette = createPalette({
   },
 });
 
-const palette = {
+export const palette = {
   dark: darkPalette,
   light: lightPalette,
 } as const;
 
-export default palette;

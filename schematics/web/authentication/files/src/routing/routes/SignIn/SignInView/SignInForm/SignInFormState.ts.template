@@ -1,4 +1,4 @@
-export default interface SignInFormState {
+export interface SignInFormState {
   email: string;
   password: string;
 }

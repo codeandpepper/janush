@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   email: string;
   emailVerified: boolean;
   phoneNumber?: string;
@@ -6,5 +6,3 @@ interface User {
   sub: string;
   groups: string[];
 }
-
-export default User;

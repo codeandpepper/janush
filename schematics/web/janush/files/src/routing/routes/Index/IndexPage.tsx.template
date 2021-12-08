@@ -1,19 +1,16 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-import TopAppBar from "@layouts/TopAppBar";
-import PageLayout from "@layouts/PageLayout";
+import { TopAppBar } from "@layouts/TopAppBar/TopAppBar";
+import { PageLayout } from "@layouts/PageLayout/PageLayout";
 
-const IndexPage: React.FC = () => {
-
-  return (
-    <>
-      <TopAppBar />
-      <PageLayout pb={5}>
-        <Typography variant="h1">Index page</Typography>
-      </PageLayout>
-    </>
-  );
-};
+const IndexPage: React.FC = () => (
+  <>
+    <TopAppBar />
+    <PageLayout pb={5}>
+      <Typography variant="h1">Index page</Typography>
+    </PageLayout>
+  </>
+);
 
 export default IndexPage;

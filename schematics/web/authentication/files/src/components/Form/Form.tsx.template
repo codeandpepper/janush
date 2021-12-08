@@ -8,10 +8,8 @@ type Props = Omit<
   "noValidate"
 >;
 
-const Form: React.FC<Props> = ({ children, ...props }) => (
+export const Form: React.FC<Props> = ({ children, ...props }) => (
   <form {...props} noValidate>
     {children}
   </form>
 );
-
-export default Form;

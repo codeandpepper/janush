@@ -3,18 +3,18 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import Paths from "@routing/paths";
+import { Paths } from "@routing/paths";
 
-import Link from "@components/Link";
-import Form from "@components/Form";
-import EmailField from "@components/EmailField";
-import PasswordField from "@components/PasswordField";
+import { Link } from "@components/Link/Link";
+import { Form } from "@components/Form/Form";
+import { EmailField } from "@components/EmailField/EmailField";
+import { PasswordField } from "@components/PasswordField/PasswordField";
 
-import signInFormValidationSchema from "./signInFormValidationSchema";
+import { signInFormValidationSchema } from "./signInFormValidationSchema";
 
-import SignInFormState from "./SignInFormState";
+import { SignInFormState } from "./SignInFormState";
 
-import useStyles from "./styles";
+import { useStyles } from "./styles";
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 
 const defaultValues: SignInFormState = {
@@ -28,7 +28,7 @@ interface Props {
   onSubmit(formData: SignInFormState): void;
 }
 
-const SignInForm: React.FC<Props> = ({ error, loading, onSubmit }) => {
+export const SignInForm: React.FC<Props> = ({ error, loading, onSubmit }) => {
   const classes = useStyles();
 
   const {
@@ -81,5 +81,3 @@ const SignInForm: React.FC<Props> = ({ error, loading, onSubmit }) => {
     </Form>
   );
 };
-
-export default SignInForm;

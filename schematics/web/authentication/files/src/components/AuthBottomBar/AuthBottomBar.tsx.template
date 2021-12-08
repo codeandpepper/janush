@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 
-import Link from "@components/Link";
+import { Link } from "@components/Link/Link";
 
 interface Props {
   buttonText: string;
@@ -10,7 +10,7 @@ interface Props {
   dataTestId?: string;
 }
 
-const AuthBottomBar: React.FC<Props> = ({
+export const AuthBottomBar: React.FC<Props> = ({
   buttonLinkPath,
   buttonText,
   text,
@@ -37,5 +37,3 @@ const AuthBottomBar: React.FC<Props> = ({
     </Box>
   );
 };
-
-export default AuthBottomBar;

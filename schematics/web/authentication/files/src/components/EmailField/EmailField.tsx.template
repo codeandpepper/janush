@@ -4,7 +4,7 @@ import { Control, FieldValues, Path } from "react-hook-form";
 import { InputAdornment } from "@mui/material";
 import { Mail } from "@mui/icons-material";
 
-import GenericInputField from "@components/GenericInputField";
+import { GenericInputField } from "@components/GenericInputField/GenericInputField";
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
@@ -19,7 +19,7 @@ interface Props<T extends FieldValues> {
   disabled?: boolean;
 }
 
-const EmailField = <T extends FieldValues>({
+export const EmailField = <T extends FieldValues>({
   name,
   error,
   control,
@@ -52,5 +52,3 @@ const EmailField = <T extends FieldValues>({
     autoFocus={autoFocus}
   />
 );
-
-export default EmailField;

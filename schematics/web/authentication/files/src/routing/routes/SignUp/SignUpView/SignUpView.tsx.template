@@ -1,14 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import Paths from "@routing/paths";
+import { Paths } from "@routing/paths";
 
-import AuthLayout from "@layouts/AuthLayout";
+import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 
-import AuthBottomBar from "@components/AuthBottomBar";
+import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
 
-import SignUpFormState from "./SignUpForm/SignUpFormState";
-import SignUpForm from "@routing/routes/SignUp/SignUpView/SignUpForm";
+import { SignUpFormState } from "./SignUpForm/SignUpFormState";
+import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
 import { Box, Container, Typography } from "@mui/material";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   onSignUp(formData: SignUpFormState): void;
 }
 
-const SignUpView: React.FC<Props> = ({ loading, onSignUp }) => {
+export const SignUpView: React.FC<Props> = ({ loading, onSignUp }) => {
   return (
     <AuthLayout>
       <Helmet>
@@ -39,5 +39,3 @@ const SignUpView: React.FC<Props> = ({ loading, onSignUp }) => {
     </AuthLayout>
   );
 };
-
-export default SignUpView;

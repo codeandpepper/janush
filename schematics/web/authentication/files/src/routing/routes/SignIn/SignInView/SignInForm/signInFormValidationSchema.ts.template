@@ -1,10 +1,10 @@
 import { object, SchemaOf, string } from "yup";
 
-import validateMaxStringLength from "@utils/validation/validateMaxStringLength";
+import { validateMaxStringLength } from "@utils/validation/validateMaxStringLength";
 
-import SignInFormState from "./SignInFormState";
+import { SignInFormState } from "./SignInFormState";
 
-export default (): SchemaOf<SignInFormState> =>
+export const signInFormValidationSchema = (): SchemaOf<SignInFormState> =>
   <SchemaOf<SignInFormState>>object({
     email: string()
       .required("Field required")

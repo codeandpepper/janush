@@ -88,8 +88,7 @@ export const changeTopAppBar = (projectName: string) => {
       modifiedFileToSave,
       filePath,
       "useUserContext",
-      "@features/UserProvider/useUserContext",
-      true
+      "@features/UserProvider/useUserContext"
     ) as InsertChange;
 
     const importNavLink = insertImport(
@@ -103,8 +102,7 @@ export const changeTopAppBar = (projectName: string) => {
       modifiedFileToSave,
       filePath,
       "Paths",
-      "@routing/paths",
-      true
+      "@routing/paths"
     ) as InsertChange;
 
     const importButton = insertImport(
@@ -219,8 +217,7 @@ export const changeProviders = (projectName: string) => {
       modifiedFileToSave,
       filePath,
       "UserProvider",
-      "@features/UserProvider/UserProvider",
-      true
+      "@features/UserProvider/UserProvider"
     ) as InsertChange;
 
     updatedTree.insertLeft(importUserProvider.pos, importUserProvider.toAdd);
@@ -511,16 +508,16 @@ export const changeRoutes = (projectName: string) => {
     );
 
     const paths = stringLiterals.find((n) =>
-      n.getText().includes('"./routes/Index"')
+      n.getText().includes('"./routes/Index/IndexPage"')
     );
 
     if (paths) {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd(),
-        '));\nconst SignIn = lazy(() => import("./routes/SignIn"));' +
-          '\nconst SignUp = lazy(() => import("./routes/SignUp"));' +
-          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail"'
+        '));\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
+          '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
+          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"'
       );
 
       updatedTree.insertLeft(
@@ -554,8 +551,7 @@ export const changeRoutes = (projectName: string) => {
       modifiedFileToSave,
       filePath,
       "Paths",
-      "@routing/paths",
-      true
+      "@routing/paths"
     ) as InsertChange;
 
     updatedTree.insertLeft(importPaths.pos, importPaths.toAdd);

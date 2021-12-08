@@ -2,10 +2,10 @@ import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import ThemeProvider from "@features/ThemeProvider";
-import SuspenseProvider from "@features/SuspenseProvider";
+import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
+import { SuspenseProvider } from "@features/SuspenseProvider/SuspenseProvider";
 
-const Providers: React.FC = ({ children }) => {
+export const Providers: React.FC = ({ children }) => {
   return (
     <ThemeProvider>
         <Router>
@@ -14,5 +14,3 @@ const Providers: React.FC = ({ children }) => {
     </ThemeProvider>
   );
 };
-
-export default Providers;

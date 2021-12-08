@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { Auth } from "aws-amplify";
 
-import removeAllWhitespaces from "@utils/removeAllWhitespaces";
-import SignInView from "@routing/routes/SignIn/SignInView";
-import Paths from "@routing/paths";
+import { removeAllWhitespaces } from "@utils/removeAllWhitespaces/removeAllWhitespaces";
+import { SignInView } from "@routing/routes/SignIn/SignInView/SignInView";
+import { Paths } from "@routing/paths";
 import { useHistory } from "react-router-dom";
-import SignInFormState from "./SignInView/SignInForm/SignInFormState";
+import { SignInFormState } from "./SignInView/SignInForm/SignInFormState";
 
 const SignIn: React.FC = () => {
   const history = useHistory();

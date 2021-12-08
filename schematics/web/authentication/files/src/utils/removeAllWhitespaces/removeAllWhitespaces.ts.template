@@ -1,4 +1,3 @@
-const removeAllWhitespaces = (value: string): string =>
+export const removeAllWhitespaces = (value: string): string =>
   value.replace(/\s/g, "");
 
-export default removeAllWhitespaces;

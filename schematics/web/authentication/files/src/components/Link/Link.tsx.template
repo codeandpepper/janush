@@ -5,12 +5,10 @@ import { Link as MuiLink, LinkProps } from "@mui/material";
 
 type Props = Omit<LinkProps, "component" | "href"> & { to: string };
 
-const Link: React.FC<Props> = ({ children, ...props }) => {
+export const Link: React.FC<Props> = ({ children, ...props }) => {
   return (
     <MuiLink component={RouterLink} {...props}>
       {children}
     </MuiLink>
   );
 };
-
-export default Link;
