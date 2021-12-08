@@ -3,6 +3,17 @@ import {
   NodeDependencyType,
 } from "@schematics/angular/utility/dependencies";
 
+const lodash = {
+  type: NodeDependencyType.Default,
+  name: "lodash",
+  version: "^4.17.21",
+};
+const lodashTypes = {
+  type: NodeDependencyType.Dev,
+  name: "@types/lodash",
+  version: "^4.14.177",
+};
+
 export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
@@ -83,9 +94,11 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
   },
   {
     type: NodeDependencyType.Default,
-    name: "google-libphonenumber",
-    version: "^3.2.23",
+    name: "aws-amplify",
+    version: "^4.2.10",
   },
+  lodash,
+  lodashTypes,
   {
     type: NodeDependencyType.Default,
     name: "react-helmet",
@@ -100,11 +113,6 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
     type: NodeDependencyType.Default,
     name: "yup",
     version: "^0.32.9",
-  },
-  {
-    type: NodeDependencyType.Dev,
-    name: "@types/google-libphonenumber",
-    version: "^7.4.21",
   },
   {
     type: NodeDependencyType.Dev,

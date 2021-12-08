@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 
 import { useStyles } from "./styles";
 
-export const Logo: React.FC = () => {
+export const Logo: React.VFC = () => {
   const classes = useStyles();
 
   return (

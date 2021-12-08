@@ -1,24 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Auth, Hub } from "aws-amplify";
 
 import { User } from "@interfaces/User";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { HubEvent } from "@types/enums/HubEvent";
+import { HubEvent } from "@janush-types/enums/HubEvent";
+import { Nullable } from "@janush-types/useful";
 
 export interface UserContextValue {
-  user?: User | null;
-  updateUser(userData: Partial<User>): void;
+  user?: Nullable<User>;
 }
 
 export const UserContext = React.createContext<UserContextValue>({
   user: undefined,
-  updateUser: () => {},
 });
 
 export const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<User | undefined | null>();
+  const [user, setUser] = useState<Nullable<User>>(null);
 
   const refreshUser = async () => {
     try {
@@ -26,8 +23,6 @@ export const UserProvider: React.FC = ({ children }) => {
         payload: {
           email,
           email_verified: emailVerified,
-          phone_number: phoneNumber,
-          phone_number_verified: phoneNumberVerified,
           sub,
           "cognito:groups": groups,
         },
@@ -35,8 +30,6 @@ export const UserProvider: React.FC = ({ children }) => {
       setUser({
         email,
         emailVerified,
-        phoneNumber,
-        phoneNumberVerified,
         sub,
         groups: groups || [],
       });
@@ -44,19 +37,6 @@ export const UserProvider: React.FC = ({ children }) => {
       setUser(null);
     }
   };
-
-  const updateUser = useCallback(
-    (userData: Partial<User>) =>
-      setUser((prevUserState) =>
-        prevUserState ? { ...prevUserState, ...userData } : prevUserState
-      ),
-    []
-  );
-
-  const isUserAdmin = useCallback(
-    (): boolean => user?.groups.includes("admin") ?? false,
-    [user]
-  );
 
   useEffect(() => {
     (async () => {
@@ -79,8 +59,6 @@ export const UserProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
   );
 };

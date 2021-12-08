@@ -4,14 +4,11 @@ import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 
 import { Paths } from "@routing/paths";
-
-import { removeAllWhitespaces } from "@utils/removeAllWhitespaces/removeAllWhitespaces";
+import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
 
 import { SignUpView } from "./SignUpView/SignUpView";
-import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
-import { NUMBER_PREFIX_INPUT_KEY } from "../../../consts";
 
-const SignUp: React.FC = () => {
+const SignUp: React.VFC = () => {
   const history = useHistory();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -20,7 +17,7 @@ const SignUp: React.FC = () => {
 
     setLoading(true);
 
-    const lowerCaseEmail = removeAllWhitespaces(email as string).toLowerCase();
+    const lowerCaseEmail = email.toLowerCase();
 
     try {
       await Auth.signUp({
@@ -30,20 +27,17 @@ const SignUp: React.FC = () => {
           email: lowerCaseEmail,
         },
       });
-      setLoading(false);
 
       history.push(Paths.VERIFY_EMAIL_PATH, {
         email,
       });
-      setTimeout(() => {
-        localStorage.removeItem(NUMBER_PREFIX_INPUT_KEY);
-      }, 500);
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       if (error.code === "UsernameExistsException") {
         history.push(Paths.VERIFY_EMAIL_PATH, { email });
       }
+    } finally {
       setLoading(false);
     }
   };

@@ -5,8 +5,6 @@ import { Auth } from "aws-amplify";
 import { MemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router-dom";
 
-import { createDefaultTheme } from "@themes/defaultTheme";
-
 import { Paths } from "@routing/paths";
 
 import SignUp from "./SignUp";
@@ -16,7 +14,7 @@ const setup = async (history?: MemoryHistory) => {
   const innerContent = <SignUp />;
 
   render(
-    <ThemeProvider theme={createDefaultTheme()}>
+    <ThemeProvider>
       {history ? (
         <Router history={history}>{innerContent}</Router>
       ) : (

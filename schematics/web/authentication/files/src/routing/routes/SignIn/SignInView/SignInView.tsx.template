@@ -16,7 +16,7 @@ interface Props {
   onSignIn(formData: SignInFormState): void;
 }
 
-export const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
+export const SignInView: React.VFC<Props> = ({ error, loading, onSignIn }) => {
   return (
     <AuthLayout>
       <Helmet>
@@ -34,7 +34,7 @@ export const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
         text="Don't have an account?"
         buttonLinkPath={Paths.SIGN_UP_PATH}
         buttonText="Sign up"
-        dataTestId="go-to-sign-up-page-button"
+        buttonDataTestId="go-to-sign-up-page-button"
       />
     </AuthLayout>
   );

@@ -80,7 +80,8 @@ export const expectedFiles = [
   "/web/src/consts/index.ts",
   "/web/src/interfaces/User.ts",
   "/web/src/types/enums/HubEvent.ts",
-  "/web/src/utils/removeAllWhitespaces/removeAllWhitespaces.ts",
+  "/web/src/types/useful/Nullable.ts",
+  "/web/src/types/useful/index.ts",
   "/web/src/utils/validation/passwordValidation.ts",
   "/web/src/utils/validation/validateMaxStringLength.ts",
 ];
@@ -95,8 +96,7 @@ describe("web", () => {
     const tree = await runner
       .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
       .toPromise();
-    console.log("tree below: ");
-    console.log(tree.files);
+
     expect(tree.files).toEqual(expectedFiles);
   });
 

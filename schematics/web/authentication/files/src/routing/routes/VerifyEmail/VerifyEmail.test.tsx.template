@@ -3,15 +3,13 @@ import { Auth } from "aws-amplify";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route } from "react-router-dom";
 
-import { createDefaultTheme } from "@themes/defaultTheme";
-
 import VerifyEmail from "./VerifyEmail";
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
 
 describe("<VerifyEmail />", () => {
   it("should render email if provided in location state", () => {
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
+      <ThemeProvider>
         <MemoryRouter>
           <Route
             path="/"
@@ -36,7 +34,7 @@ describe("<VerifyEmail />", () => {
     Auth.resendSignUp = jest.fn();
 
     render(
-      <ThemeProvider theme={createDefaultTheme()}>
+      <ThemeProvider>
         <MemoryRouter>
           <Route
             path="/"

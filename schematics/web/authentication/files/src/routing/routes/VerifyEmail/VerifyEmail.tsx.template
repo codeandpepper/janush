@@ -17,7 +17,7 @@ interface LocationState {
   email?: string;
 }
 
-const VerifyEmail: React.FC = () => {
+const VerifyEmail: React.VFC = () => {
   const classes = useStyles();
   const { state } = useLocation<LocationState>();
 

@@ -1,4 +1,5 @@
 import React from "react";
+import defaults from "lodash/defaults";
 
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { OutlinedInputProps, TextField } from "@mui/material";
@@ -15,26 +16,26 @@ interface Props<T extends FieldValues> {
   autoFocus?: boolean;
   type?: string;
   required?: boolean;
-  placeHolder?: string;
+  placeholder?: string;
   multiline?: boolean;
   disabled?: boolean;
 }
 
+const DEFAULTS = {
+  type: "text" as const,
+  margin: "normal" as const,
+  variant: "outlined" as const,
+  color: "secondary" as const,
+  required: true,
+  fullWidth: true,
+};
+
 export const GenericInputField = <T extends FieldValues>({
   name,
   control,
-  error,
-  helperText,
-  label,
+  InputProps,
   dataTestId,
-  autoComplete = undefined,
-  InputProps = undefined,
-  autoFocus = false,
-  required = true,
-  multiline = false,
-  disabled = false,
-  type = "text",
-  placeHolder = undefined,
+  ...textFieldProps
 }: Props<T>): JSX.Element => (
   <Controller
     name={name}
@@ -42,26 +43,13 @@ export const GenericInputField = <T extends FieldValues>({
     render={({ field }) => (
       <TextField
         {...field}
-        autoComplete={autoComplete}
-        label={label}
-        margin="normal"
-        placeholder={placeHolder}
-        type={type}
-        variant="outlined"
-        color="secondary"
-        error={error}
-        helperText={helperText}
+        {...defaults(textFieldProps, DEFAULTS)}
         InputProps={{
           ...InputProps,
           inputProps: {
             "data-testid": dataTestId,
           },
         }}
-        autoFocus={autoFocus}
-        required={required}
-        multiline={multiline}
-        disabled={disabled}
-        fullWidth
       />
     )}
   />

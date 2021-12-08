@@ -28,7 +28,7 @@ interface Props {
   onSubmit(formData: SignInFormState): void;
 }
 
-export const SignInForm: React.FC<Props> = ({ error, loading, onSubmit }) => {
+export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
   const classes = useStyles();
 
   const {

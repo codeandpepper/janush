@@ -57,12 +57,21 @@ export const changeTopAppBar = (projectName: string) => {
     let changed;
     let logoChanged;
 
-    if (htmlSigns) {
+    if (htmlSigns.length) {
       let logo = htmlSigns.find((sign) => sign.getText() === "<Logo />");
 
       if (logo) {
         logoChanged = new InsertChange(
           filePath,
+          /**
+           * Numbers being part of "InsertChange" second argument represents
+           * a shift required to find a proper place in a code.
+           *
+           * This is implicit and may be not very maintable in the future,
+           * as it may be dependent on the reason of previous schematic runs.
+           *
+           * @TODO Discuss, if there is a way to avoid these computations
+           */
           logo?.getEnd() + 1,
           construct2
         );
@@ -314,7 +323,7 @@ export const changeConfigOverrides = (projectName: string) => {
         '\n"@components": path.resolve(__dirname, "src/components"),\n' +
           '      "@consts": path.resolve(__dirname, "src/consts"),\n' +
           '      "@interfaces": path.resolve(__dirname, "src/interfaces"),\n' +
-          '      "@types": path.resolve(__dirname, "src/types"),\n' +
+          '      "@janush-types": path.resolve(__dirname, "src/types"),\n' +
           '      "@utils": path.resolve(__dirname, "src/utils"),'
       );
 
@@ -366,7 +375,7 @@ export const changePackageJson = (projectName: string) => {
         '"@components/(.*)": "<rootDir>/src/components/$1",\n' +
           '      "@consts/(.*)": "<rootDir>/src/consts/$1",\n' +
           '      "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",\n' +
-          '      "@types/(.*)": "<rootDir>/src/types/$1",\n' +
+          '      "@janush-types/(.*)": "<rootDir>/src/types/$1",\n' +
           '      "@utils/(.*)": "<rootDir>/src/utils/$1",\n'
       );
 
@@ -414,9 +423,9 @@ export const changeTsConfigPaths = (projectName: string) => {
         filePath,
         paths.getEnd() + 4,
         '"@components/*": ["./src/components/*"],\n' +
-          '      "@consts/*": [".src/consts/*"],\n' +
+          '      "@consts/*": ["./src/consts/*"],\n' +
           '      "@interfaces/*": ["./src/interfaces/*"],\n' +
-          '      "@types/*": ["./src/types/*"],\n' +
+          '      "@janush-types/*": ["./src/types/*"],\n' +
           '      "@utils/*": ["./src/utils/*"],\n'
       );
 

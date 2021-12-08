@@ -4,7 +4,7 @@ import { Logo } from "@layouts/Logo/Logo";
 
 import { AppBar, Toolbar } from "@mui/material";
 
-export const TopAppBar: React.FC = () => {
+export const TopAppBar: React.VFC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
