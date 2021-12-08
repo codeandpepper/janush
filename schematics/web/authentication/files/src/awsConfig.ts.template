@@ -1,17 +1,23 @@
 import Amplify, { Auth } from "aws-amplify";
 
-export const authConfig = {
+export const AUTH_CONFIG = {
   Auth: {
-    identityPoolId: "identity-pool-from-cloud-generation",
-    region: "region-from-cloud-generation",
-    userPoolId: "user-pool-id-from-cloud-generation",
-    userPoolWebClientId: "user-pool-web-client-id-from-cloud-generation",
+    identityPoolId: "TODO:identity-pool-from-cloud-generation",
+    region: "TODO:region-from-cloud-generation",
+    userPoolId: "TODO:user-pool-id-from-cloud-generation",
+    userPoolWebClientId: "TODO:user-pool-web-client-id-from-cloud-generation",
   },
 };
 
-const configureAws = (): void => {
-  Auth.configure(authConfig);
+export const configureAws = (): void => {
   Amplify.Logger.LOG_LEVEL = "DEBUG";
-};
 
-export default configureAws;
+  try {
+    Auth.configure(AUTH_CONFIG);
+  } catch (err) {
+    console.error(
+      "A problem with an authentication configuration occurred:",
+      err
+    );
+  }
+};

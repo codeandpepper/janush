@@ -1,9 +1,9 @@
 const { user } = useUserContext();
 
-  const signOut = useCallback(async () => {
-    try {
-      await Auth.signOut();
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
+const signOut = async () => {
+  try {
+    await Auth.signOut();
+  } catch (e) {
+    console.error(e);
+  }
+};

@@ -114,18 +114,21 @@ export const changeTopAppBar = (projectName: string) => {
       "@mui/material"
     ) as InsertChange;
 
-    const importUseCallback = insertImport(
-      modifiedFileToSave,
-      filePath,
-      "useCallback",
-      "React"
-    ) as InsertChange;
+    /**
+     * Not removed, as might be helpful in the nearest future
+     */
+    // const importUseCallback = insertImport(
+    //   modifiedFileToSave,
+    //   filePath,
+    //   "useCallback",
+    //   "React"
+    // ) as InsertChange;
 
-    const addUseCallback = new InsertChange(
-      filePath,
-      importUseCallback.pos,
-      `;\nimport { useCallback } from "react";`
-    );
+    // const addUseCallback = new InsertChange(
+    //   filePath,
+    //   importUseCallback.pos,
+    //   `;\nimport { useCallback } from "react";`
+    // );
 
     const declarationRecorder = tree.beginUpdate(filePath);
 
@@ -146,7 +149,7 @@ export const changeTopAppBar = (projectName: string) => {
     declarationRecorder.insertLeft(importNavLink.pos, importNavLink.toAdd);
     declarationRecorder.insertLeft(importPaths.pos, importPaths.toAdd);
     declarationRecorder.insertLeft(importButton.pos, importButton.toAdd);
-    declarationRecorder.insertLeft(addUseCallback.pos, addUseCallback.toAdd);
+    // declarationRecorder.insertLeft(addUseCallback.pos, addUseCallback.toAdd);
 
     tree.commitUpdate(declarationRecorder);
 
@@ -267,8 +270,7 @@ export const changeIndex = (projectName: string) => {
       modifiedFileToSave,
       filePath,
       "configureAws",
-      "./awsConfig",
-      true
+      "./awsConfig"
     ) as InsertChange;
 
     updatedTree.insertLeft(importUserProvider.pos, importUserProvider.toAdd);
