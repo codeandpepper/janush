@@ -4,9 +4,12 @@
 
 You can find detailed instructions on using Create React App and many tips [its documentation](https://codeandpepper.github.io/janush/).
 
-
 ## Quick Overview
 
+### Requirements
+Package | Version
+--- | --- 
+Node.js | 14.x.x 
 
 ### Using npx
 You can run the project directly using npx command below:
