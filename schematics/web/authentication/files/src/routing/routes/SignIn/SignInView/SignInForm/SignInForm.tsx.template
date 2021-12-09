@@ -1,32 +1,28 @@
 import React from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
 
-import { Paths } from "@routing/paths";
-
-import { Link } from "@components/Link/Link";
 import { Form } from "@components/Form/Form";
 import { EmailField } from "@components/EmailField/EmailField";
 import { PasswordField } from "@components/PasswordField/PasswordField";
 
 import { signInFormValidationSchema } from "./signInFormValidationSchema";
-
 import { SignInFormState } from "./SignInFormState";
 
 import { useStyles } from "./styles";
-import { Button, CircularProgress, Grid, Typography } from "@mui/material";
-
-const defaultValues: SignInFormState = {
-  email: "",
-  password: "",
-};
 
 interface Props {
   error: string;
   loading: boolean;
   onSubmit(formData: SignInFormState): void;
 }
+
+const defaultValues: SignInFormState = {
+  email: "",
+  password: "",
+};
 
 export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
   const classes = useStyles();
@@ -42,21 +38,31 @@ export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <EmailField
+      <Controller
         name="email"
-        autoComplete="email"
         control={control}
-        error={errors.email?.message}
-        autoFocus
+        render={({ field }) => (
+          <EmailField
+            onChange={field.onChange}
+            errorMessage={errors.email?.message}
+            autoComplete="email"
+            autoFocus
+          />
+        )}
       />
-      <PasswordField
-        id="password"
+      <Controller
         name="password"
         control={control}
-        error={errors.password?.message}
-        label="Password"
-        placeholder="Password"
-        autoComplete="current-password"
+        render={({ field }) => (
+          <PasswordField
+            onChange={field.onChange}
+            errorMessage={errors.password?.message}
+            ariaControls="password"
+            label="Password"
+            placeholder="Password"
+            autoComplete="current-password"
+          />
+        )}
       />
       <Typography color="error" align="center" className={classes.error}>
         {error ? error : " "}

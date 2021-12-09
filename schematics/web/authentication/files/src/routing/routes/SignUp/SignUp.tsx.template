@@ -21,7 +21,7 @@ const SignUp: React.VFC = () => {
 
     try {
       await Auth.signUp({
-        password: password.trim(),
+        password,
         username: lowerCaseEmail,
         attributes: {
           email: lowerCaseEmail,

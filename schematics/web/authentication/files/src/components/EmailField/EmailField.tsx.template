@@ -1,39 +1,26 @@
-import defaults from "lodash/defaults";
-
-import { Control, FieldValues, Path } from "react-hook-form";
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, StandardTextFieldProps } from "@mui/material";
 import { Mail } from "@mui/icons-material";
 
-import { GenericInputField } from "@components/GenericInputField/GenericInputField";
+import { TextField } from "@components/TextField/TextField";
 
-interface Props<T extends FieldValues> {
-  name: Path<T>;
-  control: Control<T>;
-  error?: string;
-  autoFocus?: boolean;
-  type?: "text" | "email";
-  placeholder?: string;
-  label?: string;
-  dataTestId?: string;
-  autoComplete?: string;
-  disabled?: boolean;
+interface Props extends StandardTextFieldProps {
+  errorMessage?: string | undefined;
 }
 
-const DEFAULTS = {
-  type: "email",
-  label: "Email",
-  placeholder: "Email",
-  dataTestId: "email-input-field",
-};
-
-export const EmailField = <T extends FieldValues>({
-  error,
+export const EmailField = ({
+  errorMessage,
   ...restProps
-}: Props<T>): JSX.Element => (
-  <GenericInputField
-    {...defaults(restProps, DEFAULTS)}
-    error={!!error}
-    helperText={error}
+}: Props): JSX.Element => (
+  <TextField
+    type="email"
+    label="Email"
+    autoComplete="email"
+    placeholder="Email"
+    autoFocus
+    fullWidth
+    required
+    error={Boolean(errorMessage)}
+    helperText={errorMessage}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">
@@ -41,5 +28,6 @@ export const EmailField = <T extends FieldValues>({
         </InputAdornment>
       ),
     }}
+    {...restProps}
   />
 );

@@ -18,7 +18,7 @@ const SignIn: React.VFC = () => {
 
       await Auth.signIn({
         password,
-        username: email.toLowerCase(),
+        username: email.trim().toLowerCase(),
       });
 
       history.push(Paths.BASE, {

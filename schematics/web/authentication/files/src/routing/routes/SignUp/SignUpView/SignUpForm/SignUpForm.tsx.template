@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Form } from "@components/Form/Form";
@@ -36,33 +36,45 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <EmailField
+      <Controller
         name="email"
-        autoComplete="email"
         control={control}
-        error={errors.email?.message}
-        autoFocus
+        render={({ field }) => (
+          <EmailField
+            onChange={field.onChange}
+            autoComplete="email"
+            errorMessage={errors.email?.message}
+            autoFocus
+          />
+        )}
       />
-      <PasswordField
-        id="password"
+      <Controller
         name="password"
         control={control}
-        error={errors.password?.message}
-        label="Password"
-        placeholder="Password"
-        autoComplete="new-password"
+        render={({ field }) => (
+          <PasswordField
+            onChange={field.onChange}
+            errorMessage={errors.password?.message}
+            ariaControls="password"
+            label="Password"
+            placeholder="Password"
+            autoComplete="new-password"
+          />
+        )}
       />
-      <PasswordField
-        id="confirm-password"
+      <Controller
         name="confirmPassword"
         control={control}
-        error={errors.confirmPassword?.message}
-        label="Confirm Password"
-        placeholder="Confirm Password"
-        dataTestId="confirm-password-input-field"
-        adornmentDataTestId="show-confirm-password-button"
-        autoComplete="new-password"
-        labelWidth={120}
+        render={({ field }) => (
+          <PasswordField
+            onChange={field.onChange}
+            errorMessage={errors.password?.message}
+            ariaControls="confirm-password"
+            label="Confirm Password"
+            placeholder="Confirm Password"
+            autoComplete="new-password"
+          />
+        )}
       />
       <Box display="flex" flexDirection="row" alignItems="center" mt={2}>
         <Button
