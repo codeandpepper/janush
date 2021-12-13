@@ -64,7 +64,13 @@ export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
           />
         )}
       />
-      <Typography color="error" align="center" className={classes.error}>
+      <Typography
+        color="error"
+        align="center"
+        className={classes.error}
+        mt={1}
+        fontSize={14}
+      >
         {error ? error : " "}
       </Typography>
       <Grid container justifyContent="flex-end" spacing={1}>

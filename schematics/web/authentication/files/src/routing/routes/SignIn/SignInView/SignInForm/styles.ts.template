@@ -9,9 +9,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     marginTop: -10,
     marginLeft: -10,
   },
-  error: {
-    height: theme.spacing(3),
-  },
   forgot: {
     textTransform: "capitalize",
   },

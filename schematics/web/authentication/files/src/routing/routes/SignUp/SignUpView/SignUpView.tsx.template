@@ -10,13 +10,16 @@ import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
 import { SignUpFormState } from "./SignUpForm/SignUpFormState";
 import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
 import { Box, Container, Typography } from "@mui/material";
+import { Nullable } from "@janush-types/useful";
+import { CognitoError } from "@interfaces/Cognito";
 
 interface Props {
   loading: boolean;
   onSignUp(formData: SignUpFormState): void;
+  error: Nullable<CognitoError>;
 }
 
-export const SignUpView: React.VFC<Props> = ({ loading, onSignUp }) => {
+export const SignUpView: React.VFC<Props> = ({ loading, onSignUp, error }) => {
   return (
     <AuthLayout>
       <Helmet>
@@ -28,7 +31,7 @@ export const SignUpView: React.VFC<Props> = ({ loading, onSignUp }) => {
             Create your account
           </Typography>
         </Box>
-        <SignUpForm loading={loading} onSubmit={onSignUp} />
+        <SignUpForm loading={loading} onSubmit={onSignUp} error={error} />
       </Container>
       <AuthBottomBar
         text="Already have an account?"

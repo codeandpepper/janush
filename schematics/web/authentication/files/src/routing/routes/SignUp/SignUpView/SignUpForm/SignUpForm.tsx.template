@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -9,7 +9,10 @@ import { PasswordField } from "@components/PasswordField/PasswordField";
 import { SignUpFormState } from "./SignUpFormState";
 import { signUpFormValidationSchema } from "./signUpFormValidationSchema";
 import { useStyles } from "./styles";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { Nullable } from "@janush-types/useful";
+import { CognitoError } from "@interfaces/Cognito";
+import { CognitoErrorType } from "@janush-types/enums/Cognito";
 
 const defaultValues: SignUpFormState = {
   email: "",
@@ -20,19 +23,31 @@ const defaultValues: SignUpFormState = {
 interface Props {
   loading: boolean;
   onSubmit(formData: SignUpFormState): void;
+  error: Nullable<CognitoError>;
 }
 
-export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
+export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
   const classes = useStyles();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpFormState>({
-    resolver: yupResolver(signUpFormValidationSchema()),
-    defaultValues,
-  });
+  const { control, handleSubmit, formState, setError } =
+    useForm<SignUpFormState>({
+      resolver: yupResolver(signUpFormValidationSchema()),
+      defaultValues,
+    });
+
+  useEffect(() => {
+    switch (error?.type) {
+      case CognitoErrorType.UsernameExistsException:
+        setError("email", {
+          type: "manual",
+          message: error.message,
+        });
+        break;
+
+      default:
+        break;
+    }
+  }, [error, setError]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -43,7 +58,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
           <EmailField
             onChange={field.onChange}
             autoComplete="email"
-            errorMessage={errors.email?.message}
+            errorMessage={formState.errors.email?.message}
             autoFocus
           />
         )}
@@ -54,7 +69,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
         render={({ field }) => (
           <PasswordField
             onChange={field.onChange}
-            errorMessage={errors.password?.message}
+            errorMessage={formState.errors.password?.message}
             ariaControls="password"
             label="Password"
             placeholder="Password"
@@ -68,7 +83,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
         render={({ field }) => (
           <PasswordField
             onChange={field.onChange}
-            errorMessage={errors.password?.message}
+            errorMessage={formState.errors.password?.message}
             ariaControls="confirm-password"
             label="Confirm Password"
             placeholder="Confirm Password"
@@ -76,6 +91,11 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit }) => {
           />
         )}
       />
+      {error?.type === CognitoErrorType.Default && (
+        <Typography color="error" align="center" mt={1} fontSize={14}>
+          {error.message}
+        </Typography>
+      )}
       <Box display="flex" flexDirection="row" alignItems="center" mt={2}>
         <Button
           color="primary"
