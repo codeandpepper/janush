@@ -528,7 +528,7 @@ export const changeRoutes = (projectName: string) => {
         '));\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
           '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
           '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));' +
-          '\nconst ConfirmSignUp = lazy(() => import("./routes/ConfirmSignUp/ConfirmSignUp));"'
+          '\nconst ConfirmSignUp = lazy(() => import("./routes/ConfirmSignUp/ConfirmSignUp"'
       );
 
       updatedTree.insertLeft(

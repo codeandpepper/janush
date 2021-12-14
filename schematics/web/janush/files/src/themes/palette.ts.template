@@ -1,4 +1,4 @@
-import createPalette from "@mui/material/styles/createPalette";
+import createPalette, { Palette } from "@mui/material/styles/createPalette";
 
 const lightPalette = createPalette({
   primary: {
@@ -44,8 +44,5 @@ const darkPalette = createPalette({
   },
 });
 
-export const palette = {
-  dark: darkPalette,
-  light: lightPalette,
-} as const;
-
+export const getPalette = (darkMode: boolean): Palette =>
+  darkMode ? darkPalette : lightPalette;

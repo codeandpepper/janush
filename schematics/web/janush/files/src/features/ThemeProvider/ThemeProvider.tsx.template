@@ -1,17 +1,12 @@
-import React, { createContext, useMemo } from "react";
+import React, { useMemo } from "react";
 
-import { createDefaultTheme } from "@themes/defaultTheme";
-import { palette } from "@themes/palette";
-import { CssBaseline, Theme, useMediaQuery } from "@mui/material";
+import { getPalette } from "@themes/palette";
+import { createTheme, CssBaseline, Theme, useMediaQuery } from "@mui/material";
 import { StylesProvider, ThemeProvider as MuiProvider } from "@mui/styles";
 
 export interface ThemeContextValue {
   theme: Theme;
 }
-
-export const ThemeContext = createContext<ThemeContextValue>({
-  theme: createDefaultTheme(),
-});
 
 interface Props {
   children: React.ReactNode;
@@ -22,20 +17,18 @@ export const ThemeProvider: React.FC<Props> = ({ children }) => {
 
   const theme = useMemo(
     () =>
-      createDefaultTheme({
-        palette: palette[prefersDarkMode ? "dark" : "light"],
+      createTheme({
+        palette: getPalette(prefersDarkMode),
       }),
     [prefersDarkMode]
   );
 
   return (
-    <ThemeContext.Provider value={{ theme }}>
-      <StylesProvider>
-        <MuiProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </MuiProvider>
-      </StylesProvider>
-    </ThemeContext.Provider>
+    <StylesProvider>
+      <MuiProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiProvider>
+    </StylesProvider>
   );
 };
