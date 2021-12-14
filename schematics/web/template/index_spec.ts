@@ -50,6 +50,8 @@ export const expectedFiles = [
   "/web/src/routing/Routes.tsx",
   "/web/src/routing/paths.ts",
   "/web/src/routing/routes/Index/IndexPage.tsx",
+  "/web/src/routing/routes/ConfirmSignUp/ConfirmSignUp.test.tsx",
+  "/web/src/routing/routes/ConfirmSignUp/ConfirmSignUp.tsx",
   "/web/src/routing/routes/SignIn/SignIn.test.tsx",
   "/web/src/routing/routes/SignIn/SignIn.tsx",
   "/web/src/routing/routes/SignIn/SignInView/SignInView.tsx",
@@ -84,6 +86,7 @@ export const expectedFiles = [
   "/web/src/types/enums/HubEvent.ts",
   "/web/src/types/useful/Nullable.ts",
   "/web/src/types/useful/index.ts",
+  "/web/src/utils/hooks/useQuery.ts",
   "/web/src/utils/validation/passwordValidation.ts",
   "/web/src/utils/validation/validateMaxStringLength.ts",
 ];

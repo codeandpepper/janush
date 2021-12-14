@@ -476,7 +476,8 @@ export const changePaths = (projectName: string) => {
         paths.getEnd() - 1,
         'SIGN_IN_PATH = "/sign-in",\n' +
           'SIGN_UP_PATH = "/sign-up",\n' +
-          'VERIFY_EMAIL_PATH = "/verify-email"\n'
+          'VERIFY_EMAIL_PATH = "/verify-email",\n' +
+          'CONFIRM_SIGN_UP = "/confirm-signup"\n'
       );
 
       updatedTree.insertLeft(
@@ -526,7 +527,8 @@ export const changeRoutes = (projectName: string) => {
         paths.getEnd(),
         '));\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
           '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
-          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"'
+          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));' +
+          '\nconst ConfirmSignUp = lazy(() => import("./routes/ConfirmSignUp/ConfirmSignUp));"'
       );
 
       updatedTree.insertLeft(
@@ -547,7 +549,8 @@ export const changeRoutes = (projectName: string) => {
         attr.getStart() - 1,
         "<Route path={Paths.SIGN_IN_PATH} component={SignIn} />\n" +
           "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
-          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n"
+          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n" +
+          "<Route path={Paths.CONFIRM_SIGN_UP} component={ConfirmSignUp} />\n"
       );
 
       updatedTree.insertLeft(

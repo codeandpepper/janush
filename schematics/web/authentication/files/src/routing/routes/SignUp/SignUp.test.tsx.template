@@ -68,7 +68,10 @@ describe("<SignUp />", () => {
   it("should handle error form Auth.signUp() UsernameExistsException", async () => {
     Auth.signUp = jest.fn().mockImplementation(() => {
       // eslint-disable-next-line
-      throw { code: "UsernameExistsException" };
+      throw {
+        code: "UsernameExistsException",
+        message: "User with this email already exists",
+      };
     });
 
     const push = jest.fn();
@@ -92,9 +95,7 @@ describe("<SignUp />", () => {
       fireEvent.click(signUpButton);
     });
 
-    expect(push).toBeCalledWith(Paths.VERIFY_EMAIL_PATH, {
-      email: "test@test.com",
-    });
+    screen.getByText("User with this email already exists");
   });
 
   it("should handle different error form Auth.signUp()", async () => {

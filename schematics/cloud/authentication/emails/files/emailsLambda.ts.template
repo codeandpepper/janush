@@ -17,7 +17,7 @@ const generateCodeLink = (
   eventType: CognitoMessageTriggerSource,
   email: string
 ): string => {
-  const defaultDomain = "localhost:3000";
+  const defaultDomain = "http://localhost:3000";
 
   console.log(`Forming URL for event: ${eventType}`);
 

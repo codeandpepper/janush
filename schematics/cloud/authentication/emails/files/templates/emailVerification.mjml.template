@@ -1,5 +1,6 @@
 <mjml>
   <mj-head>
+    <!-- {####} -->
     <mj-title><%= classify(name) %> | Confirm your registration now</mj-title>
     <mj-style>
       body {
