@@ -7,7 +7,7 @@ export const TextField = (props: StandardTextFieldProps): JSX.Element => (
   <MuiTextField
     margin="normal"
     fullWidth
-    color="secondary"
+    color="primary"
     variant="outlined"
     {...props}
   />

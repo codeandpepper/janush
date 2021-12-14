@@ -29,7 +29,7 @@ export const AuthBottomBar: React.VFC<Props> = ({
             <Button
               data-testid={buttonDataTestId}
               variant="outlined"
-              color="secondary"
+              color="primary"
             >
               {buttonText}
             </Button>

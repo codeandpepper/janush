@@ -24,7 +24,7 @@ export const EmailField = ({
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">
-          <Mail color="secondary" />
+          <Mail color="primary" />
         </InputAdornment>
       ),
     }}

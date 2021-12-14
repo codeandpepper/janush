@@ -1,7 +1,7 @@
 import React from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
 import { Form } from "@components/Form/Form";
@@ -64,32 +64,24 @@ export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
           />
         )}
       />
-      <Typography
-        color="error"
-        align="center"
-        className={classes.error}
-        mt={1}
-        fontSize={14}
-      >
+      <Typography color="error" align="center" mt={1} fontSize={14}>
         {error ? error : " "}
       </Typography>
-      <Grid container justifyContent="flex-end" spacing={1}>
-        <Grid item xs={12}>
-          <Button
-            color="primary"
-            type="submit"
-            data-testid="sign-in-button"
-            variant="contained"
-            disabled={loading}
-            fullWidth
-          >
-            Sign in
-          </Button>
-          {loading && (
-            <CircularProgress size={20} className={classes.buttonProgress} />
-          )}
-        </Grid>
-      </Grid>
+      <Box display="flex" flexDirection="row" alignItems="center" mt={2}>
+        <Button
+          color="primary"
+          type="submit"
+          data-testid="sign-in-button"
+          variant="contained"
+          disabled={loading}
+          fullWidth
+        >
+          Sign in
+        </Button>
+      </Box>
+      {loading && (
+        <CircularProgress size={20} className={classes.buttonProgress} />
+      )}
     </Form>
   );
 };
