@@ -1,6 +1,6 @@
 <mjml>
   <mj-head>
-    <!-- {username} {####} -->
+    <!-- {####} -->
     <mj-title><%= classify(name) %> | Confirm your registration now</mj-title>
     <mj-style>
       body {
@@ -59,8 +59,6 @@
       <mj-section>
         <mj-column>
           <mj-text css-class="mui-title">Email Verification</mj-text>
-
-          <mj-text css-class="mui-mail">{username}</mj-text>
 
           <mj-text css-class="mui-text">We are almost done with setting up your account. Please, confirm your email to continue.</mj-text>
 

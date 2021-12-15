@@ -1,6 +1,5 @@
 import { createTheme, Theme, ThemeOptions } from "@mui/material";
 
-const createDefaultTheme = (options?: ThemeOptions): Theme =>
+export const createDefaultTheme = (options?: ThemeOptions): Theme =>
   createTheme({ ...options });
 
-export default createDefaultTheme;

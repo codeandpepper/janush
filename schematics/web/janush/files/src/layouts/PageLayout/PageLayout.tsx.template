@@ -10,23 +10,19 @@ interface Props extends BoxProps {
   withTopGradient?: boolean;
 }
 
-const PageLayout: React.FC<Props> = ({
+export const PageLayout: React.FC<Props> = ({
   className,
   maxWidth = "md",
   withBottomPadding = false,
   withTopPadding = false,
   ...props
-}) => {
-  return (
-    <Container maxWidth={maxWidth} disableGutters>
-      <Box
-        mt={4}
-        pt={withTopPadding ? 6.5 : 0}
-        pb={withBottomPadding ? 10 : 0}
-        {...props}
-      />
-    </Container>
-  );
-};
-
-export default PageLayout;
+}) => (
+  <Container maxWidth={maxWidth} disableGutters>
+    <Box
+      mt={4}
+      pt={withTopPadding ? 6.5 : 0}
+      pb={withBottomPadding ? 10 : 0}
+      {...props}
+    />
+  </Container>
+);

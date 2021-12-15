@@ -1,0 +1,21 @@
+import { object, SchemaOf, string } from "yup";
+
+import { validateMaxStringLength } from "@utils/validation/validateMaxStringLength";
+
+import { SignInFormState } from "./SignInFormState";
+import { MAX_EMAIL_LENGTH, MAX_PASSWORD_LENGTH } from "@consts/index";
+
+export const signInFormValidationSchema = (): SchemaOf<SignInFormState> =>
+  <SchemaOf<SignInFormState>>object({
+    email: string()
+      .required("Field required")
+      .email("Email not correct")
+      .test("Maximum email length", "Email too long", (v) =>
+        validateMaxStringLength(v, MAX_EMAIL_LENGTH)
+      ),
+    password: string()
+      .required("Field required")
+      .test("Maximum password length", "Password too long", (v) =>
+        validateMaxStringLength(v, MAX_PASSWORD_LENGTH)
+      ),
+  });

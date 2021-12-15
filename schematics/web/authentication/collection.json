@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "web.authentication": {
+      "aliases": ["web.auth"],
+      "description": "auth structure for web app",
+      "factory": "./index#webAuthenticationGenerator",
+      "schema": "./schema.json"
+    }
+  }
+}

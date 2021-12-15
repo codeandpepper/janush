@@ -1,15 +1,14 @@
 import React from "react";
 import { LinearProgress } from "@mui/material";
 
-import useStyle from "./styles";
+import { useStyles } from "./styles";
 
-const SuspenseProvider: React.FC = ({ children }) => {
-  const classes = useStyle();
+export const SuspenseProvider: React.FC = ({ children }) => {
+  const classes = useStyles();
+
   return (
     <React.Suspense fallback={<LinearProgress className={classes.progress} />}>
       {children}
     </React.Suspense>
   );
 };
-
-export default SuspenseProvider;

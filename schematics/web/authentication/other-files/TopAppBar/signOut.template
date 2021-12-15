@@ -1,0 +1,9 @@
+const { user } = useUserContext();
+
+const signOut = async () => {
+  try {
+    await Auth.signOut();
+  } catch (e) {
+    console.error(e);
+  }
+};

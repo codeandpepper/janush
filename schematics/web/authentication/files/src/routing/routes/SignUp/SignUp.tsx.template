@@ -1,0 +1,62 @@
+import React, { useState } from "react";
+
+import { Auth } from "aws-amplify";
+import { useHistory } from "react-router-dom";
+
+import { Paths } from "@routing/paths";
+import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
+
+import { SignUpView } from "./SignUpView/SignUpView";
+import { Nullable } from "@janush-types/useful";
+import { CognitoError } from "@interfaces/Cognito";
+import { CognitoErrorType } from "@janush-types/enums/Cognito";
+
+const SignUp: React.VFC = () => {
+  const history = useHistory();
+  const [error, setError] = useState<Nullable<CognitoError>>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const onSignUp = async ({ email, password }: SignUpFormState) => {
+    if (loading) return;
+
+    setLoading(true);
+
+    const lowerCaseEmail = email.toLowerCase();
+
+    try {
+      await Auth.signUp({
+        password,
+        username: lowerCaseEmail,
+        attributes: {
+          email: lowerCaseEmail,
+        },
+      });
+
+      history.push(Paths.VERIFY_EMAIL_PATH, {
+        email,
+      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      if (err.code === CognitoErrorType.UsernameExistsException) {
+        return setError({
+          type: CognitoErrorType.UsernameExistsException,
+          message: err.message,
+        });
+      }
+
+      /**
+       * Cognito error messages are not user-friendly
+       */
+      setError({
+        type: CognitoErrorType.Default,
+        message: "Something went wrong. Please try again later",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return <SignUpView loading={loading} onSignUp={onSignUp} error={error} />;
+};
+
+export default SignUp;

@@ -26,7 +26,7 @@ module.exports.jest = (config) => {
     "!src/reportWebVitals.ts",
     "!src/index.tsx",
     "!src/react-app-env.d.ts",
-    "!src/**/index.ts",
+    "!src/**/index.ts.template",
   ];
   config.testTimeout = 15_000;
   return config;

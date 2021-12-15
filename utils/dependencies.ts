@@ -3,6 +3,17 @@ import {
   NodeDependencyType,
 } from "@schematics/angular/utility/dependencies";
 
+const lodash = {
+  type: NodeDependencyType.Default,
+  name: "lodash",
+  version: "^4.17.21",
+};
+const lodashTypes = {
+  type: NodeDependencyType.Dev,
+  name: "@types/lodash",
+  version: "^4.14.177",
+};
+
 export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
@@ -67,5 +78,45 @@ export const authenticationEmailsNodeDependencies: NodeDependency[] = [
     name: "aws-sdk",
     version: "2.995.0",
     overwrite: true,
+  },
+];
+
+export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
+  {
+    type: NodeDependencyType.Default,
+    name: "@hookform/resolvers",
+    version: "^2.8.1",
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "aws-amplify",
+    version: "^4.2.10",
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "aws-amplify",
+    version: "^4.2.10",
+  },
+  lodash,
+  lodashTypes,
+  {
+    type: NodeDependencyType.Default,
+    name: "react-helmet",
+    version: "^6.1.0",
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "react-hook-form",
+    version: "^7.15.4",
+  },
+  {
+    type: NodeDependencyType.Default,
+    name: "yup",
+    version: "^0.32.9",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/react-helmet",
+    version: "^6.1.2",
   },
 ];

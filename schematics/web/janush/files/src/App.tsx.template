@@ -1,14 +1,12 @@
 import React from "react";
 
-import Routes from "@routing/Routes";
-import Providers from "@features/Providers";
+import { Routes } from "@routing/Routes";
+import { Providers } from "@features/Providers/Providers";
 
-const App: React.FC = () => {
-  return (
-    <Providers>
-      <Routes />
-    </Providers>
-  );
-};
+const App: React.VFC = () => (
+  <Providers>
+    <Routes />
+  </Providers>
+);
 
 export default App;

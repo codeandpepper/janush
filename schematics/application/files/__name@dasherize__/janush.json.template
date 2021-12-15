@@ -5,5 +5,9 @@
        "authentication": false
     }
   },
-  "web": {}
+  "web": {
+  "module": {
+       "authentication": false
+    }
+  }
 }
