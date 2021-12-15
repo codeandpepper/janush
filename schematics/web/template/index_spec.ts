@@ -1,9 +1,11 @@
+import * as path from "path";
+import { FileDoesNotExistException } from "@angular-devkit/core";
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
-import { FileDoesNotExistException } from "@angular-devkit/core";
-import * as path from "path";
-import * as janush from "@utility/janush-json";
+
 import { emptyJanush } from "@mocks/janush";
+import expectedTemplateFiles from "@janush-schematics/web/template/data/expected-files.json";
+import * as janush from "@utility/janush-json";
 
 const collectionPath = path.join(__dirname, "../../collection.json");
 
@@ -102,7 +104,7 @@ describe("web", () => {
       .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
-    expect(tree.files).toEqual(expectedFiles);
+    expect(tree.files).toEqual(expectedTemplateFiles);
   });
 
   it("should throw not found exception of janush.json", async () => {

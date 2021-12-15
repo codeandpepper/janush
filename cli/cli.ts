@@ -1,5 +1,5 @@
-import * as path from "path";
-import * as arg from "arg";
+import path from "path";
+import arg from "arg";
 import { spawn } from "child_process";
 
 const PATH_ARGUMENT = 1;

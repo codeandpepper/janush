@@ -1,12 +1,11 @@
+import * as path from "path";
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
-import * as path from "path";
 
-import { expectedJanushTemplateFiles as expectedJanushCloudFiles } from "@janush-schematics/cloud/janush/index_spec";
-import { expectedAuthenticationTemplateFiles as expectedAuthenticationCloudFiles } from "@janush-schematics/cloud/authentication/cognito/index_spec";
-import { expectedAuthenticationEmailsTemplateFiles } from "@janush-schematics/cloud/authentication/emails/index_spec";
-
-import { expectedFiles as expectedWebFiles } from "../web/template/index_spec";
+import expectedAuthenticationCloudFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-files.json";
+import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-files.json";
+import expectedJanushCloudFiles from "@janush-schematics/cloud/janush/data/expected-files.json";
+import expectedWebFiles from "@janush-schematics/web/template/data/expected-files.json";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 const name = "janush-app";
@@ -49,14 +48,12 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual(
-      jasmine.arrayWithExactContents([
-        ...expectedFiles,
-        ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
-      ])
-    );
+    expect(tree.files).toHaveSameElements([
+      ...expectedFiles,
+      ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
+      ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
+      ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 
   it("generate both structures", async () => {
@@ -73,14 +70,12 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual(
-      jasmine.arrayWithExactContents([
-        ...expectedFiles,
-        ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
-        ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
-        ...expectedWebFiles.map((f) => `/${name}${f}`),
-      ])
-    );
+    expect(tree.files).toHaveSameElements([
+      ...expectedFiles,
+      ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
+      ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
+      ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
+      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    ]);
   });
 });

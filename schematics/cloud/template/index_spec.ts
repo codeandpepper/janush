@@ -8,7 +8,7 @@ import { emptyJanush } from "@mocks/janush";
 
 const collectionPath = path.join(__dirname, "../collection.json");
 
-export const expectedTemplateFiles = [
+const expectedTemplateFiles = [
   "/cloud/.gitignore",
   "/cloud/.npmignore",
   "/cloud/README.md",

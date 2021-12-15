@@ -8,15 +8,9 @@ import { emptyJanush } from "@mocks/janush";
 const collectionPath = path.join(__dirname, "../../collection.json");
 
 export const expectedFiles = [
-  "/web/.eslintignore",
-  "/web/.eslintrc.json",
-  "/web/.gitignore",
-  "/web/.prettierrc.json",
   "/web/README.md",
-  "/web/config-overrides.js",
   "/web/package.json",
   "/web/tsconfig.json",
-  "/web/tsconfig.paths.json",
   "/web/public/favicon.ico",
   "/web/public/index.html",
   "/web/public/logo192.png",
@@ -28,6 +22,7 @@ export const expectedFiles = [
   "/web/src/App.tsx",
   "/web/src/index.css",
   "/web/src/index.tsx",
+  "/web/src/logo.svg",
   "/web/src/react-app-env.d.ts",
   "/web/src/reportWebVitals.ts",
   "/web/src/setupTests.ts",
@@ -61,7 +56,7 @@ describe("web", () => {
       .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
       .toPromise();
 
-    expect(tree.files).toEqual(expectedFiles);
+    expect(tree.files).toHaveSameElements(expectedFiles);
   });
 
   it("should throw not found exception of janush.json", async () => {

@@ -63,7 +63,6 @@ export const cloudTemplateGenerator = (options: Schema): Rule => {
       isAuthenticationModule(options)
         ? schematic(CloudSchematic.AUTHENTICATION, options)
         : noop(),
-      schematic("apply-prettier", {}),
     ]);
   };
 };

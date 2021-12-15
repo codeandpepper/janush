@@ -6,7 +6,6 @@ import {
   mergeWith,
   move,
   Rule,
-  schematic,
   SchematicContext,
   Tree,
   url,
@@ -44,7 +43,6 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite
       ),
-      schematic("apply-prettier", {}),
     ]);
   };
 };
