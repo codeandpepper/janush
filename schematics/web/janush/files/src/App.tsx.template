@@ -3,7 +3,7 @@ import React from "react";
 import { Routes } from "@routing/Routes";
 import { Providers } from "@features/Providers/Providers";
 
-const App: React.FC = () => (
+const App: React.VFC = () => (
   <Providers>
     <Routes />
   </Providers>
