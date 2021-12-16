@@ -1,0 +1,12 @@
+[
+  "/cloud/.gitignore",
+  "/cloud/.npmignore",
+  "/cloud/README.md",
+  "/cloud/bin/janush-app.ts",
+  "/cloud/cdk.json",
+  "/cloud/jest.config.js",
+  "/cloud/lib/janush-app-stack.ts",
+  "/cloud/package.json",
+  "/cloud/test/janush-app.test.ts",
+  "/cloud/tsconfig.json"
+]

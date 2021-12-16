@@ -2,14 +2,35 @@ import * as path from "path";
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
-import expectedAuthenticationCloudFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-files.json";
-import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-files.json";
-import expectedJanushCloudFiles from "@janush-schematics/cloud/janush/data/expected-files.json";
-import expectedWebFiles from "@janush-schematics/web/template/data/expected-files.json";
+// Cloud Files
+import expectedCloudTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedCloudJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
+import expectedCloudAuthCognitoFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-new-files.json";
+import expectedCloudAuthEmailFiles from "@janush-schematics/cloud/authentication/emails/data/expected-new-files.json";
+// Web files
+import expectedWebTemplateFiles from "@janush-schematics/web/template/data/expected-new-files.json";
+import expectedWebJanushFiles from "@janush-schematics/web/janush/data/expected-new-files.json";
+import expectedWebAuthFiles from "@janush-schematics/web/authentication/data/expected-new-files.json";
+
+const getParser = (name: string) => (filePath: string) => `/${name}${filePath}`;
+
+const name = "janush-app";
+const pathParser = getParser(name);
 
 const collectionPath = path.join(__dirname, "../collection.json");
-const name = "janush-app";
-const expectedFiles = [`/${name}/README.md`, `/${name}/janush.json`];
+
+const expectedBaseFiles = [`/${name}/README.md`, `/${name}/janush.json`];
+const expectedWebFiles = [
+  ...expectedWebTemplateFiles,
+  ...expectedWebJanushFiles,
+  ...expectedWebAuthFiles,
+];
+const expectedCloudFiles = [
+  ...expectedCloudTemplateFiles,
+  ...expectedCloudJanushFiles,
+  ...expectedCloudAuthCognitoFiles,
+  ...expectedCloudAuthEmailFiles,
+];
 
 describe("application", () => {
   it("generate web structure", async () => {
@@ -26,9 +47,9 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toEqual([
-      ...expectedFiles,
-      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    expect(tree.files).toHaveEqualElements([
+      ...expectedBaseFiles,
+      ...expectedWebFiles.map(pathParser),
     ]);
   });
 
@@ -48,11 +69,9 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toHaveSameElements([
-      ...expectedFiles,
-      ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
+    expect(tree.files).toHaveEqualElements([
+      ...expectedBaseFiles,
+      ...expectedCloudFiles.map(pathParser),
     ]);
   });
 
@@ -70,12 +89,10 @@ describe("application", () => {
       )
       .toPromise();
 
-    expect(tree.files).toHaveSameElements([
-      ...expectedFiles,
-      ...expectedJanushCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedAuthenticationCloudFiles.map((f) => `/${name}${f}`),
-      ...expectedAuthenticationEmailsTemplateFiles.map((f) => `/${name}${f}`),
-      ...expectedWebFiles.map((f) => `/${name}${f}`),
+    expect(tree.files).toHaveEqualElements([
+      ...expectedBaseFiles,
+      ...expectedCloudFiles.map(pathParser),
+      ...expectedWebFiles.map(pathParser),
     ]);
   });
 });

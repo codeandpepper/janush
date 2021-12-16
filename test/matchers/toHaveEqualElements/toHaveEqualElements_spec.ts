@@ -1,11 +1,11 @@
-import { toHaveSameElements } from "./toHaveSameElements";
+import { toHaveEqualElements } from "./toHaveEqualElements";
 
-describe("toHaveSameElements", () => {
+describe("toHaveEqualElements", () => {
   it("should pass with specific message", () => {
     const tested = ["a", "b", "c"];
     const expected = ["a", "b", "c"];
 
-    const { pass, message: messageCallback } = toHaveSameElements(
+    const { pass, message: messageCallback } = toHaveEqualElements(
       tested,
       expected
     );
@@ -18,7 +18,7 @@ describe("toHaveSameElements", () => {
     const tested = ["a", "b", "c", "d"];
     const expected = ["a", "b", "c", "e"];
 
-    const { pass, message: messageCallback } = toHaveSameElements(
+    const { pass, message: messageCallback } = toHaveEqualElements(
       tested,
       expected
     );

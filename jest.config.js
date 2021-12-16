@@ -1,9 +1,9 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: "ts-jest",
+  maxWorkers: 3,
   testEnvironment: "node",
   testMatch: ["**/*_spec.ts"],
-  testRunner: "jest-jasmine2",
   moduleNameMapper: {
     "@consts(.*)": "<rootDir>/consts/$1",
     "@enums(.*)": "<rootDir>/types/enums/$1",
@@ -12,6 +12,11 @@ module.exports = {
     "@janush-schematics(.*)": "<rootDir>/schematics/$1",
     "@utility(.*)": "<rootDir>/schematics/utility/$1",
     "@utils(.*)": "<rootDir>/utils/$1",
+  },
+  globals: {
+    "ts-jest": {
+      isolatedModules: true,
+    },
   },
   setupFilesAfterEnv: ["./test/setupJestAfterEnv.ts"],
 };

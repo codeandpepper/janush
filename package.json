@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc && tsc-alias --silent",
     "test": "jest",
+    "test:watch": "npm run build && jest --watch --no-cache",
     "create": "npm run build && schematics .:application",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json}\""

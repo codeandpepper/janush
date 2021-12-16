@@ -1,11 +1,10 @@
 import xor from "lodash.xor";
 import isEmpty from "lodash.isempty";
+
 import { Primitive } from "types/types/primitive";
+import { toReadableArrayString } from "../../helpers/toReadableArrayString/toReadableArrayString";
 
-const toReadableArrayString = (arr: Primitive[]) =>
-  `[\n${arr.map((item) => `\t${item}`).join(",\n")}\n]\n`;
-
-export const toHaveSameElements = (
+export const toHaveEqualElements = (
   tested: Primitive[],
   expected: Primitive[]
 ) => {

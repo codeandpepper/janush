@@ -4,9 +4,10 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 import { Schematic } from "@enums/Schematic";
 import { emptyJanush, moduleJanush } from "@mocks/janush";
-import expectedJanushTemplateFiles from "@janush-schematics/cloud/janush/data/expected-files.json";
-import expectedAuthenticationTemplateFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-files.json";
-import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-files.json";
+import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
+import expectedAuthenticationTemplateFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-new-files.json";
+import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-new-files.json";
 import * as janush from "@utility/janush-json";
 
 const collectionPath = path.join(__dirname, "../../../collection.json");
@@ -15,8 +16,8 @@ describe("cloud.authentication.emails", () => {
   it("should generate authentication emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(emptyJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -38,8 +39,9 @@ describe("cloud.authentication.emails", () => {
       .runSchematicAsync("cloud.authentication.emails", {}, authenticationTree)
       .toPromise();
 
-    expect(authenticationEmailsTree.files).toHaveSameElements([
-      ...expectedJanushTemplateFiles,
+    expect(authenticationEmailsTree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
       ...expectedAuthenticationTemplateFiles,
       ...expectedAuthenticationEmailsTemplateFiles,
     ]);
@@ -52,8 +54,8 @@ describe("cloud.authentication.emails", () => {
 
     const emailConstructStatement = "new EmailsCdkConstruct";
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(

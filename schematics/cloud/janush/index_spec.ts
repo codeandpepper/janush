@@ -4,17 +4,18 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 import { moduleJanush } from "@mocks/janush";
-import expectedJanushTemplateFiles from "@janush-schematics/cloud/janush/data/expected-files.json";
+import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
 import * as janush from "@utility/janush-json";
 
 const collectionPath = path.join(__dirname, "../../collection.json");
 
 describe("cloud.janush", () => {
-  it("should generate all janush files properly", async () => {
+  it("should create files for: [template, janush]", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -28,7 +29,10 @@ describe("cloud.janush", () => {
       .runSchematicAsync("cloud.janush", {}, templateTree)
       .toPromise();
 
-    expect(tree.files).toEqual(expectedJanushTemplateFiles);
+    expect(tree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
+    ]);
   });
 
   it("should throw not found exception of janush.json", async () => {
