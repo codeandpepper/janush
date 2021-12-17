@@ -7,7 +7,6 @@ exports.cli = void 0;
 const path_1 = __importDefault(require("path"));
 const arg_1 = __importDefault(require("arg"));
 const child_process_1 = require("child_process");
-const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SKIP_INSTALL = "skipInstall";
@@ -53,17 +52,8 @@ function encodeCommand(command, options) {
     }, command);
 }
 function cli(args) {
-    let directory;
-    if (__dirname.includes("@")) {
-        //INFO: npx via github
-        directory = `@${path_1.default.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
-    }
-    else {
-        //INFO: installed project
-        directory = path_1.default.join(__dirname, "..");
-    }
     const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${directory}/schematics/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`schematics ${path_1.default.join(__dirname, "..")}/schematics/collection.json:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
     });
