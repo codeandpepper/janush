@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -12,15 +13,12 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { strings } from "@angular-devkit/core";
-
-import { readJanushJSON } from "@utility/janush-json";
-
-import { addCognitoConstructToCloudStack } from "./utils";
 
 import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { Janush } from "@interfaces/Janush";
+import { readJanushJSON } from "@utility/janush-json";
 import { Schema } from "./schema";
+import { addCognitoConstructToCloudStack } from "./utils";
 
 const checkModuleExists = (janush: Janush) =>
   Object.entries(janush.cloud.module).some(([_, moduleExist]) => moduleExist);

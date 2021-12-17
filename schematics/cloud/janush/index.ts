@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -11,16 +12,12 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { strings } from "@angular-devkit/core";
-
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
-import { readJanushJSON } from "@utility/janush-json";
-
-import { janushTemplateNodeDependencies } from "@utils/dependencies";
 
 import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
-
 import { Schematic } from "@enums/Schematic";
+import { readJanushJSON } from "@utility/janush-json";
+import { janushTemplateNodeDependencies } from "@utils/dependencies";
 import { Schema } from "./schema";
 
 export const cloudJanushGenerator = (options: Schema): Rule => {

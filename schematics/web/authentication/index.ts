@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -10,14 +11,14 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { strings } from "@angular-devkit/core";
-import { readJanushJSON } from "@utility/janush-json";
-import { Schema } from "./schema";
-import { Schematic } from "@enums/Schematic";
-import { authenticationChanges } from "../../web/authentication/utils";
-import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
+
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
+import { Schematic } from "@enums/Schematic";
+import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
+import { readJanushJSON } from "@utility/janush-json";
+import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
+import { authenticationChanges } from "../../web/authentication/utils";
+import { Schema } from "./schema";
 
 export const webAuthenticationGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
@@ -7,9 +6,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Form } from "@components/Form/Form";
 import { EmailField } from "@components/EmailField/EmailField";
 import { PasswordField } from "@components/PasswordField/PasswordField";
-
-import { signInFormValidationSchema } from "./signInFormValidationSchema";
 import { SignInFormState } from "./SignInFormState";
+import { signInFormValidationSchema } from "./signInFormValidationSchema";
 
 import { useStyles } from "./styles";
 

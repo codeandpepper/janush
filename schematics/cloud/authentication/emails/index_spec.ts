@@ -4,10 +4,10 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 import { Schematic } from "@enums/Schematic";
 import { emptyJanush, moduleJanush } from "@mocks/janush";
-import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
-import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
 import expectedAuthenticationTemplateFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-new-files.json";
 import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-new-files.json";
+import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
+import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
 import * as janush from "@utility/janush-json";
 
 const collectionPath = path.join(__dirname, "../../../collection.json");

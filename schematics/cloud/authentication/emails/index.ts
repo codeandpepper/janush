@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -11,15 +12,13 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { strings } from "@angular-devkit/core";
+
+import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
+import { Schematic } from "@enums/Schematic";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { authenticationEmailsNodeDependencies } from "@utils/dependencies";
-import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
-
-import { Schematic } from "@enums/Schematic";
 
 import { Schema } from "./schema";
-
 import { addEmailsConstructToCognitoConstruct } from "./utils";
 
 export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {

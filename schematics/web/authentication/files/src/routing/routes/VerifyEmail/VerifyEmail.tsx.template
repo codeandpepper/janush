@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-
-import { Redirect, useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
-
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Auth } from "aws-amplify";
-
-import { Paths } from "@routing/paths";
+import { Helmet } from "react-helmet";
+import { Redirect, useLocation } from "react-router-dom";
 
 import { Link } from "@components/Link/Link";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
+import { Paths } from "@routing/paths";
 
 import { useStyles } from "./styles";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
 
 interface LocationState {
   email?: string;

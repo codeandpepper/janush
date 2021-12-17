@@ -1,5 +1,5 @@
-import { Tree } from "@angular-devkit/schematics";
 import { FileDoesNotExistException } from "@angular-devkit/core";
+import { Tree } from "@angular-devkit/schematics";
 
 import { JANUSH_JSON_PATH } from "@consts/index";
 import { Janush } from "@interfaces/Janush";

@@ -1,8 +1,9 @@
 import React, { useMemo } from "react";
 
-import { getPalette } from "@themes/palette";
 import { createTheme, CssBaseline, Theme, useMediaQuery } from "@mui/material";
 import { StylesProvider, ThemeProvider as MuiProvider } from "@mui/styles";
+
+import { getPalette } from "@themes/palette";
 
 export interface ThemeContextValue {
   theme: Theme;

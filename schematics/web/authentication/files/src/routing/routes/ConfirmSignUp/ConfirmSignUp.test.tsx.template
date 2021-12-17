@@ -2,8 +2,8 @@ import { render, waitFor } from "@testing-library/react";
 import { Auth } from "aws-amplify";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
-import ConfirmSignUp from "./ConfirmSignUp";
 import { Paths } from "@routing/paths";
+import ConfirmSignUp from "./ConfirmSignUp";
 
 const setup = () => {
   return render(

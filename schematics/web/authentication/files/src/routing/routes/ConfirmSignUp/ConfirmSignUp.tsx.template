@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
-import { useQuery } from "@utils/hooks/useQuery";
 import { Paths } from "@routing/paths";
+import { useQuery } from "@utils/hooks/useQuery";
 
 const ConfirmSignUp = (): JSX.Element => {
   const [message, setMessage] = useState("Please wait...");

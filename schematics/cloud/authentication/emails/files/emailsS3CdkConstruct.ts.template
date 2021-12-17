@@ -1,6 +1,6 @@
-import { Construct } from "constructs";
-import { aws_s3 as s3, aws_s3_deployment as s3deploy } from "aws-cdk-lib";
 import * as path from "path";
+import { aws_s3 as s3, aws_s3_deployment as s3deploy } from "aws-cdk-lib";
+import { Construct } from "constructs";
 
 import { EnvName } from "../../../enums/EnvName";
 

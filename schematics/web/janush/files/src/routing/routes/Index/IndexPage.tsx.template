@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-import { TopAppBar } from "@layouts/TopAppBar/TopAppBar";
 import { PageLayout } from "@layouts/PageLayout/PageLayout";
+import { TopAppBar } from "@layouts/TopAppBar/TopAppBar";
 
 const IndexPage: React.VFC = () => (
   <>
