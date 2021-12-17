@@ -1,6 +1,7 @@
 import * as path from "path";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { Tree } from "@angular-devkit/schematics";
+import * as prettier from "prettier";
 
 import { Schematic } from "@enums/Schematic";
 import { emptyJanush, moduleJanush } from "@mocks/janush";
@@ -126,7 +127,11 @@ describe("cloud.authentication", () => {
       `${Schematic.CLOUD}/lib/janush-app-stack.ts`
     );
 
-    expect(cloudStackFile).toContain(importStatement);
+    expect(cloudStackFile).toContain(
+      prettier.format(importStatement, {
+        parser: "babel-ts",
+      })
+    );
     expect(cloudStackFile).toContain(cognitoConstructStatement);
   });
 });

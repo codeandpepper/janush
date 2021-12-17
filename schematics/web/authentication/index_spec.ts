@@ -9,7 +9,7 @@ import expectedAuthFiles from "@janush-schematics/web/authentication/data/expect
 import expectedJanushFiles from "@janush-schematics/web/janush/data/expected-new-files.json";
 import expectedTemplateFiles from "@janush-schematics/web/template/data/expected-new-files.json";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../collection.json");
 
 describe("web", () => {
   it("should create auth files", async () => {

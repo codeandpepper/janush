@@ -7,7 +7,7 @@ import { emptyJanush } from "@mocks/janush";
 import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
 import * as janush from "@utility/janush-json";
 
-const collectionPath = path.join(__dirname, "../collection.json");
+const collectionPath = path.join(__dirname, "../../collection.json");
 
 describe("cloud", () => {
   it("should generate all template files properly", async () => {

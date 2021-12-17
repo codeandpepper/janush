@@ -6,6 +6,7 @@ import {
   mergeWith,
   move,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -49,6 +50,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite
       ),
       addEmailsConstructToCognitoConstruct(),
+      schematic("apply-prettier", {}),
     ]);
   };
 };

@@ -50,7 +50,7 @@ describe("cloud.authentication.emails", () => {
   it("should check inserted email construct to cognito user pool", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    const importStatement = `import { EmailsCdkConstruct } from './emails/emailsCdkConstruct';`;
+    const importStatement = `import { EmailsCdkConstruct } from "./emails/emailsCdkConstruct";`;
 
     const emailConstructStatement = "new EmailsCdkConstruct";
 
