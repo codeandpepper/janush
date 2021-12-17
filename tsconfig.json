@@ -17,7 +17,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": ["jasmine", "node"],
+    "types": ["node", "jest"],
     "jsx": "react",
     "outDir": ".",
     "paths": {
@@ -29,6 +29,8 @@
       "@interfaces/*": ["./types/interfaces/*"],
       "@utils/*": ["./utils/*"]
     },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["**/*"],

@@ -1,30 +1,24 @@
+import * as path from "path";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import { Tree } from "@angular-devkit/schematics";
-import * as path from "path";
 import * as prettier from "prettier";
+
+import { Schematic } from "@enums/Schematic";
+import { emptyJanush, moduleJanush } from "@mocks/janush";
+import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
+import expectedAuthenticationEmailsTemplateFiles from "@janush-schematics/cloud/authentication/emails/data/expected-new-files.json";
+import expectedAuthenticationTemplateFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-new-files.json";
 import * as janush from "@utility/janush-json";
 
-import { expectedJanushTemplateFiles } from "@janush-schematics/cloud/janush/index_spec";
-
-import { emptyJanush, moduleJanush } from "@mocks/janush";
-import { Schematic } from "@enums/Schematic";
-import { expectedAuthenticationEmailsTemplateFiles } from "@janush-schematics/cloud/authentication/emails/index_spec";
-
 const collectionPath = path.join(__dirname, "../../../collection.json");
-
-export const expectedAuthenticationTemplateFiles = [
-  "/cloud/lib/authentication/cognitoCdkConstruct.ts",
-  "/cloud/lib/authentication/cognitoUserPoolCdkConstruct.ts",
-  "/cloud/lib/authentication/cognitoIdentityPoolCdkConstruct.ts",
-  "/cloud/enums/ServicePurpose.ts",
-];
 
 describe("cloud.authentication", () => {
   it("should generate authentication without janush template and emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(emptyJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(emptyJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -42,26 +36,18 @@ describe("cloud.authentication", () => {
       )
       .toPromise();
 
-    console.log(
-      jasmine.arrayWithExactContents([
-        ...expectedJanushTemplateFiles,
-        ...expectedAuthenticationTemplateFiles,
-      ])
-    );
-
-    expect(authenticationTree.files).toEqual(
-      jasmine.arrayWithExactContents([
-        ...expectedJanushTemplateFiles,
-        ...expectedAuthenticationTemplateFiles,
-      ])
-    );
+    expect(authenticationTree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
+      ...expectedAuthenticationTemplateFiles,
+    ]);
   });
 
-  it("should generate authentication with janush template and emails", async () => {
+  it("should create files for: [template, janush, authentication, emails]", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -71,20 +57,38 @@ describe("cloud.authentication", () => {
       )
       .toPromise();
 
-    expect(templateTree.files).toEqual(
-      jasmine.arrayWithExactContents([
-        ...expectedJanushTemplateFiles,
-        ...expectedAuthenticationTemplateFiles,
-        ...expectedAuthenticationEmailsTemplateFiles,
-      ])
+    expect(templateTree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
+      ...expectedAuthenticationTemplateFiles,
+      ...expectedAuthenticationEmailsTemplateFiles,
+    ]);
+  });
+
+  it("should not create files for authentication", async () => {
+    const runner = new SchematicTestRunner("schematics", collectionPath);
+
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
+
+    const templateTree = await runner
+      .runSchematicAsync(
+        "cloud",
+        { name: "janush-app", modules: [] },
+        Tree.empty()
+      )
+      .toPromise();
+
+    expect(templateTree.files).not.toIncludeSome(
+      expectedAuthenticationTemplateFiles
     );
   });
 
   it("should generate authentication with janush template and without emails", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -94,23 +98,22 @@ describe("cloud.authentication", () => {
       )
       .toPromise();
 
-    expect(templateTree.files).toEqual(
-      jasmine.arrayWithExactContents([
-        ...expectedJanushTemplateFiles,
-        ...expectedAuthenticationTemplateFiles,
-      ])
-    );
+    expect(templateTree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
+      ...expectedAuthenticationTemplateFiles,
+    ]);
   });
 
   it("should check inserted construct to stack", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    const importStatement = `import { CognitoCdkConstruct } from "./authentication/cognitoCdkConstruct"`;
+    const importStatement = `import { CognitoCdkConstruct } from './authentication/cognitoCdkConstruct'`;
 
     const cognitoConstructStatement = "new CognitoCdkConstruct";
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -129,7 +132,6 @@ describe("cloud.authentication", () => {
         parser: "babel-ts",
       })
     );
-
     expect(cloudStackFile).toContain(cognitoConstructStatement);
   });
 });

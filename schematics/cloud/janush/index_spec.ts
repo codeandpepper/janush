@@ -1,38 +1,21 @@
-import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
-import { Tree } from "@angular-devkit/schematics";
 import * as path from "path";
-
-import * as janush from "@utility/janush-json";
-import { moduleJanush } from "@mocks/janush";
 import { FileDoesNotExistException } from "@angular-devkit/core";
+import { Tree } from "@angular-devkit/schematics";
+import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
+
+import { moduleJanush } from "@mocks/janush";
+import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
+import * as janush from "@utility/janush-json";
 
 const collectionPath = path.join(__dirname, "../../collection.json");
 
-export const expectedJanushTemplateFiles = [
-  "/cloud/.gitignore",
-  "/cloud/.npmignore",
-  "/cloud/README.md",
-  "/cloud/cdk.json",
-  "/cloud/jest.config.js",
-  "/cloud/package.json",
-  "/cloud/tsconfig.json",
-  "/cloud/.eslintrc.js",
-  "/cloud/.prettierrc.json",
-  "/cloud/bin/janush-app.ts",
-  "/cloud/lib/janush-app-stack.ts",
-  "/cloud/test/janush-app.test.ts",
-  "/cloud/consts/index.ts",
-  "/cloud/enums/EnvName.ts",
-  "/cloud/scripts/test.txt",
-  "/cloud/utils/functions.ts",
-];
-
 describe("cloud.janush", () => {
-  it("should generate all janush files properly", async () => {
+  it("should create files for: [template, janush]", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
-    spyOn(janush, "readJanushJSON").and.returnValue(moduleJanush);
-    spyOn(janush, "updateJanushJSON");
+    jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
+    jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
       .runSchematicAsync(
@@ -46,7 +29,10 @@ describe("cloud.janush", () => {
       .runSchematicAsync("cloud.janush", {}, templateTree)
       .toPromise();
 
-    expect(tree.files).toEqual(expectedJanushTemplateFiles);
+    expect(tree.files).toHaveEqualElements([
+      ...expectedTemplateFiles,
+      ...expectedJanushFiles,
+    ]);
   });
 
   it("should throw not found exception of janush.json", async () => {
