@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -11,9 +12,7 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-
 import { dasherize } from "@angular-devkit/core/src/utils/strings";
-import { strings } from "@angular-devkit/core";
 
 import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-
-import { SignInView } from "@routing/routes/SignIn/SignInView/SignInView";
-import { Paths } from "@routing/paths";
 import { useHistory } from "react-router-dom";
+
+import { Paths } from "@routing/paths";
+import { SignInView } from "@routing/routes/SignIn/SignInView/SignInView";
 import { SignInFormState } from "./SignInView/SignInForm/SignInFormState";
 
 const SignIn: React.VFC = () => {

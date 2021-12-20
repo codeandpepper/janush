@@ -1,10 +1,10 @@
 import React from "react";
-import { Auth } from "aws-amplify";
 import { act, fireEvent, render, screen } from "@testing-library/react";
+import { Auth } from "aws-amplify";
 import { MemoryRouter, Route } from "react-router-dom";
 
-import VerifyEmail from "./VerifyEmail";
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
+import VerifyEmail from "./VerifyEmail";
 
 describe("<VerifyEmail />", () => {
   it("should render email if provided in location state", () => {

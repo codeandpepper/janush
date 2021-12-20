@@ -1,10 +1,9 @@
 import { object, ref, SchemaOf, string } from "yup";
 
-import { validateMaxStringLength } from "@utils/validation/validateMaxStringLength";
-
-import { SignUpFormState } from "./SignUpFormState";
-import { passwordValidation } from "@utils/validation/passwordValidation";
 import { MAX_EMAIL_LENGTH } from "@consts/index";
+import { passwordValidation } from "@utils/validation/passwordValidation";
+import { validateMaxStringLength } from "@utils/validation/validateMaxStringLength";
+import { SignUpFormState } from "./SignUpFormState";
 
 export const signUpFormValidationSchema = (): SchemaOf<SignUpFormState> =>
   <SchemaOf<SignUpFormState>>object({

@@ -1,13 +1,11 @@
-import { Construct } from "constructs";
 import { StackProps } from "aws-cdk-lib";
-
-import { CognitoUserPoolCdkConstruct } from "./cognitoUserPoolCdkConstruct";
-import { CognitoIdentityPoolCdkConstruct } from "./cognitoIdentityPoolCdkConstruct";
-
-import { applyTagsToResource } from "../../utils/functions";
+import { Construct } from "constructs";
 
 import { EnvName } from "../../enums/EnvName";
 import { ServicePurpose } from "../../enums/ServicePurpose";
+import { applyTagsToResource } from "../../utils/functions";
+import { CognitoIdentityPoolCdkConstruct } from "./cognitoIdentityPoolCdkConstruct";
+import { CognitoUserPoolCdkConstruct } from "./cognitoUserPoolCdkConstruct";
 
 interface CognitoProps {
   envName: EnvName;

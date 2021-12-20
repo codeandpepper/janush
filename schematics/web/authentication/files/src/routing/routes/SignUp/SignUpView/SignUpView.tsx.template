@@ -1,17 +1,14 @@
 import React from "react";
+import { Box, Container, Typography } from "@mui/material";
 import { Helmet } from "react-helmet";
 
-import { Paths } from "@routing/paths";
-
-import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
-
 import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
-
-import { SignUpFormState } from "./SignUpForm/SignUpFormState";
-import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
-import { Box, Container, Typography } from "@mui/material";
-import { Nullable } from "@janush-types/useful";
 import { CognitoError } from "@interfaces/Cognito";
+import { Nullable } from "@janush-types/useful";
+import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
+import { Paths } from "@routing/paths";
+import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
+import { SignUpFormState } from "./SignUpForm/SignUpFormState";
 
 interface Props {
   loading: boolean;

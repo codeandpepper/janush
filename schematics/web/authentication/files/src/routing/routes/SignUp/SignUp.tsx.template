@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 
-import { Paths } from "@routing/paths";
-import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
-
-import { SignUpView } from "./SignUpView/SignUpView";
-import { Nullable } from "@janush-types/useful";
 import { CognitoError } from "@interfaces/Cognito";
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
+import { Nullable } from "@janush-types/useful";
+import { Paths } from "@routing/paths";
+import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
+import { SignUpView } from "./SignUpView/SignUpView";
 
 const SignUp: React.VFC = () => {
   const history = useHistory();

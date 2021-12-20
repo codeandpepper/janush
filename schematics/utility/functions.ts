@@ -1,6 +1,6 @@
+import { SchematicsException } from "@angular-devkit/schematics";
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import { getSourceNodes } from "@schematics/angular/utility/ast-utils";
-import { SchematicsException } from "@angular-devkit/schematics";
 
 export const getEndCloseBraceTokenInConstruct = (
   sourceFile: ts.SourceFile,

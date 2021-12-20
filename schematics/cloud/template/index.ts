@@ -1,3 +1,4 @@
+import { strings } from "@angular-devkit/core";
 import {
   apply,
   applyTemplates,
@@ -12,14 +13,11 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { strings } from "@angular-devkit/core";
 
+import { Module } from "@enums/Module";
+import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
-
-import { CloudSchematic, Schematic } from "@enums/Schematic";
-import { Module } from "@enums/Module";
-
 import { Schema } from "./schema";
 
 const isEmptyModules = (options: Schema) => options.modules.length === 0;
