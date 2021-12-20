@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import { createTheme, CssBaseline, Theme, useMediaQuery } from "@mui/material";
-import { StylesProvider, ThemeProvider as MuiProvider } from "@mui/styles";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
 import { getPalette } from "@themes/palette";
 
@@ -16,20 +16,14 @@ interface Props {
 export const ThemeProvider: React.FC<Props> = ({ children }) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: getPalette(prefersDarkMode),
-      }),
-    [prefersDarkMode]
-  );
+  const theme = createTheme({
+    palette: getPalette(prefersDarkMode),
+  });
 
   return (
-    <StylesProvider>
-      <MuiProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MuiProvider>
-    </StylesProvider>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </MuiThemeProvider>
   );
 };
