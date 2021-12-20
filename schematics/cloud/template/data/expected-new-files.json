@@ -7,6 +7,5 @@
   "/cloud/jest.config.js",
   "/cloud/lib/janush-app-stack.ts",
   "/cloud/package.json",
-  "/cloud/test/janush-app.test.ts",
   "/cloud/tsconfig.json"
 ]

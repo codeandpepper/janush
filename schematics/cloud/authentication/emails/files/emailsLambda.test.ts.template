@@ -1,0 +1,121 @@
+import { CustomMessageTriggerEvent } from "aws-lambda";
+import * as AWSMock from "aws-sdk-mock";
+import * as LambdaTester from "lambda-tester";
+
+import { CognitoMessageTriggerSource } from "@enums/CognitoMessageTriggerSource";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+AWSMock.setSDKInstance(require("aws-sdk"));
+
+jest.mock("./utils", () => ({
+  generateEmailFromS3Template: jest
+    .fn()
+    .mockResolvedValue("http://localhost:3000"),
+}));
+
+import { generateCodeLink, handler } from "./emailsLambda";
+
+const basicEvent = {
+  callerContext: { awsSdkVersion: "", clientId: "" },
+  region: "",
+  response: { emailMessage: "", emailSubject: "", smsMessage: "" },
+  userName: "",
+  userPoolId: "",
+  version: "",
+  request: {
+    codeParameter: "{####}",
+    userAttributes: { email: "test@test.com" },
+    usernameParameter: "test",
+  },
+};
+
+process.env.bucketName = "s3Bucket";
+process.env.defaultDomain = "localhost:3000";
+
+describe("authorizationEmailsLambda", () => {
+  describe("generateCodeLink()", () => {
+    it("should generate proper link for resetPassword email", () => {
+      const link = generateCodeLink(
+        CognitoMessageTriggerSource.ForgotPassword,
+        "test@test.com"
+      );
+
+      expect(link).toEqual(
+        "http://localhost:3000/create-new-password?username=test%40test.com&code={####}"
+      );
+    });
+
+    it("should generate proper link for signUp email", () => {
+      const link = generateCodeLink(
+        CognitoMessageTriggerSource.SignUp,
+        "test@test.com"
+      );
+
+      expect(link).toEqual(
+        "http://localhost:3000/confirm-signup?username=test%40test.com&code={####}"
+      );
+    });
+
+    it("should generate proper link for resendVerification email", () => {
+      const link = generateCodeLink(
+        CognitoMessageTriggerSource.ResendCode,
+        "test@test.com"
+      );
+
+      expect(link).toEqual(
+        "http://localhost:3000/confirm-signup?username=test%40test.com&code={####}"
+      );
+    });
+  });
+
+  describe("handler", () => {
+    it(`should properly send ${CognitoMessageTriggerSource.ForgotPassword} email`, async () => {
+      await LambdaTester(handler)
+        .event({
+          ...basicEvent,
+          triggerSource: CognitoMessageTriggerSource.ForgotPassword,
+        })
+        .expectResult((result: CustomMessageTriggerEvent) => {
+          expect(result.response.emailSubject).toEqual(
+            "<%= classify(name) %> | Reset password"
+          );
+        });
+    });
+
+    it("shouldn't send email is user is already verified", async () => {
+      await LambdaTester(handler)
+        .event({
+          ...basicEvent,
+          triggerSource: CognitoMessageTriggerSource.ResendCode,
+          request: {
+            ...basicEvent.request,
+            userAttributes: {
+              ...basicEvent.request.userAttributes,
+              email_verified: "true",
+            },
+          },
+        })
+        .expectError((error: Error) =>
+          expect(error.message).toEqual("User already verified")
+        );
+    });
+
+    [
+      CognitoMessageTriggerSource.SignUp,
+      CognitoMessageTriggerSource.ResendCode,
+    ].forEach((eventName) => {
+      it(`should properly send ${eventName} email`, async () => {
+        await LambdaTester(handler)
+          .event({
+            ...basicEvent,
+            triggerSource: eventName,
+          })
+          .expectResult((result: CustomMessageTriggerEvent) => {
+            expect(result.response.emailSubject).toEqual(
+              "<%= classify(name) %> | Verify account"
+            );
+          });
+      });
+    });
+  });
+});

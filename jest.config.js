@@ -3,7 +3,7 @@ module.exports = {
   preset: "ts-jest",
   maxWorkers: 3,
   testEnvironment: "node",
-  testMatch: ["**/*_spec.ts"],
+  testMatch: ["**/*.test.ts"],
   moduleNameMapper: {
     "@consts(.*)": "<rootDir>/consts/$1",
     "@enums(.*)": "<rootDir>/types/enums/$1",

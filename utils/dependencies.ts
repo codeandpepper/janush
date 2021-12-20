@@ -65,19 +65,34 @@ export const janushTemplateNodeDependencies: NodeDependency[] = [
 export const authenticationEmailsNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
-    name: "mjml",
-    version: "^4.9.3",
+    name: "@types/aws-lambda",
+    version: "^8.10.83",
   },
   {
     type: NodeDependencyType.Dev,
-    name: "@types/aws-lambda",
-    version: "^8.10.83",
+    name: "@types/lambda-tester",
+    version: "^3.6.1",
   },
   {
     type: NodeDependencyType.Default,
     name: "aws-sdk",
     version: "2.995.0",
     overwrite: true,
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "aws-sdk-mock",
+    version: "^5.5.0",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "lambda-tester",
+    version: "^4.0.1",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "mjml",
+    version: "^4.9.3",
   },
 ];
 

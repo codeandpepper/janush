@@ -1,5 +1,6 @@
 [
   "/cloud/enums/ServicePurpose.ts",
+  "/cloud/lib/authentication/authCloudFormation.test.ts",
   "/cloud/lib/authentication/cognitoCdkConstruct.ts",
   "/cloud/lib/authentication/cognitoIdentityPoolCdkConstruct.ts",
   "/cloud/lib/authentication/cognitoUserPoolCdkConstruct.ts"

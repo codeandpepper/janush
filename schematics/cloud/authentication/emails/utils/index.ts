@@ -10,7 +10,7 @@ import { insertImport } from "@schematics/angular/utility/ast-utils";
 
 import { Schematic } from "@enums/Schematic";
 import { InsertChange } from "@schematics/angular/utility/change";
-import { getEndCloseBraceTokenInConstruct } from "@utility/functions";
+import { getEndCloseBraceTokenInConstructor } from "@utility/helpers";
 
 interface CognitoConstructChangeRules {
   importChange: InsertChange;
@@ -60,7 +60,8 @@ const addEmailsConstructToCognitoConstructRules = (
     true
   );
 
-  const stackEndCloseBraceToken = getEndCloseBraceTokenInConstruct(sourceFile);
+  const stackEndCloseBraceToken =
+    getEndCloseBraceTokenInConstructor(sourceFile);
 
   const constructChange = new InsertChange(
     context.cognitoUserPoolConstructPath,

@@ -9,6 +9,7 @@
     "prepare": "npm run build",
     "build": "tsc && tsc-alias --silent",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "npm run build && jest --watch --no-cache",
     "create": "npm run build && schematics .:application",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",

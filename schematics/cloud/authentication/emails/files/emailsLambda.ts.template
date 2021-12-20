@@ -12,7 +12,7 @@ const s3 = new S3();
  * @param eventType   - Type of event to handle
  * @param email       - Email address
  */
-const generateCodeLink = (
+export const generateCodeLink = (
   eventType: CognitoMessageTriggerSource,
   email: string
 ): string => {
@@ -68,7 +68,7 @@ export const handler: CustomMessageTriggerHandler = async (
       event.response.emailMessage = await generateEmailFromS3Template(
         s3,
         EmailTemplate.EMAIL_VERIFICATION,
-        [[/%ACTIVATION%/g, activationLink || "https://seems-to-be-empty.com"]]
+        [[/%ACTIVATION%/g, activationLink]]
       );
     } else if (triggerSource === CognitoMessageTriggerSource.ForgotPassword) {
       const {

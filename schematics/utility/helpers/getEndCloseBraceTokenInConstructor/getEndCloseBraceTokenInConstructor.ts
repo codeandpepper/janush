@@ -2,7 +2,7 @@ import { SchematicsException } from "@angular-devkit/schematics";
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import { getSourceNodes } from "@schematics/angular/utility/ast-utils";
 
-export const getEndCloseBraceTokenInConstruct = (
+export const getEndCloseBraceTokenInConstructor = (
   sourceFile: ts.SourceFile,
   errorMessage: string = "It is impossible to add construct to your stack."
 ): ts.Node => {
@@ -25,16 +25,4 @@ export const getEndCloseBraceTokenInConstruct = (
   }
 
   return stackConstructorNodeBlockCloseBraceToken;
-};
-
-export const showTree = (node: ts.Node, indent: string = "    "): void => {
-  console.log(indent + ts.SyntaxKind[node.kind]);
-
-  if (node.getChildCount() === 0) {
-    console.log(indent + "    Text: " + node.getText());
-  }
-
-  for (let child of node.getChildren()) {
-    showTree(child, indent + "    ");
-  }
 };
