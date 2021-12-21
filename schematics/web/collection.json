@@ -13,9 +13,15 @@
     },
     "web.authentication": {
       "aliases": ["web.auth"],
-      "description": "auth structure for web app",
+      "description": "Auth structure for web app",
       "factory": "./authentication/index#webAuthenticationGenerator",
       "schema": "./authentication/schema.json"
+    },
+    "web.e2e": {
+      "aliases": ["web.e2e"],
+      "description": "E2E test for web app",
+      "factory": "./authentication/index#webAuthenticationGenerator",
+      "schema": "./e2e/schema.json"
     }
   }
 }
