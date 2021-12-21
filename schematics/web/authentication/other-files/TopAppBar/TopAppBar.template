@@ -1,6 +1,6 @@
 {user ? (
           <Button
-            data-testid="sign-out-button-on-app-bar"
+            data-testid="sign-out-button-in-top-app-bar"
             onClick={signOut}
             color="inherit"
           >
@@ -8,7 +8,7 @@
           </Button>
         ) : (
           <Button
-            data-testid="sign-in-button-on-app-bar"
+            data-testid="sign-in-button-in-top-app-bar"
             component={NavLink}
             to={Paths.SIGN_IN_PATH}
             color="inherit"

@@ -50,6 +50,7 @@ const VerifyEmail: React.VFC = () => {
           <Box pt={1.1} pb={1.3} my={1.5}>
             <Typography
               variant="body1"
+              data-testid="email-on-verify-email-page"
               color="primary"
               className={classes.email}
             >
@@ -88,7 +89,7 @@ const VerifyEmail: React.VFC = () => {
                 <Button
                   color="primary"
                   variant="text"
-                  data-testid="back-to-sigg-in-button"
+                  data-testid="back-to-sign-in-button"
                   fullWidth
                 >
                   Back to sign in page

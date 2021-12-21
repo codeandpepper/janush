@@ -1,0 +1,7 @@
+# Cypress artifacts
+/reports
+/screenshots
+/videos
+
+# Envs
+.env.test

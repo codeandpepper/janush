@@ -8,13 +8,13 @@ import { SignUpFormState } from "./SignUpFormState";
 export const signUpFormValidationSchema = (): SchemaOf<SignUpFormState> =>
   <SchemaOf<SignUpFormState>>object({
     email: string()
-      .required("Field required")
-      .email("Email required")
+      .required("Email is a required field")
+      .email("Email is not correct")
       .test("Maximum email length", (v) =>
         validateMaxStringLength(v, MAX_EMAIL_LENGTH)
       ),
     password: passwordValidation(),
     confirmPassword: string()
-      .required("Field required")
+      .required("Password is a required field")
       .oneOf([ref("password"), null], "Passwords must match"),
   });

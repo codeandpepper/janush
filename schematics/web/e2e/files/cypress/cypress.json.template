@@ -1,0 +1,23 @@
+{
+  "defaultCommandTimeout": 12000,
+  "requestTimeout": 20000,
+  "responseTimeout": 20000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "video": false,
+  "scrollBehavior": "center",
+  "chromeWebSecurity": false,
+  "watchForFileChanges": false,
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  },
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/reports/mochawesome/single-specs",
+    "reportFilename": "spec",
+    "html": false,
+    "json": true,
+    "timestamp": "dd-mm-yyyy_HH-MM-ss"
+  }
+}

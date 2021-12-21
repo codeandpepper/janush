@@ -27,6 +27,9 @@ export const EmailField = ({
           <Mail color="primary" />
         </InputAdornment>
       ),
+      inputProps: {
+        "data-testid": "email-input-field",
+      },
     }}
     {...restProps}
   />

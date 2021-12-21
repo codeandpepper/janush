@@ -70,6 +70,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
           <PasswordField
             onChange={field.onChange}
             errorMessage={formState.errors.password?.message}
+            dataTestId="password-input-field"
             ariaControls="password"
             label="Password"
             placeholder="Password"
@@ -84,6 +85,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
           <PasswordField
             onChange={field.onChange}
             errorMessage={formState.errors.password?.message}
+            dataTestId="confirm-password-input-field"
             ariaControls="confirm-password"
             label="Confirm Password"
             placeholder="Confirm Password"

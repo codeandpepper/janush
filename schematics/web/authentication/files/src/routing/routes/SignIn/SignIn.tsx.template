@@ -27,7 +27,7 @@ const SignIn: React.VFC = () => {
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setError(e.message);
+      setError("Incorrect email or password");
     } finally {
       setLoading(false);
     }
