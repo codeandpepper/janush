@@ -1,19 +1,15 @@
 {
   "$id": "E2ESchematics",
-  "title": "E2E module",
+  "title": "E2E Options schema",
   "type": "object",
-  "description": "Creates E2E tests",
+  "description": "Checks, if should proceed with E2E schematics",
   "properties": {
-    "e2eModule": {
-      "description": "Modules",
-      "uniqueItems": true,
-      "default": ["Cypress"],
-      "x-prompt": {
-        "message": "Which tool do you want to use to automate e2e tests? You can add this later.",
-        "type": "list",
-        "items": ["Cypress"]
-      }
+    "e2e": {
+      "type": "boolean",
+      "description": "E2E tests",
+      "default": true,
+      "x-prompt": "[WEB] Do you want to have E2E tests included?"
     }
   },
-  "required": ["e2eModule"]
+  "required": ["e2e"]
 }

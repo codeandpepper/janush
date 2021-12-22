@@ -15,5 +15,9 @@ export enum WebSchematic {
   TEMPLATE = "web.template",
   JANUSH = "web.janush",
   AUTHENTICATION = "web.authentication",
-  E2E = "web.e2e",
+}
+
+export enum WebE2ESchematic {
+  PROMPT = "web.e2e.prompt",
+  FRAMEWORK = "web.e2e.framework",
 }

@@ -15,16 +15,13 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Module } from "@enums/Module";
-import { Schematic, WebSchematic } from "@enums/Schematic";
+import { Schematic, WebE2ESchematic, WebSchematic } from "@enums/Schematic";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
 
 import { Schema } from "./schema";
 
 const isEmptyModules = (options: Schema) => options.modules.length === 0;
-const isAuthenticationModule = (options: Schema) =>
-  options.modules.includes(Module.AUTHENTICATION);
-const isE2EModule = (options: Schema) => options.e2e;
 
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -38,9 +35,10 @@ export const webTemplateGenerator = (options: Schema): Rule => {
       _context.addTask(installDependencies(workingDirectory), []);
     }
 
+    const isAuth = options.modules.includes(Module.AUTHENTICATION);
+
     if (!isEmptyModules(options)) {
-      janushFile.web.module[Module.AUTHENTICATION] =
-        isAuthenticationModule(options);
+      janushFile.web.module[Module.AUTHENTICATION] = isAuth;
       updateJanushJSON(tree, janushFile);
     }
 
@@ -64,10 +62,10 @@ export const webTemplateGenerator = (options: Schema): Rule => {
             name: options.name,
           })
         : noop(),
-      isAuthenticationModule(options)
-        ? schematic(WebSchematic.AUTHENTICATION, options)
+      isAuth ? schematic(WebSchematic.AUTHENTICATION, options) : noop(),
+      [isAuth].some(Boolean)
+        ? schematic(WebE2ESchematic.PROMPT, options)
         : noop(),
-      isE2EModule(options) ? schematic(WebSchematic.E2E, options) : noop(),
       schematic("apply-prettier", {}),
     ]);
   };

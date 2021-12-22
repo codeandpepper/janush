@@ -1,0 +1,19 @@
+{
+  "$id": "E2ESchematics",
+  "title": "E2E module",
+  "type": "object",
+  "description": "Creates E2E tests",
+  "properties": {
+    "e2eModule": {
+      "description": "Modules",
+      "uniqueItems": true,
+      "default": ["Cypress"],
+      "x-prompt": {
+        "message": "[WEB] Which tool do you want to use to automate e2e tests? You can add this later.",
+        "type": "list",
+        "items": ["Cypress"]
+      }
+    }
+  },
+  "required": ["e2eModule"]
+}

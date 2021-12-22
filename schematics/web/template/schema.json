@@ -10,16 +10,10 @@
       "uniqueItems": true,
       "default": ["authentication"],
       "x-prompt": {
-        "message": "Which modules would you like to use? You can add this later.",
+        "message": "[WEB] Which modules would you like to use? You can add this later.",
         "type": "list",
         "items": ["authentication"]
       }
-    },
-    "e2e": {
-      "type": "boolean",
-      "description": "E2E tests",
-      "default": true,
-      "x-prompt": "Do you want to have E2E tests included?"
     },
     "skipInstall": {
       "type": "boolean",
@@ -27,5 +21,5 @@
       "default": false
     }
   },
-  "required": ["name", "e2e"]
+  "required": ["name"]
 }

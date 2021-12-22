@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "web.e2e.prompt": {
+      "description": "A blank web application.",
+      "factory": "./index#e2eGate",
+      "schema": "./schema.json"
+    },
+    "web.e2e.framework": {
+      "description": "A basic janush web codebase.",
+      "factory": "./framework/index#e2eFrameworkGenerator",
+      "schema": "./framework/schema.json"
+    }
+  }
+}
