@@ -7,6 +7,7 @@ import {
   mergeWith,
   move,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -18,7 +19,7 @@ import { Schematic } from "@enums/Schematic";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { e2eCypressDependencies } from "@utils/dependencies";
 import { Schema } from "./schema";
-import { e2eChanges } from "./utils";
+import { updatePackageJson } from "./utils/updatePackageJson";
 
 export const cypressTestsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -38,7 +39,8 @@ export const cypressTestsGenerator = (options: Schema): Rule => {
           ]),
           MergeStrategy.Overwrite
         ),
-        ...e2eChanges(),
+        updatePackageJson(),
+        schematic("apply-prettier", {}),
       ]);
     }
 
