@@ -15,11 +15,17 @@
         "items": ["authentication"]
       }
     },
+    "e2e": {
+      "type": "boolean",
+      "description": "E2E tests",
+      "default": true,
+      "x-prompt": "Do you want to have E2E tests included?"
+    },
     "skipInstall": {
       "type": "boolean",
       "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     }
   },
-  "required": ["name"]
+  "required": ["name", "e2e"]
 }

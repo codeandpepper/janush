@@ -1,11 +1,10 @@
 {
-  "$id": "ApplicationSchematics",
-  "title": "Application Options Schema",
+  "$id": "E2ESchematics",
+  "title": "E2E module",
   "type": "object",
-  "description": "Creates application",
+  "description": "Creates E2E tests",
   "properties": {
-    "modules": {
-      "type": "array",
+    "e2eModule": {
       "description": "Modules",
       "uniqueItems": true,
       "default": ["Cypress"],
@@ -14,12 +13,7 @@
         "type": "list",
         "items": ["Cypress"]
       }
-    },
-    "skipInstall": {
-      "type": "boolean",
-      "description": "A boolean value that will decide to download all dependencies.",
-      "default": false
     }
   },
-  "required": ["name"]
+  "required": ["e2eModule"]
 }

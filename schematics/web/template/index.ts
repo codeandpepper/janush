@@ -24,6 +24,7 @@ import { Schema } from "./schema";
 const isEmptyModules = (options: Schema) => options.modules.length === 0;
 const isAuthenticationModule = (options: Schema) =>
   options.modules.includes(Module.AUTHENTICATION);
+const isE2EModule = (options: Schema) => options.e2e;
 
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -66,6 +67,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
       isAuthenticationModule(options)
         ? schematic(WebSchematic.AUTHENTICATION, options)
         : noop(),
+      isE2EModule(options) ? schematic(WebSchematic.E2E, options) : noop(),
       schematic("apply-prettier", {}),
     ]);
   };

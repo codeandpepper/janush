@@ -13,37 +13,33 @@ import {
 } from "@angular-devkit/schematics";
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
+import { E2ERunner } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
-import { readJanushJSON } from "@utility/janush-json";
-import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
-import { authenticationChanges } from "../../web/authentication/utils";
-import { Schema } from "../authentication/schema";
+import { e2eCypressDependencies } from "@utils/dependencies";
+import { Schema } from "./schema";
 
-export const webAuthenticationGenerator = (options: Schema): Rule => {
+export const cypressTestsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    const janushFile = readJanushJSON(tree);
+    if (options.e2eModule === E2ERunner.CYPRESS) {
+      for (let nodeDependency of e2eCypressDependencies) {
+        addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
+      }
 
-    const name = strings.dasherize(janushFile.name);
-
-    options.name = name;
-
-    for (let nodeDependency of webJanushAuthenticationNodeDependencies) {
-      addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
+      return chain([
+        mergeWith(
+          apply(url("./files"), [
+            applyTemplates({
+              ...options,
+              ...strings,
+            }),
+            move(Schematic.WEB),
+          ]),
+          MergeStrategy.Default
+        ),
+      ]);
     }
 
-    return chain([
-      mergeWith(
-        apply(url("./files"), [
-          applyTemplates({
-            ...options,
-            ...strings,
-          }),
-          move(Schematic.WEB),
-        ]),
-        MergeStrategy.Overwrite
-      ),
-      ...authenticationChanges(name),
-    ]);
+    return tree;
   };
 };

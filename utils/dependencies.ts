@@ -120,3 +120,11 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
     version: "^6.1.2",
   },
 ];
+
+export const e2eCypressDependencies: NodeDependency[] = [
+  {
+    type: NodeDependencyType.Dev,
+    name: "cypress",
+    version: "^9.2.0",
+  },
+];

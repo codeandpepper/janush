@@ -19,7 +19,7 @@
     },
     "web.e2e": {
       "description": "E2E test for web app",
-      "factory": "./authentication/index#webAuthenticationGenerator",
+      "factory": "./e2e/index#cypressTestsGenerator",
       "schema": "./e2e/schema.json"
     }
   }
