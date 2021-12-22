@@ -124,7 +124,52 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
 export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
+    name: "@cypress/code-coverage",
+    version: "^3.9.12",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@cypress/instrument-cra",
+    version: "^1.4.0",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/faker",
+    version: "^5.5.9",
+  },
+  {
+    type: NodeDependencyType.Dev,
     name: "cypress",
     version: "^9.2.0",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "dotenv",
+    version: "^10.0.0",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "eslint-plugin-cypress",
+    version: "^2.12.1",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "faker",
+    version: "^5.5.3",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "mochawesome",
+    version: "^7.0.1",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "mochawesome-merge",
+    version: "^4.2.1",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "mochawesome-report-generator",
+    version: "^6.0.1",
   },
 ];
