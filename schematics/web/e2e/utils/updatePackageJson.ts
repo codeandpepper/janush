@@ -1,4 +1,4 @@
-import { Rule, Tree } from "@angular-devkit/schematics";
+import { Tree } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
 
@@ -40,8 +40,4 @@ export const updatePackageJson = () => {
 
     return tree;
   };
-};
-
-export const e2eChanges = (): Rule[] => {
-  return [updatePackageJson()];
 };
