@@ -18,6 +18,7 @@ import { Schematic } from "@enums/Schematic";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { e2eCypressDependencies } from "@utils/dependencies";
 import { Schema } from "./schema";
+import { e2eChanges } from "./utils";
 
 export const cypressTestsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -35,8 +36,9 @@ export const cypressTestsGenerator = (options: Schema): Rule => {
             }),
             move(Schematic.WEB),
           ]),
-          MergeStrategy.Default
+          MergeStrategy.Overwrite
         ),
+        ...e2eChanges(),
       ]);
     }
 

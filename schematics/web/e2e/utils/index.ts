@@ -1,5 +1,4 @@
 import {
-  FileDoesNotExistException,
   Rule,
   Tree,
 } from "@angular-devkit/schematics";
@@ -9,15 +8,13 @@ import { getSourceNodes } from "@schematics/angular/utility/ast-utils";
 import { Schematic } from "@enums/Schematic";
 import { InsertChange } from "@schematics/angular/utility/change";
 
-export const changePackageJson = (projectName: string) => {
+export const changePackageJson = () => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/package.json`;
     let fileContent = tree.read(filePath);
 
     const fileContentAsSourceCode =
       fileContent && fileContent.toString("utf-8");
-
-    if (!fileContent) throw new FileDoesNotExistException(projectName);
 
     const modifiedFileToSave = ts.createSourceFile(
       filePath,
@@ -40,11 +37,11 @@ export const changePackageJson = (projectName: string) => {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         scripts.getEnd() + 4,
-        '"cy:lint": "eslint --ext .ts ./cypress --color",\n' +
-          '"cy:format": "prettier --ignore-path ./cypress/.prettierignore --write \"./cypress/**/*.{ts,json}\"",\n' +
-          '"cy:open": "cypress open --config-file ./cypress/cypress.json",\n' +
-          '"cy:run": "node ./cypress/scripts/cypress-run.js",\n' +
-          '"cy:coverage:start": "react-app-rewired -r @cypress/instrument-cra start",\n'
+          '      "cy:lint": "eslint --ext .ts ./cypress --color",\n' +
+          '      "cy:format": "prettier --ignore-path ./cypress/.prettierignore --write ./cypress/**/*.{ts,json}",\n' +
+          '      "cy:open": "cypress open --config-file ./cypress/cypress.json",\n' +
+          '      "cy:run": "node ./cypress/scripts/cypress-run.js",\n' +
+          '      "cy:coverage:start": "react-app-rewired -r @cypress/instrument-cra start",\n'
       );
 
       updatedTree.insertLeft(
@@ -59,6 +56,6 @@ export const changePackageJson = (projectName: string) => {
   };
 };
 
-export const authenticationChanges = (name: string): Rule[] => {
-  return [changePackageJson(name)];
+export const e2eChanges = (): Rule[] => {
+  return [changePackageJson()];
 };
