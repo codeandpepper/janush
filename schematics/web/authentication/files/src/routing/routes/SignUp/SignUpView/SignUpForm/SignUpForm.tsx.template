@@ -9,8 +9,8 @@ import { PasswordField } from "@components/PasswordField/PasswordField";
 import { CognitoError } from "@interfaces/Cognito";
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
 import { Nullable } from "@janush-types/useful";
-import { SignUpFormState } from "./SignUpFormState";
-import { signUpFormValidationSchema } from "./signUpFormValidationSchema";
+import { SignUpFormState } from "./formState";
+import { formValidationSchema } from "./formValidationSchema";
 
 import { useStyles } from "./styles";
 
@@ -31,7 +31,7 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
 
   const { control, handleSubmit, formState, setError } =
     useForm<SignUpFormState>({
-      resolver: yupResolver(signUpFormValidationSchema()),
+      resolver: yupResolver(formValidationSchema()),
       defaultValues,
     });
 
@@ -70,11 +70,11 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
           <PasswordField
             onChange={field.onChange}
             errorMessage={formState.errors.password?.message}
-            dataTestId="password-input-field"
             ariaControls="password"
             label="Password"
             placeholder="Password"
             autoComplete="new-password"
+            dataTestId="password"
           />
         )}
       />
@@ -84,12 +84,12 @@ export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
         render={({ field }) => (
           <PasswordField
             onChange={field.onChange}
-            errorMessage={formState.errors.password?.message}
-            dataTestId="confirm-password-input-field"
+            errorMessage={formState.errors.confirmPassword?.message}
             ariaControls="confirm-password"
             label="Confirm Password"
             placeholder="Confirm Password"
             autoComplete="new-password"
+            dataTestId="confirm-password"
           />
         )}
       />
