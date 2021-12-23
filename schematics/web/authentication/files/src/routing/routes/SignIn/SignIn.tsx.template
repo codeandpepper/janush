@@ -24,10 +24,13 @@ const SignIn: React.VFC = () => {
       history.push(Paths.BASE, {
         email,
       });
-    } catch (e) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setError("Incorrect email or password");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      if (err.code === "NotAuthorizedException") {
+        return setError("Incorrect email or password");
+      }
+
+      setError(err.message);
     } finally {
       setLoading(false);
     }
