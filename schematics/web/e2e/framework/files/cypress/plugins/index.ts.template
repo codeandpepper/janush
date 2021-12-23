@@ -6,9 +6,6 @@ import codeCoverageTask from "@cypress/code-coverage/task";
 dotenv.config({ path: "./cypress/.env.test" });
 
 export default (on: any, config: any) => {
-  config.baseUrl = process.env.BASE_URL;
-  config.env.default_password = process.env.DEFAULT_PASSWORD;
-
   config = codeCoverageTask(on, config);
   return config;
 };

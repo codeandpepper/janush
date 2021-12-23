@@ -1,11 +1,4 @@
-# E2E tests
-
 ## Running E2E tests
-
-### Setup env variables for tests
-
-1. Copy example env file: `cp ./cypress/.env.test.example ./cypress/.env.test`
-2. Populate it with your own values
 
 #### Run Cypress tests in the graphical mode:
 

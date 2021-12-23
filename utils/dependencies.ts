@@ -144,11 +144,6 @@ export const e2eCypressDependencies: NodeDependency[] = [
   },
   {
     type: NodeDependencyType.Dev,
-    name: "dotenv",
-    version: "^10.0.0",
-  },
-  {
-    type: NodeDependencyType.Dev,
     name: "eslint-plugin-cypress",
     version: "^2.12.1",
   },
