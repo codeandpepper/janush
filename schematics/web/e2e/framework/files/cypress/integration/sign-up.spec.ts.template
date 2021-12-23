@@ -57,7 +57,16 @@ describe("Sign up page test suite", () => {
     cy.checkThatURLContains("/sign-up");
   });
 
+  it("User is not able to sign up when confirm password is missing", () => {
+    cy.typeText(authSelectors.inputs.password, user.password.correct);
+    cy.clearElement(authSelectors.inputs.confirmPassword);
+    cy.clickOn(authSelectors.buttons.signUp);
+    cy.checkValidation("Password is a required field");
+    cy.checkThatURLContains("/sign-up");
+  });
+
   it("User is not able to sign up when password is too short", () => {
+    cy.typeText(authSelectors.inputs.confirmPassword, user.password.correct);
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.tooShort);
     cy.checkValidation("Your password should contain at least 10 characters");
@@ -95,6 +104,14 @@ describe("Sign up page test suite", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.withoutDigits);
     cy.checkValidation("Your password should contain digits");
+    cy.checkThatURLContains("/sign-up");
+  });
+
+  it("User is not able to sign up when passwords are no the same", () => {
+    cy.clearElement(authSelectors.inputs.password);
+    cy.typeText(authSelectors.inputs.password, "Qwerty12345");
+    cy.clickOn(authSelectors.buttons.signUp);
+    cy.checkValidation("Passwords must match");
     cy.checkThatURLContains("/sign-up");
   });
 
