@@ -8,7 +8,7 @@ import { Nullable } from "@janush-types/useful";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
 import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
-import { SignUpFormState } from "./SignUpForm/SignUpFormState";
+import { SignUpFormState } from "./SignUpForm/formState";
 
 interface Props {
   loading: boolean;

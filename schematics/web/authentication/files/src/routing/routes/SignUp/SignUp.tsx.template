@@ -6,7 +6,7 @@ import { CognitoError } from "@interfaces/Cognito";
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
 import { Nullable } from "@janush-types/useful";
 import { Paths } from "@routing/paths";
-import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpFormState";
+import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/formState";
 import { SignUpView } from "./SignUpView/SignUpView";
 
 const SignUp: React.VFC = () => {
