@@ -6,8 +6,9 @@ on:
       - main
       - cicd
       - prettier-check-68
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - add-cypress-tests-to-web-app-prz-tests
+  # pull_request:
+  #   types: [opened, synchronize, reopened]
 
 jobs:
   prettier-check:
@@ -47,7 +48,7 @@ jobs:
       - name: Link npm package
         run: npm link
       - name: Generate application
-        run: janush --name=janush-app --types={web,cloud} --modules={authentication,} --skipInstall
+        run: janush --name=janush-app --types={web,cloud} --modules={authentication,} --e2e=false --skipInstall
       - name: Upload generated application
         uses: actions/upload-artifact@master
         with:
