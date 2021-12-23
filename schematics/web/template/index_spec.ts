@@ -19,7 +19,11 @@ describe("web", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const tree = await runner
-      .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
+      .runSchematicAsync(
+        "web",
+        { name: "janush-app", e2e: false },
+        Tree.empty()
+      )
       .toPromise();
 
     expect(tree.files).toHaveEqualElements([
@@ -34,7 +38,11 @@ describe("web", () => {
     let thrownError: FileDoesNotExistException | null = null;
     try {
       await runner
-        .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
+        .runSchematicAsync(
+          "web",
+          { name: "janush-app", e2e: false },
+          Tree.empty()
+        )
         .toPromise();
     } catch (err) {
       thrownError = err;

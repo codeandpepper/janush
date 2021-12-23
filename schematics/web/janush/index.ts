@@ -15,9 +15,8 @@ import {
 
 import { Schematic } from "@enums/Schematic";
 import { readJanushJSON } from "@utility/janush-json";
-import { Schema } from "./schema";
 
-export const webJanushGenerator = (options: Schema): Rule => {
+export const webJanushGenerator = (options: any): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
