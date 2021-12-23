@@ -15,7 +15,7 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Module } from "@enums/Module";
-import { Schematic, WebSchematic } from "@enums/Schematic";
+import { Schematic, WebE2ESchematic, WebSchematic } from "@enums/Schematic";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
 
@@ -63,9 +63,9 @@ export const webTemplateGenerator = (options: Schema): Rule => {
           })
         : noop(),
       isAuth ? schematic(WebSchematic.AUTHENTICATION, options) : noop(),
-      // [isAuth].some(Boolean)
-      //   ? schematic(WebE2ESchematic.PROMPT, options)
-      //   : noop(),
+      [isAuth].some(Boolean)
+        ? schematic(WebE2ESchematic.PROMPT, options)
+        : noop(),
       schematic("apply-prettier", {}),
     ]);
   };
