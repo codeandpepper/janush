@@ -14,6 +14,8 @@ interface Options {
   skipInstall?: boolean;
   types?: string[];
   modules?: string[];
+  e2e?: boolean;
+  e2eModule?: string;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -25,6 +27,8 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--skipInstall": Boolean,
       "--types": [String],
       "--modules": [String],
+      "--e2e": Boolean,
+      "--e2eModule": String,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
@@ -44,6 +48,8 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     skipInstall: args["--skipInstall"],
     types: args["--types"],
     modules: args["--modules"],
+    e2e: args["--e2e"],
+    e2eModule: args["--e2eModule"],
   };
 }
 
@@ -54,6 +60,9 @@ function encodeCommand(command: string, options: Options) {
     }
     if (key === SKIP_INSTALL) {
       return prev + ` --skipInstall`;
+    }
+    if (key === "e2e") {
+      return prev + ` --e2e`;
     }
     if (Array.isArray(value)) {
       return (

@@ -21,7 +21,7 @@ describe("web", () => {
     const tree = await runner
       .runSchematicAsync(
         "web",
-        { name: "janush-app", modules: ["authentication"] },
+        { name: "janush-app", modules: ["authentication"], e2e: false },
         Tree.empty()
       )
       .toPromise();
@@ -56,7 +56,11 @@ describe("web", () => {
     let thrownError: FileDoesNotExistException | null = null;
     try {
       await runner
-        .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
+        .runSchematicAsync(
+          "web",
+          { name: "janush-app", e2e: false },
+          Tree.empty()
+        )
         .toPromise();
     } catch (err) {
       thrownError = err;

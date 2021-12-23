@@ -56,13 +56,20 @@ export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
             onChange={field.onChange}
             errorMessage={errors.password?.message}
             ariaControls="password"
+            dataTestId="password-input-field"
             label="Password"
             placeholder="Password"
             autoComplete="current-password"
           />
         )}
       />
-      <Typography color="error" align="center" mt={1} fontSize={14}>
+      <Typography
+        data-testid="incorrect-email-or-password"
+        color="error"
+        align="center"
+        mt={1}
+        fontSize={14}
+      >
         {error ? error : " "}
       </Typography>
       <Box display="flex" flexDirection="row" alignItems="center" mt={2}>

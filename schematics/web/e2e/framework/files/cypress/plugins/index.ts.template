@@ -1,0 +1,11 @@
+import dotenv from "dotenv";
+
+// @ts-ignore
+import codeCoverageTask from "@cypress/code-coverage/task";
+
+dotenv.config({ path: "./cypress/.env.test" });
+
+export default (on: any, config: any) => {
+  config = codeCoverageTask(on, config);
+  return config;
+};

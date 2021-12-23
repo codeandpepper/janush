@@ -12,7 +12,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "Application name?"
+      "x-prompt": "Application name:"
     },
     "types": {
       "type": "array",

@@ -42,6 +42,7 @@ describe("application", () => {
           name,
           types: ["web"],
           modules: ["authentication"],
+          e2e: false,
         },
         Tree.empty()
       )
@@ -84,6 +85,7 @@ describe("application", () => {
           name,
           types: ["cloud", "web"],
           modules: ["authentication"],
+          e2e: false,
         },
         Tree.empty()
       )

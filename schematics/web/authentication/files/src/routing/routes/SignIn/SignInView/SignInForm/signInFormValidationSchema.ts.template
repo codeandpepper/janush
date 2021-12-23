@@ -7,13 +7,13 @@ import { SignInFormState } from "./SignInFormState";
 export const signInFormValidationSchema = (): SchemaOf<SignInFormState> =>
   <SchemaOf<SignInFormState>>object({
     email: string()
-      .required("Field required")
-      .email("Email not correct")
+      .required("Email is a required field")
+      .email("Email is not correct")
       .test("Maximum email length", "Email too long", (v) =>
         validateMaxStringLength(v, MAX_EMAIL_LENGTH)
       ),
     password: string()
-      .required("Field required")
+      .required("Password is a required field")
       .test("Maximum password length", "Password too long", (v) =>
         validateMaxStringLength(v, MAX_PASSWORD_LENGTH)
       ),

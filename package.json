@@ -27,7 +27,7 @@
   },
   "author": "",
   "license": "MIT",
-  "schematics": "@codeandpepper/janush/schematics/collection.json",
+  "schematics": "./schematics/collection.json",
   "dependencies": {
     "@angular-devkit/core": "^12.2.4",
     "@angular-devkit/schematics": "^12.2.4",

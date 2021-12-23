@@ -13,7 +13,7 @@
       "type": "boolean",
       "description": "Email custom messages trigger",
       "default": true,
-      "x-prompt": "Do you want add an auth emails template?"
+      "x-prompt": "[CLOUD] Do you want add an auth emails template?"
     }
   }
 }

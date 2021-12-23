@@ -23,6 +23,7 @@ describe("web", () => {
         {
           name: "janush-app",
           modules: ["random-module-so-janush-make-sense-to-exist"],
+          e2e: false,
         },
         Tree.empty()
       )

@@ -8,14 +8,14 @@
     },
     "web.janush": {
       "description": "A basic janush web codebase.",
-      "factory": "./janush/index#webJanushGenerator",
-      "schema": "./janush/schema.json"
+      "factory": "./janush/index#webJanushGenerator"
     },
     "web.authentication": {
       "aliases": ["web.auth"],
-      "description": "auth structure for web app",
+      "description": "Auth structure for web app",
       "factory": "./authentication/index#webAuthenticationGenerator",
       "schema": "./authentication/schema.json"
     }
-  }
+  },
+  "extends": ["./e2e/collection.json"]
 }

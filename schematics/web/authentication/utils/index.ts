@@ -371,11 +371,11 @@ export const changePackageJson = (projectName: string) => {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         moduleNameMapper.getEnd() + 4,
-        '"@components/(.*)": "<rootDir>/src/components/$1",\n' +
-          '      "@consts/(.*)": "<rootDir>/src/consts/$1",\n' +
-          '      "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",\n' +
-          '      "@janush-types/(.*)": "<rootDir>/src/types/$1",\n' +
-          '      "@utils/(.*)": "<rootDir>/src/utils/$1",\n'
+        '        "@components/(.*)": "<rootDir>/src/components/$1",\n' +
+          '        "@consts/(.*)": "<rootDir>/src/consts/$1",\n' +
+          '        "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",\n' +
+          '        "@janush-types/(.*)": "<rootDir>/src/types/$1",\n' +
+          '        "@utils/(.*)": "<rootDir>/src/utils/$1",\n'
       );
 
       updatedTree.insertLeft(

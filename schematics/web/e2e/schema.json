@@ -1,0 +1,15 @@
+{
+  "$id": "E2ESchematics",
+  "title": "E2E Options schema",
+  "type": "object",
+  "description": "Checks, if should proceed with E2E schematics",
+  "properties": {
+    "e2e": {
+      "type": "boolean",
+      "description": "E2E tests",
+      "default": true,
+      "x-prompt": "[WEB] Do you want to have E2E tests included?"
+    }
+  },
+  "required": ["e2e"]
+}

@@ -10,7 +10,7 @@
       "uniqueItems": true,
       "default": ["authentication"],
       "x-prompt": {
-        "message": "Which modules would you like to use? You can add this later.",
+        "message": "[WEB] Which modules would you like to use? You can add this later.",
         "type": "list",
         "items": ["authentication"]
       }
