@@ -9,7 +9,8 @@ Cypress.Commands.add("fillSignUpForm", (email: string, password: string) => {
   cy.typeText(authSelectors.inputs.password, password);
   cy.typeText(authSelectors.inputs.confirmPassword, password);
 }),
-  Cypress.Commands.add("fillSignInForm", (email: string, password: string) => {
+
+Cypress.Commands.add("fillSignInForm", (email: string, password: string) => {
     cy.getByDataTestId(authSelectors.inputs.email).clear().type(email);
     cy.getByDataTestId(authSelectors.inputs.password).clear().type(password);
   });
