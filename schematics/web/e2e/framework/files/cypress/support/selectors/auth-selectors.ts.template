@@ -5,7 +5,7 @@ export const authSelectors = {
     confirmPassword: "confirm-password-input-field",
   },
   buttons: {
-    showPassword: "password-input-field-show-icon",
+    showPassword: "password-show-icon",
     showConfirmPassword: "confirm-password-show-icon",
     signUp: "sign-up-button",
     signIn: "sign-in-button",

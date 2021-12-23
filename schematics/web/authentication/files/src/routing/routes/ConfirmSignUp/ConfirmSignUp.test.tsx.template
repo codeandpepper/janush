@@ -32,6 +32,7 @@ beforeEach(() => {
 
 describe("ConfirmSignUp", () => {
   it("should inform user about the processing", () => {
+    Auth.confirmSignUp = jest.fn();
     const env = setup();
 
     env.getByText("Please wait...");

@@ -34,7 +34,7 @@ describe("Form", () => {
 
     await waitFor(() =>
       expect(form.getByTestId("confirm-password")).toHaveTextContent(
-        "Field required"
+        "Password is a required field"
       )
     );
   });

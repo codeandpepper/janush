@@ -56,7 +56,7 @@ export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
             onChange={field.onChange}
             errorMessage={errors.password?.message}
             ariaControls="password"
-            dataTestId="password-input-field"
+            dataTestId="password"
             label="Password"
             placeholder="Password"
             autoComplete="current-password"
