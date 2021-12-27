@@ -6,9 +6,13 @@ import * as <%= classify(name) %> from '../../../lib/<%= dasherize(name) %>-stac
 
 describe("Application stack [Email]", () => {
   const app = new cdk.App();
-  const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(app, 'MyTestStack', {
-     envName: EnvName.Development
-  });
+  const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(
+    app,
+    "MyTestStack",
+    {
+      envName: EnvName.Development,
+    }
+  );
 
   const template = Template.fromStack(stack);
 
@@ -22,8 +26,8 @@ describe("Application stack [Email]", () => {
           },
         ]),
       },
-      UpdateReplacePolicy: "Retain",
-      DeletionPolicy: "Retain",
+      UpdateReplacePolicy: "Delete",
+      DeletionPolicy: "Delete",
     });
   });
 

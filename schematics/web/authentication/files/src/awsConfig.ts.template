@@ -2,10 +2,10 @@ import Amplify, { Auth } from "aws-amplify";
 
 export const AUTH_CONFIG = {
   Auth: {
-    identityPoolId: "TODO:identity-pool-from-cloud-generation",
-    region: "TODO:region-from-cloud-generation",
-    userPoolId: "TODO:user-pool-id-from-cloud-generation",
-    userPoolWebClientId: "TODO:user-pool-web-client-id-from-cloud-generation",
+    identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID,
+    region: process.env.REACT_APP_REGION,
+    userPoolId: process.env.REACT_APP_USER_POOL_ID,
+    userPoolWebClientId: process.env.REACT_APP_USER_POOL_WEB_CLIENT_ID,
   },
 };
 

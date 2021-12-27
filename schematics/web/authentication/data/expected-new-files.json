@@ -43,6 +43,7 @@
   "/web/src/interfaces/User.ts",
   "/web/src/types/enums/Cognito.ts",
   "/web/src/types/enums/HubEvent.ts",
+  "/web/src/types/global.ts",
   "/web/src/types/useful/Nullable.ts",
   "/web/src/types/useful/index.ts",
   "/web/src/utils/formDataTestId/formDataTestId.test.ts",

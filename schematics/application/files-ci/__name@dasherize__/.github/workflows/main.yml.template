@@ -1,0 +1,125 @@
+name: janush.app
+
+on:
+  push:
+    branches:
+      - main
+      - gh-workflows-tests
+    pull_request:
+      types: [opened, synchronize, reopened]
+
+env:
+  REGION: eu-central-1
+  # TODO Replace with secrets from AWS C&P account
+  ACCESS_KEY_ID: AKIA5RUPR5RU33EZTHPU
+  SECRET_ACCESS_KEY: FpYgHCnfQsQJsvQ5hdiNOZC5WHjk1Ft+i6BPcSbM
+
+jobs:
+  cloud-install:
+    name: (CLOUD) Installation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: cloud/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('cloud/package-lock.json') }}
+      - run: npm install
+        working-directory: ./cloud
+
+  cloud-test:
+    needs: cloud-install
+    name: (CLOUD) Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+        working-directory: ./cloud
+      - run: npm run test
+        working-directory: ./cloud
+
+  cloud-deploy:
+    needs: [cloud-test, web-test]
+    name: (CLOUD) Deployment
+    runs-on: ubuntu-latest
+    outputs:
+      cognitoIdentityPoolId: ${{ steps.deployment.outputs.cognitoIdentityPoolId }}
+      cognitoUserPoolId: ${{ steps.deployment.outputs.cognitoUserPoolId }}
+      cognitoUserPoolClientId: ${{ steps.deployment.outputs.cognitoUserPoolClientId }}
+      s3BucketName: ${{ steps.webBuildS3Bucket.outputs.s3BucketName }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+        working-directory: ./cloud
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ env.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.REGION }}
+      - id: deployment
+        run: |
+          npm run cdk deploy <%= classify(name) %>Stack -- --require-approval never
+          echo ::set-output name=cognitoIdentityPoolId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId'].OutputValue" --output text)
+          echo ::set-output name=cognitoUserPoolId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId'].OutputValue" --output text)
+          echo ::set-output name=cognitoUserPoolClientId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId'].OutputValue" --output text)
+        env:
+          # Lambda name creation required
+          AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY_ID }}
+        working-directory: ./cloud
+      - id: webBuildS3Bucket
+        run: |
+          npm run cdk deploy <%= classify(name) %>CiStack -- --require-approval never
+          echo ::set-output name=s3BucketName::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='s3BucketName'].OutputValue" --output text)
+        working-directory: ./cloud
+
+  web-install:
+    name: (WEB) Installation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('web/package-lock.json') }}
+      - run: npm install
+        working-directory: ./web
+
+  web-test:
+    needs: web-install
+    name: (WEB) Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+        working-directory: ./web
+      - run: npm run test
+        working-directory: ./web
+
+  # TODO: Share publicly
+  web-deployment:
+    needs: [web-test, cloud-deploy]
+    name: (WEB) Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+        working-directory: ./web
+      - run: REACT_APP_REGION=$REGION REACT_APP_IDENTITY_POOL_ID=$IDENTITY_POOL_ID REACT_APP_USER_POOL_ID=$USER_POOL_ID REACT_APP_USER_POOL_WEB_CLIENT_ID=$USER_POOL_WEB_CLIENT_ID npm run build
+        env:
+          IDENTITY_POOL_ID: ${{ needs.cloud-deploy.outputs.cognitoIdentityPoolId }}
+          USER_POOL_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolId }}
+          USER_POOL_WEB_CLIENT_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolClientId }}
+        working-directory: ./web
+      - run: mkdir bucket
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./web/bucket/build.zip ./web/build
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ needs.cloud-deploy.outputs.s3BucketName }}
+          AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.SECRET_ACCESS_KEY }}
+          AWS_REGION: "eu-central-1"
+          SOURCE_DIR: ./web/bucket
