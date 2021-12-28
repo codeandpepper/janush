@@ -2,7 +2,7 @@ import { Tree } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
 
-export const updatePackageJson = () => {
+export const updatePackageJsonForPlaywright = () => {
   return (tree: Tree) => {
     const filePath = `${Schematic.WEB}/package.json`;
     let fileContent = tree.read(filePath);

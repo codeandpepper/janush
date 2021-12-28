@@ -17,9 +17,13 @@ import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
 import { E2ERunner } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
-import { e2eCypressDependencies, e2ePlaywrightDependencies } from "@utils/dependencies";
+import {
+  e2eCypressDependencies,
+  e2ePlaywrightDependencies,
+} from "@utils/dependencies";
 import { Schema } from "./schema";
-import { updatePackageJson } from "./utils/updatePackageJsonForCypress";
+import { updatePackageJsonForCypress } from "./utils/updatePackageJsonForCypress";
+import { updatePackageJsonForPlaywright } from "./utils/updatePackageJsonForPlaywright";
 
 export const e2eFrameworkGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
@@ -35,11 +39,11 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               ...options,
               ...strings,
             }),
-            move(Schematic.WEB),
+            move(`${Schematic.WEB}/cypress`),
           ]),
           MergeStrategy.Overwrite
         ),
-        updatePackageJson(),
+        updatePackageJsonForCypress(),
         schematic("apply-prettier", {}),
       ]);
     } else if (options.e2eModule === E2ERunner.PLAYWRIGHT) {
@@ -54,11 +58,11 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               ...options,
               ...strings,
             }),
-            move(Schematic.WEB),
+            move(`${Schematic.WEB}/playwright`),
           ]),
           MergeStrategy.Overwrite
         ),
-        updatePackageJson(),
+        updatePackageJsonForPlaywright(),
         schematic("apply-prettier", {}),
       ]);
     }
