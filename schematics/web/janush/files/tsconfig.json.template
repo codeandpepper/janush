@@ -25,7 +25,8 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "playwright"
   ],
   "exclude": [
     "../node_modules"

@@ -20,7 +20,7 @@ export const updatePackageJson = () => {
           ...packageJsonObj.scripts,
           "cy:lint": "eslint --ext .ts ./cypress --color",
           "cy:format":
-            "prettier --ignore-path ./cypress/.prettierignore --write ./cypress/**/*.{ts,json}",
+            "prettier --ignore-path ./cypress/.prettierignore --write ./cypress/**/*.ts",
           "cy:open": "cypress open --config-file ./cypress/cypress.json",
           "cy:run": "node ./cypress/scripts/cypress-run.js",
           "cy:coverage:start":

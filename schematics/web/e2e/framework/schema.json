@@ -11,7 +11,7 @@
       "x-prompt": {
         "message": "[WEB] Which tool do you want to use to automate e2e tests? You can add this later.",
         "type": "list",
-        "items": ["Cypress"]
+        "items": ["Cypress", "Playwright"]
       }
     }
   },

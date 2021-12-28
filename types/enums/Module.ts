@@ -4,4 +4,5 @@ export enum Module {
 
 export enum E2ERunner {
   CYPRESS = "Cypress",
+  PLAYWRIGHT = "Playwright",
 }

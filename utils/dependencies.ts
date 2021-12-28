@@ -168,3 +168,26 @@ export const e2eCypressDependencies: NodeDependency[] = [
     version: "^6.0.1",
   },
 ];
+
+export const e2ePlaywrightDependencies: NodeDependency[] = [
+  {
+    type: NodeDependencyType.Dev,
+    name: "@playwright/test",
+    version: "^1.17.1",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "@types/faker",
+    version: "^5.5.9",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "faker",
+    version: "^5.5.3",
+  },
+  {
+    type: NodeDependencyType.Dev,
+    name: "playwright",
+    version: "^1.17.1",
+  },
+];

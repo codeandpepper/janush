@@ -1,0 +1,46 @@
+import { execSync } from "child_process";
+import { AUTH_CONFIG } from "../../../src/awsConfig";
+
+const AWSCognitoUserPoolId = AUTH_CONFIG.Auth.userPoolId;
+const defaultPassword = "Password1234";
+
+export class AWSMethods {
+  async confirmUserSignUp(email: string) {
+    execSync(
+      `aws cognito-idp admin-confirm-sign-up \
+      --user-pool-id ${AWSCognitoUserPoolId} \
+      --username ${email}`
+    );
+  }
+
+  async createUserWithPassword(email: string) {
+    execSync(
+      `aws cognito-idp admin-create-user \
+      --user-pool-id ${AWSCognitoUserPoolId} \
+      --username ${email}`
+    );
+    execSync(
+      `aws cognito-idp admin-set-user-password \
+      --user-pool-id ${AWSCognitoUserPoolId} \
+      --username ${email} \
+      --password ${defaultPassword} \
+      --permanent`
+    );
+  }
+
+  async addUserToSpecificGroup(email: string, group: string) {
+    execSync(
+      `aws cognito-idp admin-add-user-to-group \
+      --user-pool-id ${AWSCognitoUserPoolId} \
+      --username ${email} \
+      --group-name ${group}`
+    );
+  }
+
+  async createAdminWithPassword(email: string) {
+    await this.createUserWithPassword(email);
+    await this.addUserToSpecificGroup(email, "admin");
+  }
+}
+
+export default AWSMethods;
