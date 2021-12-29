@@ -45,6 +45,15 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
             ]),
             MergeStrategy.Overwrite
           ),
+          mergeWith(
+            apply(url("./files/shared"), [
+              applyTemplates({
+                ...options,
+                ...strings,
+              }),
+              move(`${Schematic.WEB}/cypress/support`),
+            ])
+          ),
           packageJsonCypressExtender,
           schematic("apply-prettier", {}),
         ]);
@@ -64,6 +73,15 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               move(`${Schematic.WEB}/playwright`),
             ]),
             MergeStrategy.Overwrite
+          ),
+          mergeWith(
+            apply(url("./files/shared"), [
+              applyTemplates({
+                ...options,
+                ...strings,
+              }),
+              move(`${Schematic.WEB}/playwright/page-objects`),
+            ])
           ),
           packageJsonPlaywrightExtender,
           tsConfigPlaywrightExtender,
