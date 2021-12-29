@@ -1,6 +1,6 @@
 import "@cypress/code-coverage/support";
-import "./methods/aws-calls";
 
+import "./methods/aws-calls";
 import { authSelectors } from "./selectors/auth-selectors";
 import { indexPageSelectors } from "./selectors/index-page";
 

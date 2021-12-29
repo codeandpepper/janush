@@ -2,8 +2,8 @@ import {
   FakeUserData,
   generateFakeUserData,
 } from "../support/methods/generate-data";
-import { indexPageSelectors } from "../support/selectors/index-page";
 import { authSelectors } from "../support/selectors/auth-selectors";
+import { indexPageSelectors } from "../support/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -30,13 +30,11 @@ describe("Sign up page test suite", () => {
   });
 
   it("User is not able to sign up when email is missing", () => {
-    cy.clearElement(authSelectors.inputs.email);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Email is a required field");
   });
 
   it("User is not able to sign up when email address is incorrect", () => {
-    cy.clearElement(authSelectors.inputs.email);
     cy.typeText(authSelectors.inputs.email, user.email.withoutAtSign);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Email is not correct");

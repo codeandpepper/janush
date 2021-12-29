@@ -1,11 +1,12 @@
 import { test } from "@playwright/test";
+
 import {
   FakeUserData,
   generateFakeUserData,
 } from "../page-objects/methods/generate-data";
-import { indexPageSelectors } from "../page-objects/selectors/index-page";
-import { authSelectors } from "../page-objects/selectors/auth-selectors";
 import GlobalMethods from "../page-objects/methods/global-commands";
+import { authSelectors } from "../page-objects/selectors/auth-selectors";
+import { indexPageSelectors } from "../page-objects/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -43,14 +44,11 @@ test.describe("Sign up page test suite", () => {
   });
 
   test("User is not able to sign up when email is missing", async () => {
-    await pw.clearElement(authSelectors.inputs.email);
     await pw.clickOn(authSelectors.buttons.signUp);
     await pw.checkValidation("Email is a required field");
-    await pw.waitForAppURL("/sign-up");
   });
 
   test("User is not able to sign up when email address is incorrect", async () => {
-    await pw.clearElement(authSelectors.inputs.email);
     await pw.typeText(authSelectors.inputs.email, user.email.withoutAtSign);
     await pw.clickOn(authSelectors.buttons.signUp);
     await pw.checkValidation("Email is not correct");

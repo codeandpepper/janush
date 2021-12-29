@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+
 import { AUTH_CONFIG } from "../../../src/awsConfig";
 
 const AWSCognitoUserPoolId = AUTH_CONFIG.Auth.userPoolId;

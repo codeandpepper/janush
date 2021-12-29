@@ -3,8 +3,7 @@ import { PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   testDir: "./tests",
   outputDir: "../tests-results",
-  timeout: 30000,
-  retries: 0,
+  retries: 1,
   workers: 2,
   reporter: [
     ["html", { outputFolder: "./playwright/tests-results", open: "never" }],
@@ -15,8 +14,8 @@ const config: PlaywrightTestConfig = {
     headless: true,
     colorScheme: "light",
     viewport: {
-      width: 1280,
-      height: 720,
+      width: 1920,
+      height: 1080,
     },
     ignoreHTTPSErrors: true,
     screenshot: "only-on-failure",
