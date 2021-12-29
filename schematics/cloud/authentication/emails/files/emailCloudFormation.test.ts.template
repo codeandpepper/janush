@@ -1,0 +1,43 @@
+import * as cdk from "aws-cdk-lib";
+import { Template, Match } from "aws-cdk-lib/assertions";
+
+import { EnvName } from "../../../enums/EnvName";
+import * as <%= classify(name) %> from '../../../lib/<%= dasherize(name) %>-stack';
+
+describe("Application stack [Email]", () => {
+  const app = new cdk.App();
+  const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(app, 'MyTestStack', {
+     envName: EnvName.Development
+  });
+
+  const template = Template.fromStack(stack);
+
+  it("should have specific S3 Bucket resource", () => {
+    template.hasResource("AWS::S3::Bucket", {
+      Properties: {
+        Tags: Match.arrayWith([
+          {
+            Key: "ResourcePurpose",
+            Value: "Authentication",
+          },
+        ]),
+      },
+      UpdateReplacePolicy: "Retain",
+      DeletionPolicy: "Retain",
+    });
+  });
+
+  it("should have specific Lambda resource", () => {
+    template.hasResource("AWS::Lambda::Function", {
+      Properties: {
+        Runtime: "nodejs14.x",
+        Tags: Match.arrayWith([
+          {
+            Key: "ResourcePurpose",
+            Value: "Authentication",
+          },
+        ]),
+      },
+    });
+  });
+});
