@@ -1,10 +1,10 @@
 import { Tree } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
-import { overwriteJsonFile } from "@janush-schematics/utility/overwriteJsonFile/overwriteJsonFile";
+import { mergeJsonFile } from "@janush-schematics/utility/mergeJsonFile/mergeJsonFile";
 
 export const tsConfigExtender = (tree: Tree) => {
-  overwriteJsonFile(tree, `${Schematic.WEB}/tsconfig.json`, {
+  mergeJsonFile(tree, `${Schematic.WEB}/tsconfig.json`, {
     include: ["playwright"],
   });
 

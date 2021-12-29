@@ -7,7 +7,7 @@ function customizer(objValue: object, srcValue: object) {
   }
 }
 
-export const overwriteJsonFile = (tree: Tree, path: string, newObj: object) => {
+export const mergeJsonFile = (tree: Tree, path: string, newObj: object) => {
   const fileContent = tree.read(path);
 
   if (!fileContent) {

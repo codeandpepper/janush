@@ -1,10 +1,10 @@
 import { Tree } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
-import { overwriteJsonFile } from "@janush-schematics/utility/overwriteJsonFile/overwriteJsonFile";
+import { mergeJsonFile } from "@janush-schematics/utility/mergeJsonFile/mergeJsonFile";
 
 export const packageJsonExtender = (tree: Tree) => {
-  overwriteJsonFile(tree, `${Schematic.WEB}/package.json`, {
+  mergeJsonFile(tree, `${Schematic.WEB}/package.json`, {
     scripts: {
       "pw:lint": "eslint --ext .ts ./playwright --color",
       "pw:format": "prettier --write ./playwright/**/*.ts",
