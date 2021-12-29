@@ -22,51 +22,55 @@ import {
   e2ePlaywrightDependencies,
 } from "@utils/dependencies";
 import { Schema } from "./schema";
-import { updatePackageJsonForCypress } from "./utils/updatePackageJsonForCypress";
-import { updatePackageJsonForPlaywright } from "./utils/updatePackageJsonForPlaywright";
+import { packageJsonExtender as packageJsonCypressExtender } from "./utils/cypress/packageJsonExtender";
+import { packageJsonExtender as packageJsonPlaywrightExtender } from "./utils/playwright/packageJsonExtender";
+import { tsConfigExtender as tsConfigPlaywrightExtender } from "./utils/playwright/tsConfigExtender";
 
 export const e2eFrameworkGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    if (options.e2eModule === E2ERunner.CYPRESS) {
-      for (let nodeDependency of e2eCypressDependencies) {
-        addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
-      }
+    switch (options.e2eModule) {
+      case E2ERunner.CYPRESS:
+        for (let nodeDependency of e2eCypressDependencies) {
+          addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
+        }
 
-      return chain([
-        mergeWith(
-          apply(url("./files/cypress"), [
-            applyTemplates({
-              ...options,
-              ...strings,
-            }),
-            move(`${Schematic.WEB}/cypress`),
-          ]),
-          MergeStrategy.Overwrite
-        ),
-        updatePackageJsonForCypress(),
-        schematic("apply-prettier", {}),
-      ]);
-    } else if (options.e2eModule === E2ERunner.PLAYWRIGHT) {
-      for (let nodeDependency of e2ePlaywrightDependencies) {
-        addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
-      }
+        return chain([
+          mergeWith(
+            apply(url("./files/cypress"), [
+              applyTemplates({
+                ...options,
+                ...strings,
+              }),
+              move(`${Schematic.WEB}/cypress`),
+            ]),
+            MergeStrategy.Overwrite
+          ),
+          packageJsonCypressExtender,
+          schematic("apply-prettier", {}),
+        ]);
 
-      return chain([
-        mergeWith(
-          apply(url("./files/playwright"), [
-            applyTemplates({
-              ...options,
-              ...strings,
-            }),
-            move(`${Schematic.WEB}/playwright`),
-          ]),
-          MergeStrategy.Overwrite
-        ),
-        updatePackageJsonForPlaywright(),
-        schematic("apply-prettier", {}),
-      ]);
+      case E2ERunner.PLAYWRIGHT:
+        for (let nodeDependency of e2ePlaywrightDependencies) {
+          addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
+        }
+
+        return chain([
+          mergeWith(
+            apply(url("./files/playwright"), [
+              applyTemplates({
+                ...options,
+                ...strings,
+              }),
+              move(`${Schematic.WEB}/playwright`),
+            ]),
+            MergeStrategy.Overwrite
+          ),
+          packageJsonPlaywrightExtender,
+          tsConfigPlaywrightExtender,
+          schematic("apply-prettier", {}),
+        ]);
+      default:
+        throw new Error("E2E schema misconfiguration");
     }
-
-    return tree;
   };
 };
