@@ -36,7 +36,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
 
         return chain([
           mergeWith(
-            apply(url("./files/cypress"), [
+            apply(url("./files/cypress/base"), [
               applyTemplates({
                 ...options,
                 ...strings,
