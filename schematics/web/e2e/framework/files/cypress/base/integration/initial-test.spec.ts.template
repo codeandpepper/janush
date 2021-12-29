@@ -1,0 +1,9 @@
+describe("Initial test suite example", () => {
+  before(() => {
+    cy.visit("/");
+  });
+
+  it("Initial test example", () => {
+    cy.checkThatURLContains("/");
+  });
+});

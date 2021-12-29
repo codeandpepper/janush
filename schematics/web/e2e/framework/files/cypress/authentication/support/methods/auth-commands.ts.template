@@ -1,9 +1,3 @@
-import "@cypress/code-coverage/support";
-
-import "./methods/aws-calls";
-import { authSelectors } from "./selectors/auth-selectors";
-import { indexPageSelectors } from "./selectors/index-page";
-
 Cypress.Commands.add("fillSignUpForm", (email: string, password: string) => {
   cy.typeText(authSelectors.inputs.email, email);
   cy.typeText(authSelectors.inputs.password, password);
@@ -35,10 +29,6 @@ Cypress.Commands.add("checkValidation", (validationText: string) => {
   cy.get(authSelectors.containers.validationError)
     .contains(validationText)
     .should("be.visible");
-});
-
-Cypress.Commands.add("checkThatURLContains", (specificPage: string) => {
-  cy.url().should("include", specificPage);
 });
 
 Cypress.Commands.add("getByDataTestId", (selector: string, ...args: any[]) => {
