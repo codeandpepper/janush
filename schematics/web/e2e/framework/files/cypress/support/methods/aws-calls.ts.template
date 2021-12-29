@@ -1,7 +1,7 @@
 import { AUTH_CONFIG } from "../../../src/awsConfig";
 
 const AWSCognitoUserPoolId = AUTH_CONFIG.Auth.userPoolId;
-const defaultPassword = Cypress.env("default_password");
+const defaultPassword = "Password1234";
 
 Cypress.Commands.add("confirmUserSignUp", (email: string) => {
   cy.exec(`aws cognito-idp admin-confirm-sign-up \

@@ -6,7 +6,6 @@ namespace Cypress {
     signOut();
     clickOn(selector: string);
     typeText(selector: string, text: string);
-    containText(selector: string, text: string);
     clearElement(selector: string);
     checkValidation(validationText: string);
     checkThatURLContains(specificPage: string);

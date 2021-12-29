@@ -2,8 +2,8 @@ import {
   FakeUserData,
   generateFakeUserData,
 } from "../support/methods/generate-data";
-import { indexPageSelectors } from "../support/selectors/index-page";
 import { authSelectors } from "../support/selectors/auth-selectors";
+import { indexPageSelectors } from "../support/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -30,23 +30,18 @@ describe("Sign up page test suite", () => {
   });
 
   it("User is not able to sign up when email is missing", () => {
-    cy.clearElement(authSelectors.inputs.email);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Email is a required field");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when email address is incorrect", () => {
-    cy.clearElement(authSelectors.inputs.email);
     cy.typeText(authSelectors.inputs.email, user.email.withoutAtSign);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Email is not correct");
-    cy.checkThatURLContains("/sign-up");
     cy.clearElement(authSelectors.inputs.email);
     cy.typeText(authSelectors.inputs.email, user.email.withoutDomain);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Email is not correct");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password is missing", () => {
@@ -54,7 +49,6 @@ describe("Sign up page test suite", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Password is a required field");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when confirm password is missing", () => {
@@ -62,7 +56,6 @@ describe("Sign up page test suite", () => {
     cy.clearElement(authSelectors.inputs.confirmPassword);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Password is a required field");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password is too short", () => {
@@ -70,14 +63,12 @@ describe("Sign up page test suite", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.tooShort);
     cy.checkValidation("Your password should contain at least 10 characters");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password is too long", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.tooLong);
     cy.checkValidation("Your password is too long, max. 80 characters");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password contains only lower case letters", () => {
@@ -87,7 +78,6 @@ describe("Sign up page test suite", () => {
       user.password.onlyLowerCaseLetters
     );
     cy.checkValidation("Your password should contain upper case letters");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password contains only upper case letters", () => {
@@ -97,22 +87,19 @@ describe("Sign up page test suite", () => {
       user.password.onlyUpperCaseLetters
     );
     cy.checkValidation("Your password should contain lower case letters");
-    cy.checkThatURLContains("/sign-up");
   });
 
-  it("User is not able to sign up when password doesn't contain digits", () => {
+  it("User is not able to sign up when password does not contain digits", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.withoutDigits);
     cy.checkValidation("Your password should contain digits");
-    cy.checkThatURLContains("/sign-up");
   });
 
-  it("User is not able to sign up when passwords are no the same", () => {
+  it("User is not able to sign up when passwords are not the same", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, "Qwerty12345");
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("Passwords must match");
-    cy.checkThatURLContains("/sign-up");
   });
 
   it("User is able to sign up, click on the resend email button", () => {
@@ -121,7 +108,7 @@ describe("Sign up page test suite", () => {
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkThatURLContains("/verify-email");
     cy.checkIfTextIsShown(
-      authSelectors.texts.emailOnVerifyEmailPpage,
+      authSelectors.texts.emailOnVerifyEmailPage,
       user.email.correct
     );
     cy.checkTheStateOfElement(authSelectors.buttons.resendEmail, "enabled");
@@ -142,9 +129,9 @@ describe("Sign up page test suite", () => {
 
   it("User is not able to create two accounts with the same email address", () => {
     cy.clickOn(authSelectors.buttons.goToSignUpPage);
+    cy.checkThatURLContains("/sign-up");
     cy.fillSignUpForm(user.email.correct, user.password.correct);
     cy.clickOn(authSelectors.buttons.signUp);
     cy.checkValidation("An account with the given email already exists");
-    cy.checkThatURLContains("/sign-up");
   });
 });

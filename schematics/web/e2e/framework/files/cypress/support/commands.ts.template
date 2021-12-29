@@ -1,6 +1,6 @@
 import "@cypress/code-coverage/support";
-import "./methods/aws-calls";
 
+import "./methods/aws-calls";
 import { authSelectors } from "./selectors/auth-selectors";
 import { indexPageSelectors } from "./selectors/index-page";
 
@@ -17,7 +17,6 @@ Cypress.Commands.add("fillSignInForm", (email: string, password: string) => {
 
 Cypress.Commands.add("signOut", () => {
   cy.clickOn(indexPageSelectors.buttons.signOut);
-  cy.checkThatURLContains("/sign-in");
 });
 
 Cypress.Commands.add("clickOn", (selector: string) => {
@@ -26,10 +25,6 @@ Cypress.Commands.add("clickOn", (selector: string) => {
 
 Cypress.Commands.add("typeText", (selector: string, text: string) => {
   cy.getByDataTestId(selector).clear().type(text);
-});
-
-Cypress.Commands.add("containText", (selector: string, text: string) => {
-  cy.getByDataTestId(selector).first().contains(text);
 });
 
 Cypress.Commands.add("clearElement", (selector: string) => {

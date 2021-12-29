@@ -1,0 +1,160 @@
+import { test } from "@playwright/test";
+
+import {
+  FakeUserData,
+  generateFakeUserData,
+} from "../page-objects/methods/generate-data";
+import GlobalMethods from "../page-objects/methods/global-commands";
+import { authSelectors } from "../page-objects/selectors/auth-selectors";
+import { indexPageSelectors } from "../page-objects/selectors/index-page";
+
+const user: FakeUserData = generateFakeUserData();
+
+test.describe("Sign up page test suite", () => {
+  let pw: GlobalMethods;
+
+  test.beforeAll(async ({ browser }) => {
+    const page = await browser.newPage();
+    pw = new GlobalMethods(page);
+
+    await pw.visit("/sign-up");
+    await pw.waitForAppURL("/sign-up");
+  });
+
+  test("User is able to see password after clicking show password icon", async () => {
+    await pw.typeText(authSelectors.inputs.password, user.password.correct);
+    await pw.clickOn(authSelectors.buttons.showPassword);
+    await pw.checkIfPasswordIsVisible(authSelectors.inputs.password, true);
+    await pw.clickOn(authSelectors.buttons.showPassword);
+    await pw.checkIfPasswordIsVisible(authSelectors.inputs.password, false);
+  });
+
+  test("User is able to see confirm password after clicking show confirm password icon", async () => {
+    await pw.typeText(
+      authSelectors.inputs.confirmPassword,
+      user.password.correct
+    );
+    await pw.clickOn(authSelectors.buttons.showConfirmPassword);
+    await pw.checkIfPasswordIsVisible(
+      authSelectors.inputs.confirmPassword,
+      true
+    );
+    await pw.clickOn(authSelectors.buttons.showConfirmPassword);
+    await pw.checkIfPasswordIsVisible(authSelectors.inputs.password, false);
+  });
+
+  test("User is not able to sign up when email is missing", async () => {
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Email is a required field");
+  });
+
+  test("User is not able to sign up when email address is incorrect", async () => {
+    await pw.typeText(authSelectors.inputs.email, user.email.withoutAtSign);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Email is not correct");
+    await pw.clearElement(authSelectors.inputs.email);
+    await pw.typeText(authSelectors.inputs.email, user.email.withoutDomain);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Email is not correct");
+  });
+
+  test("User is not able to sign up when password is missing", async () => {
+    await pw.clearElement(authSelectors.inputs.email);
+    await pw.typeText(authSelectors.inputs.email, user.email.correct);
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Password is a required field");
+  });
+
+  test("User is not able to sign up when confirm password is missing", async () => {
+    await pw.typeText(authSelectors.inputs.password, user.password.correct);
+    await pw.clearElement(authSelectors.inputs.confirmPassword);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Password is a required field");
+  });
+
+  test("User is not able to sign up when password is too short", async () => {
+    await pw.typeText(
+      authSelectors.inputs.confirmPassword,
+      user.password.correct
+    );
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(authSelectors.inputs.password, user.password.tooShort);
+    await pw.checkValidation(
+      "Your password should contain at least 10 characters"
+    );
+  });
+
+  test("User is not able to sign up when password is too long", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(authSelectors.inputs.password, user.password.tooLong);
+    await pw.checkValidation("Your password is too long, max. 80 characters");
+  });
+
+  test("User is not able to sign up when password contains only lower case letters", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(
+      authSelectors.inputs.password,
+      user.password.onlyLowerCaseLetters
+    );
+    await pw.checkValidation("Your password should contain upper case letters");
+  });
+
+  test("User is not able to sign up when password contains only upper case letters", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(
+      authSelectors.inputs.password,
+      user.password.onlyUpperCaseLetters
+    );
+    await pw.checkValidation("Your password should contain lower case letters");
+  });
+
+  test("User is not able to sign up when password does not contain digits", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(
+      authSelectors.inputs.password,
+      user.password.withoutDigits
+    );
+    await pw.checkValidation("Your password should contain digits");
+  });
+
+  test("User is not able to sign up when passwords are not the same", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(authSelectors.inputs.password, "Qwerty12345");
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("Passwords must match");
+  });
+
+  test("User is able to sign up, click on the resend email button", async () => {
+    await pw.clearElement(authSelectors.inputs.password);
+    await pw.typeText(authSelectors.inputs.password, user.password.correct);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.waitForAppURL("/verify-email");
+    await pw.checkIfTextIsShown(
+      authSelectors.texts.emailOnVerifyEmailPage,
+      user.email.correct
+    );
+    await pw.shouldBeEnabled(authSelectors.buttons.resendEmail);
+    await pw.clickOn(authSelectors.buttons.resendEmail);
+    await pw.shouldBeDisabled(authSelectors.buttons.resendEmail);
+    await pw.clickOn(authSelectors.buttons.backToSignIn);
+    await pw.waitForAppURL("/sign-in");
+  });
+
+  test("User is able to sign in and then sign out with provided credentials", async () => {
+    await pw.confirmUserSignUp(user.email.correct);
+    await pw.fillSignInForm(user.email.correct, user.password.correct);
+    await pw.clickOn(authSelectors.buttons.signIn);
+    await pw.clickOn(indexPageSelectors.buttons.signOut);
+    await pw.clickOn(indexPageSelectors.buttons.signIn);
+    await pw.waitForAppURL("/sign-in");
+  });
+
+  test("User is not able to create two accounts with the same email address", async () => {
+    await pw.clickOn(authSelectors.buttons.goToSignUpPage);
+    await pw.waitForAppURL("/sign-up");
+    await pw.fillSignUpForm(user.email.correct, user.password.correct);
+    await pw.clickOn(authSelectors.buttons.signUp);
+    await pw.checkValidation("An account with the given email already exists");
+  });
+});

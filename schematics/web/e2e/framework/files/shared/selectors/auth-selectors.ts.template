@@ -19,6 +19,6 @@ export const authSelectors = {
     incorrectEmailOrPassword: "incorrect-email-or-password",
   },
   texts: {
-    emailOnVerifyEmailPpage: "email-on-verify-email-page",
+    emailOnVerifyEmailPage: "email-on-verify-email-page",
   },
 } as const;

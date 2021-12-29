@@ -49,7 +49,7 @@ describe("Sign in page test suite", () => {
 
   it("User is not able to sign in with non existing user data", () => {
     cy.clearElement(authSelectors.inputs.email);
-    cy.fillSignInForm(user.email.correct, user.password.correct);
+    cy.typeText(authSelectors.inputs.email, user.email.correct);
     cy.clickOn(authSelectors.buttons.signIn);
     cy.checkThatURLContains("/sign-in");
     cy.checkIfTextIsShown(
