@@ -1,0 +1,13 @@
+import { expect,Page } from "@playwright/test";
+
+export class GlobalMethods {
+  constructor(public readonly page: Page) {
+    this.page = page;
+  }
+
+  async visit(relativePath: string) {
+    await this.page.goto(relativePath);
+  }
+}
+
+export default GlobalMethods;
