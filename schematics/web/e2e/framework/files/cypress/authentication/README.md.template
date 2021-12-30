@@ -1,0 +1,65 @@
+## Running E2E tests
+
+#### Run Cypress tests in the graphical mode:
+
+```
+yarn cy:open
+```
+
+#### Run all Cypress tests in the headless mode:
+
+```
+yarn cy:run
+```
+
+## Code coverage
+
+If you want to generate code coverage report after the Cypress tests you should run the server via command:
+
+```
+yarn cy:coverage:start
+```
+
+and then run the Cypress tests:
+
+```
+yarn cy:run
+```
+
+The code coverage report will be generated automatically after the test run is finished.
+
+To see the full code coverage report open the `cypress/reports/code-coverage/index.html` file.
+
+To generate the code coverage summary in the terminal after the test run use:
+```
+yarn nyc report --reporter=text-summary
+```
+
+## Mochawesome reporter
+
+To see the mochawesome report open the `cypress/reports/mochawesome/final-report/mochawesome.html` file. The report will be generated automatically after the test run is finished.
+
+## Prettier & ESLint
+
+Run Prettier under the `cypress` directory:
+
+```
+yarn cy:format
+```
+
+Run ESLint under the `cypress` directory:
+
+```
+yarn cy:lint
+```
+
+## Packages included and configured for E2E tests:
+
+- [`@cypress/code-coverage`](https://www.npmjs.com/package/@cypress/code-coverage) - it generates a code coverage report after Cypress tests
+- [`@cypress/instrument-cra`](https://www.npmjs.com/package/@cypress/instrument-cra) - instrument code without ejecting react-scripts
+- [`@types/faker`](https://www.npmjs.com/package/@types/faker) - it contains types definitions for faker package
+- [`eslint-plugin-cypress`](https://www.npmjs.com/package/eslint-plugin-cypress) - an ESLint plugin for your Cypress tests
+- [`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests
+- [`mochawesome`](https://www.npmjs.com/package/mochawesome) - a custom reporter for use to generate tests report after test run
+- [`mochawesome-merge`](https://www.npmjs.com/package/mochawesome-merge) - it merges several Mochawesome JSON reports
+- [`mochawesome-report-generator`](https://www.npmjs.com/package/mochawesome-report-generator) - it generates HTML reports from mochawesome reporter.

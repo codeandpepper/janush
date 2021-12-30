@@ -1,6 +1,7 @@
 // Add all your custom global commands to the "Chainable" interface
 namespace Cypress {
   interface Chainable {
+    checkThatURLContains(specificPage: string);
     fillSignUpForm(email: string, password: string);
     fillSignInForm(email: string, password: string);
     signOut();
