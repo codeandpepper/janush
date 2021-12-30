@@ -1,4 +1,4 @@
-import { expect,Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 export class GlobalMethods {
   constructor(public readonly page: Page) {
@@ -7,6 +7,10 @@ export class GlobalMethods {
 
   async visit(relativePath: string) {
     await this.page.goto(relativePath);
+  }
+
+  async waitForAppURL(url: string) {
+    await this.page.waitForURL(url);
   }
 }
 

@@ -1,4 +1,4 @@
-import { expect,Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 
 import { authSelectors } from "../selectors/auth-selectors";
 import { indexPageSelectors } from "../selectors/index-page";
@@ -15,6 +15,10 @@ export class GlobalMethods extends AWSMethods {
 
   async visit(relativePath: string) {
     await this.page.goto(relativePath);
+  }
+
+  async waitForAppURL(url: string) {
+    await this.page.waitForURL(url);
   }
 
   async fillSignUpForm(email: string, password: string) {
@@ -46,10 +50,6 @@ export class GlobalMethods extends AWSMethods {
 
   async checkValidation(text: string) {
     await this.page.waitForSelector(`text=${text}`);
-  }
-
-  async waitForAppURL(url: string) {
-    await this.page.waitForURL(url);
   }
 
   async shouldBeEnabled(selector: string) {
