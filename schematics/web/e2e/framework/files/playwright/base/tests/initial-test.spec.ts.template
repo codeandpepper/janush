@@ -11,4 +11,8 @@ test.describe("Initial test suite example", () => {
 
     await pw.visit("/sign-in");
   });
+
+  test("Initial test example", async () => {
+    await pw.waitForAppURL("/sign-in");
+  });
 });
