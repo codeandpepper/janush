@@ -80,16 +80,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
 
         return chain([
           mergeWith(
-            apply(url("./files/shared/selectors"), [
-              applyTemplates({
-                ...options,
-                ...strings,
-              }),
-              move(`${Schematic.WEB}/playwright/page-objects/selectors`),
-            ])
-          ),
-          mergeWith(
-            apply(url("./files/playwright"), [
+            apply(url("./files/playwright/base"), [
               applyTemplates({
                 ...options,
                 ...strings,
@@ -98,6 +89,30 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
             ]),
             MergeStrategy.Overwrite
           ),
+          options.modules.includes(Module.AUTHENTICATION)
+            ? mergeWith(
+                apply(url("./files/shared/selectors"), [
+                  applyTemplates({
+                    ...options,
+                    ...strings,
+                  }),
+                  move(`${Schematic.WEB}/playwright/page-objects/selectors`),
+                ]),
+                MergeStrategy.Overwrite
+              )
+            : stubArg,
+          options.modules.includes(Module.AUTHENTICATION)
+            ? mergeWith(
+                apply(url("./files/playwright/authentication"), [
+                  applyTemplates({
+                    ...options,
+                    ...strings,
+                  }),
+                  move(`${Schematic.WEB}/playwright`),
+                ]),
+                MergeStrategy.Overwrite
+              )
+            : stubArg,
           packageJsonPlaywrightExtender,
           tsConfigPlaywrightExtender,
           schematic("apply-prettier", {}),
