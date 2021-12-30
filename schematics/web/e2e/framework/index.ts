@@ -14,8 +14,9 @@ import {
 } from "@angular-devkit/schematics";
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
-import { E2ERunner } from "@enums/Module";
+import { E2ERunner, Module } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
+import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import {
   e2eCypressDependencies,
@@ -45,15 +46,29 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
             ]),
             MergeStrategy.Overwrite
           ),
-          mergeWith(
-            apply(url("./files/shared/selectors"), [
-              applyTemplates({
-                ...options,
-                ...strings,
-              }),
-              move(`${Schematic.WEB}/cypress/support/selectors`),
-            ])
-          ),
+          options.modules.includes(Module.AUTHENTICATION)
+            ? mergeWith(
+                apply(url("./files/shared/selectors"), [
+                  applyTemplates({
+                    ...options,
+                    ...strings,
+                  }),
+                  move(`${Schematic.WEB}/cypress/support/selectors`),
+                ])
+              )
+            : stubArg,
+          options.modules.includes(Module.AUTHENTICATION)
+            ? mergeWith(
+                apply(url("./files/cypress/authentication"), [
+                  applyTemplates({
+                    ...options,
+                    ...strings,
+                  }),
+                  move(`${Schematic.WEB}/cypress`),
+                ]),
+                MergeStrategy.Overwrite
+              )
+            : stubArg,
           packageJsonCypressExtender,
           schematic("apply-prettier", {}),
         ]);
@@ -65,6 +80,15 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
 
         return chain([
           mergeWith(
+            apply(url("./files/shared/selectors"), [
+              applyTemplates({
+                ...options,
+                ...strings,
+              }),
+              move(`${Schematic.WEB}/playwright/page-objects/selectors`),
+            ])
+          ),
+          mergeWith(
             apply(url("./files/playwright"), [
               applyTemplates({
                 ...options,
@@ -73,15 +97,6 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               move(`${Schematic.WEB}/playwright`),
             ]),
             MergeStrategy.Overwrite
-          ),
-          mergeWith(
-            apply(url("./files/shared/selectors"), [
-              applyTemplates({
-                ...options,
-                ...strings,
-              }),
-              move(`${Schematic.WEB}/playwright/page-objects/selectors`),
-            ])
           ),
           packageJsonPlaywrightExtender,
           tsConfigPlaywrightExtender,
