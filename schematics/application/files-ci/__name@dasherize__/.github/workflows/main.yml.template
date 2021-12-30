@@ -111,6 +111,7 @@ jobs:
           USER_POOL_WEB_CLIENT_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolClientId }}
         working-directory: ./web
       - run: mkdir bucket
+        working-directory: ./web
       - uses: montudor/action-zip@v1
         with:
           args: zip -qq -r ./web/bucket/build.zip ./web/build
