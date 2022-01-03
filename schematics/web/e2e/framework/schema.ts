@@ -1,5 +1,7 @@
 import { E2ERunner } from "@enums/Module";
 
-export interface Schema {
+import { Schema as WebTemplateSchema } from "../../template/schema";
+
+export interface Schema extends WebTemplateSchema {
   e2eModule: E2ERunner;
 }

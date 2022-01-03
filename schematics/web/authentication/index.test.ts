@@ -43,7 +43,7 @@ describe("web", () => {
       .runSchematicAsync(
         "web",
         /* Auth module is set in schema.json by default, so [] overwrites it */
-        { name: "janush-app", modules: [] },
+        { name: "janush-app", modules: [], e2e: false },
         Tree.empty()
       )
       .toPromise();
