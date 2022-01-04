@@ -1,14 +1,8 @@
 name: Docusaurus
 
 on:
-  pull_request:
-    branches:
-      - main
-      - docusaurus-on-github-pages
-  push:
-    branches:
-      - main
-      - docusaurus-on-github-pages
+  branches-ignore:
+      - '**'
 
 jobs:
   checks:
