@@ -29,18 +29,11 @@ export default function Hero() {
             </div>
           </div>
           <div className="col col--6">
-            {/* <img
-              src="img/terminal.png"
+            <img
+              src="img/terminal.jpeg"
               loading="lazy"
               width="661"
               height="348"
-              className="terminal"
-            /> */}
-            <img
-              src="img/terminal.svg"
-              loading="lazy"
-              width="628"
-              height="447"
               className="terminal"
             />
           </div>
