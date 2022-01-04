@@ -61,15 +61,7 @@ function encodeCommand(command, options) {
 function cli(args) {
     const options = parseArgumentsIntoOptions(args);
     const projectRoot = path_1.default.join(__dirname, "..");
-    child_process_1.spawn(__dirname, {
-        stdio: "inherit",
-        shell: true,
-    });
-    child_process_1.spawn(projectRoot, {
-        stdio: "inherit",
-        shell: true,
-    });
-    child_process_1.spawn(encodeCommand(`npm --prefix ./ ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`npm --prefix ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command} ./`, options), {
         stdio: "inherit",
         shell: true,
     });

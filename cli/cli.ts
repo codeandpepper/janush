@@ -80,7 +80,7 @@ export function cli(args: string[]) {
 
   spawn(
     encodeCommand(
-      `npm --prefix ${projectRoot} . run schematics ${projectRoot}/schematics/collection.json:${options.command}`,
+      `npm --prefix ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command} ./`,
       options
     ),
     {
