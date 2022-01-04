@@ -78,19 +78,9 @@ export function cli(args: string[]) {
 
   const projectRoot = path.join(__dirname, "..");
 
-  spawn(__dirname, {
-    stdio: "inherit",
-    shell: true,
-  });
-
-  spawn(projectRoot, {
-    stdio: "inherit",
-    shell: true,
-  });
-
   spawn(
     encodeCommand(
-      `npm --prefix ./ ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command}`,
+      `npm --prefix ${projectRoot} . run schematics ${projectRoot}/schematics/collection.json:${options.command}`,
       options
     ),
     {
