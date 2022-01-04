@@ -78,9 +78,10 @@ export function cli(args: string[]) {
 
   spawn(
     encodeCommand(
-      `schematics ${path.join(__dirname, "..")}/schematics/collection.json:${
-        options.command
-      }`,
+      `npx @angular-devkit/schematics-cli ${path.join(
+        __dirname,
+        ".."
+      )}/schematics/collection.json:${options.command}`,
       options
     ),
     {

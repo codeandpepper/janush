@@ -60,7 +60,7 @@ function encodeCommand(command, options) {
 }
 function cli(args) {
     const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${path_1.default.join(__dirname, "..")}/schematics/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`npx @angular-devkit/schematics-cli ${path_1.default.join(__dirname, "..")}/schematics/collection.json:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
     });
