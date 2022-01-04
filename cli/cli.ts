@@ -76,11 +76,21 @@ function encodeCommand(command: string, options: Options) {
 export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
+  const projectRoot = path.join(__dirname, "..");
+
+  spawn(__dirname, {
+    stdio: "inherit",
+    shell: true,
+  });
+
+  spawn(projectRoot, {
+    stdio: "inherit",
+    shell: true,
+  });
+
   spawn(
     encodeCommand(
-      `schematics ${path.join(__dirname, "..")}/schematics/collection.json:${
-        options.command
-      }`,
+      `npm --prefix ./ ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command}`,
       options
     ),
     {
