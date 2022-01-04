@@ -86,6 +86,7 @@ export function cli(args: string[]) {
     {
       stdio: "inherit",
       shell: true,
+      cwd: ".",
     }
   );
 }

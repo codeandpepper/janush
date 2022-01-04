@@ -64,6 +64,7 @@ function cli(args) {
     child_process_1.spawn(encodeCommand(`npm --prefix ${projectRoot} run schematics ${projectRoot}/schematics/collection.json:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
+        cwd: ".",
     });
 }
 exports.cli = cli;
