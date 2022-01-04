@@ -1,0 +1,18 @@
+{
+  "$id": "CloudJanushSchematics",
+  "title": "Cloud Janush Schema",
+  "type": "object",
+  "description": "Creates janush basic codebase template",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app"
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "A boolean value that will decide to download all dependencies.",
+      "default": false
+    }
+  }
+}

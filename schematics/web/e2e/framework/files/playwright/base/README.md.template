@@ -1,0 +1,52 @@
+## Running E2E tests
+
+#### Run Playwright tests in the graphical mode:
+
+```
+yarn pw:open
+```
+
+#### Run Playwright tests in the debug mode with Playwright Inspector:
+
+```
+yarn pw:debug
+```
+
+#### Run Playwright tests in the headless mode:
+
+```
+yarn pw:run
+```
+
+#### Run Playwright tests in the headless mode in the Firefox browser:
+
+```
+yarn pw:run:firefox
+```
+
+#### Run Playwright tests in the headless mode in the Webkit browser:
+
+```
+yarn pw:run:webkit
+```
+
+## Prettier & ESLint
+
+Run Prettier under the `playwright` directory:
+
+```
+yarn pw:format
+```
+
+Run ESLint under the `playwright` directory:
+
+```
+yarn pw:lint
+```
+
+## Packages included and configured for E2E tests:
+
+- [`@playwright/test`](https://www.npmjs.com/package/@playwright/test) - a test-runner for Playwright
+- [`@types/faker`](https://www.npmjs.com/package/@types/faker) - it contains types definitions for faker package
+- [`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests
+- [`playwright`](https://www.npmjs.com/package/playwright) - a Node.js library to automate Chromium, Firefox and WebKit with a single API.

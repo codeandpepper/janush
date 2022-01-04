@@ -1,21 +1,25 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cli = void 0;
-const path = require("path");
-const arg = require("arg");
+const path_1 = __importDefault(require("path"));
+const arg_1 = __importDefault(require("arg"));
 const child_process_1 = require("child_process");
-const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SKIP_INSTALL = "skipInstall";
 function parseArgumentsIntoOptions(rawArgs) {
-    const args = arg({
+    const args = arg_1.default({
         "--command": String,
         "--debug": String,
         "--name": String,
         "--skipInstall": Boolean,
         "--types": [String],
         "--modules": [String],
+        "--e2e": Boolean,
+        "--e2eModule": String,
         "--c": "--command",
         "--d": "--debug",
         "--n": "--name",
@@ -33,6 +37,8 @@ function parseArgumentsIntoOptions(rawArgs) {
         skipInstall: args["--skipInstall"],
         types: args["--types"],
         modules: args["--modules"],
+        e2e: args["--e2e"],
+        e2eModule: args["--e2eModule"],
     };
 }
 function encodeCommand(command, options) {
@@ -43,6 +49,9 @@ function encodeCommand(command, options) {
         if (key === SKIP_INSTALL) {
             return prev + ` --skipInstall`;
         }
+        if (key === "e2e") {
+            return prev + ` --e2e`;
+        }
         if (Array.isArray(value)) {
             return (prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " "));
         }
@@ -50,17 +59,8 @@ function encodeCommand(command, options) {
     }, command);
 }
 function cli(args) {
-    let directory;
-    if (__dirname.includes("@")) {
-        //INFO: npx via github
-        directory = `@${path.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
-    }
-    else {
-        //INFO: installed project
-        directory = path.join(__dirname, "..");
-    }
     const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${directory}/packages/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`schematics ${path_1.default.join(__dirname, "..")}/schematics/collection.json:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
     });

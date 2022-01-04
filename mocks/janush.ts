@@ -1,5 +1,5 @@
-import { Janush } from "@interfaces/Janush";
 import { Module } from "@enums/Module";
+import { Janush } from "@interfaces/Janush";
 
 export const emptyJanush: Janush = {
   name: "janush-app",
@@ -9,7 +9,9 @@ export const emptyJanush: Janush = {
     },
   },
   web: {
-    module: {},
+    module: {
+      [Module.AUTHENTICATION]: false,
+    },
   },
 };
 
@@ -21,6 +23,8 @@ export const moduleJanush: Janush = {
     },
   },
   web: {
-    module: {},
+    module: {
+      [Module.AUTHENTICATION]: true,
+    },
   },
 };

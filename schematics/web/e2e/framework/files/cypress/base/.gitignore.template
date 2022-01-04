@@ -1,0 +1,4 @@
+# Cypress artifacts
+/reports
+/screenshots
+/videos

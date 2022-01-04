@@ -1,0 +1,65 @@
+import * as cdk from "aws-cdk-lib";
+import { Template, Match } from "aws-cdk-lib/assertions";
+
+import { EnvName } from "../../enums/EnvName";
+import * as <%= classify(name) %> from '../../lib/<%= dasherize(name) %>-stack';
+
+describe("Application stack [Auth]", () => {
+  const app = new cdk.App();
+  const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(app, 'MyTestStack', {
+     envName: EnvName.Development
+  });
+
+  const template = Template.fromStack(stack);
+
+  it("should have specific UserPool resource", () => {
+    template.hasResource("AWS::Cognito::UserPool", {
+      Properties: {
+        AccountRecoverySetting: {
+          RecoveryMechanisms: [
+            {
+              Name: "verified_email",
+              Priority: 1,
+            },
+          ],
+        },
+        AdminCreateUserConfig: {
+          AllowAdminCreateUserOnly: false,
+        },
+        AutoVerifiedAttributes: ["email"],
+        Policies: {
+          PasswordPolicy: {
+            MinimumLength: 10,
+            RequireLowercase: true,
+            RequireNumbers: true,
+            RequireSymbols: false,
+            RequireUppercase: true,
+            TemporaryPasswordValidityDays: 3,
+          },
+        },
+        Schema: [
+          {
+            Mutable: true,
+            Name: "email",
+            Required: false,
+          },
+        ],
+        UsernameAttributes: ["email"],
+        UserPoolTags: Match.objectLike({
+          ResourcePurpose: "Authentication",
+        }),
+      },
+      UpdateReplacePolicy: "Retain",
+      DeletionPolicy: "Retain",
+    });
+  });
+
+  it("should have specific IdentityPool resource", () => {
+    template.hasResource("AWS::Cognito::IdentityPool", {
+      Properties: {
+        AllowUnauthenticatedIdentities: true,
+        AllowClassicFlow: false,
+      },
+    });
+  });
+});

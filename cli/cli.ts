@@ -1,8 +1,7 @@
-import * as path from "path";
-import * as arg from "arg";
+import path from "path";
+import arg from "arg";
 import { spawn } from "child_process";
 
-const PATH_ARGUMENT = 1;
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SKIP_INSTALL = "skipInstall";
@@ -15,6 +14,8 @@ interface Options {
   skipInstall?: boolean;
   types?: string[];
   modules?: string[];
+  e2e?: boolean;
+  e2eModule?: string;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -26,6 +27,8 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--skipInstall": Boolean,
       "--types": [String],
       "--modules": [String],
+      "--e2e": Boolean,
+      "--e2eModule": String,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
@@ -45,6 +48,8 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     skipInstall: args["--skipInstall"],
     types: args["--types"],
     modules: args["--modules"],
+    e2e: args["--e2e"],
+    e2eModule: args["--e2eModule"],
   };
 }
 
@@ -56,6 +61,9 @@ function encodeCommand(command: string, options: Options) {
     if (key === SKIP_INSTALL) {
       return prev + ` --skipInstall`;
     }
+    if (key === "e2e") {
+      return prev + ` --e2e`;
+    }
     if (Array.isArray(value)) {
       return (
         prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ")
@@ -66,21 +74,13 @@ function encodeCommand(command: string, options: Options) {
 }
 
 export function cli(args: string[]) {
-  let directory;
-
-  if (__dirname.includes("@")) {
-    //INFO: npx via github
-    directory = `@${path.join(__dirname, "..").split("@")[PATH_ARGUMENT]}`;
-  } else {
-    //INFO: installed project
-    directory = path.join(__dirname, "..");
-  }
-
   const options = parseArgumentsIntoOptions(args);
 
   spawn(
     encodeCommand(
-      `schematics ${directory}/packages/collection.json:${options.command}`,
+      `schematics ${path.join(__dirname, "..")}/schematics/collection.json:${
+        options.command
+      }`,
       options
     ),
     {

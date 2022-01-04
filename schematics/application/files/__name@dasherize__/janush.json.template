@@ -1,0 +1,13 @@
+{
+  "name": "<%= name %>",
+  "cloud": {
+    "module": {
+       "authentication": false
+    }
+  },
+  "web": {
+  "module": {
+       "authentication": false
+    }
+  }
+}

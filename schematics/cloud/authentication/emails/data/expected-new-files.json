@@ -1,0 +1,15 @@
+[
+  "/cloud/lib/authentication/emails/emailsCdkConstruct.ts",
+  "/cloud/lib/authentication/emails/emailsLambda.ts",
+  "/cloud/lib/authentication/emails/emailsS3CdkConstruct.ts",
+  "/cloud/lib/authentication/emails/emailCloudFormation.test.ts",
+  "/cloud/lib/authentication/emails/emailsLambda.test.ts",
+  "/cloud/lib/authentication/emails/utils/index.test.ts",
+  "/cloud/lib/authentication/emails/utils/index.ts",
+  "/cloud/lib/authentication/emails/templates/emailVerification.html",
+  "/cloud/lib/authentication/emails/templates/emailVerification.mjml",
+  "/cloud/lib/authentication/emails/templates/resetPassword.html",
+  "/cloud/lib/authentication/emails/templates/resetPassword.mjml",
+  "/cloud/enums/CognitoMessageTriggerSource.ts",
+  "/cloud/enums/EmailTemplate.ts"
+]

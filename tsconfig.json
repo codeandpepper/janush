@@ -16,19 +16,22 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es6",
-    "types": ["jasmine", "node"],
+    "target": "es2020",
+    "types": ["node", "jest"],
     "jsx": "react",
     "outDir": ".",
     "paths": {
       "@consts/*": ["./consts/*"],
-      "@packages/*": ["./packages/*"],
-      "@utility/*": ["./packages/utility/*"],
+      "@janush-schematics/*": ["./schematics/*"],
+      "@utility/*": ["./schematics/utility/*"],
       "@enums/*": ["./types/enums/*"],
       "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
       "@utils/*": ["./utils/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["**/*"],
   "exclude": ["**/files/**/*"]

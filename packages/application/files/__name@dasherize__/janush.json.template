@@ -1,9 +1,0 @@
-{
-  "name": "<%= name %>",
-  "cloud": {
-    "module": {
-       "authentication": false
-    }
-  },
-  "web": {}
-}

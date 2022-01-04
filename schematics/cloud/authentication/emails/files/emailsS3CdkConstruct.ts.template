@@ -1,0 +1,32 @@
+import * as path from "path";
+import { aws_s3 as s3, aws_s3_deployment as s3deploy } from "aws-cdk-lib";
+import { Construct } from "constructs";
+
+import { EnvName } from "../../../enums/EnvName";
+
+interface EmailsS3Props {
+  envName: EnvName;
+}
+
+export class EmailsS3CdkConstruct extends Construct {
+  public emailTemplatesBucket: s3.Bucket;
+  public emailTemplatesBucketDeployment: s3deploy.BucketDeployment;
+
+  constructor(scope: Construct, id: string, { envName }: EmailsS3Props) {
+    super(scope, id);
+
+    this.emailTemplatesBucket = new s3.Bucket(this, "Bucket", {
+      bucketName: `${envName}-<%= dasherize(name) %>-email-templates`,
+    });
+
+    this.emailTemplatesBucketDeployment = new s3deploy.BucketDeployment(
+      this,
+      "Deploy",
+      {
+        destinationBucket: this.emailTemplatesBucket,
+        destinationKeyPrefix: "emailTemplates/",
+        sources: [s3deploy.Source.asset(path.join(__dirname, "./templates"))],
+      }
+    );
+  }
+}

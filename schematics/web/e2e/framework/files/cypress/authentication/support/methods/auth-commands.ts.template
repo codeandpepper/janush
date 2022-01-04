@@ -1,0 +1,63 @@
+import { authSelectors } from "../selectors/auth-selectors";
+import { indexPageSelectors } from "../selectors/index-page";
+
+Cypress.Commands.add("fillSignUpForm", (email: string, password: string) => {
+  cy.typeText(authSelectors.inputs.email, email);
+  cy.typeText(authSelectors.inputs.password, password);
+  cy.typeText(authSelectors.inputs.confirmPassword, password);
+}),
+
+Cypress.Commands.add("fillSignInForm", (email: string, password: string) => {
+    cy.getByDataTestId(authSelectors.inputs.email).clear().type(email);
+    cy.getByDataTestId(authSelectors.inputs.password).clear().type(password);
+  });
+
+Cypress.Commands.add("signOut", () => {
+  cy.clickOn(indexPageSelectors.buttons.signOut);
+});
+
+Cypress.Commands.add("clickOn", (selector: string) => {
+  cy.getByDataTestId(selector).click();
+});
+
+Cypress.Commands.add("typeText", (selector: string, text: string) => {
+  cy.getByDataTestId(selector).clear().type(text);
+});
+
+Cypress.Commands.add("clearElement", (selector: string) => {
+  cy.getByDataTestId(selector).clear();
+});
+
+Cypress.Commands.add("checkValidation", (validationText: string) => {
+  cy.get(authSelectors.containers.validationError)
+    .contains(validationText)
+    .should("be.visible");
+});
+
+Cypress.Commands.add("getByDataTestId", (selector: string, ...args: any[]) => {
+  return cy.get(`[data-testid=${selector}]`, ...args);
+});
+
+Cypress.Commands.add("checkIfTextIsShown", (selector: string, text: string) => {
+  cy.getByDataTestId(selector).contains(text).should("be.visible");
+});
+
+Cypress.Commands.add(
+  "checkTheStateOfElement",
+  (selector: string, state: string) => {
+    cy.getByDataTestId(selector).should(`be.${state}`);
+  }
+);
+
+Cypress.Commands.add(
+  "checkIfPasswordIsVisible",
+  (selector: string, isVisible: boolean) => {
+    if (isVisible) {
+      cy.getByDataTestId(selector).invoke("attr", "type").should("eq", "text");
+    } else {
+      cy.getByDataTestId(selector)
+        .invoke("attr", "type")
+        .should("eq", "password");
+    }
+  }
+);

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "test.util": {
+      "description": "Collection created for testing purposes.",
+      "factory": "./index#testGenerator"
+    }
+  }
+}

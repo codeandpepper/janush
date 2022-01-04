@@ -1,0 +1,23 @@
+[
+  "/web/.eslintignore",
+  "/web/.eslintrc.json",
+  "/web/.gitignore",
+  "/web/.prettierrc.json",
+  "/web/config-overrides.js",
+  "/web/tsconfig.paths.json",
+  "/web/src/features/Providers/Providers.tsx",
+  "/web/src/features/SuspenseProvider/SuspenseProvider.tsx",
+  "/web/src/features/SuspenseProvider/styles.ts",
+  "/web/src/features/ThemeProvider/ThemeProvider.tsx",
+  "/web/src/layouts/Logo/Logo.tsx",
+  "/web/src/layouts/Logo/styles.ts",
+  "/web/src/layouts/PageLayout/PageLayout.test.tsx",
+  "/web/src/layouts/PageLayout/PageLayout.tsx",
+  "/web/src/layouts/TopAppBar/TopAppBar.tsx",
+  "/web/src/routing/Routes.test.tsx",
+  "/web/src/routing/Routes.tsx",
+  "/web/src/routing/paths.ts",
+  "/web/src/routing/routes/Index/IndexPage.tsx",
+  "/web/src/themes/defaultTheme.ts",
+  "/web/src/themes/palette.ts"
+]

@@ -3,9 +3,9 @@ docusaurus
 node_modules
 package.json
 package-lock.json
-/packages/web/files/
-/packages/cloud/files/
-/packages/application/files/
+/schematics/web/files/
+/schematics/cloud/files/
+/schematics/application/files/
 /README.md
 /CONTRIBUTING.md
 *.d.ts

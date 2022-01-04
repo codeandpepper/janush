@@ -1,0 +1,11 @@
+
+const { messageLambda } = new EmailsCdkConstruct(
+   this,
+   `${envName}-CustomMessageEmails`,
+   { envName }
+);
+
+this.userPool.addTrigger(
+   cognito.UserPoolOperation.CUSTOM_MESSAGE,
+   messageLambda
+);

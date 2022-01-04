@@ -1,0 +1,20 @@
+[
+  "/web/README.md",
+  "/web/package.json",
+  "/web/tsconfig.json",
+  "/web/public/favicon.ico",
+  "/web/public/index.html",
+  "/web/public/logo192.png",
+  "/web/public/logo512.png",
+  "/web/public/manifest.json",
+  "/web/public/robots.txt",
+  "/web/src/App.css",
+  "/web/src/App.test.tsx",
+  "/web/src/App.tsx",
+  "/web/src/index.css",
+  "/web/src/index.tsx",
+  "/web/src/logo.svg",
+  "/web/src/react-app-env.d.ts",
+  "/web/src/reportWebVitals.ts",
+  "/web/src/setupTests.ts"
+]

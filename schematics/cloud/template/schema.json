@@ -1,0 +1,24 @@
+{
+  "$id": "CloudSchematics",
+  "title": "Cloud Template Schema",
+  "type": "object",
+  "description": "Creates template based on aws cdk v2.",
+  "properties": {
+    "modules": {
+      "type": "array",
+      "description": "Modules",
+      "uniqueItems": true,
+      "default": ["authentication"],
+      "x-prompt": {
+        "message": "[CLOUD] Which modules would you like to use? You can add this later.",
+        "type": "list",
+        "items": ["authentication"]
+      }
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "A boolean value that will decide to download all dependencies.",
+      "default": false
+    }
+  }
+}

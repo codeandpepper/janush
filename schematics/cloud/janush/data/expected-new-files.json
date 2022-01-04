@@ -1,0 +1,8 @@
+[
+  "/cloud/.eslintrc.js",
+  "/cloud/.prettierrc.json",
+  "/cloud/consts/index.ts",
+  "/cloud/enums/EnvName.ts",
+  "/cloud/scripts/test.txt",
+  "/cloud/utils/functions.ts"
+]
