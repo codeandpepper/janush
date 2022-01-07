@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "tsconfigRootDir": "web/playwright",
+    "tsconfigRootDir": "playwright",
     "project": "../tsconfig.json"
   }
 }

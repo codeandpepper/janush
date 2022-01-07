@@ -7,7 +7,7 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "tsconfigRootDir": "web/cypress",
+    "tsconfigRootDir": "cypress",
     "project": "tsconfig.json"
   },
   "rules": {
