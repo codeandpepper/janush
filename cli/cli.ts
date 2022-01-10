@@ -4,6 +4,21 @@ import { spawn } from "child_process";
 
 const PATH_ARGS = 2;
 const COMMAND = "command";
+const SCHEMATICS_CLI_PATH = path.join(
+  __dirname,
+  "..",
+  "node_modules",
+  "@angular-devkit",
+  "schematics-cli",
+  "bin",
+  "schematics.js"
+);
+const SCHEMATICS_COLLECTION_PATH = path.join(
+  __dirname,
+  "..",
+  "schematics",
+  "collection.json"
+);
 
 interface Options {
   //INFO: Change 'command' to more suitable name for schematics' type
@@ -81,9 +96,7 @@ export function cli(args: string[]) {
 
   spawn(
     encodeCommand(
-      `schematics ${path.join(__dirname, "..")}/schematics/collection.json:${
-        options.command
-      }`,
+      `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
       options
     ),
     {
