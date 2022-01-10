@@ -10,7 +10,7 @@ on:
 
 env:
   # TODO Replace with secrets from AWS C&P account
-  REGION: eu-central-1
+  REGION: eu-west-1
   ACCESS_KEY_ID: AKIAZ7J7KNVBYF723UWQ
   SECRET_ACCESS_KEY: JvXVgLw/yYZkp3McP8SeGMke55hxdMQOKVBPzQk5
 
@@ -122,5 +122,5 @@ jobs:
           AWS_S3_BUCKET: ${{ needs.cloud-deploy.outputs.s3BucketName }}
           AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ env.SECRET_ACCESS_KEY }}
-          AWS_REGION: "eu-central-1"
+          AWS_REGION: ${{ env.REGION }}
           SOURCE_DIR: ./web/bucket
