@@ -2,6 +2,8 @@
   "/cloud/.gitignore",
   "/cloud/.npmignore",
   "/cloud/README.md",
+  "/cloud/bin/app.ts",
+  "/cloud/bin/index.ts",
   "/cloud/bin/janush-app.ts",
   "/cloud/cdk.json",
   "/cloud/jest.config.js",

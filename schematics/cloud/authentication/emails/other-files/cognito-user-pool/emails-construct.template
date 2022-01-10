@@ -1,7 +1,8 @@
 
 const { messageLambda } = new EmailsCdkConstruct(
    this,
-   `${envName}-CustomMessageEmails`,
+   // CME = CustomMessageEmails
+   `${envName}-CME`,
    { envName }
 );
 

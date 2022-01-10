@@ -1,5 +1,9 @@
 import * as path from "path";
-import { aws_s3 as s3, aws_s3_deployment as s3deploy } from "aws-cdk-lib";
+import {
+  aws_s3 as s3,
+  aws_s3_deployment as s3deploy,
+  RemovalPolicy,
+} from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 import { EnvName } from "../../../enums/EnvName";
@@ -17,6 +21,8 @@ export class EmailsS3CdkConstruct extends Construct {
 
     this.emailTemplatesBucket = new s3.Bucket(this, "Bucket", {
       bucketName: `${envName}-<%= dasherize(name) %>-email-templates`,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
 
     this.emailTemplatesBucketDeployment = new s3deploy.BucketDeployment(

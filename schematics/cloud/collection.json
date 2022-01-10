@@ -12,6 +12,11 @@
       "factory": "./janush/index#cloudJanushGenerator",
       "schema": "./janush/schema.json",
       "hidden": true
+    },
+    "cloud.ci": {
+      "description": "Janush Auto Generated App CI codebase",
+      "factory": "./ci/index#prepareEnvironment",
+      "hidden": true
     }
   },
   "extends": ["./authentication/collection.json"]

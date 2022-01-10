@@ -1,4 +1,4 @@
-import { StackProps } from "aws-cdk-lib";
+import { CfnOutput, StackProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 import { EnvName } from "../../enums/EnvName";
@@ -35,6 +35,21 @@ export class CognitoCdkConstruct extends Construct {
           userPoolClient,
         }
       );
+
+    new CfnOutput(this, "CognitoIdentityPoolExport", {
+      exportName: "cognitoIdentityPoolId",
+      value: identityPool.ref,
+    });
+
+    new CfnOutput(this, "CognitoUserPoolIdExport", {
+      exportName: "cognitoUserPoolId",
+      value: userPool.userPoolId,
+    });
+
+    new CfnOutput(this, "CognitoUserPoolClientIdExport", {
+      exportName: "cognitoUserPoolClientId",
+      value: userPoolClient.userPoolClientId,
+    });
 
     applyTagsToResource(
       [userPool, userPoolClient, identityPool, identityPoolRoleAttachment],

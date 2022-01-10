@@ -1,0 +1,35 @@
+/* This file is "janush-auto-generated-app" only. It won't be part of any other janush based project */
+import { 
+  CfnOutput,
+  Stack, 
+  StackProps, 
+  aws_s3 as s3, 
+  RemovalPolicy 
+} from "aws-cdk-lib";
+import { Construct } from "constructs";
+
+import { EnvName } from "../enums/EnvName";
+
+interface SingleEnvironmentProps {
+  envName: EnvName;
+}
+
+export class <%= classify(name) %>CiStack extends Stack {
+  constructor(
+    scope: Construct,
+    id: string,
+    { envName, ...stackProps }: StackProps & SingleEnvironmentProps
+  ) {
+    super(scope, id, stackProps);
+
+    const bucket = new s3.Bucket(this, `${envName}-<%= dasherize(name) %>-ci-bucket`, {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
+
+    new CfnOutput(this, "S3BucketNameExport", {
+      exportName: "s3BucketName",
+      value: bucket.bucketName,
+    });
+  }
+}
