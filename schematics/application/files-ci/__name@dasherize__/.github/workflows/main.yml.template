@@ -9,10 +9,10 @@ on:
       types: [opened, synchronize, reopened]
 
 env:
-  REGION: eu-central-1
   # TODO Replace with secrets from AWS C&P account
-  ACCESS_KEY_ID: AKIA5RUPR5RU33EZTHPU
-  SECRET_ACCESS_KEY: FpYgHCnfQsQJsvQ5hdiNOZC5WHjk1Ft+i6BPcSbM
+  REGION: eu-central-1
+  ACCESS_KEY_ID: AKIAZ7J7KNVBYF723UWQ
+  SECRET_ACCESS_KEY: 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
 
 jobs:
   cloud-install:

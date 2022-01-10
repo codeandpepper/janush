@@ -94,7 +94,8 @@ jobs:
 
   push-to-dedicated-repo:
     name: Push to dedicated repo
-    if: github.ref == 'main'
+    # TODO: Uncomment before merge
+    # if: github.ref == 'main'
     needs: [test-web, test-cloud]
     runs-on: ubuntu-latest
     steps:
