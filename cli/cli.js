@@ -9,6 +9,8 @@ const arg_1 = __importDefault(require("arg"));
 const child_process_1 = require("child_process");
 const PATH_ARGS = 2;
 const COMMAND = "command";
+const SCHEMATICS_CLI_PATH = path_1.default.join(__dirname, "..", "node_modules", "@angular-devkit", "schematics-cli", "bin", "schematics.js");
+const SCHEMATICS_COLLECTION_PATH = path_1.default.join(__dirname, "..", "schematics", "collection.json");
 function parseArgumentsIntoOptions(rawArgs) {
     const args = arg_1.default({
         "--command": String,
@@ -59,7 +61,7 @@ function encodeCommand(command, options) {
 }
 function cli(args) {
     const options = parseArgumentsIntoOptions(args);
-    child_process_1.spawn(encodeCommand(`schematics ${path_1.default.join(__dirname, "..")}/schematics/collection.json:${options.command}`, options), {
+    child_process_1.spawn(encodeCommand(`${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`, options), {
         stdio: "inherit",
         shell: true,
     });
