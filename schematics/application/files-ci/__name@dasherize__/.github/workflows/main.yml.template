@@ -138,6 +138,7 @@ jobs:
           AWS_REGION: ${{ env.REGION }}
           SOURCE_DIR: ./web/bucket
       - run: |
+         chmod 775 ./.github/workflows/bin/wait-for-amplify-job.sh
          JOB_ID=`aws amplify start-deployment --app-id=${{ needs.cloud-deploy.outputs.amplifyAppId }} --branch-name=${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} --source-url=s3://${{ needs.cloud-deploy.outputs.s3BucketName }}/build_${{ github.sha }}.zip --output text --query "jobSummary.jobId"`
          echo amplify deployment job id: $JOB_ID
          ./.github/workflows/bin/wait-for-amplify-job.sh ${{ needs.cloud-deploy.outputs.amplifyAppId }} ${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} $JOB_ID 50 5
