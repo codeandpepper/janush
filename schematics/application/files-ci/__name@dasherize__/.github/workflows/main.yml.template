@@ -8,12 +8,6 @@ on:
     pull_request:
       types: [opened, synchronize, reopened]
 
-env:
-  # TODO Replace with secrets from AWS C&P account
-  REGION: eu-west-1
-  ACCESS_KEY_ID: AKIAZ7J7KNVBYF723UWQ
-  SECRET_ACCESS_KEY: JvXVgLw/yYZkp3McP8SeGMke55hxdMQOKVBPzQk5
-
 jobs:
   cloud-install:
     name: (CLOUD) Installation
@@ -58,9 +52,9 @@ jobs:
         working-directory: ./cloud
       - uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ env.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.REGION }}
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.REGION }}
       - id: deployment
         run: |
           npm run cdk deploy <%= classify(name) %>Stack -- --require-approval never
@@ -69,7 +63,7 @@ jobs:
           echo ::set-output name=cognitoUserPoolClientId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId'].OutputValue" --output text)
         env:
           # Lambda name creation required
-          AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
         working-directory: ./cloud
       - id: webBuild
         run: |
@@ -110,9 +104,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ env.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.REGION }}
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.REGION }}
       - run: npm install
         working-directory: ./web
       - run: REACT_APP_REGION=$REGION REACT_APP_IDENTITY_POOL_ID=$IDENTITY_POOL_ID REACT_APP_USER_POOL_ID=$USER_POOL_ID REACT_APP_USER_POOL_WEB_CLIENT_ID=$USER_POOL_WEB_CLIENT_ID npm run build
@@ -132,9 +126,9 @@ jobs:
           args: --acl public-read --follow-symlinks
         env:
           AWS_S3_BUCKET: ${{ needs.cloud-deploy.outputs.s3BucketName }}
-          AWS_ACCESS_KEY_ID: ${{ env.ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ env.SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ env.REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.REGION }}
           SOURCE_DIR: ./web/bucket
       - run: |
          chmod 775 ./.github/workflows/bin/wait-for-amplify-job.sh
