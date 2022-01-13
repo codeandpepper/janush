@@ -22,6 +22,7 @@ const collectionPath = path.join(__dirname, "../collection.json");
 const expectedBaseFiles = [`/${name}/README.md`, `/${name}/janush.json`];
 const expectedBotFiles = [
   "/.github/workflows/main.yml",
+  "/.github/workflows/bin/wait-for-amplify-job.sh",
   "/cloud/bin/janush-app-ci.ts",
   "/cloud/lib/janush-app-ci-stack.ts",
 ];
