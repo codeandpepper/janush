@@ -1,11 +1,12 @@
 /* This file is "janush-auto-generated-app" only. It won't be part of any other janush based project */
-import { 
+import {
   CfnOutput,
-  Stack, 
-  StackProps, 
-  aws_s3 as s3, 
-  RemovalPolicy 
+  Stack,
+  StackProps,
+  aws_s3 as s3,
+  RemovalPolicy,
 } from "aws-cdk-lib";
+import * as amplify from "@aws-cdk/aws-amplify-alpha";
 import { Construct } from "constructs";
 
 import { EnvName } from "../enums/EnvName";
@@ -22,6 +23,21 @@ export class <%= classify(name) %>CiStack extends Stack {
   ) {
     super(scope, id, stackProps);
 
+    const amplifyApp = new amplify.App(
+        this,
+        `${envName}<%= classify(name) %>`,
+        {
+          appName: `${envName}-<%= dasherize(name) %>-amplify-hosting`,
+        }
+    );
+    const branch = amplifyApp.addBranch("prod");
+
+    const domain = amplifyApp.addDomain("janush.app", {
+      enableAutoSubdomain: true,
+    });
+    domain.mapRoot(branch);
+    domain.mapSubDomain(branch, "www");
+
     const bucket = new s3.Bucket(this, `${envName}-<%= dasherize(name) %>-ci-bucket`, {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
@@ -30,6 +46,16 @@ export class <%= classify(name) %>CiStack extends Stack {
     new CfnOutput(this, "S3BucketNameExport", {
       exportName: "s3BucketName",
       value: bucket.bucketName,
+    });
+
+    new CfnOutput(this, "amplifyAppIdExport", {
+      exportName: "amplifyAppId",
+      value: amplifyApp.appId,
+    });
+
+    new CfnOutput(this, "amplifyAppBranchNameExport", {
+      exportName: "amplifyAppBranchName",
+      value: branch.branchName,
     });
   }
 }
