@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 61-feature-finalizing-frontend-deployment-of-demo-app
 
   pull_request:
     types: [opened, synchronize, reopened]
@@ -95,8 +94,7 @@ jobs:
 
   push-to-dedicated-repo:
     name: Push to dedicated repo
-    # TODO: Uncomment before merge
-    # if: github.ref == 'main'
+    if: github.ref == 'refs/heads/main'
     needs: [test-web, test-cloud]
     runs-on: ubuntu-latest
     steps:
