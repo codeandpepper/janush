@@ -1,5 +1,5 @@
-/* This file is "janush-auto-generated-app" only. It won't be part of any other janush based project */
-import {
+/* This file is "Janush" only. It won't be part of any other janush based project */
+import { 
   CfnOutput,
   Stack,
   StackProps,
