@@ -1,4 +1,4 @@
-/* This file is "janush-auto-generated-app" only. It won't be part of any other janush based project */
+/* This file is "janush-auto-generated-app4" only. It won't be part of any other janush based project */
 import {
   CfnOutput,
   Stack,
