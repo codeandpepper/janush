@@ -44,7 +44,7 @@ export class <%= classify(name) %>CiStack extends Stack {
     });
 
     new CfnOutput(this, "S3BucketNameExport", {
-      exportName: "s3BucketName",
+      exportName: "s3BucketName<%= classify(name) %>",
       value: bucket.bucketName,
     });
 

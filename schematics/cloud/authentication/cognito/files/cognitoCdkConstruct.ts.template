@@ -37,17 +37,17 @@ export class CognitoCdkConstruct extends Construct {
       );
 
     new CfnOutput(this, "CognitoIdentityPoolExport", {
-      exportName: "cognitoIdentityPoolId",
+      exportName: "cognitoIdentityPoolId<%= classify(name) %>",
       value: identityPool.ref,
     });
 
     new CfnOutput(this, "CognitoUserPoolIdExport", {
-      exportName: "cognitoUserPoolId",
+      exportName: "cognitoUserPoolId<%= classify(name) %>",
       value: userPool.userPoolId,
     });
 
     new CfnOutput(this, "CognitoUserPoolClientIdExport", {
-      exportName: "cognitoUserPoolClientId",
+      exportName: "cognitoUserPoolClientId<%= classify(name) %>",
       value: userPoolClient.userPoolClientId,
     });
 
