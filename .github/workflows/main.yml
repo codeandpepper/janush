@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/branding3
 
   pull_request:
     types: [opened, synchronize, reopened]
@@ -94,7 +95,7 @@ jobs:
 
   push-to-dedicated-repo:
     name: Push to dedicated repo
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     needs: [test-web, test-cloud]
     runs-on: ubuntu-latest
     steps:
