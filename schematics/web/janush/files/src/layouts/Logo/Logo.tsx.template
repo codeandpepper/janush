@@ -14,7 +14,7 @@ export const Logo: React.VFC = () => {
         data-testid="logo-button-in-top-app-bar"
         className={classes.logotype}
       >
-        <%= name %>
+        <%= title %>
       </Link>
     </Typography>
   );
