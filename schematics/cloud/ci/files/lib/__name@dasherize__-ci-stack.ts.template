@@ -48,12 +48,12 @@ export class <%= classify(name) %>CiStack extends Stack {
     });
 
     new CfnOutput(this, "amplifyAppIdExport", {
-      exportName: "amplifyAppId",
+      exportName: "amplifyAppId<%= classify(name) %>",
       value: amplifyApp.appId,
     });
 
     new CfnOutput(this, "amplifyAppBranchNameExport", {
-      exportName: "amplifyAppBranchName",
+      exportName: "amplifyAppBranchName<%= classify(name) %>",
       value: branch.branchName,
     });
   }
