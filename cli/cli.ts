@@ -31,7 +31,7 @@ interface Options {
   modules?: string[];
   e2e?: boolean;
   e2eModule?: string;
-  title?:string;
+  title?: string;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -69,7 +69,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     modules: args["--modules"],
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
-    title: args["--title"]
+    title: args["--title"],
   };
 }
 
