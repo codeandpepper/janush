@@ -46,7 +46,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--modules": [String],
       "--e2e": Boolean,
       "--e2eModule": String,
-      "--title":String,
+      "--title": String,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
