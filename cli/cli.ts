@@ -69,7 +69,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     modules: args["--modules"],
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
-    title: args["--title"],
+    title: args["--title"] || "jan1234",
   };
 }
 
