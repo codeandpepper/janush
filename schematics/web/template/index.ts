@@ -57,11 +57,9 @@ export const webTemplateGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite
       ),
-      !isEmptyModules(options)
-        ? schematic(WebSchematic.JANUSH, {
-            name: options.name,
-          })
-        : noop(),
+      schematic(WebSchematic.JANUSH, {
+        name: options.name,
+      }),
       isAuth ? schematic(WebSchematic.AUTHENTICATION, options) : noop(),
       schematic(WebE2ESchematic.PROMPT, options),
       schematic("apply-prettier", {}),

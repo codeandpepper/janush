@@ -13,7 +13,7 @@ import {
   url,
 } from "@angular-devkit/schematics";
 
-import { Schematic } from "@enums/Schematic";
+import { Schematic, WebSchematic } from "@enums/Schematic";
 import { readJanushJSON } from "@utility/janush-json";
 
 export const webJanushGenerator = (options: any): Rule => {
@@ -33,6 +33,9 @@ export const webJanushGenerator = (options: any): Rule => {
         ]),
         MergeStrategy.Overwrite
       ),
+      schematic(WebSchematic.JANUSH, {
+        name: options.name,
+      }),
       schematic("apply-prettier", {}),
     ]);
   };
