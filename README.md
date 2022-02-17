@@ -66,9 +66,9 @@ This option creating application in *interactive* mode its mean, that every conf
 
  ## Steps to run application
  - Go to web or cloud folder inside generated application
- - execute `` yarn ``
- - run `` yarn start `` 
-  - It may happend that `` yarn start `` will throw error:
+ - execute `` npm ``
+ - run `` npm start `` 
+  - It may happend that `` npm start `` will throw error:
   ```
 
     To fix the dependency tree, try following the steps below in the exact order:
@@ -97,13 +97,24 @@ This option creating application in *interactive* mode its mean, that every conf
 
 Error above can be resolve by creating **.env** file. execute `` code .env `` and paste **SKIP_PREFLIGHT_CHECK=true** then hit save
 
-`` yarn start ``  should automatically open browser with generated application. Otherwise app by default is generated under *http://localhost:3000*
+`` npm start ``  should automatically open browser with generated application. Otherwise app by default is generated under *http://localhost:3000*
 
 ![app started](/docs/assets/appstarted.png)
 
 Loggin and sign up doesn't works by default - some configuration need to be completed [AWS Setup](#aws)
 
+# Schematics learning resources
 
+https://tomastrajan.medium.com/total-guide-to-custom-angular-schematics-5c50cf90cdb4
+# Debug schematics
+
+Run command 
+``` node --inspect-brk $(which schematics) .:app --name=test123 --debug=false  ```
+1. Open chrome://inspect (for Chrome)
+2. Click on *Open deicated DevTools for Node*
+   ![DevTools](/docs/assets/devtools1.png)
+3. Debugging panel is accesible
+![DevTools](/docs/assets/devtools2.png)
 # Test e2e
 
 ### `` npm run test ``
@@ -210,12 +221,6 @@ All files                                        |   92.72 |    83.33 |   89.47 
   passwordValidation.ts                          |     100 |      100 |     100 |     100 |
   validateMaxStringLength.ts                     |     100 |    66.66 |     100 |     100 | 1
 -------------------------------------------------|---------|----------|---------|---------|-------------------
-
-Test Suites: 11 passed, 11 total
-Tests:       22 passed, 22 total
-Snapshots:   0 total
-Time:        255.344 s
-
  
 
 
@@ -226,7 +231,7 @@ Time:        255.344 s
 
 ### [CDK](npm run cdk bootstrap)
 
-First install [AWS Cdk](https://www.npmjs.com/package/aws-cdk) 
+First install [AWS CDK] v2 (https://www.npmjs.com/package/aws-cdk) 
 
 ### Install the AWS CDK
 Install the AWS CDK Toolkit globally using the following Node Package Manager command.
@@ -240,13 +245,13 @@ Example output: `` 8.3.1 ``
 
 Command to install **aws-cdk**
 
-`` npm i aws-cdk ``
+`` npm i -g aws-cdk ``
 
 ### AWS requries configuration and setup, to do this run following command:
 Initially you must configure your workstation with your AWS credentials and an AWS region If you have the AWS CLI installed, the easiest way to satisfy this requirement is issue the following command:
 
 
-`` npm run aws configure `` (Alternatively if aws is installed gloabally `` aws configure ``)
+`` aws configure `` (AWS CLI should be installed globally)
 
 Then:
 
