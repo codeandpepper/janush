@@ -16,7 +16,7 @@ export const generateCodeLink = (
   eventType: CognitoMessageTriggerSource,
   email: string
 ): string => {
-  const defaultDomain = "http://localhost:3000";
+  const defaultDomain = "https://janush.app";
 
   console.log(`Forming URL for event: ${eventType}`);
 
