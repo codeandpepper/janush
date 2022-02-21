@@ -2,6 +2,8 @@ import path from "path";
 import arg from "arg";
 import { spawn } from "child_process";
 
+import readJsonFile from "@janush-schematics/utility/readJsonFile";
+
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SCHEMATICS_CLI_PATH = path.join(
@@ -98,14 +100,18 @@ function encodeCommand(command: string, options: Options) {
 export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
-  spawn(
-    encodeCommand(
-      `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
-      options
-    ),
-    {
-      stdio: "inherit",
-      shell: true,
-    }
-  );
+  if (options.version) {
+    console.log(`v${readJsonFile("/package.json").version}`);
+  } else {
+    spawn(
+      encodeCommand(
+        `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
+        options
+      ),
+      {
+        stdio: "inherit",
+        shell: true,
+      }
+    );
+  }
 }

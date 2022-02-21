@@ -17,7 +17,6 @@ import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
-import readJsonFile from "@janush-schematics/utility/readJsonFile";
 import {
   checkboxPrompt,
   inputPrompt,
@@ -29,10 +28,6 @@ export const isWeb = (options: Schema) => options.types.includes(Schematic.WEB);
 
 export const applicationGenerator = (options: Schema): Rule => {
   return async (_: Tree, _context: SchematicContext) => {
-    if (!!options.version) {
-      return console.log(`v${readJsonFile("/package.json").version}`);
-    }
-
     if (!options.name) {
       options.name = await inputPrompt(
         "Application name:",
