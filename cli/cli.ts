@@ -31,6 +31,7 @@ interface Options {
   modules?: string[];
   e2e?: boolean;
   e2eModule?: string;
+  version?: boolean;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -45,11 +46,13 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--modules": [String],
       "--e2e": Boolean,
       "--e2eModule": String,
+      "--version": Boolean,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
       "--s": "--skipInstall",
       "--t": "--types",
+      "--v": "--version",
     },
     {
       // @ts-ignore
@@ -67,6 +70,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     modules: args["--modules"],
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
+    version: !!args["--version"],
   };
 }
 
