@@ -37,6 +37,9 @@
       "type": "boolean",
       "description": "A boolean value that will decide to download all dependencies.",
       "default": false
+    },
+    "version": {
+      "description": "A boolean value that will decide to show janush version"
     }
   },
   "required": ["name", "types"]
