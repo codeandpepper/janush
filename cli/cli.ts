@@ -2,6 +2,8 @@ import path from "path";
 import arg from "arg";
 import { spawn } from "child_process";
 
+import readJsonFile from "@janush-schematics/utility/readJsonFile";
+
 const PATH_ARGS = 2;
 const COMMAND = "command";
 const SCHEMATICS_CLI_PATH = path.join(
@@ -31,6 +33,7 @@ interface Options {
   modules?: string[];
   e2e?: boolean;
   e2eModule?: string;
+  version?: boolean;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -45,11 +48,13 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--modules": [String],
       "--e2e": Boolean,
       "--e2eModule": String,
+      "--version": Boolean,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
       "--s": "--skipInstall",
       "--t": "--types",
+      "--v": "--version",
     },
     {
       // @ts-ignore
@@ -67,6 +72,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     modules: args["--modules"],
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
+    version: args["--version"],
   };
 }
 
@@ -94,14 +100,18 @@ function encodeCommand(command: string, options: Options) {
 export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
-  spawn(
-    encodeCommand(
-      `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
-      options
-    ),
-    {
-      stdio: "inherit",
-      shell: true,
-    }
-  );
+  if (!!options.version) {
+    console.log(`v${readJsonFile("/package.json").version}`);
+  } else {
+    spawn(
+      encodeCommand(
+        `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
+        options
+      ),
+      {
+        stdio: "inherit",
+        shell: true,
+      }
+    );
+  }
 }
