@@ -17,34 +17,13 @@ import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import { Schematic } from "@enums/Schematic";
 import { Schema } from "./schema";
 import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
-import {
-  checkboxPrompt,
-  inputPrompt,
-} from "@janush-schematics/utility/dynamicPrompts";
 
 export const isCloud = (options: Schema) =>
   options.types.includes(Schematic.CLOUD);
 export const isWeb = (options: Schema) => options.types.includes(Schematic.WEB);
 
 export const applicationGenerator = (options: Schema): Rule => {
-  return async (_: Tree, _context: SchematicContext) => {
-    if (!options.name) {
-      options.name = await inputPrompt(
-        "Application name:",
-        "Application name",
-        "janush-app"
-      );
-    }
-
-    if (options.types.length === 0) {
-      options.types = await checkboxPrompt(
-        "Which application type would you like to use?",
-        "Application type(s)",
-        [Schematic.WEB, Schematic.CLOUD],
-        [true, true]
-      );
-    }
-
+  return (_: Tree, _context: SchematicContext) => {
     const scope = dasherize(options.name);
 
     return chain([

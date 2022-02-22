@@ -72,7 +72,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     modules: args["--modules"],
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
-    version: !!args["--version"],
+    version: args["--version"],
   };
 }
 
@@ -100,7 +100,7 @@ function encodeCommand(command: string, options: Options) {
 export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
-  if (options.version) {
+  if (!!options.version) {
     console.log(`v${readJsonFile("/package.json").version}`);
   } else {
     spawn(
