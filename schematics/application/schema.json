@@ -5,6 +5,7 @@
   "description": "Schema that creates the entire codebase of the application.",
   "properties": {
     "name": {
+      "aliases": ["n"],
       "type": "string",
       "description": "The name of the application",
       "default": "janush-app",
@@ -15,6 +16,7 @@
       "x-prompt": "Application name:"
     },
     "types": {
+      "aliases": ["t"],
       "type": "array",
       "description": "Application type(s)",
       "uniqueItems": true,
@@ -34,11 +36,17 @@
       "default": false
     },
     "skipInstall": {
+      "aliases": ["s"],
       "type": "boolean",
       "description": "A boolean value that will decide to download all dependencies.",
       "default": false
     },
     "version": {
+      "aliases": ["v"],
+      "description": "A boolean value that will decide to show janush version"
+    },
+    "help": {
+      "aliases": ["h"],
       "description": "A boolean value that will decide to show janush version"
     }
   },
