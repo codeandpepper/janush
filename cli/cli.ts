@@ -2,6 +2,7 @@ import path from "path";
 import arg from "arg";
 import { spawn } from "child_process";
 
+import getCommandsHelpFromSchema from "@janush-schematics/utility/generateHelpFromSchema";
 import readJsonFile from "@janush-schematics/utility/readJsonFile";
 
 const PATH_ARGS = 2;
@@ -34,6 +35,7 @@ interface Options {
   e2e?: boolean;
   e2eModule?: string;
   version?: boolean;
+  help?: boolean;
 }
 
 function parseArgumentsIntoOptions(rawArgs: string[]): Options {
@@ -49,12 +51,14 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--e2e": Boolean,
       "--e2eModule": String,
       "--version": Boolean,
+      "--help": Boolean,
       "--c": "--command",
       "--d": "--debug",
       "--n": "--name",
       "--s": "--skipInstall",
       "--t": "--types",
       "--v": "--version",
+      "--h": "--help",
     },
     {
       // @ts-ignore
@@ -73,6 +77,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
     e2e: args["--e2e"],
     e2eModule: args["--e2eModule"],
     version: args["--version"],
+    help: args["--help"],
   };
 }
 
@@ -102,6 +107,10 @@ export function cli(args: string[]) {
 
   if (!!options.version) {
     console.log(`v${readJsonFile("/package.json").version}`);
+  } else if (!!options.help) {
+    console.log(
+      getCommandsHelpFromSchema("/schematics/application/schema.json")
+    );
   } else {
     spawn(
       encodeCommand(
