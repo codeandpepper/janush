@@ -48,12 +48,6 @@
       "test-jest": "jest --silent --testEnvironment jsdom --timers fake --coverage",
       "eject": "react-scripts eject"
     },
-    "eslintConfig": {
-      "extends": [
-        "react-app",
-        "react-app/jest"
-      ]
-    },
     "browserslist": {
       "production": [
         ">0.2%",
