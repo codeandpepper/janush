@@ -1,6 +1,6 @@
 [
   "/web/.eslintignore",
-  "/web/.eslintrc.json",
+  "/web/.eslintrc.js",
   "/web/.gitignore",
   "/web/.prettierrc.json",
   "/web/config-overrides.js",
