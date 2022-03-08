@@ -13,10 +13,10 @@ export const generateEmailFromS3Template = async (
   templateName: EmailTemplate,
   reformedReplacements: [RegExp, string][]
 ): Promise<string> => {
-  const { emailTemplatesBucketName } = process.env;
+  const { EMAIL_TEMPLATE_BUCKET_NAME } = process.env;
 
   const templateParams = {
-    Bucket: emailTemplatesBucketName!,
+    Bucket: EMAIL_TEMPLATE_BUCKET_NAME!,
     Key: `emailTemplates/${templateName}.html`,
   };
 
