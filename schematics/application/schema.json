@@ -7,7 +7,7 @@
     "name": {
       "aliases": ["n"],
       "type": "string",
-      "description": "Asks for application name",
+      "description": "Sets application name",
       "default": "janush-app",
       "$default": {
         "$source": "argv",
@@ -18,7 +18,7 @@
     "types": {
       "aliases": ["t"],
       "type": "array",
-      "description": "Asks for application types to be installed.",
+      "description": "Sets application types to be installed.",
       "uniqueItems": true,
       "default": ["web", "cloud"],
       "x-prompt": {
@@ -42,10 +42,12 @@
       "default": false
     },
     "version": {
+      "type": "boolean",
       "aliases": ["v"],
       "description": "Outputs Janush version."
     },
     "help": {
+      "type": "boolean",
       "aliases": ["h"],
       "description": "Outputs Janush help."
     }

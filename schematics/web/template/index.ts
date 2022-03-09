@@ -26,15 +26,7 @@ const isEmptyModules = (options: Schema) => options.modules.length === 0;
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
-
-    const name = strings.dasherize(janushFile.name);
-
-    const workingDirectory = `${name}/${Schematic.WEB}`;
-
-    if (!options.skipInstall) {
-      _context.addTask(installDependencies(workingDirectory), []);
-    }
-
+    const workingDirectory = Schematic.WEB;
     const isAuth = options.modules.includes(Module.AUTHENTICATION);
 
     if (!isEmptyModules(options)) {

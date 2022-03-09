@@ -3,10 +3,17 @@ import arg from "arg";
 import { spawn } from "child_process";
 
 import getCommandsHelpFromSchema from "@janush-schematics/utility/generateHelpFromSchema";
-import readJsonFile from "@janush-schematics/utility/readJsonFile";
+import {
+  getCurrentWorkingDirectory,
+  getDirectoryOfFileFromPath,
+} from "@janush-schematics/utility/directoryUtils";
+import { JANUSH_JSON_PATH, PACKAGE_JSON_PATH } from "@consts/index";
+import { readJson } from "@janush-schematics/utility/jsonFilesUtils";
+import { PackageJson } from "@interfaces/PackageJson";
 
 const PATH_ARGS = 2;
 const COMMAND = "command";
+const SCHEMA_JSON_PATH = path.join("schematics", "application", "schema.json");
 const SCHEMATICS_CLI_PATH = path.join(
   __dirname,
   "..",
@@ -106,12 +113,16 @@ export function cli(args: string[]) {
   const options = parseArgumentsIntoOptions(args);
 
   if (!!options.version) {
-    console.log(`v${readJsonFile("/package.json").version}`);
+    console.log(`v${readJson<PackageJson>(PACKAGE_JSON_PATH).version}`);
   } else if (!!options.help) {
-    console.log(
-      getCommandsHelpFromSchema("/schematics/application/schema.json")
-    );
+    console.log(getCommandsHelpFromSchema(SCHEMA_JSON_PATH));
   } else {
+    const currentWorkingDirectory = getCurrentWorkingDirectory();
+    const janushRootDirectory = getDirectoryOfFileFromPath(
+      currentWorkingDirectory,
+      JANUSH_JSON_PATH
+    );
+
     spawn(
       encodeCommand(
         `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
@@ -120,6 +131,7 @@ export function cli(args: string[]) {
       {
         stdio: "inherit",
         shell: true,
+        cwd: janushRootDirectory,
       }
     );
   }

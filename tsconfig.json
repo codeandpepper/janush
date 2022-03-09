@@ -27,7 +27,8 @@
       "@enums/*": ["./types/enums/*"],
       "@mocks/*": ["./mocks/*"],
       "@interfaces/*": ["./types/interfaces/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@exception/*": ["./exception/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
