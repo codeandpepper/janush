@@ -6,7 +6,7 @@ import { validateMaxStringLength } from "@utils/validation/validateMaxStringLeng
 import { SignUpFormState } from "./formState";
 
 export const formValidationSchema = (): SchemaOf<SignUpFormState> =>
-  <SchemaOf<SignUpFormState>>object({
+  object({
     email: string()
       .required("Email is a required field")
       .email("Email is not correct")
@@ -17,4 +17,4 @@ export const formValidationSchema = (): SchemaOf<SignUpFormState> =>
     confirmPassword: string()
       .required("Password is a required field")
       .oneOf([ref("password"), null], "Passwords must match"),
-  });
+  }) as SchemaOf<SignUpFormState>;
