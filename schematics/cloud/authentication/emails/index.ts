@@ -47,6 +47,16 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite
       ),
+      mergeWith(
+        apply(url("./other-files/env"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(Schematic.CLOUD),
+        ]),
+        MergeStrategy.Overwrite
+      ),
       addEmailsConstructToCognitoConstruct(),
       schematic("apply-prettier", {}),
     ]);
