@@ -12,14 +12,18 @@ export default function Architecture(): JSX.Element {
           <h2>Architecture</h2>
           <p>
             Modern <strong>cloud-native</strong>, <strong>event-driven</strong>,{" "}
-            <strong>microservices</strong> architecture. Build using <strong>AWS</strong> (Amazon
-            Web Services) cloud with <strong>serverless</strong> approach. Cloud infrastructure
-            defined using <strong>TypeScript</strong> and <strong>AWS CDK</strong> (Cloud
-            Development Kit). Design principles and architectural best practices defined by{" "}
-            <strong>AWS Well-Architected</strong>.
+            <strong>microservices</strong> architecture. Build using{" "}
+            <strong>AWS</strong> (Amazon Web Services) cloud with{" "}
+            <strong>serverless</strong> approach. Cloud infrastructure defined
+            using <strong>TypeScript</strong> and <strong>AWS CDK</strong>{" "}
+            (Cloud Development Kit). Design principles and architectural best
+            practices defined by <strong>AWS Well-Architected</strong>.
           </p>
           <div>
-            <Link className="button button--primary button--lg" to="/docs/architecture">
+            <Link
+              className="button button--primary button--lg"
+              to="/docs/architecture"
+            >
               Architecture
             </Link>
           </div>

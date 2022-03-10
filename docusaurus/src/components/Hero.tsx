@@ -13,11 +13,14 @@ export default function Hero() {
           <div className="col col--6">
             <h1 className="hero__title">{siteConfig.title}</h1>
             <p className="hero__subtitle">
-              Set up a modern codebase for cloud-native web app with authentication features by{" "}
-              <b>running one command</b>
+              Set up a modern codebase for cloud-native web app with
+              authentication features by <b>running one command</b>
             </p>
             <div className={styles.buttons}>
-              <Link className="button button--primary button--lg" to="/docs/getting-started">
+              <Link
+                className="button button--primary button--lg"
+                to="/docs/getting-started"
+              >
                 Quick Start Guide
               </Link>
               <Link
