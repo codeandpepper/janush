@@ -16,6 +16,7 @@ import {
 
 import { Module } from "@enums/Module";
 import { CloudSchematic, Schematic } from "@enums/Schematic";
+import { getCurrentWorkingDirectory } from "@janush-schematics/utility/directoryUtils";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
 import { Schema } from "./schema";
@@ -27,7 +28,11 @@ const isAuthenticationModule = (options: Schema) =>
 export const cloudTemplateGenerator = (options: Schema): Rule => {
   return async (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
-    const workingDirectory = Schematic.CLOUD;
+    const name = strings.dasherize(janushFile.name);
+    const currentWorkingDirectory = getCurrentWorkingDirectory();
+    const workingDirectory = currentWorkingDirectory.includes(name)
+      ? Schematic.CLOUD
+      : `${name}/${Schematic.CLOUD}`;
 
     if (!isEmptyModules(options)) {
       janushFile.cloud.module[Module.AUTHENTICATION] =
