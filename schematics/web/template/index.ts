@@ -16,6 +16,7 @@ import {
 
 import { Module } from "@enums/Module";
 import { Schematic, WebE2ESchematic, WebSchematic } from "@enums/Schematic";
+import { getCurrentWorkingDirectory } from "@janush-schematics/utility/directoryUtils";
 import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
 import { installDependencies } from "@utility/scripts";
 
@@ -26,7 +27,11 @@ const isEmptyModules = (options: Schema) => options.modules.length === 0;
 export const webTemplateGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
-    const workingDirectory = Schematic.WEB;
+    const name = strings.dasherize(janushFile.name);
+    const currentWorkingDirectory = getCurrentWorkingDirectory();
+    const workingDirectory = currentWorkingDirectory.includes(name)
+      ? Schematic.WEB
+      : `${name}/${Schematic.WEB}`;
     const isAuth = options.modules.includes(Module.AUTHENTICATION);
 
     if (!isEmptyModules(options)) {
