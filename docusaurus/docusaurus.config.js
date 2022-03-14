@@ -67,6 +67,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               position: "right",
             },
             {
+              href: "https://www.figma.com/proto/Vjf38sLR8RRyXxKYNSFbpq/Prototype?node-id=1%3A247&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A247&show-proto-sidebar=1",
+              label: "Figma",
+              position: "right",
+            },
+            {
               href: "https://github.com/codeandpepper/janush",
               label: "GitHub",
               position: "right",
