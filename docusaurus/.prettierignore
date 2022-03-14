@@ -1,0 +1,6 @@
+node_modules
+docs
+package.json
+package-lock.json
+/README.md
+*.d.ts

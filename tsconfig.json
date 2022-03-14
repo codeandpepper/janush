@@ -35,5 +35,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["**/*"],
-  "exclude": ["**/files/**/*"]
+  "exclude": ["**/files/**/*", "docusaurus/**/*"]
 }
