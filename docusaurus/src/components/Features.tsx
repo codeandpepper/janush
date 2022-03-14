@@ -1,10 +1,11 @@
 import React from "react";
+
 import clsx from "clsx";
 
-type FeatureItem = {
+interface FeatureItem {
   title: string;
   description: JSX.Element;
-};
+}
 
 const FeatureList: FeatureItem[] = [
   {

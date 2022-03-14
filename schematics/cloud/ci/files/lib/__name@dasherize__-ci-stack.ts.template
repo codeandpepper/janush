@@ -24,11 +24,11 @@ export class <%= classify(name) %>CiStack extends Stack {
     super(scope, id, stackProps);
 
     const amplifyApp = new amplify.App(
-        this,
-        `${envName}<%= classify(name) %>`,
-        {
-          appName: `${envName}-<%= dasherize(name) %>-amplify-hosting`,
-        }
+      this,
+      `${envName}<%= classify(name) %>`,
+      {
+        appName: `${envName}-<%= dasherize(name) %>-amplify-hosting`,
+      }
     );
     const branch = amplifyApp.addBranch("prod");
 

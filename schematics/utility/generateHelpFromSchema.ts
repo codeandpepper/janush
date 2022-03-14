@@ -1,24 +1,24 @@
 import { colors } from "@angular/cli/utilities/color";
 import { readJson } from "./jsonFilesUtils";
 
-type CommandHelp = {
+interface CommandHelp {
   command: string;
   alias?: string;
   description: string;
-};
+}
 
-type Property = {
+interface Property {
   aliases?: string[];
   description: string;
-};
+}
 
-type Properties = {
-  [propery: string]: Property;
-};
+interface Properties {
+  [property: string]: Property;
+}
 
-type Schema = {
+interface Schema {
   properties: Properties;
-};
+}
 
 const generateHelpFromSchema = (relativePath: string): CommandHelp[] => {
   const schemaJsonContent = readJson<Schema>(relativePath);

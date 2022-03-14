@@ -66,7 +66,7 @@ export const changeTopAppBar = (projectName: string) => {
            * Numbers being part of "InsertChange" second argument represents
            * a shift required to find a proper place in a code.
            *
-           * This is implicit and may be not very maintable in the future,
+           * This is implicit and may be not very maintainable in the future,
            * as it may be dependent on the reason of previous schematic runs.
            *
            * @TODO Discuss, if there is a way to avoid these computations
