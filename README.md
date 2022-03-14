@@ -76,4 +76,4 @@ We'd love to have your helping hand on `janush`! See [CONTRIBUTING.md](CONTRIBUT
 
 [MIT](https://opensource.org/licenses/MIT)
 
-Copyright (c) 2021, [Code & Pepper](https://codeandpepper.com/)
+Copyright (c) 2021-2022, [Code & Pepper](https://codeandpepper.com/)

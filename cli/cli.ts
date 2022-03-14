@@ -1,14 +1,17 @@
-import path from "path";
 import arg from "arg";
+import path from "path";
+
 import { spawn } from "child_process";
 
 import getCommandsHelpFromSchema from "@janush-schematics/utility/generateHelpFromSchema";
+
+import { JANUSH_JSON_PATH, PACKAGE_JSON_PATH } from "@consts/index";
 import {
   getCurrentWorkingDirectory,
   getDirectoryOfFileFromPath,
 } from "@janush-schematics/utility/directoryUtils";
-import { JANUSH_JSON_PATH, PACKAGE_JSON_PATH } from "@consts/index";
 import { readJson } from "@janush-schematics/utility/jsonFilesUtils";
+
 import { PackageJson } from "@interfaces/PackageJson";
 
 const PATH_ARGS = 2;
@@ -68,8 +71,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): Options {
       "--h": "--help",
     },
     {
-      // @ts-ignore
-      argv: rawArgs.slice[PATH_ARGS],
+      argv: rawArgs.slice(PATH_ARGS),
       permissive: true,
     }
   );

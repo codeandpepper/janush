@@ -12,11 +12,12 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
+import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 
 import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 import { Schematic } from "@enums/Schematic";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { authenticationEmailsNodeDependencies } from "@utils/dependencies";
+
 import { Schema } from "./schema";
 import { addEmailsConstructToCognitoConstruct } from "./utils";
 
