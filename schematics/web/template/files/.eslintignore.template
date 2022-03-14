@@ -1,0 +1,3 @@
+src/generated/types.ts
+src/**/*.generated.tsx
+config-overrides.js
