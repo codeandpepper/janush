@@ -1,10 +1,4 @@
 [
-  "/web/.eslintignore",
-  "/web/.eslintrc.js",
-  "/web/.gitignore",
-  "/web/.prettierrc.json",
-  "/web/config-overrides.js",
-  "/web/tsconfig.paths.json",
   "/web/src/features/Providers/Providers.tsx",
   "/web/src/features/SuspenseProvider/SuspenseProvider.tsx",
   "/web/src/features/SuspenseProvider/styles.ts",
