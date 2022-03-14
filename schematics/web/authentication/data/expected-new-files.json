@@ -1,10 +1,4 @@
 [
-  "/web/.eslintignore",
-  "/web/.eslintrc.js",
-  "/web/.gitignore",
-  "/web/.prettierrc.json",
-  "/web/config-overrides.js",
-  "/web/tsconfig.paths.json",
   "/web/src/awsConfig.ts",
   "/web/src/features/UserProvider/UserProvider.tsx",
   "/web/src/features/UserProvider/useUserContext.tsx",
