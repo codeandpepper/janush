@@ -5,7 +5,7 @@ import { validateMaxStringLength } from "@utils/validation/validateMaxStringLeng
 import { SignInFormState } from "./SignInFormState";
 
 export const signInFormValidationSchema = (): SchemaOf<SignInFormState> =>
-  <SchemaOf<SignInFormState>>object({
+  object({
     email: string()
       .required("Email is a required field")
       .email("Email is not correct")
@@ -17,4 +17,4 @@ export const signInFormValidationSchema = (): SchemaOf<SignInFormState> =>
       .test("Maximum password length", "Password too long", (v) =>
         validateMaxStringLength(v, MAX_PASSWORD_LENGTH)
       ),
-  });
+  }) as SchemaOf<SignInFormState>;
