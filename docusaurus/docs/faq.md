@@ -38,7 +38,7 @@ Also a browserslist configuration is included in your package.json.
 
 Janush supports a superset of the latest JavaScript standard (ES2015+)
 
-### (development) How to deal with template files?
+### (development) How to apply changes to template files?
 
-The best and safest option is to work on the generated project and work there as if it were a sketch.  
+In order to get correct content of template files the best bet would be to generate project and modify its files.
 If everything is tested and working properly, you should manually make all changes to the template files to the janush project.
