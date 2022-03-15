@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
 import { Paths } from "@routing/paths";
 import { useQuery } from "@utils/hooks/useQuery";
 
-const ConfirmSignUp = (): React.VFC => {
+const ConfirmSignUp = (): JSX.Element => {
   const [message, setMessage] = useState("Please wait...");
   const query = useQuery();
   const history = useHistory();

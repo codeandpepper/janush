@@ -4,6 +4,7 @@
   "include": ["src/"],
   "compilerOptions": {
     "jsx": "react",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "esModuleInterop": true,
   }
 }

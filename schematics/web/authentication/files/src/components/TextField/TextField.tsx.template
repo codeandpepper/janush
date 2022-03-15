@@ -1,10 +1,9 @@
-import React from "react";
 import {
   TextField as MuiTextField,
   StandardTextFieldProps,
 } from "@mui/material";
 
-export const TextField = (props: StandardTextFieldProps): React.VFC => (
+export const TextField = (props: StandardTextFieldProps): JSX.Element => (
   <MuiTextField
     margin="normal"
     fullWidth
