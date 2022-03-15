@@ -10,7 +10,7 @@ interface Props extends BoxProps {
   withTopGradient?: boolean;
 }
 
-export const PageLayout: React.FC<Props> = ({
+export const PageLayout: React.VFC<Props> = ({
   className,
   maxWidth = "md",
   withBottomPadding = false,
