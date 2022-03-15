@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "@docusaurus/Link";
 
-export default function Authentication(): JSX.Element {
+export default function Authentication(): React.VFC {
   return (
     <div className="container padding-vert--xl text--left descriptions">
       <div className="row">

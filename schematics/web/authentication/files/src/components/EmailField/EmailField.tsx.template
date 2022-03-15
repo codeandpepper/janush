@@ -1,3 +1,4 @@
+import React from "react";
 import { Mail } from "@mui/icons-material";
 import { InputAdornment, StandardTextFieldProps } from "@mui/material";
 
@@ -10,7 +11,7 @@ interface Props extends StandardTextFieldProps {
 export const EmailField = ({
   errorMessage,
   ...restProps
-}: Props): JSX.Element => (
+}: Props): React.VFC => (
   <TextField
     type="email"
     label="Email"

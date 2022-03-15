@@ -87,7 +87,7 @@ function Feature({ title, description }: FeatureItem) {
   );
 }
 
-export default function Features(): JSX.Element {
+export default function Features(): React.VFC{
   return (
     <section className="hero hero--dark features">
       <div className="container">

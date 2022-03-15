@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "@docusaurus/Link";
 
-export default function Architecture(): JSX.Element {
+export default function Architecture(): React.VFC {
   return (
     <section className="container padding-vert--xl text--left descriptions">
       <div className="row">

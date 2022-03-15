@@ -9,7 +9,7 @@ import Architecture from "../components/Architecture";
 import Features from "../components/Features";
 import Hero from "../components/Hero";
 
-export default function Home(): JSX.Element {
+export default function Home(): React.VFC {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title={siteConfig.tagline} description={siteConfig.tagline}>
