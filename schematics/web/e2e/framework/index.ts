@@ -16,6 +16,7 @@ import {
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
 import { E2ERunner, Module } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
+import addAuthenticationRule from "@janush-schematics/utility/addAuthentication";
 import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import {
@@ -68,6 +69,9 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                 ]),
                 MergeStrategy.Overwrite
               )
+            : stubArg,
+          options.modules.includes(Module.AUTHENTICATION)
+            ? addAuthenticationRule
             : stubArg,
           packageJsonCypressExtender,
           schematic("apply-prettier", {}),
