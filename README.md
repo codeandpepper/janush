@@ -9,10 +9,10 @@ You can find detailed instructions on using Create React App and many tips [its 
 ### Requirements
 Package | Version
 --- | --- 
-Node.js | 16.x.x
+Node.js | 16.x.x 
 
 ### Using npx
-You can run the project directly using npx command below:
+You can run the project directly using the following npx command:
 
 ```sh
 npx codeandpepper/janush
