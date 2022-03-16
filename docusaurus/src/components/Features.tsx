@@ -76,27 +76,27 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({ title, description }: FeatureItem) {
-  return (
-    <div className={clsx("col col--4")}>
-      <div className="text--left padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
+const Feature: React.VFC<FeatureItem> = ({ title, description }) => {
+	return (
+		<div className={clsx("col col--4")}>
+			<div className="text--left padding-horiz--md">
+				<h3>{title}</h3>
+				<p>{description}</p>
+			</div>
+		</div>
+	);
+};
 
-export default function Features(): JSX.Element {
-  return (
-    <section className="hero hero--dark features">
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+export const Features: React.VFC = () => {
+	return (
+		<section className="hero hero--dark features">
+			<div className="container">
+				<div className="row">
+					{FeatureList.map((props, idx) => (
+						<Feature key={idx} {...props} />
+					))}
+				</div>
+			</div>
+		</section>
+	);
+};

@@ -26,7 +26,7 @@ interface Props {
   error: Nullable<CognitoError>;
 }
 
-export const SignUpForm: React.FC<Props> = ({ loading, onSubmit, error }) => {
+export const SignUpForm: React.VFC<Props> = ({ loading, onSubmit, error }) => {
   const classes = useStyles();
 
   const { control, handleSubmit, formState, setError } =
