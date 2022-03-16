@@ -33,7 +33,7 @@ Currently, to generate a project, you must first  run the `npm install` command 
 
 It's possible to link a package into your local npm packages by running:
 ```sh
-npm build
+npm run build
 npm link
 ```
 and then easily use it:
