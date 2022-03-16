@@ -1,5 +1,5 @@
 import { FileDoesNotExistException } from "@angular-devkit/core";
-import { Tree } from "@angular-devkit/schematics";
+import { SchematicsException, Tree } from "@angular-devkit/schematics";
 
 import { JANUSH_JSON_PATH } from "@consts/index";
 import { Janush } from "@interfaces/Janush";
@@ -12,7 +12,7 @@ export const readJanushJSON = (
     const janushFile = tree.read(path);
 
     if (!janushFile) {
-      throw new Error();
+      throw new SchematicsException(`File ${path} does not exist.`);
     }
     return JSON.parse(janushFile.toString()) as Janush;
   } catch {
