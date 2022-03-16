@@ -27,7 +27,7 @@ schematics .:app --debug=false
 schematics .:application --name=fancy-app --types={web,cloud} --debug=false
 ```
 
-Currently, to generate a project, you must first  run the `npm install` command and after `npm build`. In root directory you can create your own project via schematic commands.
+Currently, to generate a project, you must first  run the `npm install` command and after `npm run build`. In root directory you can create your own project via schematic commands.
 
 #### Linking to local npm repositories
 
