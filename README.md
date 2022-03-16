@@ -9,7 +9,7 @@ You can find detailed instructions on using Create React App and many tips [its 
 ### Requirements
 Package | Version
 --- | --- 
-Node.js | 16.x.x 
+Node.js | 16.x.x
 
 ### Using npx
 You can run the project directly using npx command below:
@@ -27,13 +27,13 @@ schematics .:app --debug=false
 schematics .:application --name=fancy-app --types={web,cloud} --debug=false
 ```
 
-Currently, to generate a project, you must first  run the `yarn install` command and after `yarn build`. In root directory you can create your own project via schematic commands.
+Currently, to generate a project, you must first  run the `npm install` command and after `npm build`. In root directory you can create your own project via schematic commands.
 
 #### Linking to local npm repositories
 
 It's possible to link a package into your local npm packages by running:
 ```sh
-yarn build
+npm build
 npm link
 ```
 and then easily use it:
