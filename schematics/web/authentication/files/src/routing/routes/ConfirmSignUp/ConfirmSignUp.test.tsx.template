@@ -13,8 +13,7 @@ const setup = () => {
   );
 };
 
-// eslint-disable-next-line no-var
-var mockHistoryPush = jest.fn();
+const mockHistoryPush = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
