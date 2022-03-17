@@ -14,6 +14,8 @@ import {
 import { Schematic } from "@enums/Schematic";
 import { InsertChange } from "@schematics/angular/utility/change";
 
+type TreeFunction = (tree: Tree) => Tree;
+
 const construct = fs
   .readFileSync(
     path.join(__dirname, "..", "other-files/TopAppBar/signOut.template")
@@ -163,8 +165,8 @@ export const changeTopAppBar = (projectName: string) => {
   };
 };
 
-export const changeProviders = (projectName: string) => {
-  return (tree: Tree) => {
+export const changeProviders = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/src/features/Providers/Providers.tsx`;
     let fileContent = tree.read(filePath);
 
@@ -236,8 +238,8 @@ export const changeProviders = (projectName: string) => {
   };
 };
 
-export const changeIndex = (projectName: string) => {
-  return (tree: Tree) => {
+export const changeIndex = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/src/index.tsx`;
     let fileContent = tree.read(filePath);
 
@@ -286,8 +288,8 @@ export const changeIndex = (projectName: string) => {
   };
 };
 
-export const changeConfigOverrides = (projectName: string) => {
-  return (tree: Tree) => {
+export const changeConfigOverrides = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/config-overrides.js`;
     let fileContent = tree.read(filePath);
 
@@ -338,8 +340,8 @@ export const changeConfigOverrides = (projectName: string) => {
   };
 };
 
-export const changePackageJson = (projectName: string) => {
-  return (tree: Tree) => {
+export const changePackageJson = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/package.json`;
     let fileContent = tree.read(filePath);
 
@@ -390,8 +392,8 @@ export const changePackageJson = (projectName: string) => {
   };
 };
 
-export const changeTsConfigPaths = (projectName: string) => {
-  return (tree: Tree) => {
+export const changeTsConfigPaths = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/tsconfig.paths.json`;
     let fileContent = tree.read(filePath);
 
@@ -440,8 +442,8 @@ export const changeTsConfigPaths = (projectName: string) => {
   };
 };
 
-export const changePaths = (projectName: string) => {
-  return (tree: Tree) => {
+export const changePaths = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/src/routing/paths.ts`;
     let fileContent = tree.read(filePath);
 
@@ -491,8 +493,8 @@ export const changePaths = (projectName: string) => {
   };
 };
 
-export const changeRoutes = (projectName: string) => {
-  return (tree: Tree) => {
+export const changeRoutes = (projectName: string): TreeFunction => {
+  return (tree: Tree): Tree => {
     const filePath = `${Schematic.WEB}/src/routing/Routes.tsx`;
     let fileContent = tree.read(filePath);
 

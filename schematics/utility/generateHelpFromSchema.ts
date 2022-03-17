@@ -38,7 +38,7 @@ const generateHelpFromSchema = (relativePath: string): CommandHelp[] => {
   });
 };
 
-const getCommandsHelpFromSchema = (relativePath: string) => {
+const getCommandsHelpFromSchema = (relativePath: string) : string=> {
   const commandsHelp = generateHelpFromSchema(relativePath);
   let helpContent = "Available Commands:\n";
 
