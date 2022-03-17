@@ -53,8 +53,8 @@ export const changeTopAppBar = (projectName: string) => {
       (n) => n.kind === ts.SyntaxKind.ReturnKeyword
     );
 
-    let changed;
-    let logoChanged;
+    let changed: InsertChange | undefined;
+    let logoChanged: InsertChange | undefined;
 
     if (htmlSigns.length) {
       let logo = htmlSigns.find((sign) => sign.getText() === "<Logo />");
