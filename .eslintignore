@@ -1,0 +1,7 @@
+**/node_modules/*
+
+# Outputs
+/**/*.js
+/**/*.js.map
+/**/*.d.ts
+coverage
