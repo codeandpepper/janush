@@ -7,7 +7,11 @@ function customizer(objValue: object, srcValue: object) {
   }
 }
 
-export const mergeJsonFile = (tree: Tree, path: string, newObj: object): Tree => {
+export const mergeJsonFile = (
+  tree: Tree,
+  path: string,
+  newObj: object
+): Tree => {
   const fileContent = tree.read(path);
 
   if (!fileContent) {
