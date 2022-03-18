@@ -32,7 +32,7 @@ const createEmailsConstructContext = (): EmailConstructContext => {
     .readFileSync(
       path.join(
         __dirname,
-        "../other-files/cognito-user-pool/emails-construct.template"
+        "../other-files/cognito-user-pool/emailsConstruct.template"
       )
     )
     .toString("utf-8");

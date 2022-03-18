@@ -1,8 +1,8 @@
 import { expect, Page } from "@playwright/test";
 
-import { authSelectors } from "../selectors/auth-selectors";
-import { indexPageSelectors } from "../selectors/index-page";
-import AWSMethods from "./aws-calls";
+import { authSelectors } from "../selectors/authSelectors";
+import { indexPageSelectors } from "../selectors/indexPage";
+import AWSMethods from "./awsCalls";
 
 export const dataTestId = (name: string): string => {
   return `[data-testid="${name}"]`;

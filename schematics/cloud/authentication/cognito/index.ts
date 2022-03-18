@@ -16,7 +16,7 @@ import {
 
 import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { Janush } from "@interfaces/Janush";
-import { readJanushJSON } from "@utility/janush-json";
+import { readJanushJSON } from "@utility/janushJson";
 import { Schema } from "./schema";
 import { addCognitoConstructToCloudStack } from "./utils";
 

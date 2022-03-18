@@ -14,7 +14,7 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
-import { readJanushJSON } from "@utility/janush-json";
+import { readJanushJSON } from "@utility/janushJson";
 
 export const webJanushGenerator = (options: any): Rule => {
   return (tree: Tree, _context: SchematicContext) => {

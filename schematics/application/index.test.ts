@@ -3,14 +3,14 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 // Cloud Files
-import expectedCloudAuthCognitoFiles from "@janush-schematics/cloud/authentication/cognito/data/expected-new-files.json";
-import expectedCloudAuthEmailFiles from "@janush-schematics/cloud/authentication/emails/data/expected-new-files.json";
-import expectedCloudJanushFiles from "@janush-schematics/cloud/janush/data/expected-new-files.json";
-import expectedCloudTemplateFiles from "@janush-schematics/cloud/template/data/expected-new-files.json";
+import expectedCloudAuthCognitoFiles from "@janush-schematics/cloud/authentication/cognito/data/expectedNewFiles.json";
+import expectedCloudAuthEmailFiles from "@janush-schematics/cloud/authentication/emails/data/expectedNewFiles.json";
+import expectedCloudJanushFiles from "@janush-schematics/cloud/janush/data/expectedNewFiles.json";
+import expectedCloudTemplateFiles from "@janush-schematics/cloud/template/data/expectedNewFiles.json";
 // Web files
-import expectedWebAuthFiles from "@janush-schematics/web/authentication/data/expected-new-files.json";
-import expectedWebJanushFiles from "@janush-schematics/web/janush/data/expected-new-files.json";
-import expectedWebTemplateFiles from "@janush-schematics/web/template/data/expected-new-files.json";
+import expectedWebAuthFiles from "@janush-schematics/web/authentication/data/expectedNewFiles.json";
+import expectedWebJanushFiles from "@janush-schematics/web/janush/data/expectedNewFiles.json";
+import expectedWebTemplateFiles from "@janush-schematics/web/template/data/expectedNewFiles.json";
 
 const getParser = (name: string) => (filePath: string) => `/${name}${filePath}`;
 
@@ -22,7 +22,7 @@ const collectionPath = path.join(__dirname, "../collection.json");
 const expectedBaseFiles = [`/${name}/README.md`, `/${name}/janush.json`];
 const expectedBotFiles = [
   "/.github/workflows/main.yml",
-  "/.github/workflows/bin/wait-for-amplify-job.sh",
+  "/.github/workflows/bin/waitForAmplifyJob.sh",
   "/cloud/bin/janush-app-ci.ts",
   "/cloud/lib/janush-app-ci-stack.ts",
 ];

@@ -4,9 +4,9 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 import { emptyJanush } from "@mocks/janush";
-import expectedJanushFiles from "@janush-schematics/web/janush/data/expected-new-files.json";
-import expectedTemplateFiles from "@janush-schematics/web/template/data/expected-new-files.json";
-import * as janush from "@utility/janush-json";
+import expectedJanushFiles from "@janush-schematics/web/janush/data/expectedNewFiles.json";
+import expectedTemplateFiles from "@janush-schematics/web/template/data/expectedNewFiles.json";
+import * as janush from "@utility/janushJson";
 
 const collectionPath = path.join(__dirname, "../../collection.json");
 

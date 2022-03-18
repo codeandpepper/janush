@@ -35,7 +35,7 @@ const createCognitoConstructContext = (
       path.join(
         __dirname,
         "..",
-        "other-files/cloud-stack/authentication-construct.template"
+        "other-files/cloud-stack/authenticationConstruct.template"
       )
     )
     .toString("utf-8");

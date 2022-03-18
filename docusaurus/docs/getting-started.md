@@ -81,7 +81,7 @@ CREATE awesome-app/web/src/App.tsx (556 bytes)
 CREATE awesome-app/web/src/index.css (366 bytes)
 CREATE awesome-app/web/src/index.tsx (500 bytes)
 CREATE awesome-app/web/src/logo.svg (2632 bytes)
-CREATE awesome-app/web/src/react-app-env.d.ts (40 bytes)
+CREATE awesome-app/web/src/reactAppEnv.d.ts (40 bytes)
 CREATE awesome-app/web/src/reportWebVitals.ts (425 bytes)
 CREATE awesome-app/web/src/setupTests.ts (241 bytes)
 ```

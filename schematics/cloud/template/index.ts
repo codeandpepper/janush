@@ -17,7 +17,7 @@ import {
 import { Module } from "@enums/Module";
 import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { getCurrentWorkingDirectory } from "@janush-schematics/utility/directoryUtils";
-import { readJanushJSON, updateJanushJSON } from "@utility/janush-json";
+import { readJanushJSON, updateJanushJSON } from "@utility/janushJson";
 import { installDependencies } from "@utility/scripts";
 import { Schema } from "./schema";
 

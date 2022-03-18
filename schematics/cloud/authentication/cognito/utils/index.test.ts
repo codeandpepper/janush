@@ -3,9 +3,9 @@ import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 
 import { emptyJanush } from "@mocks/janush";
-import * as janush from "@utility/janush-json";
+import * as janush from "@utility/janushJson";
 
-const collectionPath = path.join(__dirname, "./data/test-collection.json");
+const collectionPath = path.join(__dirname, "./data/testCollection.json");
 
 describe("addCognitoConstructToCloudStack", () => {
   it("should throw `FileDoesNotExistException`", async () => {

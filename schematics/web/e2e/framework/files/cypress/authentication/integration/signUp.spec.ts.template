@@ -1,9 +1,9 @@
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../support/methods/generate-data";
-import { authSelectors } from "../support/selectors/auth-selectors";
-import { indexPageSelectors } from "../support/selectors/index-page";
+} from "../support/methods/generateData";
+import { authSelectors } from "../support/selectors/authSelectors";
+import { indexPageSelectors } from "../support/selectors/indexPage";
 
 const user: FakeUserData = generateFakeUserData();
 
