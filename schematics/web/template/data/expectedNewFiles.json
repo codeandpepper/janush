@@ -3,7 +3,7 @@
   "/web/.eslintrc.js",
   "/web/.gitignore",
   "/web/.prettierrc.json",
-  "/web/config-overrides.js",
+  "/web/configOverrides.js",
   "/web/tsconfig.paths.json",
   "/web/README.md",
   "/web/package.json",
