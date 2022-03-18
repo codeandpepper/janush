@@ -10,12 +10,10 @@ describe("getEndCloseBraceTokenInConstructor", () => {
         constructor() {}
       }`,
       ts.ScriptTarget.Latest,
-      true
+      true,
     );
 
-    expect(getEndCloseBraceTokenInConstructor(sourceFile)).toBeInstanceOf(
-      Object
-    );
+    expect(getEndCloseBraceTokenInConstructor(sourceFile)).toBeInstanceOf(Object);
   });
 
   it("should throw an error", () => {
@@ -23,11 +21,11 @@ describe("getEndCloseBraceTokenInConstructor", () => {
       "dummyName",
       "export class Dummy {}",
       ts.ScriptTarget.Latest,
-      true
+      true,
     );
 
     expect(() => getEndCloseBraceTokenInConstructor(sourceFile)).toThrowError(
-      "It is impossible to add construct to your stack."
+      "It is impossible to add construct to your stack.",
     );
   });
 });

@@ -4,10 +4,7 @@ import { SchematicsException, Tree } from "@angular-devkit/schematics";
 import { JANUSH_JSON_PATH } from "@consts/index";
 import { Janush } from "@interfaces/Janush";
 
-export const readJanushJSON = (
-  tree: Tree,
-  path: string = JANUSH_JSON_PATH
-): Janush => {
+export const readJanushJSON = (tree: Tree, path: string = JANUSH_JSON_PATH): Janush => {
   try {
     const janushFile = tree.read(path);
 

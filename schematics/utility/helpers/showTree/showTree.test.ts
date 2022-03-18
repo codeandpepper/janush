@@ -6,15 +6,13 @@ describe("showTree", () => {
   it("should log correct tree elements", () => {
     const showTreeOutput = (() => {
       const logs: string[] = [];
-      jest
-        .spyOn(console, "log")
-        .mockImplementation((logContent) => logs.push(logContent));
+      jest.spyOn(console, "log").mockImplementation((logContent) => logs.push(logContent));
 
       ts.createSourceFile(
         "dummyName",
         `const a = () => true;`,
         ts.ScriptTarget.Latest,
-        true
+        true,
       ).forEachChild((child) => {
         showTree(child);
       });

@@ -26,7 +26,7 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
 
     options.name = strings.dasherize(janushFile.name);
 
-    for (let nodeDependency of janushTemplateNodeDependencies) {
+    for (const nodeDependency of janushTemplateNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 
@@ -39,7 +39,7 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.CLOUD),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       schematic("apply-prettier", {}),
     ]);

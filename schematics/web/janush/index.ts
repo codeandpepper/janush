@@ -31,7 +31,7 @@ export const webJanushGenerator = (options: any): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       schematic("apply-prettier", {}),
     ]);

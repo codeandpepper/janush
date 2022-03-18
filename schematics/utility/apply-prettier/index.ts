@@ -6,10 +6,7 @@ export const applyPrettierUtility = (): Rule => {
     tree.visit((path) => {
       const pathList = path.split("/");
 
-      if (
-        !pathList.includes("node_modules") &&
-        (path.endsWith(".tsx") || path.endsWith(".ts"))
-      ) {
+      if (!pathList.includes("node_modules") && (path.endsWith(".tsx") || path.endsWith(".ts"))) {
         const content = tree.read(path);
         if (content) {
           const formatted = prettier.format(content.toString("utf-8"), {

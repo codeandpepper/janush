@@ -4,13 +4,11 @@ import { getSourceNodes } from "@schematics/angular/utility/ast-utils";
 
 export const getEndCloseBraceTokenInConstructor = (
   sourceFile: ts.SourceFile,
-  errorMessage: string = "It is impossible to add construct to your stack."
+  errorMessage = "It is impossible to add construct to your stack.",
 ): ts.Node => {
   const nodes: ts.Node[] = getSourceNodes(sourceFile);
 
-  const stackConstructorNode = nodes.find(
-    (n) => n.kind === ts.SyntaxKind.Constructor
-  );
+  const stackConstructorNode = nodes.find((n) => n.kind === ts.SyntaxKind.Constructor);
 
   const stackConstructorNodeBlock = stackConstructorNode
     ?.getChildren()

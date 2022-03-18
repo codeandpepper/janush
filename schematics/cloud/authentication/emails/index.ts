@@ -23,7 +23,7 @@ import { addEmailsConstructToCognitoConstruct } from "./utils";
 
 export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    for (let nodeDependency of authenticationEmailsNodeDependencies) {
+    for (const nodeDependency of authenticationEmailsNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, CLOUD_PACKAGE_JSON_PATH);
     }
 
@@ -36,7 +36,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/lib/authentication/emails`),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       mergeWith(
         apply(url("./other-files/enums"), [
@@ -46,7 +46,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/enums`),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       mergeWith(
         apply(url("./other-files/env"), [
@@ -56,7 +56,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.CLOUD),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       addEmailsConstructToCognitoConstruct(),
       schematic("apply-prettier", {}),

@@ -8,9 +8,7 @@ describe("toIncludeSome", () => {
     const { pass, message: messageCallback } = toIncludeSome(tested, expected);
 
     expect(pass).toBe(true);
-    expect(messageCallback()).toBe(
-      "Expected array to include some of the elements."
-    );
+    expect(messageCallback()).toBe("Expected array to include some of the elements.");
   });
 
   it("should fail with specific message", () => {
@@ -20,8 +18,6 @@ describe("toIncludeSome", () => {
     const { pass, message: messageCallback } = toIncludeSome(tested, expected);
 
     expect(pass).toBe(false);
-    expect(messageCallback()).toEqual(
-      "Expected array to include some of the elements."
-    );
+    expect(messageCallback()).toEqual("Expected array to include some of the elements.");
   });
 });

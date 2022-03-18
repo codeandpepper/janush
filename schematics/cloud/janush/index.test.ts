@@ -18,21 +18,12 @@ describe("cloud.janush", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: [] },
-        Tree.empty()
-      )
+      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    const tree = await runner
-      .runSchematicAsync("cloud.janush", {}, templateTree)
-      .toPromise();
+    const tree = await runner.runSchematicAsync("cloud.janush", {}, templateTree).toPromise();
 
-    expect(tree.files).toHaveEqualElements([
-      ...expectedTemplateFiles,
-      ...expectedJanushFiles,
-    ]);
+    expect(tree.files).toHaveEqualElements([...expectedTemplateFiles, ...expectedJanushFiles]);
   });
 
   it("should throw not found exception of janush.json", async () => {
@@ -40,11 +31,7 @@ describe("cloud.janush", () => {
     let thrownError: FileDoesNotExistException | null = null;
     try {
       await runner
-        .runSchematicAsync(
-          "cloud.janush",
-          { name: "janush-app", modules: [] },
-          Tree.empty()
-        )
+        .runSchematicAsync("cloud.janush", { name: "janush-app", modules: [] }, Tree.empty())
         .toPromise();
     } catch (err) {
       thrownError = err;

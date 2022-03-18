@@ -31,7 +31,7 @@ export const prepareEnvironment = (options: any): Rule => {
           }),
           move(Schematic.CLOUD),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       schematic("apply-prettier", {}),
     ]);

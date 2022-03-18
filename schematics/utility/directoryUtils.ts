@@ -4,23 +4,17 @@ import { spawnSync } from "child_process";
 
 import { NoSuchDirectoryInPathException } from "@exception/exception";
 
-export const trimPathToDirectoryName = (
-  path: string,
-  directory: string
-): string => {
-  if (!path.includes(directory))
-    throw new NoSuchDirectoryInPathException(path, directory);
+export const trimPathToDirectoryName = (path: string, directory: string): string => {
+  if (!path.includes(directory)) throw new NoSuchDirectoryInPathException(path, directory);
 
   const pathComponents = path.split("/");
   const directoryIndexInPath = pathComponents.findIndex((pathComponent) =>
-    pathComponent.includes(directory)
+    pathComponent.includes(directory),
   );
 
   if (pathComponents.length === directoryIndexInPath + 1) return path;
 
-  return pathComponents
-    .slice(0, directoryIndexInPath - pathComponents.length + 1)
-    .join("/");
+  return pathComponents.slice(0, directoryIndexInPath - pathComponents.length + 1).join("/");
 };
 
 export const getCurrentWorkingDirectory = (): string => {
@@ -29,10 +23,7 @@ export const getCurrentWorkingDirectory = (): string => {
     .replace(/^\n+|\n+$/g, "");
 };
 
-export const getDirectoryOfFileFromPath = (
-  filePath: string,
-  fileName: string
-): string => {
+export const getDirectoryOfFileFromPath = (filePath: string, fileName: string): string => {
   const pathComponents = filePath.split("/");
 
   do {

@@ -1,11 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import {
-  FileDoesNotExistException,
-  Rule,
-  Tree,
-} from "@angular-devkit/schematics";
+import { FileDoesNotExistException, Rule, Tree } from "@angular-devkit/schematics";
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import { insertImport } from "@schematics/angular/utility/ast-utils";
 import { InsertChange } from "@schematics/angular/utility/change";
@@ -30,10 +26,7 @@ const createEmailsConstructContext = (): EmailConstructContext => {
 
   const construct = fs
     .readFileSync(
-      path.join(
-        __dirname,
-        "../other-files/cognito-user-pool/emails-construct.template"
-      )
+      path.join(__dirname, "../other-files/cognito-user-pool/emails-construct.template"),
     )
     .toString("utf-8");
 
@@ -45,12 +38,11 @@ const createEmailsConstructContext = (): EmailConstructContext => {
 
 const addEmailsConstructToCognitoConstructRules = (
   tree: Tree,
-  context: EmailConstructContext
+  context: EmailConstructContext,
 ): CognitoConstructChangeRules => {
-  let userPoolConstructText = tree.read(context.cognitoUserPoolConstructPath);
+  const userPoolConstructText = tree.read(context.cognitoUserPoolConstructPath);
 
-  if (!userPoolConstructText)
-    throw new FileDoesNotExistException(COGNITO_USER_POOL_CONSTRUCT);
+  if (!userPoolConstructText) throw new FileDoesNotExistException(COGNITO_USER_POOL_CONSTRUCT);
 
   const sourceUserPoolConstructText = userPoolConstructText.toString("utf-8");
 
@@ -58,23 +50,22 @@ const addEmailsConstructToCognitoConstructRules = (
     context.cognitoUserPoolConstructPath,
     sourceUserPoolConstructText,
     ts.ScriptTarget.Latest,
-    true
+    true,
   );
 
-  const stackEndCloseBraceToken =
-    getEndCloseBraceTokenInConstructor(sourceFile);
+  const stackEndCloseBraceToken = getEndCloseBraceTokenInConstructor(sourceFile);
 
   const constructChange = new InsertChange(
     context.cognitoUserPoolConstructPath,
     stackEndCloseBraceToken.getStart(),
-    context.construct
+    context.construct,
   );
 
   const importChange = insertImport(
     sourceFile,
     context.cognitoUserPoolConstructPath,
     "EmailsCdkConstruct",
-    "./emails/emailsCdkConstruct"
+    "./emails/emailsCdkConstruct",
   ) as InsertChange;
 
   return { constructChange, importChange };
@@ -83,12 +74,12 @@ const addEmailsConstructToCognitoConstructRules = (
 export const addEmailsConstructToCognitoConstruct = (): Rule => {
   return (tree: Tree) => {
     const context = createEmailsConstructContext();
-    const { constructChange, importChange } =
-      addEmailsConstructToCognitoConstructRules(tree, context);
-
-    const declarationRecorder = tree.beginUpdate(
-      context.cognitoUserPoolConstructPath
+    const { constructChange, importChange } = addEmailsConstructToCognitoConstructRules(
+      tree,
+      context,
     );
+
+    const declarationRecorder = tree.beginUpdate(context.cognitoUserPoolConstructPath);
 
     declarationRecorder.insertLeft(constructChange.pos, constructChange.toAdd);
     declarationRecorder.insertLeft(importChange.pos, importChange.toAdd);

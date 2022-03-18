@@ -18,10 +18,7 @@ import { E2ERunner, Module } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
 import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
-import {
-  e2eCypressDependencies,
-  e2ePlaywrightDependencies,
-} from "@utils/dependencies";
+import { e2eCypressDependencies, e2ePlaywrightDependencies } from "@utils/dependencies";
 import { Schema } from "./schema";
 import { packageJsonExtender as packageJsonCypressExtender } from "./utils/cypress/packageJsonExtender";
 import { packageJsonExtender as packageJsonPlaywrightExtender } from "./utils/playwright/packageJsonExtender";
@@ -31,7 +28,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     switch (options.e2eModule) {
       case E2ERunner.CYPRESS:
-        for (let nodeDependency of e2eCypressDependencies) {
+        for (const nodeDependency of e2eCypressDependencies) {
           addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
         }
 
@@ -44,7 +41,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               }),
               move(`${Schematic.WEB}/cypress`),
             ]),
-            MergeStrategy.Overwrite
+            MergeStrategy.Overwrite,
           ),
           options.modules.includes(Module.AUTHENTICATION)
             ? mergeWith(
@@ -54,7 +51,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                     ...strings,
                   }),
                   move(`${Schematic.WEB}/cypress/support/selectors`),
-                ])
+                ]),
               )
             : stubArg,
           options.modules.includes(Module.AUTHENTICATION)
@@ -66,7 +63,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                   }),
                   move(`${Schematic.WEB}/cypress`),
                 ]),
-                MergeStrategy.Overwrite
+                MergeStrategy.Overwrite,
               )
             : stubArg,
           packageJsonCypressExtender,
@@ -74,7 +71,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
         ]);
 
       case E2ERunner.PLAYWRIGHT:
-        for (let nodeDependency of e2ePlaywrightDependencies) {
+        for (const nodeDependency of e2ePlaywrightDependencies) {
           addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
         }
 
@@ -87,7 +84,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               }),
               move(`${Schematic.WEB}/playwright`),
             ]),
-            MergeStrategy.Overwrite
+            MergeStrategy.Overwrite,
           ),
           options.modules.includes(Module.AUTHENTICATION)
             ? mergeWith(
@@ -98,7 +95,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                   }),
                   move(`${Schematic.WEB}/playwright/page-objects/selectors`),
                 ]),
-                MergeStrategy.Overwrite
+                MergeStrategy.Overwrite,
               )
             : stubArg,
           options.modules.includes(Module.AUTHENTICATION)
@@ -110,7 +107,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                   }),
                   move(`${Schematic.WEB}/playwright`),
                 ]),
-                MergeStrategy.Overwrite
+                MergeStrategy.Overwrite,
               )
             : stubArg,
           packageJsonPlaywrightExtender,

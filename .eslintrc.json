@@ -1,25 +1,24 @@
 {
-	"root": true,
-	"parser": "@typescript-eslint/parser",
-	"plugins": ["@typescript-eslint", "prettier"],
-	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:@typescript-eslint/recommended",
-		"prettier"
-	],
-	"env": {
-		"es6": true,
-		"browser": true,
-		"jest": true,
-		"node": true
-	},
-	"rules": {
-		"no-console": [
-			2,
-			{
-				"allow": ["warn", "error"]
-			}
-		]
-	}
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "no-extra-boolean-cast": 0,
+    "no-console": 0,
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-namespace": 0,
+    "@typescript-eslint/no-empty-interface": 0
+  }
 }

@@ -28,7 +28,7 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
 
     options.name = name;
 
-    for (let nodeDependency of webJanushAuthenticationNodeDependencies) {
+    for (const nodeDependency of webJanushAuthenticationNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
     }
 
@@ -41,7 +41,7 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       ...authenticationChanges(name),
     ]);
