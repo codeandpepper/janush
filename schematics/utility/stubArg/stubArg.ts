@@ -1,1 +1,1 @@
-export const stubArg = (arg: any) => arg;
+export const stubArg = <T>(arg: T) => arg;
