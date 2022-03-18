@@ -9,7 +9,7 @@ namespace Cypress {
     typeText(selector: string, text: string);
     clearElement(selector: string);
     checkValidation(validationText: string);
-    getByDataTestId(selector: string, ...args: any[]);
+    getByDataTestId<T>(selector: string, ...args: T[]);
     checkIfTextIsShown(selector: string, text: string);
     checkTheStateOfElement(selector: string, state: string);
     checkIfPasswordIsVisible(selector: string, isVisible: boolean);

@@ -14,9 +14,10 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
+import { CLIOptions } from "@interfaces/CLIOptions";
 import { readJanushJSON } from "@janush-schematics/utility/janush-json";
 
-export const prepareEnvironment = (options: any): Rule => {
+export const prepareEnvironment = (options: CLIOptions): Rule => {
   return async (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
 
