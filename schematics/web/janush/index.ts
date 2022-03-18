@@ -15,7 +15,7 @@ import {
 
 import { Schematic } from "@enums/Schematic";
 import { CLIOptions } from "@interfaces/CLIOptions";
-import { readJanushJSON } from "@utility/janush-json";
+import { readJanushJSON } from "@utility/janushJson";
 
 export const webJanushGenerator = (options: CLIOptions): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
