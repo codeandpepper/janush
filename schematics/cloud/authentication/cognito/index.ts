@@ -45,7 +45,7 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/lib/authentication`),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       // TODO temporary solution for service purpose enum with one module (authentication),
       //  when other modules come need to move this into "addCognitoConstructToCloudStack" function
@@ -57,12 +57,10 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
           }),
           move(`${Schematic.CLOUD}/enums`),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       addCognitoConstructToCloudStack(name),
-      options.emails
-        ? schematic(CloudSchematic.AUTHENTICATION_EMAILS, { name })
-        : noop(),
+      options.emails ? schematic(CloudSchematic.AUTHENTICATION_EMAILS, { name }) : noop(),
       schematic("apply-prettier", {}),
     ]);
   };

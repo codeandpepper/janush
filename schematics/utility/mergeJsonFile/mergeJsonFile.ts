@@ -16,11 +16,7 @@ export const mergeJsonFile = (tree: Tree, path: string, newObj: object) => {
 
   const originalObj = JSON.parse(fileContent.toString());
 
-  const newPackageJson = JSON.stringify(
-    mergeWith(originalObj, newObj, customizer),
-    null,
-    2
-  );
+  const newPackageJson = JSON.stringify(mergeWith(originalObj, newObj, customizer), null, 2);
 
   tree.overwrite(path, newPackageJson);
 

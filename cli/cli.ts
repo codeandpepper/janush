@@ -25,14 +25,9 @@ const SCHEMATICS_CLI_PATH = path.join(
   "@angular-devkit",
   "schematics-cli",
   "bin",
-  "schematics.js"
+  "schematics.js",
 );
-const SCHEMATICS_COLLECTION_PATH = path.join(
-  __dirname,
-  "..",
-  "schematics",
-  "collection.json"
-);
+const SCHEMATICS_COLLECTION_PATH = path.join(__dirname, "..", "schematics", "collection.json");
 
 function parseArgumentsIntoOptions(rawArgs: string[]): CLIOptions {
   const args = arg(
@@ -59,7 +54,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): CLIOptions {
     {
       argv: rawArgs.slice(PATH_ARGS),
       permissive: true,
-    }
+    },
   );
   return {
     command: args["--command"] || "app",
@@ -89,9 +84,7 @@ function encodeCommand(command: string, options: CLIOptions) {
     }
 
     if (Array.isArray(value)) {
-      return (
-        prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ")
-      );
+      return prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ");
     }
     return prev + ` --${key}=${value}`;
   }, command);
@@ -108,19 +101,19 @@ export function cli(args: string[]) {
     const currentWorkingDirectory = getCurrentWorkingDirectory();
     const janushRootDirectory = getDirectoryOfFileFromPath(
       currentWorkingDirectory,
-      JANUSH_JSON_PATH
+      JANUSH_JSON_PATH,
     );
 
     spawn(
       encodeCommand(
         `${SCHEMATICS_CLI_PATH} ${SCHEMATICS_COLLECTION_PATH}:${options.command}`,
-        options
+        options,
       ),
       {
         stdio: "inherit",
         shell: true,
         cwd: janushRootDirectory,
-      }
+      },
     );
   }
 }

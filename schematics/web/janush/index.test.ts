@@ -25,14 +25,11 @@ describe("web", () => {
           modules: ["random-module-so-janush-make-sense-to-exist"],
           e2e: false,
         },
-        Tree.empty()
+        Tree.empty(),
       )
       .toPromise();
 
-    expect(tree.files).toHaveEqualElements([
-      ...expectedTemplateFiles,
-      ...expectedJanushFiles,
-    ]);
+    expect(tree.files).toHaveEqualElements([...expectedTemplateFiles, ...expectedJanushFiles]);
   });
 
   it("should not create janush files", async () => {
@@ -49,7 +46,7 @@ describe("web", () => {
           modules: [],
           e2e: false,
         },
-        Tree.empty()
+        Tree.empty(),
       )
       .toPromise();
 
@@ -60,9 +57,7 @@ describe("web", () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
     let thrownError: FileDoesNotExistException | null = null;
     try {
-      await runner
-        .runSchematicAsync("web", { name: "janush-app" }, Tree.empty())
-        .toPromise();
+      await runner.runSchematicAsync("web", { name: "janush-app" }, Tree.empty()).toPromise();
     } catch (err) {
       thrownError = err;
     }

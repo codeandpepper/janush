@@ -32,7 +32,7 @@ export const webJanushGenerator = (options: CLIOptions): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       schematic("apply-prettier", {}),
     ]);

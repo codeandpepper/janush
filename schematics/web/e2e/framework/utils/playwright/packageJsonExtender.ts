@@ -11,10 +11,8 @@ export const packageJsonExtender = (tree: Tree) => {
       "pw:open": "playwright test --config ./playwright/config.ts --headed",
       "pw:debug": "playwright test --config ./playwright/config.ts --debug",
       "pw:run": "playwright test --config ./playwright/config.ts",
-      "pw:run:firefox":
-        "playwright test --config ./playwright/config.ts --browser=firefox",
-      "pw:run:webkit":
-        "playwright test --config ./playwright/config.ts --browser=webkit",
+      "pw:run:firefox": "playwright test --config ./playwright/config.ts --browser=firefox",
+      "pw:run:webkit": "playwright test --config ./playwright/config.ts --browser=webkit",
     },
   });
 

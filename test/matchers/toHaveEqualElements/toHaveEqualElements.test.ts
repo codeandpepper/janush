@@ -5,10 +5,7 @@ describe("toHaveEqualElements", () => {
     const tested = ["a", "b", "c"];
     const expected = ["a", "b", "c"];
 
-    const { pass, message: messageCallback } = toHaveEqualElements(
-      tested,
-      expected
-    );
+    const { pass, message: messageCallback } = toHaveEqualElements(tested, expected);
 
     expect(pass).toBe(true);
     expect(messageCallback()).toBe("Expected arrays to have same elements.");
@@ -18,10 +15,7 @@ describe("toHaveEqualElements", () => {
     const tested = ["a", "b", "c", "d"];
     const expected = ["a", "b", "c", "e"];
 
-    const { pass, message: messageCallback } = toHaveEqualElements(
-      tested,
-      expected
-    );
+    const { pass, message: messageCallback } = toHaveEqualElements(tested, expected);
 
     expect(pass).toBe(false);
     expect(messageCallback()).toMatchInlineSnapshot(`

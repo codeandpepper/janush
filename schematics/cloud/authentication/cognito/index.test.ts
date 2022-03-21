@@ -21,19 +21,11 @@ describe("cloud.authentication", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: [] },
-        Tree.empty()
-      )
+      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
     const authenticationTree = await runner
-      .runSchematicAsync(
-        "cloud.authentication",
-        { emails: false },
-        templateTree
-      )
+      .runSchematicAsync("cloud.authentication", { emails: false }, templateTree)
       .toPromise();
 
     expect(authenticationTree.files).toHaveEqualElements([
@@ -50,11 +42,7 @@ describe("cloud.authentication", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: ["authentication"] },
-        Tree.empty()
-      )
+      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
       .toPromise();
 
     expect(templateTree.files).toHaveEqualElements([
@@ -72,16 +60,10 @@ describe("cloud.authentication", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: [] },
-        Tree.empty()
-      )
+      .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    expect(templateTree.files).not.toIncludeSome(
-      expectedAuthenticationTemplateFiles
-    );
+    expect(templateTree.files).not.toIncludeSome(expectedAuthenticationTemplateFiles);
   });
 
   it("should generate authentication with janush template and without emails", async () => {
@@ -94,7 +76,7 @@ describe("cloud.authentication", () => {
       .runSchematicAsync(
         "cloud",
         { name: "janush-app", modules: ["authentication"], emails: false },
-        Tree.empty()
+        Tree.empty(),
       )
       .toPromise();
 
@@ -116,21 +98,15 @@ describe("cloud.authentication", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
 
     const templateTree = await runner
-      .runSchematicAsync(
-        "cloud",
-        { name: "janush-app", modules: ["authentication"] },
-        Tree.empty()
-      )
+      .runSchematicAsync("cloud", { name: "janush-app", modules: ["authentication"] }, Tree.empty())
       .toPromise();
 
-    const cloudStackFile = templateTree.readContent(
-      `${Schematic.CLOUD}/lib/janush-app-stack.ts`
-    );
+    const cloudStackFile = templateTree.readContent(`${Schematic.CLOUD}/lib/janush-app-stack.ts`);
 
     expect(cloudStackFile).toContain(
       prettier.format(importStatement, {
         parser: "babel-ts",
-      })
+      }),
     );
     expect(cloudStackFile).toContain(cognitoConstructStatement);
   });

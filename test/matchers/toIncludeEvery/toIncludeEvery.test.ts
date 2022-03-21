@@ -8,9 +8,7 @@ describe("toIncludeEvery", () => {
     const { pass, message: messageCallback } = toIncludeEvery(tested, expected);
 
     expect(pass).toBe(true);
-    expect(messageCallback()).toBe(
-      "Expected array to include all of the elements."
-    );
+    expect(messageCallback()).toBe("Expected array to include all of the elements.");
   });
 
   it("should fail with specific message", () => {

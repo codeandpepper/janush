@@ -1,7 +1,4 @@
-import {
-  NodeDependency,
-  NodeDependencyType,
-} from "@schematics/angular/utility/dependencies";
+import { NodeDependency, NodeDependencyType } from "@schematics/angular/utility/dependencies";
 
 const lodash = {
   type: NodeDependencyType.Default,

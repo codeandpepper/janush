@@ -11,9 +11,7 @@ describe("directoryUtils", () => {
       const pathToBeTrimmed = "/users/kowalski/documents/books";
       const directoryName = "kowalski";
 
-      expect(trimPathToDirectoryName(pathToBeTrimmed, directoryName)).toBe(
-        "/users/kowalski"
-      );
+      expect(trimPathToDirectoryName(pathToBeTrimmed, directoryName)).toBe("/users/kowalski");
     });
 
     it("trimming to last directory in path should return path => /users/kowalski/documents/books", () => {
@@ -21,7 +19,7 @@ describe("directoryUtils", () => {
       const directoryName = "books";
 
       expect(trimPathToDirectoryName(pathToBeTrimmed, directoryName)).toBe(
-        "/users/kowalski/documents/books"
+        "/users/kowalski/documents/books",
       );
     });
 
@@ -29,9 +27,7 @@ describe("directoryUtils", () => {
       const pathToBeTrimmed = "/users/kowalski/documents/books";
       const directoryName = "malinowski";
 
-      expect(() =>
-        trimPathToDirectoryName(pathToBeTrimmed, directoryName)
-      ).toThrow();
+      expect(() => trimPathToDirectoryName(pathToBeTrimmed, directoryName)).toThrow();
     });
   });
   describe("getCurrentWorkingDirectory", () => {
@@ -45,9 +41,7 @@ describe("directoryUtils", () => {
     it(`should return path ${expectedPath}`, () => {
       const fileName = "package.json";
 
-      expect(getDirectoryOfFileFromPath(__dirname, fileName)).toBe(
-        expectedPath
-      );
+      expect(getDirectoryOfFileFromPath(__dirname, fileName)).toBe(expectedPath);
     });
 
     it("should return empty string", () => {

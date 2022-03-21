@@ -16,16 +16,10 @@ describe("addEmailsConstructToCognitoConstruct", () => {
 
     try {
       await runner
-        .runSchematicAsync(
-          "test.util",
-          { name: "testName", modules: [] },
-          Tree.empty()
-        )
+        .runSchematicAsync("test.util", { name: "testName", modules: [] }, Tree.empty())
         .toPromise();
     } catch (err) {
-      expect(err.message).toEqual(
-        'Path "cognitoUserPoolCdkConstruct.ts" does not exist.'
-      );
+      expect(err.message).toEqual('Path "cognitoUserPoolCdkConstruct.ts" does not exist.');
     }
   });
 });

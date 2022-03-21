@@ -52,7 +52,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite
+        MergeStrategy.Overwrite,
       ),
       !isEmptyModules(options)
         ? schematic(WebSchematic.JANUSH, {
