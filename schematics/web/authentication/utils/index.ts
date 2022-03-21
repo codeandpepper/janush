@@ -288,7 +288,7 @@ export const changeIndex = (projectName: string) => {
 
 export const changeConfigOverrides = (projectName: string) => {
   return (tree: Tree) => {
-    const filePath = `${Schematic.WEB}/configOverrides.js`;
+    const filePath = `${Schematic.WEB}/config-overrides.js`;
     let fileContent = tree.read(filePath);
 
     const fileContentAsSourceCode =
