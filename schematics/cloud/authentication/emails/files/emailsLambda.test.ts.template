@@ -10,7 +10,7 @@ AWSMock.setSDKInstance(require("aws-sdk"));
 jest.mock("./utils", () => ({
   generateEmailFromS3Template: jest
     .fn()
-    .mockResolvedValue("http://localhost:3000"),
+    .mockResolvedValue(process.env.defaultDomain),
 }));
 
 import { generateCodeLink, handler } from "./emailsLambda";
@@ -30,7 +30,7 @@ const basicEvent = {
 };
 
 process.env.bucketName = "s3Bucket";
-process.env.defaultDomain = "localhost:3000";
+process.env.defaultDomain = "https://janush.app";
 
 describe("authorizationEmailsLambda", () => {
   describe("generateCodeLink()", () => {
@@ -41,7 +41,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        "http://localhost:3000/create-new-password?username=test%40test.com&code={####}"
+        `${process.env.defaultDomain}/create-new-password?username=test%40test.com&code={####}`
       );
     });
 
@@ -52,7 +52,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        "http://localhost:3000/confirm-signup?username=test%40test.com&code={####}"
+        `${process.env.defaultDomain}/confirm-signup?username=test%40test.com&code={####}`
       );
     });
 
@@ -63,7 +63,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        "http://localhost:3000/confirm-signup?username=test%40test.com&code={####}"
+        `${process.env.defaultDomain}/confirm-signup?username=test%40test.com&code={####}`
       );
     });
   });
