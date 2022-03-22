@@ -7,24 +7,29 @@ title: Getting Started
 
 ## Set up project
 
-1. Run one command
+1. Install Janush CLI
 ```sh
-npx codeandpepper/janush
+npm install -g @codeandpepper/janush
 ```
 
-2. Choose application name
+2. Run Janush CLI
+```sh
+janush
+```
+
+3. Choose application name
 ```sh
 Application name? (janush-app) Awesome App
 ```
 
-3. Choose application type
+4. Choose application type
 ```sh
 Which application type would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selection)
 ❯◉ Cloud
  ◉ Web
 ```
 
-4. Choose features
+5. Choose features
 ```sh
 Which modules would you like to use? You can add this later. (Press <space> to select, <a> to toggle all, <i> to invert selection)
 ❯◉ Authentication
@@ -32,7 +37,7 @@ Which modules would you like to use? You can add this later. (Press <space> to s
 Do you want add an auth emails template? (Y/n) y
 ```
 
-5. Source code is generated automatically
+6. Source code is generated automatically
 ```sh
 CREATE awesome-app/README.md (31 bytes)
 CREATE awesome-app/janush.json (74 bytes)
@@ -86,4 +91,4 @@ CREATE awesome-app/web/src/reportWebVitals.ts (425 bytes)
 CREATE awesome-app/web/src/setupTests.ts (241 bytes)
 ```
 
-6. Use it as a starting point to develop your application
+7. Use it as a starting point to develop your application

@@ -11,12 +11,14 @@ Package | Version
 --- | --- 
 Node.js | 16.x.x 
 
-### Using npx
-You can run the project directly using the following npx command:
+### Install Janush CLI
+You can install the project directly with the following command:
 
 ```sh
-npx codeandpepper/janush
+npm install -g @codeandpepper/janush
 ```
+
+The application will be available under the command `janush`
 
 ### Local development
 
