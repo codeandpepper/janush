@@ -1,8 +1,9 @@
 name: Docusaurus
 
 on:
+  workflow_dispatch:
   branches-ignore:
-      - '**'
+    - "**"
 
 jobs:
   checks:
