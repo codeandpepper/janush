@@ -23,3 +23,5 @@ yarn.lock
 
 # Configs
 !jest.config.js
+!docusaurus.config.js
+!sidebars.js

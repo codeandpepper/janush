@@ -10,7 +10,7 @@ and we will continue to have all code generated this way
 
 ### What package managers janush supports?
 
-[To run janush install install it globally](getting-started#set-up-project)  
+[To run janush install it globally](getting-started#set-up-project)  
 For development mode janush supports all common package managers but we strongly recommend to use npm as convention
 
 ### What browsers janush supports?
