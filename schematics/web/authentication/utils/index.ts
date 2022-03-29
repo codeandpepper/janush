@@ -406,8 +406,7 @@ export const changePaths = (projectName: string): TreeFunction => {
         paths.getEnd() - 1,
         'SIGN_IN_PATH = "/sign-in",\n' +
           'SIGN_UP_PATH = "/sign-up",\n' +
-          'VERIFY_EMAIL_PATH = "/verify-email",\n' +
-          'CONFIRM_SIGN_UP = "/confirm-signup"\n',
+          'VERIFY_EMAIL_PATH = "/verify-email",\n',
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
@@ -447,8 +446,7 @@ export const changeRoutes = (projectName: string): TreeFunction => {
       const addMissingAbsolutePaths = new InsertChange(
         filePath,
         paths.getEnd(),
-        '));\nconst ConfirmSignUp = lazy(() => import("./routes/ConfirmSignUp/ConfirmSignUp"));' +
-          '\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
+        '));\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
           '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
           '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"',
       );
@@ -466,8 +464,7 @@ export const changeRoutes = (projectName: string): TreeFunction => {
         attr.getStart() - 1,
         "<Route path={Paths.SIGN_IN_PATH} component={SignIn} />\n" +
           "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
-          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n" +
-          "<Route path={Paths.CONFIRM_SIGN_UP} component={ConfirmSignUp} />\n",
+          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n",
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
