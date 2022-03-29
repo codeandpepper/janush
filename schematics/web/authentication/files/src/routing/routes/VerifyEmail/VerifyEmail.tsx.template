@@ -9,6 +9,7 @@ import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
 
 import { useStyles } from "./styles";
+import { VerifyEmailForm } from "@routing/routes/VerifyEmail/VerifyEmailView/VerifyEmailForm";
 
 interface LocationState {
   email?: string;
@@ -72,6 +73,9 @@ const VerifyEmail: React.VFC = () => {
           </Box>
 
           <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <VerifyEmailForm email={state?.email} />
+            </Grid>
             <Grid item xs={12}>
               <Button
                 data-testid="resend-email-button"
