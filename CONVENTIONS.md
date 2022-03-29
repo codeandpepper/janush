@@ -1,12 +1,17 @@
 # Conventions
+
 ## Naming rules
+
 ### Files, constants, variables and functions names
 
 Use camelCase notation.
+
 ### Classes, interfaces and types names
 
 Use PascalCase notation.
+
 ## Modules import
+
 #### Schema:
 
 ```
@@ -21,6 +26,7 @@ styling-modules
 ```
 
 If there is more than 1 module defined per level - sort alphabetically (or by root of nesting for `relative-modules`).
+
 #### Example:
 
 ```javascript
@@ -38,28 +44,35 @@ import ... from './f.ts';
 
 import ... from './styles';
 ```
+
 ## Modules exports
+
 ### Use named exports in the line of function declaration
 
 ```javascript
 export const myFunction = () => {};
 ```
+
 ## Functions
+
 ### Use arrow functions
 
 ```javascript
 const myFunction = () => {};
 ```
+
 ### Declare arguments types
 
 ```javascript
-const myFunction = (props: PropsType) => {};
+const myFunction = (props: Props) => {};
 ```
+
 ### Declare return type
 
 ```javascript
 const myFunction: ReturnType = () => {};
 ```
+
 ### React components
 
 - Use react functional components.
@@ -67,21 +80,21 @@ const myFunction: ReturnType = () => {};
 - Type components with children using react FC.
 
   ```javascript
-  export const MyComponent: React.FC<PropsType> = ({ label, text, children }) => {
-  	return (
-  		<div>
-  			<h1>{label}</h1>
-  			<p>{text}</p>
-  			{children}
-  		</div>
-  	);
+  export const MyComponent: React.FC<Props> = ({ label, text, children }) => {
+    return (
+      <div>
+        <h1>{label}</h1>
+        <p>{text}</p>
+        {children}
+      </div>
+    );
   };
   ```
 
 - Type components without children using react VFC.
 
   ```javascript
-  export const MyComponent: React.VFC<PropsType> = ({ label, text }) => {
+  export const MyComponent: React.VFC<Props> = ({ label, text }) => {
     return (
       <div>
         <h1>{label}</h1>
@@ -90,7 +103,9 @@ const myFunction: ReturnType = () => {};
     );
   };
   ```
+
 ## Types vs Interfaces
 
 ### Use interfaces instead of types wherever it is possible
-### Declare interface/type in place of its usage when it is used only in this place. Everytime it is used in more than one place extract it to separate file.
+
+### Declare interface/type in place of its usage when it is used only in this place. In case of interface/type which is not defining the component props and is used in more than only one place extract it to separate file.
