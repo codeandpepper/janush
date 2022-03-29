@@ -3,6 +3,7 @@ import {
   aws_s3 as s3,
   aws_s3_deployment as s3deploy,
   RemovalPolicy,
+  Stack,
 } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
@@ -15,12 +16,13 @@ interface EmailsS3Props {
 export class EmailsS3CdkConstruct extends Construct {
   public emailTemplatesBucket: s3.Bucket;
   public emailTemplatesBucketDeployment: s3deploy.BucketDeployment;
+  private awsAccountNumber = Stack.of(this).account;
 
   constructor(scope: Construct, id: string, { envName }: EmailsS3Props) {
     super(scope, id);
 
     this.emailTemplatesBucket = new s3.Bucket(this, "Bucket", {
-      bucketName: `${envName}-<%= dasherize(name) %>-email-templates`,
+      bucketName: `${this.awsAccountNumber}-${envName}-<%= dasherize(name) %>-email-templates`,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
