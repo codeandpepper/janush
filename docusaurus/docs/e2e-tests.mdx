@@ -14,13 +14,13 @@ import TabItem from '@theme/TabItem';
 Run Cypress tests in the graphical mode:
 
 ```
-yarn cy:open
+npm run cy:open
 ```
 
 Run Cypress tests in the headless mode:
 
 ```
-yarn cy:run
+npm run cy:run
 ```
 
   </TabItem>
@@ -29,31 +29,31 @@ yarn cy:run
 Run Playwright tests in the graphical mode:
 
 ```
-yarn pw:open
+npm run pw:open
 ```
 
 Run Playwright tests in the debug mode with Playwright Inspector:
 
 ```
-yarn pw:debug
+npm run pw:debug
 ```
 
 Run Playwright tests in the headless mode in the Chrome browser:
 
 ```
-yarn pw:run
+npm run pw:run
 ```
 
 Run Playwright tests in the headless mode in the Firefox browser:
 
 ```
-yarn pw:run:firefox
+npm run pw:run:firefox
 ```
 
 Run Playwright tests in the headless mode in the Webkit browser:
 
 ```
-yarn pw:run:webkit
+npm run pw:run:webkit
 ```
 
   </TabItem>
@@ -67,13 +67,13 @@ yarn pw:run:webkit
 Run Prettier under the `cypress` directory:
 
 ```
-yarn cy:format
+npm run cy:format
 ```
 
 Run ESLint under the `cypress` directory:
 
 ```
-yarn cy:lint
+npm run cy:lint
 ```
 
   </TabItem>
@@ -82,13 +82,13 @@ yarn cy:lint
 Run Prettier under the `playwright` directory:
 
 ```
-yarn pw:format
+npm run pw:format
 ```
 
 Run ESLint under the `playwright` directory:
 
 ```
-yarn pw:lint
+npm run pw:lint
 ```
 
   </TabItem>
@@ -128,13 +128,13 @@ yarn pw:lint
 If you want to generate code coverage report after the Cypress tests you should run the server via command:
 
 ```
-yarn cy:coverage:start
+npm run cy:coverage:start
 ```
 
 and then run the Cypress tests:
 
 ```
-yarn cy:run
+npm run cy:run
 ```
 
 The code coverage report will be generated automatically after the test run is finished.
@@ -143,7 +143,7 @@ To see the full code coverage report open the `cypress/reports/code-coverage/ind
 
 To generate the code coverage summary in the terminal after the test run use:
 ```
-yarn nyc report --reporter=text-summary
+npm run nyc report --reporter=text-summary
 ```
 
   </TabItem>
