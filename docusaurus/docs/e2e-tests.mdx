@@ -1,0 +1,161 @@
+---
+sidebar_position: 5
+title: E2E tests
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Running E2E tests
+
+<Tabs>
+  <TabItem value="cypress" label="Cypress" default>
+
+Run Cypress tests in the graphical mode:
+
+```
+npm run cy:open
+```
+
+Run Cypress tests in the headless mode:
+
+```
+npm run cy:run
+```
+
+  </TabItem>
+  <TabItem value="playwright" label="Playwright">
+
+Run Playwright tests in the graphical mode:
+
+```
+npm run pw:open
+```
+
+Run Playwright tests in the debug mode with Playwright Inspector:
+
+```
+npm run pw:debug
+```
+
+Run Playwright tests in the headless mode in the Chrome browser:
+
+```
+npm run pw:run
+```
+
+Run Playwright tests in the headless mode in the Firefox browser:
+
+```
+npm run pw:run:firefox
+```
+
+Run Playwright tests in the headless mode in the Webkit browser:
+
+```
+npm run pw:run:webkit
+```
+
+  </TabItem>
+</Tabs>
+
+## Prettier & ESLint
+
+<Tabs>
+  <TabItem value="cypress" label="Cypress" default>
+
+Run Prettier under the `cypress` directory:
+
+```
+npm run cy:format
+```
+
+Run ESLint under the `cypress` directory:
+
+```
+npm run cy:lint
+```
+
+  </TabItem>
+  <TabItem value="playwright" label="Playwright">
+
+Run Prettier under the `playwright` directory:
+
+```
+npm run pw:format
+```
+
+Run ESLint under the `playwright` directory:
+
+```
+npm run pw:lint
+```
+
+  </TabItem>
+</Tabs>
+
+## Packages included and configured for E2E tests:
+
+<Tabs>
+  <TabItem value="cypress" label="Cypress" default>
+
+[`@cypress/code-coverage`](https://www.npmjs.com/package/@cypress/code-coverage) - it generates a code coverage report after Cypress tests <br/>
+[`@cypress/instrument-cra`](https://www.npmjs.com/package/@cypress/instrument-cra) - instrument code without ejecting react-scripts <br/>
+[`@types/faker`](https://www.npmjs.com/package/@types/faker) - it contains types definitions for faker package <br/>
+[`eslint-plugin-cypress`](https://www.npmjs.com/package/eslint-plugin-cypress) - an ESLint plugin for your Cypress tests <br/>
+[`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests <br/>
+[`mochawesome`](https://www.npmjs.com/package/mochawesome) - a custom reporter for use to generate tests report after test run <br/>
+[`mochawesome-merge`](https://www.npmjs.com/package/mochawesome-merge) - it merges several Mochawesome JSON reports <br/>
+[`mochawesome-report-generator`](https://www.npmjs.com/package/mochawesome-report-generator) - it generates HTML reports from mochawesome reporter <br/>
+
+  </TabItem>
+  <TabItem value="playwright" label="Playwright">
+
+[`@playwright/test`](https://www.npmjs.com/package/@playwright/test) - a test-runner for Playwright <br/>
+[`@types/faker`](https://www.npmjs.com/package/@types/faker) - it contains types definitions for faker package <br/>
+[`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests <br/>
+[`playwright`](https://www.npmjs.com/package/playwright) - a Node.js library to automate Chromium, Firefox and WebKit with a single API <br/>
+
+  </TabItem>
+</Tabs>
+
+
+## Code coverage
+
+<Tabs>
+  <TabItem value="cypress" label="Cypress" default>
+
+If you want to generate code coverage report after the Cypress tests you should run the server via command:
+
+```
+npm run cy:coverage:start
+```
+
+and then run the Cypress tests:
+
+```
+npm run cy:run
+```
+
+The code coverage report will be generated automatically after the test run is finished.
+
+To see the full code coverage report open the `cypress/reports/code-coverage/index.html` file.
+
+To generate the code coverage summary in the terminal after the test run use:
+```
+npm run nyc report --reporter=text-summary
+```
+
+  </TabItem>
+</Tabs>
+
+## Mochawesome reporter
+
+<Tabs>
+  <TabItem value="cypress" label="Cypress" default>
+
+To see the mochawesome report open the `cypress/reports/mochawesome/final-report/mochawesome.html` file. The report will be generated automatically after the test run is finished.
+
+  </TabItem>
+</Tabs>
+
