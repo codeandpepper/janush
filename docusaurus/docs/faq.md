@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: FAQ
 ---
 
@@ -10,12 +10,12 @@ and we will continue to have all code generated this way
 
 ### What package managers janush supports?
 
-[To run janush install it globally](getting-started#set-up-project)  
+[To run janush install it globally](getting-started#set-up-project)
 For development mode janush supports all common package managers but we strongly recommend to use npm as convention
 
 ### What browsers janush supports?
 
-Generated janush app project supports all modern browsers  
+Generated janush app project supports all modern browsers
 Also a browserslist configuration is included in your package.json.
 ```json
 {
