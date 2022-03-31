@@ -6,7 +6,6 @@
     "node": "16.x.x"
   },
   "scripts": {
-    "preinstall": "npx only-allow npm",
     "prepare": "npm run build && husky install",
     "build": "tsc && tsc-alias --silent",
     "test": "jest",
