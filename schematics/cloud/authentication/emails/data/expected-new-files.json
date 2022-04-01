@@ -12,5 +12,5 @@
   "/cloud/lib/authentication/emails/templates/resetPassword.mjml",
   "/cloud/enums/CognitoMessageTriggerSource.ts",
   "/cloud/enums/EmailTemplate.ts",
-  "/cloud/.env"
+  "/cloud/.env.example"
 ]

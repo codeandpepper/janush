@@ -5,5 +5,5 @@
   "/cloud/enums/EnvName.ts",
   "/cloud/scripts/test.txt",
   "/cloud/utils/functions.ts",
-  "/cloud/.env"
+  "/cloud/.env.example"
 ]
