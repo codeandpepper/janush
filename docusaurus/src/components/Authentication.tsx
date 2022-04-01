@@ -23,14 +23,6 @@ export const Authentication: React.VFC = () => {
 						React UI library - <strong>MUI (Material-UI)</strong>. We also have
 						full design done in <strong>Figma</strong>.
 					</p>
-					<div className="codeBlockContent_1u-d">
-						<Link
-							className="button button--primary button--lg"
-							to="/docs/features"
-						>
-							Features
-						</Link>
-					</div>
 				</div>
 				<div className="col col--5 col--offset-1">
 					<img alt="authentication" src="/img/sign-up-and-in.png" />
