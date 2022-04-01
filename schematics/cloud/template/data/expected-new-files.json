@@ -10,5 +10,5 @@
   "/cloud/lib/janush-app-stack.ts",
   "/cloud/package.json",
   "/cloud/tsconfig.json",
-  "/cloud/.env"
+  "/cloud/.env.example"
 ]

@@ -14,5 +14,5 @@
   "/web/src/routing/routes/Index/IndexPage.tsx",
   "/web/src/themes/defaultTheme.ts",
   "/web/src/themes/palette.ts",
-  "/web/.env"
+  "/web/.env.example"
 ]
