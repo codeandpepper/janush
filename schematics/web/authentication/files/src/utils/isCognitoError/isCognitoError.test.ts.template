@@ -1,0 +1,21 @@
+import { CognitoErrorType } from "@janush-types/enums/Cognito";
+
+import { isCognitoError } from "./isCognitoError";
+
+describe("isCognitoError", () => {
+  it("should return true", () => {
+    const correctObj = {
+      type: CognitoErrorType.CodeMismatchException,
+      message: "Example msg",
+      code: CognitoErrorType.CodeMismatchException,
+    };
+
+    const isCognito = isCognitoError(correctObj);
+    expect(isCognito).toBe(true);
+  });
+
+  it("should return false", () => {
+    const unexpectedError = "unexpected error";
+    expect(isCognitoError(unexpectedError)).toBeFalsy();
+  });
+});

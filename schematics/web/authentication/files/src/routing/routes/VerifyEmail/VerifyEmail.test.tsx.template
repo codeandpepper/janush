@@ -113,7 +113,7 @@ describe("<VerifyEmail />", () => {
 
 it("should display an error on failure", async () => {
   jest.useFakeTimers();
-  const message = "Wrong code";
+  const message = "Oops... Something went wrong";
   Auth.confirmSignUp = jest.fn().mockImplementation(() => {
     // eslint-disable-next-line
     throw {
@@ -136,7 +136,7 @@ it("should display an error on failure", async () => {
     fireEvent.click(buttonText);
   });
 
-  const errorMessage = await screen.findByText("Wrong code");
+  const errorMessage = await screen.findByText(message);
   expect(errorMessage).toBeInTheDocument();
   await waitFor(() =>
     expect(mockHistoryPush).not.toBeCalledWith(Paths.SIGN_IN_PATH)
