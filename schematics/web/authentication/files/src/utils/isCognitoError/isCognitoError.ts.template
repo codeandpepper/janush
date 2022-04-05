@@ -1,10 +1,5 @@
 import { CognitoError } from "@interfaces/Cognito";
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
 
-export const isCognitoError = (err: any): err is CognitoError => {
-  let isCognito = false;
-  if (Object.values(CognitoErrorType).includes(err.code)) {
-    isCognito = true;
-  }
-  return isCognito;
-};
+export const isCognitoError = (err: any): err is CognitoError =>
+  Object.values(CognitoErrorType).includes(err.code);

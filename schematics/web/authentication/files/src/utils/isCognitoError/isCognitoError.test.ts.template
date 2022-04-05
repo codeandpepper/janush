@@ -1,5 +1,4 @@
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
-
 import { isCognitoError } from "./isCognitoError";
 
 describe("isCognitoError", () => {
@@ -10,12 +9,10 @@ describe("isCognitoError", () => {
       code: CognitoErrorType.CodeMismatchException,
     };
 
-    const isCognito = isCognitoError(correctObj);
-    expect(isCognito).toBe(true);
+    expect(isCognitoError(correctObj)).toBe(true);
   });
 
   it("should return false", () => {
-    const unexpectedError = "unexpected error";
-    expect(isCognitoError(unexpectedError)).toBeFalsy();
+    expect(isCognitoError("unexpected error")).toBe(false);
   });
 });

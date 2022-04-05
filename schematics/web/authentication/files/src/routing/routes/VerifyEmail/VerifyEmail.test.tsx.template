@@ -113,10 +113,11 @@ describe("<VerifyEmail />", () => {
 
 it("should display an error on failure", async () => {
   jest.useFakeTimers();
-  const message = "Oops... Something went wrong";
+  const message = "Wrong code";
   Auth.confirmSignUp = jest.fn().mockImplementation(() => {
     // eslint-disable-next-line
     throw {
+      code: "CodeMismatchException",
       message,
     };
   });
