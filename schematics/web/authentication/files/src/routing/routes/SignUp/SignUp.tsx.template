@@ -8,6 +8,7 @@ import { Nullable } from "@janush-types/useful";
 import { Paths } from "@routing/paths";
 import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/formState";
 import { SignUpView } from "./SignUpView/SignUpView";
+import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 
 const SignUp: React.VFC = () => {
   const history = useHistory();
@@ -33,13 +34,14 @@ const SignUp: React.VFC = () => {
       history.push(Paths.VERIFY_EMAIL_PATH, {
         email,
       });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      if (err.code === CognitoErrorType.UsernameExistsException) {
-        return setError({
-          type: CognitoErrorType.UsernameExistsException,
-          message: err.message,
-        });
+    } catch (err: unknown) {
+      if (isCognitoError(err)) {
+        if (err.code === CognitoErrorType.UsernameExistsException) {
+          return setError({
+            type: CognitoErrorType.UsernameExistsException,
+            message: err.message,
+          });
+        }
       }
 
       /**
