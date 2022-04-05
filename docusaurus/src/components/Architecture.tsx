@@ -20,14 +20,6 @@ export const Architecture: React.VFC = () => {
 						(Cloud Development Kit). Design principles and architectural best
 						practices defined by <strong>AWS Well-Architected</strong>.
 					</p>
-					<div>
-						<Link
-							className="button button--primary button--lg"
-							to="/docs/architecture"
-						>
-							Architecture
-						</Link>
-					</div>
 				</div>
 			</div>
 		</section>
