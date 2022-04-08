@@ -11,7 +11,7 @@ Janush is web based application for rapid setup and configure application with p
 
 #### Technology
 
-We are using [serverless services on AWS](https://aws.amazon.com/serverless/#Serverless_Services_on_AWS) (Amazon Web Services) and TypeScript in all apects of the project, starting from React frontend, Node.js (AWS Lambda) backend and IaC (Infrastructure as Code) using AWS CDK (Cloud Development Kit).
+We are using [serverless services on AWS](https://aws.amazon.com/serverless/#Serverless_Services_on_AWS) (Amazon Web Services) and TypeScript in all apects of the project, starting from React frontend, Node.js (AWS Lambda) backend and IaC (Infrastructure as Code) using AWS CDK v2 (Cloud Development Kit).
 
 
 ### Requirements
