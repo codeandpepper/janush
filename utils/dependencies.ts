@@ -5,6 +5,7 @@ const lodash = {
   name: "lodash",
   version: "^4.17.21",
 };
+
 const lodashTypes = {
   type: NodeDependencyType.Dev,
   name: "@types/lodash",
