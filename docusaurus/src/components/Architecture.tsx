@@ -1,7 +1,5 @@
 import React from "react";
 
-import Link from "@docusaurus/Link";
-
 export const Architecture: React.VFC = () => {
 	return (
 		<section className="container padding-vert--xl text--left descriptions">

@@ -57,6 +57,7 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 .hero-github-link {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   gap: 10px;
 }
 
