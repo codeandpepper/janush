@@ -1,6 +1,16 @@
 # Conventions
 
-### Modules import
+## Naming rules
+
+### Files, constants, variables and functions names
+
+Use camelCase notation.
+
+### Classes, interfaces and types names
+
+Use PascalCase notation.
+
+## Modules import
 
 #### Schema:
 
@@ -34,3 +44,68 @@ import ... from './f.ts';
 
 import ... from './styles';
 ```
+
+## Modules exports
+
+### Use named exports in the line of function declaration
+
+```javascript
+export const myFunction = () => {};
+```
+
+## Functions
+
+### Use arrow functions
+
+```javascript
+const myFunction = () => {};
+```
+
+### Declare arguments types
+
+```javascript
+const myFunction = (props: Props) => {};
+```
+
+### Declare return type
+
+```javascript
+const myFunction: ReturnType = () => {};
+```
+
+### React components
+
+- Use react functional components.
+
+- Type components with children using react FC.
+
+  ```javascript
+  export const MyComponent: React.FC<Props> = ({ label, text, children }) => {
+    return (
+      <div>
+        <h1>{label}</h1>
+        <p>{text}</p>
+        {children}
+      </div>
+    );
+  };
+  ```
+
+- Type components without children using react VFC.
+
+  ```javascript
+  export const MyComponent: React.VFC<Props> = ({ label, text }) => {
+    return (
+      <div>
+        <h1>{label}</h1>
+        <p>{text}</p>
+      </div>
+    );
+  };
+  ```
+
+## Types vs Interfaces
+
+### Use interfaces instead of types wherever it is possible
+
+### Declare interface/type in place of its usage when it is used only in this place. In case of interface/type which is not defining the component props and is used in more than only one place extract it to separate file.
