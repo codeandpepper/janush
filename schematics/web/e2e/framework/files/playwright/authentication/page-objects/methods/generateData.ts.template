@@ -4,7 +4,7 @@ export type FakeUserData = ReturnType<typeof generateFakeUserData>;
 
 export const generateFakeUserData = () => ({
   email: {
-    correct: `success+${faker.datatype.number(999999)}@simulator.amazonses.com`,
+    correct: `success+${faker.datatype.number(9999999)}@simulator.amazonses.com`,
     withoutAtSign: faker.lorem.words(1),
     withoutDomain: `${faker.lorem.words(1)}@`,
   },

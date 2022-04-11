@@ -246,7 +246,7 @@ export const changeIndex = (projectName: string): TreeFunction => {
 
 export const changeConfigOverrides = (projectName: string): TreeFunction => {
   return (tree: Tree): Tree => {
-    const filePath = `${Schematic.WEB}/configOverrides.js`;
+    const filePath = `${Schematic.WEB}/config-overrides.js`;
     const fileContent = tree.read(filePath);
     const fileContentAsSourceCode = fileContent && fileContent.toString("utf-8");
 
