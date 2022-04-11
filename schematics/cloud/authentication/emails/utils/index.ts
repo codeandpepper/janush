@@ -25,7 +25,7 @@ const createEmailsConstructContext = (): EmailConstructContext => {
   const cognitoUserPoolConstructPath = `${Schematic.CLOUD}/lib/authentication/${COGNITO_USER_POOL_CONSTRUCT}`;
 
   const construct = fs
-    .readFileSync(path.join(__dirname, "../other-files/cognito-user-pool/emailsConstruct.template"))
+    .readFileSync(path.join(__dirname, "../otherFiles/cognitoUserPool/emailsConstruct.template"))
     .toString("utf-8");
 
   return {

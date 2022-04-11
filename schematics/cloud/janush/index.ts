@@ -41,7 +41,7 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

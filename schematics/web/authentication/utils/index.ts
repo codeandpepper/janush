@@ -10,11 +10,11 @@ import { InsertChange } from "@schematics/angular/utility/change";
 type TreeFunction = (tree: Tree) => Tree;
 
 const construct = fs
-  .readFileSync(path.join(__dirname, "..", "other-files/TopAppBar/signOut.template"))
+  .readFileSync(path.join(__dirname, "..", "otherFiles/TopAppBar/signOut.template"))
   .toString("utf-8");
 
 const construct2 = fs
-  .readFileSync(path.join(__dirname, "..", "other-files/TopAppBar/TopAppBar.template"))
+  .readFileSync(path.join(__dirname, "..", "otherFiles/TopAppBar/TopAppBar.template"))
   .toString("utf-8");
 
 export const changeTopAppBar = (projectName: string) => {

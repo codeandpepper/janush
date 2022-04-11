@@ -26,7 +26,7 @@ const createCognitoConstructContext = (projectName: string): CognitoConstructCon
 
   const construct = fs
     .readFileSync(
-      path.join(__dirname, "..", "other-files/cloud-stack/authenticationConstruct.template"),
+      path.join(__dirname, "..", "otherFiles/cloudStack/authenticationConstruct.template"),
     )
     .toString("utf-8");
 

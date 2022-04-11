@@ -50,7 +50,7 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
       // TODO temporary solution for service purpose enum with one module (authentication),
       //  when other modules come need to move this into "addCognitoConstructToCloudStack" function
       mergeWith(
-        apply(url("./other-files/service-purpose"), [
+        apply(url("./otherFiles/servicePurpose"), [
           applyTemplates({
             ...options,
             ...strings,
@@ -61,7 +61,7 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
       ),
       addCognitoConstructToCloudStack(name),
       options.emails ? schematic(CloudSchematic.AUTHENTICATION_EMAILS, { name }) : noop(),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

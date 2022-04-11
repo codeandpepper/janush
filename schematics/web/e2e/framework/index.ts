@@ -67,7 +67,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
               )
             : stubArg,
           packageJsonCypressExtender,
-          schematic("apply-prettier", {}),
+          schematic("applyPrettier", {}),
         ]);
 
       case E2ERunner.PLAYWRIGHT:
@@ -93,7 +93,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                     ...options,
                     ...strings,
                   }),
-                  move(`${Schematic.WEB}/playwright/page-objects/selectors`),
+                  move(`${Schematic.WEB}/playwright/pageObjects/selectors`),
                 ]),
                 MergeStrategy.Overwrite,
               )
@@ -112,7 +112,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
             : stubArg,
           packageJsonPlaywrightExtender,
           tsConfigPlaywrightExtender,
-          schematic("apply-prettier", {}),
+          schematic("applyPrettier", {}),
         ]);
       default:
         throw new Error("E2E schema misconfiguration");

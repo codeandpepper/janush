@@ -61,7 +61,7 @@ export const webTemplateGenerator = (options: Schema): Rule => {
         : noop(),
       isAuth ? schematic(WebSchematic.AUTHENTICATION, options) : noop(),
       schematic(WebE2ESchematic.PROMPT, options),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

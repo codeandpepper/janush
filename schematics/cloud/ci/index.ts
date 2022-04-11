@@ -34,7 +34,7 @@ export const prepareEnvironment = (options: CLIOptions): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

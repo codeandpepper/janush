@@ -34,7 +34,7 @@ export const webJanushGenerator = (options: CLIOptions): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

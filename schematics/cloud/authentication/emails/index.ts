@@ -39,7 +39,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       mergeWith(
-        apply(url("./other-files/enums"), [
+        apply(url("./otherFiles/enums"), [
           applyTemplates({
             ...options,
             ...strings,
@@ -49,7 +49,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       mergeWith(
-        apply(url("./other-files/env"), [
+        apply(url("./otherFiles/env"), [
           applyTemplates({
             ...options,
             ...strings,
@@ -59,7 +59,7 @@ export const cloudAuthenticationEmailsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       addEmailsConstructToCognitoConstruct(),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };
