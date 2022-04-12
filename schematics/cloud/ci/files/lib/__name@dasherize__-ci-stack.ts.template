@@ -30,7 +30,7 @@ export class <%= classify(name) %>CiStack extends Stack {
         appName: `${envName}-<%= dasherize(name) %>-amplify-hosting`,
       }
     );
-    this.amplifyApp.addCustomRule(
+    amplifyApp.addCustomRule(
       amplify.CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT
     );
     const branch = amplifyApp.addBranch("prod");
