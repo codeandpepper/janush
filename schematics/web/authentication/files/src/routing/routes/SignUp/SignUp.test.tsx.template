@@ -5,7 +5,6 @@ import { MemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router-dom";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
-import { Paths } from "@routing/paths";
 import SignUp from "./SignUp";
 
 const setup = async (history?: MemoryHistory) => {
