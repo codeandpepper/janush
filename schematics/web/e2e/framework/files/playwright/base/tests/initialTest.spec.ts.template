@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-import GlobalMethods from "../page-objects/methods/global-commands";
+import GlobalMethods from "../pageObjects/methods/globalCommands";
 
 test.describe("Initial test suite example", () => {
   let pw: GlobalMethods;

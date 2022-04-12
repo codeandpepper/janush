@@ -1,9 +1,9 @@
 {
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "apply-prettier": {
+    "applyPrettier": {
       "description": "Run prettier on generated template",
-      "factory": "./apply-prettier/index#applyPrettierUtility"
+      "factory": "./applyPrettier/index#applyPrettierUtility"
     }
   }
 }

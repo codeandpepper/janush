@@ -1,8 +1,8 @@
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../support/methods/generate-data";
-import { authSelectors } from "../support/selectors/auth-selectors";
+} from "../support/methods/generateData";
+import { authSelectors } from "../support/selectors/authSelectors";
 
 const user: FakeUserData = generateFakeUserData();
 
