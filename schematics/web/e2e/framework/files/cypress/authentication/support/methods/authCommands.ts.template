@@ -1,5 +1,5 @@
-import { authSelectors } from "../selectors/auth-selectors";
-import { indexPageSelectors } from "../selectors/index-page";
+import { authSelectors } from "../selectors/authSelectors";
+import { indexPageSelectors } from "../selectors/indexPage";
 
 Cypress.Commands.add("fillSignUpForm", (email: string, password: string) => {
   cy.typeText(authSelectors.inputs.email, email);

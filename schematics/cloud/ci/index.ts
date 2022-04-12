@@ -15,7 +15,7 @@ import {
 
 import { Schematic } from "@enums/Schematic";
 import { CLIOptions } from "@interfaces/CLIOptions";
-import { readJanushJSON } from "@janush-schematics/utility/janush-json";
+import { readJanushJSON } from "@janush-schematics/utility/janushJson";
 
 export const prepareEnvironment = (options: CLIOptions): Rule => {
   return async (tree: Tree, _context: SchematicContext) => {
@@ -34,7 +34,7 @@ export const prepareEnvironment = (options: CLIOptions): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      schematic("apply-prettier", {}),
+      schematic("applyPrettier", {}),
     ]);
   };
 };

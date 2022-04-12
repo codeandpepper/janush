@@ -20,7 +20,7 @@
   "/web/src/index.css",
   "/web/src/index.tsx",
   "/web/src/logo.svg",
-  "/web/src/react-app-env.d.ts",
+  "/web/src/reactAppEnv.d.ts",
   "/web/src/reportWebVitals.ts",
   "/web/src/setupTests.ts"
 ]

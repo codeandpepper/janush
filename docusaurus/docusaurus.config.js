@@ -52,7 +52,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           style: "dark",
           logo: {
             alt: "Janush logo",
-            src: "img/logo-light.svg",
+            src: "img/logoLight.svg",
           },
           items: [
             {
