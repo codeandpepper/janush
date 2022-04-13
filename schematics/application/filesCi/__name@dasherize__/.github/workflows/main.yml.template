@@ -39,12 +39,12 @@ jobs:
     name: (CLOUD) Deployment
     runs-on: ubuntu-latest
     outputs:
-      cognitoIdentityPoolId: ${{ steps.deployment.outputs.cognitoIdentityPoolId }}
-      cognitoUserPoolId: ${{ steps.deployment.outputs.cognitoUserPoolId }}
-      cognitoUserPoolClientId: ${{ steps.deployment.outputs.cognitoUserPoolClientId }}
-      s3BucketName: ${{ steps.webBuild.outputs.s3BucketName }}
-      amplifyAppId: ${{ steps.webBuild.outputs.amplifyAppId }}
-      amplifyAppBranchName: ${{ steps.webBuild.outputs.amplifyAppBranchName }}
+      cognitoIdentityPoolId: ${{ steps.deployment-cognito.outputs.cognitoIdentityPoolId }}
+      cognitoUserPoolId: ${{ steps.deployment-cognito.outputs.cognitoUserPoolId }}
+      cognitoUserPoolClientId: ${{ steps.deployment-cognito.outputs.cognitoUserPoolClientId }}
+      s3BucketName: ${{ steps.deployment-amplify.outputs.s3BucketName }}
+      amplifyAppId: ${{ steps.deployment-amplify.outputs.amplifyAppId }}
+      amplifyAppBranchName: ${{ steps.deployment-amplify.outputs.amplifyAppBranchName }}
     steps:
       - uses: actions/checkout@v2
       - run: npm install
@@ -54,14 +54,17 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.REGION }}
-      - id: deployment
+      - id: deployment-cognito
         run: |
-          npm run cdk deploy <%= classify(name) %>CiStack -- --require-approval never
+          npm run cdk deploy <%= classify(name) %>Stack -- --require-approval never
+          echo ::set-output name=cognitoIdentityPoolId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text)
+          echo ::set-output name=cognitoUserPoolId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text)
+          echo ::set-output name=cognitoUserPoolClientId::=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId<%= classify(name) %>'].OutputValue" --output text)
         env:
           # Lambda name creation required
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
         working-directory: ./cloud
-      - id: webBuild
+      - id: deployment-amplify
         run: |
           npm run cdk deploy <%= classify(name) %>CiStack -- --require-approval never
           echo ::set-output name=s3BucketName::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='s3BucketName<%= classify(name) %>'].OutputValue" --output text)
@@ -103,13 +106,19 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.REGION }}
-      - run: |
-          npm install
-          echo "IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
-          echo "USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
-          echo "USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
+      - name: env-test
+        env:
+          IDENTITY_POOL_ID: ${{ needs.cloud-deploy.outputs.cognitoIdentityPoolId }}
+          USER_POOL_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolId }}
+          USER_POOL_WEB_CLIENT_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolClientId }}
+        run: |
+          echo env vars
+          echo IDENTITY_POOL_ID ${{ env.IDENTITY_POOL_ID }}
+          echo USER_POOL_ID ${{ env.USER_POOL_ID }}
+          echo USER_POOL_WEB_CLIENT_ID ${{ env.USER_POOL_WEB_CLIENT_ID }}
+      - run: npm install
         working-directory: ./web
-      - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=${{env.IDENTITY_POOL_ID}} REACT_APP_USER_POOL_ID=${{env.USER_POOL_ID}} REACT_APP_USER_POOL_WEB_CLIENT_ID=${{env.USER_POOL_WEB_CLIENT_ID}} npm run build
+      - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=${{ needs.cloud-deploy.outputs.cognitoIdentityPoolId }} REACT_APP_USER_POOL_ID=${{ needs.cloud-deploy.outputs.cognitoUserPoolId }} REACT_APP_USER_POOL_WEB_CLIENT_ID=${{ needs.cloud-deploy.outputs.cognitoUserPoolClientId }} npm run build
         working-directory: ./web
       - run: mkdir bucket
         working-directory: ./web
