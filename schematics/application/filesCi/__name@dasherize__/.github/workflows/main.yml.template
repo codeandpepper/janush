@@ -105,9 +105,9 @@ jobs:
           aws-region: ${{ secrets.REGION }}
       - run: |
           npm install
-          echo "IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId'].OutputValue" --output text)" >> $GITHUB_ENV
-          echo "USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId'].OutputValue" --output text)" >> $GITHUB_ENV
-          echo "USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId'].OutputValue" --output text)" >> $GITHUB_ENV
+          echo "IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
+          echo "USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
+          echo "USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId<%= classify(name) %>'].OutputValue" --output text)" >> $GITHUB_ENV
         working-directory: ./web
       - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=${{env.IDENTITY_POOL_ID}} REACT_APP_USER_POOL_ID=${{env.USER_POOL_ID}} REACT_APP_USER_POOL_WEB_CLIENT_ID=${{env.USER_POOL_WEB_CLIENT_ID}} npm run build
         working-directory: ./web
