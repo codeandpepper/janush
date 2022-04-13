@@ -101,19 +101,9 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.REGION }}
-      - name: env-test
-        env:
-          IDENTITY_POOL_ID: $(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text)
-          USER_POOL_ID: $(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text)
-          USER_POOL_WEB_CLIENT_ID: ${{ needs.cloud-deploy.outputs.cognitoUserPoolClientId }}
-        run: |
-          echo env vars
-          echo IDENTITY_POOL_ID ${{ env.IDENTITY_POOL_ID }}
-          echo USER_POOL_ID ${{ env.USER_POOL_ID }}
-          echo USER_POOL_WEB_CLIENT_ID ${{ env.USER_POOL_WEB_CLIENT_ID }}
       - run: npm install
         working-directory: ./web
-      - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId'].OutputValue" --output text) npm run build
+      - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text) npm run build
         working-directory: ./web
       - run: mkdir bucket
         working-directory: ./web
