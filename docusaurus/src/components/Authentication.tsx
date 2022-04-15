@@ -17,7 +17,7 @@ export const Authentication: React.VFC = () => {
             adding those common features on top of Create React App and AWS CDK
             (Cloud Development Kit) - do it{" "}
             <strong>in seconds by running one command</strong> and selecting
-            options that you need. User inteface is build using the most popular
+            options that you need. User interface is build using the most popular
             React UI library - <strong>MUI (Material-UI)</strong>. We also have
             full design done in <strong>Figma</strong>.
           </p>
