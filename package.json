@@ -2,6 +2,10 @@
   "name": "@codeandpepper/janush",
   "version": "1.0.0",
   "description": "A blank schematics",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeandpepper/janush.git"
+  },
   "engines": {
     "node": "16.x.x"
   },
