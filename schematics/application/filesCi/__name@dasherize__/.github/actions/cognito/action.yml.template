@@ -1,0 +1,5 @@
+name: Cognito Deployment
+description: Cognito Deployment and Variables Extracting
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

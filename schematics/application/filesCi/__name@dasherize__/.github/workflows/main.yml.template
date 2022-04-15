@@ -34,39 +34,6 @@ jobs:
       - run: npm run test
         working-directory: ./cloud
 
-  cloud-deploy:
-    needs: [cloud-test, web-test]
-    name: (CLOUD) Deployment
-    runs-on: ubuntu-latest
-    outputs:
-      s3BucketName: ${{ steps.deployment-amplify.outputs.s3BucketName }}
-      amplifyAppId: ${{ steps.deployment-amplify.outputs.amplifyAppId }}
-      amplifyAppBranchName: ${{ steps.deployment-amplify.outputs.amplifyAppBranchName }}
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-        working-directory: ./cloud
-      - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.REGION }}
-          mask-aws-account-id: 'false'
-      - id: deployment-cognito
-        run: |
-          npm run cdk deploy <%= classify(name) %>Stack -- --require-approval never
-        env:
-          # Lambda name creation required
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-        working-directory: ./cloud
-      - id: deployment-amplify
-        run: |
-          npm run cdk deploy <%= classify(name) %>CiStack -- --require-approval never
-          echo ::set-output name=s3BucketName::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='s3BucketName<%= classify(name) %>'].OutputValue" --output text)
-          echo ::set-output name=amplifyAppId::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='amplifyAppId'].OutputValue" --output text)
-          echo ::set-output name=amplifyAppBranchName::$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>CiStack --query "Stacks[0].Outputs[?ExportName=='amplifyAppBranchName'].OutputValue" --output text)
-        working-directory: ./cloud
-
   web-install:
     name: (WEB) Installation
     runs-on: ubuntu-latest
@@ -88,7 +55,50 @@ jobs:
       - run: npm install
         working-directory: ./web
       - run: npm run test
-        working-directory: ./web
+        working-directory: ./web        
+
+  cloud-deploy:
+    needs: [cloud-test, web-test]
+    name: (CLOUD) Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: cloud/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('cloud/package-lock.json') }}      
+      - run: npm install
+        working-directory: ./cloud
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.REGION }}
+          mask-aws-account-id: 'false'
+      - uses: ./.github/actions/cognito
+        env:
+          # Lambda name creation required
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+      - uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'IDENTITY_POOL_ID'
+          value: ${{ env.identityPoolId }}
+          repository: codeandpepper/janush.app
+          token: ${{ secrets.TOKEN }}
+          visibility: 'all'
+      - uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'USER_POOL_ID'
+          value: ${{ env.userPoolId }}
+          repository: codeandpepper/janush.app
+          token: ${{ secrets.TOKEN }}
+          visibility: 'all'          
+      - uses: ./.github/actions/amplify
+    outputs:
+      userPoolWebClientId: ${{ env.userPoolWebClientId }}
+      s3BucketName: ${{ env.s3BucketName }}
+      amplifyAppId: ${{ env.amplifyAppId }}
+      amplifyAppBranchName: ${{ env.amplifyAppBranchName }}
 
   web-deployment:
     needs: [cloud-deploy]
@@ -96,14 +106,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: web/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('web/package-lock.json') }}  
+      - run: npm install
+        working-directory: ./web             
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.REGION }}
-      - run: npm install
-        working-directory: ./web
-      - run: REACT_APP_REGION=${{ secrets.REGION }} REACT_APP_IDENTITY_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoIdentityPoolId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_WEB_CLIENT_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolClientId<%= classify(name) %>'].OutputValue" --output text) REACT_APP_USER_POOL_ID=$(aws cloudformation describe-stacks --stack-name <%= classify(name) %>Stack --query "Stacks[0].Outputs[?ExportName=='cognitoUserPoolId<%= classify(name) %>'].OutputValue" --output text) npm run build
+          aws-region: ${{ secrets.REGION }}           
+      - run: >
+          REACT_APP_REGION=${{ secrets.REGION }}
+          REACT_APP_IDENTITY_POOL_ID=${{ secrets.IDENTITY_POOL_ID }}
+          REACT_APP_USER_POOL_ID=${{ secrets.USER_POOL_ID }}
+          REACT_APP_USER_POOL_WEB_CLIENT_ID=${{ needs.cloud-deploy.outputs.userPoolWebClientId }}
+          npm run build
         working-directory: ./web
       - run: mkdir bucket
         working-directory: ./web
@@ -122,6 +141,13 @@ jobs:
           SOURCE_DIR: ./web/bucket
       - run: |
          chmod 775 ./.github/workflows/bin/waitForAmplifyJob.sh
-         JOB_ID=`aws amplify start-deployment --app-id=${{ needs.cloud-deploy.outputs.amplifyAppId }} --branch-name=${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} --source-url=s3://${{ needs.cloud-deploy.outputs.s3BucketName }}/build_${{ github.sha }}.zip --output text --query "jobSummary.jobId"`
+         JOB_ID=`aws amplify start-deployment \
+         --app-id=${{ needs.cloud-deploy.outputs.amplifyAppId }} \
+         --branch-name=${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} \
+         --source-url=s3://${{ needs.cloud-deploy.outputs.s3BucketName }}/build_${{ github.sha }}.zip \
+         --output text --query "jobSummary.jobId"`
          echo amplify deployment job id: $JOB_ID
-         ./.github/workflows/bin/waitForAmplifyJob.sh ${{ needs.cloud-deploy.outputs.amplifyAppId }} ${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} $JOB_ID 50 5
+         ./.github/workflows/bin/waitForAmplifyJob.sh \
+         ${{ needs.cloud-deploy.outputs.amplifyAppId }} \
+         ${{ needs.cloud-deploy.outputs.amplifyAppBranchName }} \
+         $JOB_ID 50 5
