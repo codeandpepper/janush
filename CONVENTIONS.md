@@ -15,14 +15,19 @@ Use PascalCase notation.
 #### Schema:
 
 ```
-defining-modules
-builtIn-modules
-external-modules
+"external" modules
+node "builtin" modules
 
-alias-modules
-relative-modules
+"pathGroups" modules
+"internal" modules
 
-styling-modules
+modules from a "parent" directory
+"sibling" modules from the same or a sibling's directory
+"index" of the current directory
+
+"object" - imports (only available in TypeScript)
+
+"type" imports (only available in Flow and TypeScript)
 ```
 
 If there is more than 1 module defined per level - sort alphabetically (or by root of nesting for `relative-modules`).
@@ -30,19 +35,19 @@ If there is more than 1 module defined per level - sort alphabetically (or by ro
 #### Example:
 
 ```javascript
-import ... from 'definingModule'; // e.g. 'react'
-import ... from 'builtInModuleA';
-import ... from 'builtInModuleB';
-import ... from 'externalModuleA';
-import ... from 'externalModuleB';
+import ... from 'fs';
+import ... from 'path';
+import ... from 'react';
 
-import ... from '@localAlias/a.ts';
-import ... from '@localAlias/b.ts';
-import ... from '../e.ts';
-import ... from './d.ts';
-import ... from './f.ts';
+import ... from '@localAlias/filename';
+import ... from '@localAlias/filename';
+import ... from 'dirname/filename';
 
-import ... from './styles';
+import ... from '../filename';
+import ... from './filename';
+import ... from './';
+
+import type ... from './filename';
 ```
 
 ## Modules exports

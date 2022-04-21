@@ -1,7 +1,8 @@
-import xor from "lodash.xor";
 import isEmpty from "lodash.isempty";
+import xor from "lodash.xor";
 
 import { Primitive } from "types/types/primitive";
+
 import { toReadableArrayString } from "../../helpers/toReadableArrayString/toReadableArrayString";
 
 export const toHaveEqualElements = (tested: Primitive[], expected: Primitive[]) => {

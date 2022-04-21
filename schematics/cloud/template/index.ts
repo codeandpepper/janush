@@ -19,6 +19,7 @@ import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { getCurrentWorkingDirectory } from "@janush-schematics/utility/directoryUtils";
 import { readJanushJSON, updateJanushJSON } from "@utility/janushJson";
 import { installDependencies } from "@utility/scripts";
+
 import { Schema } from "./schema";
 
 const isEmptyModules = (options: Schema) => options.modules.length === 0;

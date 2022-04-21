@@ -1,15 +1,15 @@
-import ts from "typescript";
+import { createSourceFile, ScriptTarget } from "typescript";
 
 import { getEndCloseBraceTokenInConstructor } from "./getEndCloseBraceTokenInConstructor";
 
 describe("getEndCloseBraceTokenInConstructor", () => {
   it("should return an object", () => {
-    const sourceFile = ts.createSourceFile(
+    const sourceFile = createSourceFile(
       "dummyName",
       `export class Dummy {
         constructor() {}
       }`,
-      ts.ScriptTarget.Latest,
+      ScriptTarget.Latest,
       true,
     );
 
@@ -17,10 +17,10 @@ describe("getEndCloseBraceTokenInConstructor", () => {
   });
 
   it("should throw an error", () => {
-    const sourceFile = ts.createSourceFile(
+    const sourceFile = createSourceFile(
       "dummyName",
       "export class Dummy {}",
-      ts.ScriptTarget.Latest,
+      ScriptTarget.Latest,
       true,
     );
 

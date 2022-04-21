@@ -1,11 +1,11 @@
-import * as fs from "fs";
-import * as path from "path";
 import { FileDoesNotExistException, Rule, Tree } from "@angular-devkit/schematics";
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import { getSourceNodes, insertImport } from "@schematics/angular/utility/ast-utils";
+import { InsertChange } from "@schematics/angular/utility/change";
+import * as fs from "fs";
+import * as path from "path";
 
 import { Schematic } from "@enums/Schematic";
-import { InsertChange } from "@schematics/angular/utility/change";
 
 type TreeFunction = (tree: Tree) => Tree;
 

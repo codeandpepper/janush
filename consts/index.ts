@@ -1,4 +1,5 @@
 import path from "path";
+
 import { Schematic } from "@enums/Schematic";
 
 export const JANUSH_ROOT_PATH = path.join(__dirname, "..");

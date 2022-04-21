@@ -12,13 +12,14 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
+import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
 import { E2ERunner, Module } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
 import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { e2eCypressDependencies, e2ePlaywrightDependencies } from "@utils/dependencies";
+
 import { Schema } from "./schema";
 import { packageJsonExtender as packageJsonCypressExtender } from "./utils/cypress/packageJsonExtender";
 import { packageJsonExtender as packageJsonPlaywrightExtender } from "./utils/playwright/packageJsonExtender";

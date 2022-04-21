@@ -1,9 +1,10 @@
+import path from "path";
+
 import {
   getCurrentWorkingDirectory,
   getDirectoryOfFileFromPath,
   trimPathToDirectoryName,
 } from "@janush-schematics/utility/directoryUtils";
-import path from "path";
 
 describe("directoryUtils", () => {
   describe("trimPathToDirectoryName", () => {

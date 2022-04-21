@@ -1,7 +1,8 @@
 import { Primitive } from "types/types/primitive";
+
 import { toHaveEqualElements } from "./matchers/toHaveEqualElements/toHaveEqualElements";
-import { toIncludeSome } from "./matchers/toIncludeSome/toIncludeSome";
 import { toIncludeEvery } from "./matchers/toIncludeEvery/toIncludeEvery";
+import { toIncludeSome } from "./matchers/toIncludeSome/toIncludeSome";
 
 declare global {
   namespace jest {

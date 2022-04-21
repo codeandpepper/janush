@@ -1,4 +1,5 @@
 import { strings } from "@angular-devkit/core";
+import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import {
   apply,
   applyTemplates,
@@ -12,10 +13,9 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
-import { dasherize } from "@angular-devkit/core/src/utils/strings";
 
-import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
 import { Schematic } from "@enums/Schematic";
+import { stubArg } from "@janush-schematics/utility/stubArg/stubArg";
 
 import { Schema } from "./schema";
 
