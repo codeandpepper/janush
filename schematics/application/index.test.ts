@@ -1,6 +1,6 @@
-import * as path from "path";
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
+import * as path from "path";
 
 // Cloud Files
 import expectedCloudAuthCognitoFiles from "@janush-schematics/cloud/authentication/cognito/data/expectedNewFiles.json";

@@ -18,6 +18,7 @@ import { CLOUD_PACKAGE_JSON_PATH } from "@consts/index";
 import { Schematic } from "@enums/Schematic";
 import { readJanushJSON } from "@utility/janushJson";
 import { janushTemplateNodeDependencies } from "@utils/dependencies";
+
 import { Schema } from "./schema";
 
 export const cloudJanushGenerator = (options: Schema): Rule => {

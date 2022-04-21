@@ -1,4 +1,5 @@
 import { colors } from "@angular/cli/utilities/color";
+
 import { readJson } from "./jsonFilesUtils";
 
 interface CommandHelp {

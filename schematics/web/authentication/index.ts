@@ -11,12 +11,13 @@ import {
   Tree,
   url,
 } from "@angular-devkit/schematics";
+import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
 import { Schematic } from "@enums/Schematic";
-import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 import { readJanushJSON } from "@utility/janushJson";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
+
 import { authenticationChanges } from "../../web/authentication/utils";
 import { Schema } from "./schema";
 

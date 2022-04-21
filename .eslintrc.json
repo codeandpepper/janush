@@ -2,7 +2,14 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "env": {
     "es6": true,
     "browser": true,
@@ -19,6 +26,63 @@
       }
     ],
     "@typescript-eslint/no-namespace": 0,
-    "@typescript-eslint/no-empty-interface": 0
+    "@typescript-eslint/no-empty-interface": 0,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["external", "builtin"],
+          "internal",
+          ["parent", "sibling", "index"],
+          "object",
+          "type"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "@consts/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@exception/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@mocks/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@janush-schematics/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@utility/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@enums/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@interfaces/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@utils/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["object"],
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

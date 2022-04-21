@@ -1,6 +1,6 @@
-import path from "path";
 import { FileDoesNotExistException } from "@angular-devkit/schematics";
 import { readFileSync } from "fs";
+import path from "path";
 
 import { JANUSH_ROOT_PATH } from "@consts/index";
 

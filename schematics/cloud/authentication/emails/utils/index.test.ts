@@ -1,6 +1,6 @@
-import path from "path";
 import { Tree } from "@angular-devkit/schematics";
 import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
+import path from "path";
 
 import { emptyJanush } from "@mocks/janush";
 import * as janush from "@utility/janushJson";

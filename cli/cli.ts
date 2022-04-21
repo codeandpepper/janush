@@ -1,19 +1,16 @@
 import arg from "arg";
+import { spawn } from "child_process";
 import path from "path";
 
-import { spawn } from "child_process";
-
-import getCommandsHelpFromSchema from "@janush-schematics/utility/generateHelpFromSchema";
-
 import { JANUSH_JSON_PATH, PACKAGE_JSON_PATH } from "@consts/index";
+import { CLIOptions } from "@interfaces/CLIOptions";
+import { PackageJson } from "@interfaces/PackageJson";
 import {
   getCurrentWorkingDirectory,
   getDirectoryOfFileFromPath,
 } from "@janush-schematics/utility/directoryUtils";
+import getCommandsHelpFromSchema from "@janush-schematics/utility/generateHelpFromSchema";
 import { readJson } from "@janush-schematics/utility/jsonFilesUtils";
-
-import { PackageJson } from "@interfaces/PackageJson";
-import { CLIOptions } from "@interfaces/CLIOptions";
 
 const PATH_ARGS = 2;
 const COMMAND = "command";

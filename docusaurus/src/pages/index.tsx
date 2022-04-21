@@ -1,11 +1,13 @@
+// eslint-disable-next-line import/no-unresolved
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+// eslint-disable-next-line import/no-unresolved
+import Layout from "@theme/Layout";
 import React from "react";
 
-import Layout from "@theme/Layout";
 
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { Authentication } from "../components/Authentication";
 import { Architecture } from "../components/Architecture";
+import { Authentication } from "../components/Authentication";
 import { Features } from "../components/Features";
 import { Hero } from "../components/Hero";
 

@@ -1,4 +1,4 @@
-import ts from "typescript";
+import { createSourceFile, ScriptTarget } from "typescript";
 
 import { showTree } from "./showTree";
 
@@ -8,10 +8,10 @@ describe("showTree", () => {
       const logs: string[] = [];
       jest.spyOn(console, "log").mockImplementation((logContent) => logs.push(logContent));
 
-      ts.createSourceFile(
+      createSourceFile(
         "dummyName",
         `const a = () => true;`,
-        ts.ScriptTarget.Latest,
+        ScriptTarget.Latest,
         true,
       ).forEachChild((child) => {
         showTree(child);

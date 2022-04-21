@@ -1,9 +1,9 @@
-import React from "react";
-
-import clsx from "clsx";
-
+// eslint-disable-next-line import/no-unresolved
 import Link from "@docusaurus/Link";
+// eslint-disable-next-line import/no-unresolved
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import clsx from "clsx";
+import React from "react";
 
 import styles from "../pages/index.module.css";
 
