@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { VFC } from "react";
 import { Helmet } from "react-helmet";
 
 import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
@@ -8,6 +8,7 @@ import { Nullable } from "@janush-types/useful";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
 import { SignUpForm } from "@routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm";
+
 import { SignUpFormState } from "./SignUpForm/formState";
 
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
   error: Nullable<CognitoError>;
 }
 
-export const SignUpView: React.VFC<Props> = ({ loading, onSignUp, error }) => {
+export const SignUpView: VFC<Props> = ({ loading, onSignUp, error }) => {
   return (
     <AuthLayout>
       <Helmet>

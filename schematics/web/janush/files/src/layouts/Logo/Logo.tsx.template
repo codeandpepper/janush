@@ -1,10 +1,10 @@
-import React from "react";
 import { Typography } from "@mui/material";
+import { VFC } from "react";
 import { Link } from "react-router-dom";
 
 import { useStyles } from "./styles";
 
-export const Logo: React.VFC = () => {
+export const Logo: VFC = () => {
   const classes = useStyles();
 
   return (
@@ -14,7 +14,7 @@ export const Logo: React.VFC = () => {
         data-testid="logo-button-in-top-app-bar"
         className={classes.logotype}
       >
-        <%= name %>
+        janush-app
       </Link>
     </Typography>
   );

@@ -1,4 +1,5 @@
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
+
 import { isCognitoError } from "./isCognitoError";
 
 describe("isCognitoError", () => {

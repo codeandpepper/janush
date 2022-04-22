@@ -1,10 +1,10 @@
-import React from "react";
 import { Typography } from "@mui/material";
+import { VFC } from "react";
 
 import { PageLayout } from "@layouts/PageLayout/PageLayout";
 import { TopAppBar } from "@layouts/TopAppBar/TopAppBar";
 
-const IndexPage: React.VFC = () => (
+const IndexPage: VFC = () => (
   <>
     <TopAppBar />
     <PageLayout pb={5}>

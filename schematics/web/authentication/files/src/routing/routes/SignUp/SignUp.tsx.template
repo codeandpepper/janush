@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { Auth } from "aws-amplify";
+import { useState, VFC } from "react";
 import { useHistory } from "react-router-dom";
 
 import { CognitoError } from "@interfaces/Cognito";
@@ -7,10 +7,11 @@ import { CognitoErrorType } from "@janush-types/enums/Cognito";
 import { Nullable } from "@janush-types/useful";
 import { Paths } from "@routing/paths";
 import { SignUpFormState } from "@routing/routes/SignUp/SignUpView/SignUpForm/formState";
-import { SignUpView } from "./SignUpView/SignUpView";
 import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 
-const SignUp: React.VFC = () => {
+import { SignUpView } from "./SignUpView/SignUpView";
+
+const SignUp: VFC = () => {
   const history = useHistory();
   const [error, setError] = useState<Nullable<CognitoError>>(null);
   const [loading, setLoading] = useState<boolean>(false);

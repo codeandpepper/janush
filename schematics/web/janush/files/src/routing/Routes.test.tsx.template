@@ -1,6 +1,6 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "@mui/styles";
+import { render, screen } from "@testing-library/react";
+import { Suspense } from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { Paths } from "@routing/paths";
@@ -16,16 +16,16 @@ describe("<Routes />", () => {
     jest.useRealTimers();
   });
 
-  it("should render routes properly with React.Suspense", async () => {
+  it("should render routes properly with Suspense", async () => {
     const suspenseTitle = "test";
     const indexPageTitle = "Index page";
 
     render(
       <ThemeProvider theme={createDefaultTheme()}>
         <MemoryRouter initialEntries={[Paths.BASE]}>
-          <React.Suspense fallback={<div>{suspenseTitle}</div>}>
+          <Suspense fallback={<div>{suspenseTitle}</div>}>
             <Routes />
-          </React.Suspense>
+          </Suspense>
         </MemoryRouter>
       </ThemeProvider>
     );

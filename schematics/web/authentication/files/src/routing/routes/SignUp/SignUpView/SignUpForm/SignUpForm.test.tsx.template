@@ -1,8 +1,9 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
+
 import { SignUpForm } from "./SignUpForm";
 
 describe("Form", () => {
-  it('should show error message if passwords do not match', async () => {
+  it("should show error message if passwords do not match", async () => {
     const form = render(
       <SignUpForm loading={false} error={null} onSubmit={() => true} />
     );

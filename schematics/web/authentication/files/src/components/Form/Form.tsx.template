@@ -1,14 +1,11 @@
-import React from "react";
+import { DetailedHTMLProps, FC, FormHTMLAttributes } from "react";
 
 type Props = Omit<
-  React.DetailedHTMLProps<
-    React.FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
-  >,
+  DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
   "noValidate"
 >;
 
-export const Form: React.FC<Props> = ({ children, ...props }) => (
+export const Form: FC<Props> = ({ children, ...props }) => (
   <form {...props} noValidate>
     {children}
   </form>

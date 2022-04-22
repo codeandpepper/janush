@@ -1,6 +1,6 @@
-import React from "react";
+import React, { VFC } from "react";
 
-export const Authentication: React.VFC = () => {
+export const Authentication: VFC = () => {
   return (
     <div className="container padding-vert--xl text--left descriptions">
       <div className="row">

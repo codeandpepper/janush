@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { Auth, Hub } from "aws-amplify";
+import { createContext, FC, useEffect, useState } from "react";
 
 import { User } from "@interfaces/User";
 import { HubEvent } from "@janush-types/enums/HubEvent";
@@ -9,11 +9,11 @@ export interface UserContextValue {
   user?: Nullable<User>;
 }
 
-export const UserContext = React.createContext<UserContextValue>({
+export const UserContext = createContext<UserContextValue>({
   user: undefined,
 });
 
-export const UserProvider: React.FC = ({ children }) => {
+export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<Nullable<User>>(null);
 
   const refreshUser = async () => {

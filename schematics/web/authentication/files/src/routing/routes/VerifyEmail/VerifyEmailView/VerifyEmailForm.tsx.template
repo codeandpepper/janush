@@ -1,10 +1,11 @@
-import React, { useState, VFC } from "react";
-import { TextField } from "@components/TextField/TextField";
 import { Button } from "@mui/material";
-import { Form } from "@components/Form/Form";
-import { Controller, useForm } from "react-hook-form";
 import { Auth } from "aws-amplify";
+import { useState, VFC } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+
+import { Form } from "@components/Form/Form";
+import { TextField } from "@components/TextField/TextField";
 import { Paths } from "@routing/paths";
 import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 interface IProps {

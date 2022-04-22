@@ -85,7 +85,7 @@ const myFunction: ReturnType = () => {};
 - Type components with children using react FC.
 
   ```javascript
-  export const MyComponent: React.FC<Props> = ({ label, text, children }) => {
+  export const MyComponent: FC<Props> = ({ label, text, children }) => {
     return (
       <div>
         <h1>{label}</h1>
@@ -99,7 +99,7 @@ const myFunction: ReturnType = () => {};
 - Type components without children using react VFC.
 
   ```javascript
-  export const MyComponent: React.VFC<Props> = ({ label, text }) => {
+  export const MyComponent: VFC<Props> = ({ label, text }) => {
     return (
       <div>
         <h1>{label}</h1>

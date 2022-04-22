@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Container, ContainerProps } from "@mui/material";
+import { FC } from "react";
 
 import { useStyles } from "./styles";
 
@@ -7,7 +7,7 @@ interface Props {
   maxWidth?: ContainerProps["maxWidth"];
 }
 
-export const AuthLayout: React.FC<Props> = ({ maxWidth = "md", children }) => {
+export const AuthLayout: FC<Props> = ({ maxWidth = "md", children }) => {
   const styles = useStyles();
   return (
     <Container maxWidth={maxWidth} className={styles.container} disableGutters>

@@ -1,14 +1,14 @@
-import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { VFC } from "react";
 import { useForm, Controller } from "react-hook-form";
 
-import { Form } from "@components/Form/Form";
 import { EmailField } from "@components/EmailField/EmailField";
+import { Form } from "@components/Form/Form";
 import { PasswordField } from "@components/PasswordField/PasswordField";
+
 import { SignInFormState } from "./SignInFormState";
 import { signInFormValidationSchema } from "./signInFormValidationSchema";
-
 import { useStyles } from "./styles";
 
 interface Props {
@@ -22,7 +22,7 @@ const defaultValues: SignInFormState = {
   password: "",
 };
 
-export const SignInForm: React.VFC<Props> = ({ error, loading, onSubmit }) => {
+export const SignInForm: VFC<Props> = ({ error, loading, onSubmit }) => {
   const classes = useStyles();
 
   const {

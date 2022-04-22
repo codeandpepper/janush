@@ -1,9 +1,9 @@
-import React from "react";
 import { AppBar, Toolbar } from "@mui/material";
+import { VFC } from "react";
 
 import { Logo } from "@layouts/Logo/Logo";
 
-export const TopAppBar: React.VFC = () => {
+export const TopAppBar: VFC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
