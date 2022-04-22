@@ -1,5 +1,5 @@
 import { Tags } from "aws-cdk-lib";
-import { Construct, IConstruct } from "constructs";
+import { IConstruct } from "constructs";
 
 import { EnvName } from "../enums/EnvName";
 

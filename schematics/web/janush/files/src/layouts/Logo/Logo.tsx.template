@@ -14,7 +14,7 @@ export const Logo: VFC = () => {
         data-testid="logo-button-in-top-app-bar"
         className={classes.logotype}
       >
-        janush-app
+        <%= name %>
       </Link>
     </Typography>
   );
