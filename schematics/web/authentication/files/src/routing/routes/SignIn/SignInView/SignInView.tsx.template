@@ -1,10 +1,11 @@
-import React from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { VFC } from "react";
 import { Helmet } from "react-helmet";
 
 import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
+
 import { SignInForm } from "./SignInForm/SignInForm";
 import { SignInFormState } from "./SignInForm/SignInFormState";
 
@@ -14,7 +15,7 @@ interface Props {
   onSignIn(formData: SignInFormState): void;
 }
 
-export const SignInView: React.VFC<Props> = ({ error, loading, onSignIn }) => {
+export const SignInView: VFC<Props> = ({ error, loading, onSignIn }) => {
   return (
     <AuthLayout>
       <Helmet>

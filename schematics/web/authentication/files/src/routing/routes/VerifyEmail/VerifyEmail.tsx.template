@@ -1,21 +1,21 @@
-import React, { useState } from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Auth } from "aws-amplify";
+import { useState, VFC } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect, useLocation } from "react-router-dom";
 
 import { Link } from "@components/Link/Link";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
+import { VerifyEmailForm } from "@routing/routes/VerifyEmail/VerifyEmailView/VerifyEmailForm";
 
 import { useStyles } from "./styles";
-import { VerifyEmailForm } from "@routing/routes/VerifyEmail/VerifyEmailView/VerifyEmailForm";
 
 interface LocationState {
   email?: string;
 }
 
-const VerifyEmail: React.VFC = () => {
+const VerifyEmail: VFC = () => {
   const classes = useStyles();
   const { state } = useLocation<LocationState>();
 

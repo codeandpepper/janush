@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { VFC } from "react";
 
 import { Link } from "@components/Link/Link";
 
@@ -11,7 +11,7 @@ interface Props {
   text: string;
 }
 
-export const AuthBottomBar: React.VFC<Props> = ({
+export const AuthBottomBar: VFC<Props> = ({
   buttonLinkPath,
   buttonText,
   text,

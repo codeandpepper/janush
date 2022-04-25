@@ -3,11 +3,11 @@ import Link from "@docusaurus/Link";
 // eslint-disable-next-line import/no-unresolved
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
-import React from "react";
+import React, { VFC } from "react";
 
 import styles from "../pages/index.module.css";
 
-export const Hero: React.VFC = () => {
+export const Hero: VFC = () => {
 	const { siteConfig } = useDocusaurusContext();
 	return (
 		<header className={clsx("hero hero--dark hero-main", styles.heroBanner)}>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { VFC } from "react";
 
-export const Architecture: React.VFC = () => {
+export const Architecture: VFC = () => {
 	return (
 		<section className="container padding-vert--xl text--left descriptions">
 			<div className="row">

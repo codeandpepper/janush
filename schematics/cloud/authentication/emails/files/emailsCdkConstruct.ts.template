@@ -1,6 +1,6 @@
-import * as path from "path";
 import { aws_lambda_nodejs as lambda, aws_iam as iam } from "aws-cdk-lib";
 import { Construct } from "constructs";
+import * as path from "path";
 
 import { DEFAULT_LAMBDA_RUNTIME } from "../../../consts/index";
 import { EnvName } from "../../../enums/EnvName";

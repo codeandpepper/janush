@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { VFC } from "react";
 
 
 interface FeatureItem {
@@ -76,7 +76,7 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-const Feature: React.VFC<FeatureItem> = ({ title, description }) => {
+const Feature: VFC<FeatureItem> = ({ title, description }) => {
 	return (
 		<div className={clsx("col col--4")}>
 			<div className="text--left padding-horiz--md">
@@ -87,7 +87,7 @@ const Feature: React.VFC<FeatureItem> = ({ title, description }) => {
 	);
 };
 
-export const Features: React.VFC = () => {
+export const Features: VFC = () => {
 	return (
 		<section className="hero hero--dark features">
 			<div className="container">

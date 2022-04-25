@@ -1,6 +1,7 @@
 import { S3 } from "aws-sdk";
 
 import { EmailTemplate } from "@enums/EmailTemplate";
+
 import { generateEmailFromS3Template } from "./index";
 
 const mockS3Instance = {

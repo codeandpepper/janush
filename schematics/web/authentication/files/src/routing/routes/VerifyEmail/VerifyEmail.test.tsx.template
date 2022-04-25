@@ -1,4 +1,3 @@
-import React from "react";
 import {
   act,
   fireEvent,
@@ -7,12 +6,13 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { Auth } from "aws-amplify";
+import { MemoryHistory } from "history";
 import { MemoryRouter, Route, Router } from "react-router-dom";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
-import VerifyEmail from "./VerifyEmail";
 import { Paths } from "@routing/paths";
-import { MemoryHistory } from "history";
+
+import VerifyEmail from "./VerifyEmail";
 
 const setupHistory: MemoryHistory = {
   push: jest.fn(),

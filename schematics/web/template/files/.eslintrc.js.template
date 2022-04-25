@@ -4,6 +4,9 @@ module.exports = {
     "react-app/jest",
     "airbnb-typescript",
     "airbnb/hooks",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
     "prettier",
@@ -47,5 +50,66 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-non-null-assertion": 0,
+    "import/order": [
+      "error",
+      {
+        groups: [
+          ["external", "builtin"],
+          "internal",
+          ["parent", "sibling", "index"],
+          "object",
+          "type",
+        ],
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        pathGroups: [
+          {
+            pattern: "@components/**",
+            group: "internal",
+          },
+          {
+            pattern: "@consts/**",
+            group: "internal",
+          },
+          {
+            pattern: "@features/**",
+            group: "internal",
+          },
+          {
+            pattern: "@interfaces/**",
+            group: "internal",
+          },
+          {
+            pattern: "@layouts/**",
+            group: "internal",
+          },
+          {
+            pattern: "@routing/**",
+            group: "internal",
+          },
+          {
+            pattern: "@themes/**",
+            group: "internal",
+          },
+          {
+            pattern: "@janush-types/**",
+            group: "internal",
+          },
+          {
+            pattern: "@utils/**",
+            group: "internal",
+          },
+        ],
+        pathGroupsExcludedImportTypes: ["object"],
+        "newlines-between": "always",
+      },
+    ],
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
   },
 };

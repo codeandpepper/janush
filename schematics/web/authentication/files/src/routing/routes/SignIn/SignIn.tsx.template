@@ -1,13 +1,14 @@
-import React, { useState } from "react";
 import { Auth } from "aws-amplify";
+import { useState, VFC } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Paths } from "@routing/paths";
 import { SignInView } from "@routing/routes/SignIn/SignInView/SignInView";
-import { SignInFormState } from "./SignInView/SignInForm/SignInFormState";
 import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 
-const SignIn: React.VFC = () => {
+import { SignInFormState } from "./SignInView/SignInForm/SignInFormState";
+
+const SignIn: VFC = () => {
   const history = useHistory();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");

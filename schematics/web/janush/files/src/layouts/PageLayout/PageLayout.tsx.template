@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, BoxProps, Container, ContainerProps } from "@mui/material";
+import { VFC } from "react";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -10,7 +10,7 @@ interface Props extends BoxProps {
   withTopGradient?: boolean;
 }
 
-export const PageLayout: React.VFC<Props> = ({
+export const PageLayout: VFC<Props> = ({
   className,
   maxWidth = "md",
   withBottomPadding = false,

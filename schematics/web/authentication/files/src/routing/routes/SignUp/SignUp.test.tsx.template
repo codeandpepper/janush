@@ -1,10 +1,10 @@
-import React from "react";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Auth } from "aws-amplify";
 import { MemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router-dom";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
+
 import SignUp from "./SignUp";
 
 const setup = async (history?: MemoryHistory) => {

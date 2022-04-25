@@ -1,4 +1,4 @@
-import Amplify, { Auth } from "aws-amplify";
+import { Auth, Logger } from "aws-amplify";
 
 export const AUTH_CONFIG = {
   Auth: {
@@ -10,7 +10,7 @@ export const AUTH_CONFIG = {
 };
 
 export const configureAws = (): void => {
-  Amplify.Logger.LOG_LEVEL = "DEBUG";
+  Logger.LOG_LEVEL = "DEBUG";
 
   try {
     Auth.configure(AUTH_CONFIG);
