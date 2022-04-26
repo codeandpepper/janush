@@ -2,9 +2,6 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   extends: [
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
     "prettier",
     "plugin:prettier/recommended",
   ],
@@ -36,27 +33,5 @@ module.exports = {
         allowConciseArrowFunctionExpressionsStartingWithVoid: false,
       },
     ],
-    "import/order": [
-      "error",
-      {
-        groups: [
-          ["external", "builtin"],
-          "internal",
-          ["parent", "sibling", "index"],
-          "object",
-          "type",
-        ],
-        alphabetize: {
-          order: "asc",
-          caseInsensitive: true,
-        },
-        "newlines-between": "always",
-      },
-    ],
-  },
-  settings: {
-    "import/resolver": {
-      typescript: { alwaysTryTypes: true },
-    },
   },
 };
