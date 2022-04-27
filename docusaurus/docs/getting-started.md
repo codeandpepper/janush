@@ -3,7 +3,17 @@ sidebar_position: 1
 title: Getting Started
 ---
 
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+
 # Getting Started
+
+0. Checkout our tutorial on how to use Janush!
+
+ <LiteYouTubeEmbed 
+        id="UNJBo8q4I4o"
+        title="Janush - tutorial"
+    />
 
 ## Set up project
 
