@@ -8,11 +8,12 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 # Getting Started
 
-0. Checkout our tutorial on how to use Janush!
+### First we advise to checkout our video tutorial on how to use Janush!
 
  <LiteYouTubeEmbed 
         id="UNJBo8q4I4o"
-        title="Janush - tutorial"
+        title="Janush - video tutorial"
+        poster="sddefault"
     />
 
 ## Set up project
