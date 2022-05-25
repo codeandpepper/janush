@@ -105,11 +105,6 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
     name: "aws-amplify",
     version: "^4.2.10",
   },
-  {
-    type: NodeDependencyType.Default,
-    name: "aws-amplify",
-    version: "^4.2.10",
-  },
   lodash,
   lodashTypes,
   {
