@@ -35,7 +35,6 @@ export const SignInView: VFC<Props> = ({ error, loading, onSignIn }) => {
             </Typography>
           </Link>
         </Box>
-        <SignInForm error={error} loading={loading} onSubmit={onSignIn} />
       </Container>
       <AuthBottomBar
         text="Don't have an account?"

@@ -451,7 +451,7 @@ export const changeRoutes = (projectName: string): TreeFunction => {
           '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
           '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));' +
           '\nconst ForgotPassword = lazy(() => import("./routes/ForgotPassword/ForgotPassword"));' +
-          '\nconst PasswordReset = lazy(() => import("./routes/ResetPassword/ResetPassword"));',
+          '\nconst PasswordReset = lazy(() => import("./routes/ResetPassword/ResetPassword"',
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
