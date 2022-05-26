@@ -41,7 +41,7 @@ export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "prettier",
-    version: "^2.2.1",
+    version: "^2.6.2",
   },
   {
     type: NodeDependencyType.Dev,
@@ -105,11 +105,6 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
     name: "aws-amplify",
     version: "^4.2.10",
   },
-  {
-    type: NodeDependencyType.Default,
-    name: "aws-amplify",
-    version: "^4.2.10",
-  },
   lodash,
   lodashTypes,
   {
@@ -147,13 +142,8 @@ export const e2eCypressDependencies: NodeDependency[] = [
   },
   {
     type: NodeDependencyType.Dev,
-    name: "@types/faker",
-    version: "^5.5.9",
-  },
-  {
-    type: NodeDependencyType.Dev,
     name: "cypress",
-    version: "^9.2.0",
+    version: "^9.7.0",
   },
   {
     type: NodeDependencyType.Dev,
@@ -162,13 +152,13 @@ export const e2eCypressDependencies: NodeDependency[] = [
   },
   {
     type: NodeDependencyType.Dev,
-    name: "faker",
-    version: "^5.5.3",
+    name: "@faker-js/faker",
+    version: "^6.3.1",
   },
   {
     type: NodeDependencyType.Dev,
     name: "mochawesome",
-    version: "^7.0.1",
+    version: "^7.1.3",
   },
   {
     type: NodeDependencyType.Dev,
@@ -178,7 +168,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "mochawesome-report-generator",
-    version: "^6.0.1",
+    version: "^6.2.0",
   },
 ];
 
@@ -190,13 +180,8 @@ export const e2ePlaywrightDependencies: NodeDependency[] = [
   },
   {
     type: NodeDependencyType.Dev,
-    name: "@types/faker",
-    version: "^5.5.9",
-  },
-  {
-    type: NodeDependencyType.Dev,
-    name: "faker",
-    version: "^5.5.3",
+    name: "@faker-js/faker",
+    version: "^6.3.1",
   },
   {
     type: NodeDependencyType.Dev,

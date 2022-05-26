@@ -1,4 +1,4 @@
-import faker from "faker";
+import * as faker from '@faker-js/faker/locale/en_GB';
 
 export type FakeUserData = ReturnType<typeof generateFakeUserData>;
 

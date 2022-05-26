@@ -47,6 +47,5 @@ yarn pw:lint
 ## Packages included and configured for E2E tests:
 
 - [`@playwright/test`](https://www.npmjs.com/package/@playwright/test) - a test-runner for Playwright
-- [`@types/faker`](https://www.npmjs.com/package/@types/faker) - it contains types definitions for faker package
-- [`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests
+- [`@faker-js/faker`](https://www.npmjs.com/package/@faker-js/faker) - it generates fake data for tests
 - [`playwright`](https://www.npmjs.com/package/playwright) - a Node.js library to automate Chromium, Firefox and WebKit with a single API.
