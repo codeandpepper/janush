@@ -16,6 +16,7 @@ export enum WebSchematic {
   TEMPLATE = "web.template",
   JANUSH = "web.janush",
   AUTHENTICATION = "web.authentication",
+  IDP = "web.idP",
 }
 
 export enum WebE2ESchematic {

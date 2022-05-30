@@ -1,5 +1,6 @@
 [
   "/web/src/awsConfig.ts",
+  "/web/src/envConfig.ts",
   "/web/src/features/UserProvider/UserProvider.tsx",
   "/web/src/features/UserProvider/useUserContext.tsx",
   "/web/src/layouts/AuthLayout/AuthLayout.tsx",

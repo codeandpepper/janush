@@ -223,7 +223,7 @@ export const changeIndex = (projectName: string): TreeFunction => {
       const configureAwsChange = new InsertChange(
         filePath,
         placementLine.getStart() - 1,
-        "\nconfigureAws(); \n",
+        "\nconfigureEnv(); \nconfigureAws(); \n",
       );
 
       updatedTree.insertLeft(configureAwsChange.pos, configureAwsChange.toAdd);
@@ -237,6 +237,15 @@ export const changeIndex = (projectName: string): TreeFunction => {
     ) as InsertChange;
 
     updatedTree.insertLeft(importUserProvider.pos, importUserProvider.toAdd);
+
+    const importEnvConfig = insertImport(
+      modifiedFileToSave,
+      filePath,
+      "configureEnv",
+      "./envConfig",
+    ) as InsertChange;
+
+    updatedTree.insertLeft(importEnvConfig.pos, importEnvConfig.toAdd);
 
     tree.commitUpdate(updatedTree);
 
