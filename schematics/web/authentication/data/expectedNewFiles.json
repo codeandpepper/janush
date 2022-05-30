@@ -46,5 +46,6 @@
   "/web/src/utils/isCognitoError/isCognitoError.test.ts",
   "/web/src/utils/isCognitoError/isCognitoError.ts",
   "/web/src/utils/validation/passwordValidation.ts",
-  "/web/src/utils/validation/validateMaxStringLength.ts"
+  "/web/src/utils/validation/validateMaxStringLength.ts",
+  "/web/.env.example"
 ]
