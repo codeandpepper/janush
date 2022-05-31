@@ -3,5 +3,8 @@
   "/cloud/lib/authentication/authCloudFormation.test.ts",
   "/cloud/lib/authentication/cognitoCdkConstruct.ts",
   "/cloud/lib/authentication/cognitoIdentityPoolCdkConstruct.ts",
-  "/cloud/lib/authentication/cognitoUserPoolCdkConstruct.ts"
+  "/cloud/lib/authentication/cognitoUserPoolCdkConstruct.ts",
+  "/cloud/.env.default",
+  "/cloud/bin/environment/environment.d.ts",
+  "/cloud/bin/environment/index.ts"
 ]

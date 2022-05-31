@@ -15,7 +15,7 @@
       "uniqueItems": true,
       "default": [],
       "x-prompt": {
-        "message": "Select additional identity providers (each provider requires an active developer account).",
+        "message": "[WEB] Do you want add more identity providers? (each provider requires an active developer account).",
         "type": "list",
         "items": [
           { "value": "Facebook", "label": "Facebook" },

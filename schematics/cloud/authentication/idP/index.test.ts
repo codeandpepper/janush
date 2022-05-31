@@ -10,8 +10,8 @@ import * as janush from "@utility/janushJson";
 const { FACEBOOK, GOOGLE, APPLE } = IdentityProviders;
 const collectionPath = path.join(__dirname, "../../../collection.json");
 
-describe("idP", () => {
-  it("should create all idP files", async () => {
+describe("cloud.authentication.idP", () => {
+  it("should generate all idP files", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     jest.spyOn(janush, "readJanushJSON").mockReturnValue(emptyJanush);
@@ -19,27 +19,25 @@ describe("idP", () => {
 
     const tree = await runner
       .runSchematicAsync(
-        Schematic.WEB,
+        Schematic.CLOUD,
         {
           name: "janush-app",
           modules: [Module.AUTHENTICATION],
           idP: [FACEBOOK, GOOGLE, APPLE],
-          e2e: false,
         },
         Tree.empty(),
       )
       .toPromise();
 
     expect(tree.files).toIncludeEvery([
-      "/web/src/components/FederatedSignIn/FederatedSignIn.tsx",
-      "/web/src/components/icons/FacebookIcon.tsx",
-      "/web/src/components/icons/GoogleIcon.tsx",
-      "/web/src/components/icons/AppleIcon.tsx",
-      "/web/src/components/icons/index.ts",
+      "/cloud/lib/authentication/identityProviders/facebookIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/googleIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/appleIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/index.ts",
     ]);
   });
 
-  it("should create selected idP files", async () => {
+  it("should generate selected idP files", async () => {
     const runner = new SchematicTestRunner("schematics", collectionPath);
 
     jest.spyOn(janush, "readJanushJSON").mockReturnValue(emptyJanush);
@@ -47,25 +45,23 @@ describe("idP", () => {
 
     const tree = await runner
       .runSchematicAsync(
-        Schematic.WEB,
+        Schematic.CLOUD,
         {
           name: "janush-app",
           modules: [Module.AUTHENTICATION],
           idP: [FACEBOOK],
-          e2e: false,
         },
         Tree.empty(),
       )
       .toPromise();
 
     expect(tree.files).toIncludeEvery([
-      "/web/src/components/FederatedSignIn/FederatedSignIn.tsx",
-      "/web/src/components/icons/FacebookIcon.tsx",
-      "/web/src/components/icons/index.ts",
+      "/cloud/lib/authentication/identityProviders/facebookIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/index.ts",
     ]);
     expect(tree.files).not.toIncludeSome([
-      "/web/src/components/icons/GoogleIcon.tsx",
-      "/web/src/components/icons/AppleIcon.tsx",
+      "/cloud/lib/authentication/identityProviders/googleIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/appleIdentityProvider.ts",
     ]);
   });
 
@@ -77,23 +73,21 @@ describe("idP", () => {
 
     const tree = await runner
       .runSchematicAsync(
-        Schematic.WEB,
+        Schematic.CLOUD,
         {
           name: "janush-app",
           modules: [Module.AUTHENTICATION],
           idP: [],
-          e2e: false,
         },
         Tree.empty(),
       )
       .toPromise();
 
     expect(tree.files).not.toIncludeSome([
-      "/web/src/components/FederatedSignIn/FederatedSignIn.tsx",
-      "/web/src/components/icons/FacebookIcon.tsx",
-      "/web/src/components/icons/GoogleIcon.tsx",
-      "/web/src/components/icons/AppleIcon.tsx",
-      "/web/src/components/icons/index.ts",
+      "/cloud/lib/authentication/identityProviders/facebookIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/googleIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/appleIdentityProvider.ts",
+      "/cloud/lib/authentication/identityProviders/index.ts",
     ]);
   });
 });

@@ -1,0 +1,29 @@
+import * as dotenv from "dotenv";
+import * as Joi from "joi";
+import * as path from "path";
+import { IProcessEnv } from "./environment";
+
+dotenv.config({ path: path.resolve(process.cwd(), ".env.default") });
+dotenv.config({ override: true });
+
+(function validateEnvironment(): void {
+  const envSchema = Joi.object<IProcessEnv>({
+    <% if (emails) { %>EMAIL_TEMPLATE_BUCKET_NAME: Joi.string().required(),<% } %>
+    <% if (isFacebook) { %>IDENTITY_PROVIDER_FACEBOOK_CLIENT_ID: Joi.string().required(),
+    IDENTITY_PROVIDER_FACEBOOK_CLIENT_SECRET: Joi.string().required(),<% } %>
+    <% if (isGoogle) { %>IDENTITY_PROVIDER_GOOGLE_CLIENT_ID: Joi.string().required(),
+    IDENTITY_PROVIDER_GOOGLE_CLIENT_SECRET: Joi.string().required(),<% } %>
+    <% if (isApple) { %>IDENTITY_PROVIDER_APPLE_CLIENT_ID: Joi.string().required(),
+    IDENTITY_PROVIDER_APPLE_KEY_ID: Joi.string().required(),
+    IDENTITY_PROVIDER_APPLE_PRIVATE_KEY: Joi.string().required(),
+    IDENTITY_PROVIDER_APPLE_TEAM_ID: Joi.string().required(),<% } %>
+    <% if (idP.length) { %>USER_POOL_REDIRECT_SIGN_IN: Joi.string().uri().required(),
+    USER_POOL_REDIRECT_SIGN_OUT: Joi.string().uri().required(),<% } %>
+  }).unknown(true);
+
+  const validationRes = envSchema.validate(process.env);
+  if (validationRes.error) {
+    console.error("Environment variable error");
+    throw validationRes.error;
+  }
+})();
