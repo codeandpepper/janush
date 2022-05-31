@@ -468,7 +468,7 @@ export const changeRoutes = (projectName: string): TreeFunction => {
         "<Route path={Paths.SIGN_IN_PATH} component={SignIn} />\n" +
           "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
           "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n" +
-          " <Route path={Paths.FORGOT_PASSWORD_PATH} component={ForgotPassword} />\n" +
+          "<Route path={Paths.FORGOT_PASSWORD_PATH} component={ForgotPassword} />\n" +
           "<Route path={Paths.RESET_PASSWORD_PATH} component={PasswordReset} />\n",
       );
 
