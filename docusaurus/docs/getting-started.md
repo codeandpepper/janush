@@ -46,6 +46,11 @@ Which modules would you like to use? You can add this later. (Press <space> to s
 ❯◉ Authentication
 
 Do you want add an auth emails template? (Y/n) y
+
+Do you want add more identity providers? (each provider requires an active developer account).
+❯◉ Facebook
+ ◉ Google
+ ◉ Apple
 ```
 
 6. Source code is generated automatically
