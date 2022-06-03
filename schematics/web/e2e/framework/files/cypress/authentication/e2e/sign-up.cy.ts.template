@@ -118,15 +118,6 @@ describe("Sign up page test suite", () => {
     cy.checkThatURLContains("/sign-in");
   });
 
-  it("User is able to sign in and then sign out with provided credentials", () => {
-    cy.confirmUserSignUp(user.email.correct);
-    cy.fillSignInForm(user.email.correct, user.password.correct);
-    cy.clickOn(authSelectors.buttons.signIn);
-    cy.clickOn(indexPageSelectors.buttons.signOut);
-    cy.clickOn(indexPageSelectors.buttons.signIn);
-    cy.checkThatURLContains("/sign-in");
-  });
-
   it("User is not able to create two accounts with the same email address", () => {
     cy.clickOn(authSelectors.buttons.goToSignUpPage);
     cy.checkThatURLContains("/sign-up");
