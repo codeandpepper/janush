@@ -143,7 +143,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "cypress",
-    version: "^10.0.1",
+    version: "^10.0.2",
   },
   {
     type: NodeDependencyType.Dev,

@@ -27,7 +27,7 @@ export default defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      dotenv.config();
+      dotenv.config({ path: "../.env" });
       config = codeCoverageTask(on, config);
       config.env = {
         identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID,
