@@ -7,7 +7,8 @@
     "url": "https://github.com/codeandpepper/janush.git"
   },
   "engines": {
-    "node": "16.x.x"
+    "node": "16.x.x",
+    "npm": "8.x.x"
   },
   "scripts": {
     "prepare": "npm run build && husky install",
