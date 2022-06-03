@@ -5,7 +5,7 @@
       "@features/*": ["./src/features/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@routing/*": ["./src/routing/*"],
-      "@themes/*": ["./src/themes/*"],
+      "@themes/*": ["./src/themes/*"]
     }
   }
 }
