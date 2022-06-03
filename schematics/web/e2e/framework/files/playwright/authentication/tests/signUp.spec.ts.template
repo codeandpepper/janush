@@ -3,10 +3,10 @@ import { test } from "@playwright/test";
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../pageObjects/methods/generateData";
+} from "../pageObjects/methods/generate-data";
 import GlobalMethods from "../pageObjects/methods/globalCommands";
-import { authSelectors } from "../pageObjects/selectors/authSelectors";
-import { indexPageSelectors } from "../pageObjects/selectors/indexPage";
+import { authSelectors } from "../pageObjects/selectors/auth-selectors";
+import { indexPageSelectors } from "../pageObjects/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
