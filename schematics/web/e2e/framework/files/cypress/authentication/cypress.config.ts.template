@@ -1,7 +1,7 @@
-// @ts-ignore
-import codeCoverageTask from "@cypress/code-coverage/task";
 import { defineConfig } from "cypress";
 import dotenv from "dotenv";
+// @ts-ignore
+import codeCoverageTask from "@cypress/code-coverage/task";
 
 export default defineConfig({
   defaultCommandTimeout: 12000,
