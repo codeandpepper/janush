@@ -1,45 +1,36 @@
 import * as fs from "fs";
 import * as path from "path";
 import { FileDoesNotExistException, Rule, Tree } from "@angular-devkit/schematics";
-import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
-import { insertImport } from "@schematics/angular/utility/ast-utils";
-
 import { Schematic } from "@enums/Schematic";
 import { InsertChange } from "@schematics/angular/utility/change";
+import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 import { getEndCloseBraceTokenInConstructor } from "@utility/helpers";
+import { insertImport } from "@schematics/angular/utility/ast-utils";
 import { ConstructContextBase } from "@janush-schematics/cloud/interfaces/constructContextBase.interface";
 
-interface CognitoConstructChangeRules {
+interface AppSyncConstructChangeRules {
   importChange: InsertChange;
   constructChange: InsertChange;
 }
 
-interface CognitoConstructContext extends ConstructContextBase {
-  serviceProviderPath: string;
-}
-
-const createCognitoConstructContext = (projectName: string): CognitoConstructContext => {
+const createAppSyncConstructContext = (projectName: string): ConstructContextBase => {
   const cloudStackPath = `${Schematic.CLOUD}/lib/${projectName}-stack.ts`;
-  const serviceProviderPath = `${Schematic.CLOUD}/enums/EnvName.ts`;
 
   const construct = fs
-    .readFileSync(
-      path.join(__dirname, "..", "otherFiles/cloudStack/authenticationConstruct.template"),
-    )
+    .readFileSync(path.join(__dirname, "..", "otherFiles/cloudStack/appSyncConstruct.template"))
     .toString("utf-8");
 
   return {
     cloudStackPath,
-    serviceProviderPath,
     construct,
     projectName,
   };
 };
 
-const addCognitoConstructToCloudStackRules = (
+const addAppSyncConstructToStackRules = (
   tree: Tree,
-  context: CognitoConstructContext,
-): CognitoConstructChangeRules => {
+  context: ConstructContextBase,
+): AppSyncConstructChangeRules => {
   const cloudStackText = tree.read(context.cloudStackPath);
 
   if (!cloudStackText) {
@@ -66,17 +57,17 @@ const addCognitoConstructToCloudStackRules = (
   const importChange = insertImport(
     sourceFile,
     context.cloudStackPath,
-    "CognitoCdkConstruct",
-    "./authentication/cognitoCdkConstruct",
+    "AppSyncCdkConstruct",
+    "./api/appSyncCdkConstruct",
   ) as InsertChange;
 
   return { constructChange, importChange };
 };
 
-export const addCognitoConstructToCloudStack = (projectName: string): Rule => {
+export const addAppSyncConstructToCloudStack = (projectName: string): Rule => {
   return (tree: Tree) => {
-    const context = createCognitoConstructContext(projectName);
-    const { constructChange, importChange } = addCognitoConstructToCloudStackRules(tree, context);
+    const context = createAppSyncConstructContext(projectName);
+    const { constructChange, importChange } = addAppSyncConstructToStackRules(tree, context);
 
     const declarationRecorder = tree.beginUpdate(context.cloudStackPath);
 

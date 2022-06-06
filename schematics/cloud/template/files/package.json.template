@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "schema:merge": "rm -f ./lib/api/schema.graphql && graphql-schema-utilities --schema \"{root.graphql,./lib/**/*.graphql}\" --output ./lib/api/schema.graphql"
   },
   "devDependencies": {
     "@aws-cdk/aws-amplify-alpha": "^2.7.0-alpha.0",
@@ -23,6 +24,7 @@
   "dependencies": {
     "aws-cdk-lib": "^2.7.0",
     "constructs": "^10.0.0",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.16",
+    "graphql-schema-utilities": "^1.1.3"
   }
 }
