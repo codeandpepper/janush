@@ -1,0 +1,14 @@
+
+{
+  "$id": "CloudAppSyncSchematics",
+  "title": "Cloud AppSync Schema",
+  "type": "object",
+  "description": "Creates API module",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app"
+    }
+  }
+}
