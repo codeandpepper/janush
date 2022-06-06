@@ -10,5 +10,7 @@
   "/cloud/lib/janush-app-stack.ts",
   "/cloud/package.json",
   "/cloud/tsconfig.json",
-  "/cloud/.env.example"
+  "/cloud/.env.example",
+  "/cloud/root.graphql",
+  "/cloud/enums/ServicePurpose.ts"
 ]
