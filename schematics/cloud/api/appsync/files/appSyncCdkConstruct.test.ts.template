@@ -1,7 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
 import { EnvName } from "@enums/EnvName";
-import * as <%= classify(name) %> from "../<%= dasherize(name) %>";
+import * as <%= classify(name) %> from "../<%= dasherize(name) %>-stack";
 
 describe("<%= classify(name) %> [Api]", () => {
   const app = new cdk.App();

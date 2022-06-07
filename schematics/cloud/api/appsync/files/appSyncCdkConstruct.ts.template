@@ -4,7 +4,7 @@ import { Construct } from "constructs";
 import { EnvName } from "@enums/EnvName";
 import { applyTagsToResource } from "../../utils/functions";
 import { ServicePurpose } from "../../enums/ServicePurpose";
-import path from "path";
+import * as path from "path";
 
 interface AppSyncProps {
   envName: EnvName;

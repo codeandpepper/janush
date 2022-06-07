@@ -2,7 +2,7 @@
 // API: AppSync
 // ========================================================================
 
-new AppSyncCdkConstructTs(this, `${envName}-AppSyncApi`, {
+new AppSyncCdkConstruct(this, `${envName}-AppSyncApi`, {
   envName,
   userPool,
 });

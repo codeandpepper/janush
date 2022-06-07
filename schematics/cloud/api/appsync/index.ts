@@ -13,7 +13,7 @@ import {
   Tree,
 } from "@angular-devkit/schematics";
 
-import { CloudSchematic, Schematic } from "@enums/Schematic";
+import { Schematic } from "@enums/Schematic";
 import { addAppSyncConstructToCloudStack } from "@janush-schematics/cloud/api/appsync/utils";
 import { readJanushJSON } from "@utility/janushJson";
 
@@ -30,6 +30,7 @@ export const appSyncApiGenerator = (options: Schema): Rule => {
       mergeWith(
         apply(url("./files"), [
           applyTemplates({
+            ...options,
             ...strings,
           }),
           move(`${Schematic.CLOUD}/lib/api`),
@@ -37,7 +38,6 @@ export const appSyncApiGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       addAppSyncConstructToCloudStack(name),
-      schematic(CloudSchematic.API, { name }),
       schematic("applyPrettier", {}),
     ]);
   };
