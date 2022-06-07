@@ -22,7 +22,7 @@ export const FederatedSignIn: VFC = () => {
   );
 
   return providers.length ? (
-    <Box display="flex" flexDirection="column" mt={4} gap={1}>
+    <Box display="flex" flexDirection="column" mt={3} gap={1}>
       <Typography align="center">Or continue with...</Typography>
       <Box display="flex" mt={2} gap={2}>
         {providers.map(({ name, provider, Icon }) => (

@@ -35,8 +35,7 @@ export const SignInView: VFC<Props> = ({ error, loading, onSignIn }) => {
               Forgot Password?
             </Typography>
           </Link>
-        </Box>
-        <SignInForm error={error} loading={loading} onSubmit={onSignIn} />
+        </Box>       
         <% if (idP.length) { %><FederatedSignIn /><% } %>
       </Container>
       <AuthBottomBar
