@@ -405,7 +405,9 @@ export const changePaths = (projectName: string): TreeFunction => {
         paths.getEnd() - 1,
         'SIGN_IN_PATH = "/sign-in",\n' +
           'SIGN_UP_PATH = "/sign-up",\n' +
-          'VERIFY_EMAIL_PATH = "/verify-email",\n',
+          'VERIFY_EMAIL_PATH = "/verify-email",\n' +
+          'FORGOT_PASSWORD_PATH = "/forgot-password",\n' +
+          'RESET_PASSWORD_PATH = "/create-new-password",\n',
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
@@ -447,7 +449,9 @@ export const changeRoutes = (projectName: string): TreeFunction => {
         paths.getEnd(),
         '));\nconst SignIn = lazy(() => import("./routes/SignIn/SignIn"));' +
           '\nconst SignUp = lazy(() => import("./routes/SignUp/SignUp"));' +
-          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"',
+          '\nconst VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));' +
+          '\nconst ForgotPassword = lazy(() => import("./routes/ForgotPassword/ForgotPassword"));' +
+          '\nconst PasswordReset = lazy(() => import("./routes/ResetPassword/ResetPassword"',
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
@@ -463,7 +467,9 @@ export const changeRoutes = (projectName: string): TreeFunction => {
         attr.getStart() - 1,
         "<Route path={Paths.SIGN_IN_PATH} component={SignIn} />\n" +
           "<Route path={Paths.SIGN_UP_PATH} component={SignUp} />\n" +
-          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n",
+          "<Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />\n" +
+          "<Route path={Paths.FORGOT_PASSWORD_PATH} component={ForgotPassword} />\n" +
+          "<Route path={Paths.RESET_PASSWORD_PATH} component={PasswordReset} />\n",
       );
 
       updatedTree.insertLeft(addMissingAbsolutePaths.pos, addMissingAbsolutePaths.toAdd);
