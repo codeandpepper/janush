@@ -1,11 +1,6 @@
 name: janush.app
 
-on:
-  push:
-    branches:
-      - main
-    pull_request:
-      types: [opened, synchronize, reopened]
+on: workflow_dispatch
 
 jobs:
   cloud-install:
