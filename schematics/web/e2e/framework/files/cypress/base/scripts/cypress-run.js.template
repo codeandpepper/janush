@@ -6,7 +6,7 @@ const generator = require("mochawesome-report-generator");
 (async () => {
   await fse.remove("cypress/reports");
   await cypress.run({
-    configFile: "cypress/cypress.json",
+    configFile: "cypress/cypress.config.ts",
     browser: "chrome",
   });
   const jsonReport = await merge({

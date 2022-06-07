@@ -1,9 +1,9 @@
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../support/methods/generateData";
-import { authSelectors } from "../support/selectors/authSelectors";
-import { indexPageSelectors } from "../support/selectors/indexPage";
+} from "../support/methods/generate-data";
+import { authSelectors } from "../support/selectors/auth-selectors";
+import { indexPageSelectors } from "../support/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -115,15 +115,6 @@ describe("Sign up page test suite", () => {
     cy.clickOn(authSelectors.buttons.resendEmail);
     cy.checkTheStateOfElement(authSelectors.buttons.resendEmail, "disabled");
     cy.clickOn(authSelectors.buttons.backToSignIn);
-    cy.checkThatURLContains("/sign-in");
-  });
-
-  it("User is able to sign in and then sign out with provided credentials", () => {
-    cy.confirmUserSignUp(user.email.correct);
-    cy.fillSignInForm(user.email.correct, user.password.correct);
-    cy.clickOn(authSelectors.buttons.signIn);
-    cy.clickOn(indexPageSelectors.buttons.signOut);
-    cy.clickOn(indexPageSelectors.buttons.signIn);
     cy.checkThatURLContains("/sign-in");
   });
 
