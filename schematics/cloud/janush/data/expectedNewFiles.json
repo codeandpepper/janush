@@ -3,9 +3,9 @@
   "/cloud/.prettierrc.json",
   "/cloud/consts/index.ts",
   "/cloud/enums/EnvName.ts",
-  "/janush-app/cloud/enums/ServicePurpose.ts",
   "/cloud/scripts/test.txt",
   "/cloud/utils/functions.ts",
   "/cloud/.env.example",
-  "/cloud/root.graphql"
+  "/cloud/root.graphql",
+  "/cloud/enums/ServicePurpose.ts"
 ]
