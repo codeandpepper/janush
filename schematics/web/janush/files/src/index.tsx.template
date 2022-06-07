@@ -4,6 +4,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+<% if (isAuth) { %>import { configureAws } from "./awsConfig";<% } %>
+
+<% if (isAuth) { %>configureAws();<% } %>
 
 ReactDOM.render(
   <React.StrictMode>

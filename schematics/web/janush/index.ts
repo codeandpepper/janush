@@ -6,6 +6,7 @@ import {
   MergeStrategy,
   mergeWith,
   move,
+  noop,
   Rule,
   schematic,
   SchematicContext,
@@ -13,20 +14,23 @@ import {
   url,
 } from "@angular-devkit/schematics";
 
-import { Schematic } from "@enums/Schematic";
-import { CLIOptions } from "@interfaces/CLIOptions";
-import { readJanushJSON } from "@utility/janushJson";
+import { Module } from "@enums/Module";
+import { Schematic, WebSchematic } from "@enums/Schematic";
 
-export const webJanushGenerator = (options: CLIOptions): Rule => {
-  return (tree: Tree, _context: SchematicContext) => {
-    const janushFile = readJanushJSON(tree);
+import { Schema } from "../template/schema";
 
-    options.name = strings.dasherize(janushFile.name);
+export const webJanushGenerator = (options: Schema): Rule => {
+  return (_tree: Tree, _context: SchematicContext) => {
+    const isEmptyModules = options.modules.length === 0;
+    if (isEmptyModules) return noop();
+
+    const isAuth = options.modules.includes(Module.AUTHENTICATION);
 
     return chain([
       mergeWith(
         apply(url("./files"), [
           applyTemplates({
+            isAuth,
             ...options,
             ...strings,
           }),
@@ -34,6 +38,7 @@ export const webJanushGenerator = (options: CLIOptions): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
+      isAuth ? schematic(WebSchematic.AUTHENTICATION, options) : noop(),
       schematic("applyPrettier", {}),
     ]);
   };
