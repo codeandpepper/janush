@@ -94,7 +94,7 @@ export const e2eFrameworkGenerator = (options: Schema): Rule => {
                     ...options,
                     ...strings,
                   }),
-                  move(`${Schematic.WEB}/playwright/pageObjects/selectors`),
+                  move(`${Schematic.WEB}/playwright/page-objects/selectors`),
                 ]),
                 MergeStrategy.Overwrite,
               )
