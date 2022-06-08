@@ -5,6 +5,7 @@ export interface Janush {
   cloud: {
     module: {
       [Module.AUTHENTICATION]: boolean;
+      [Module.API]: boolean;
     };
   };
   web: {
