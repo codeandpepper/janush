@@ -1,0 +1,10 @@
+module.exports = {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  ignorePatterns: [".eslintrc.js"],
+  parserOptions: {
+    tsconfigRootDir: "playwright",
+    project: "../tsconfig.json",
+    tsconfigRootDir: __dirname,
+  },
+};
