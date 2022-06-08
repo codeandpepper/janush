@@ -15,20 +15,14 @@ import { addPackageJsonDependency } from "@schematics/angular/utility/dependenci
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
 import { Schematic } from "@enums/Schematic";
-import { readJanushJSON } from "@utility/janushJson";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
 
-import { authenticationChanges } from "../../web/authentication/utils";
 import { Schema } from "./schema";
+import { packageJsonExtender } from "./utils/packageJsonExtender";
+import { tsConfigExtender } from "./utils/tsConfigExtender";
 
 export const webAuthenticationGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
-    const janushFile = readJanushJSON(tree);
-
-    const name = strings.dasherize(janushFile.name);
-
-    options.name = name;
-
     for (const nodeDependency of webJanushAuthenticationNodeDependencies) {
       addPackageJsonDependency(tree, nodeDependency, WEB_PACKAGE_JSON_PATH);
     }
@@ -44,7 +38,8 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      ...authenticationChanges(name),
+      packageJsonExtender,
+      tsConfigExtender,
     ]);
   };
 };
