@@ -14,7 +14,7 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
-import { addAppSyncConstructToCloudStack } from "@janush-schematics/cloud/api/appsync/utils";
+import { AppSyncConstructBuilder } from "@janush-schematics/cloud/api/appsync/appSyncConstructBuilder";
 import { readJanushJSON } from "@utility/janushJson";
 
 import { Schema } from "./schema";
@@ -23,6 +23,7 @@ export const appSyncApiGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
     const name = strings.dasherize(janushFile.name);
+    const constructBuilder = new AppSyncConstructBuilder(name);
 
     options.name = name;
 
@@ -37,7 +38,7 @@ export const appSyncApiGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
-      addAppSyncConstructToCloudStack(name),
+      constructBuilder.addToCloudStack(),
       schematic("applyPrettier", {}),
     ]);
   };
