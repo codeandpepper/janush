@@ -3,9 +3,9 @@ import { test } from "@playwright/test";
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../pageObjects/methods/generate-data";
-import GlobalMethods from "../pageObjects/methods/globalCommands";
-import { authSelectors } from "../pageObjects/selectors/auth-selectors";
+} from "../page-objects/methods/generate-data";
+import GlobalMethods from "../page-objects/methods/global-commands";
+import { authSelectors } from "../page-objects/selectors/auth-selectors";
 
 const user: FakeUserData = generateFakeUserData();
 

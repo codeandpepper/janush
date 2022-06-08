@@ -3,10 +3,9 @@ import { test } from "@playwright/test";
 import {
   FakeUserData,
   generateFakeUserData,
-} from "../pageObjects/methods/generate-data";
-import GlobalMethods from "../pageObjects/methods/globalCommands";
-import { authSelectors } from "../pageObjects/selectors/auth-selectors";
-import { indexPageSelectors } from "../pageObjects/selectors/index-page";
+} from "../page-objects/methods/generate-data";
+import GlobalMethods from "../page-objects/methods/global-commands";
+import { authSelectors } from "../page-objects/selectors/auth-selectors";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -138,15 +137,6 @@ test.describe("Sign up page test suite", () => {
     await pw.clickOn(authSelectors.buttons.resendEmail);
     await pw.shouldBeDisabled(authSelectors.buttons.resendEmail);
     await pw.clickOn(authSelectors.buttons.backToSignIn);
-    await pw.waitForAppURL("/sign-in");
-  });
-
-  test("User is able to sign in and then sign out with provided credentials", async () => {
-    await pw.confirmUserSignUp(user.email.correct);
-    await pw.fillSignInForm(user.email.correct, user.password.correct);
-    await pw.clickOn(authSelectors.buttons.signIn);
-    await pw.clickOn(indexPageSelectors.buttons.signOut);
-    await pw.clickOn(indexPageSelectors.buttons.signIn);
     await pw.waitForAppURL("/sign-in");
   });
 

@@ -143,7 +143,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "cypress",
-    version: "^10.0.2",
+    version: "^10.0.3",
   },
   {
     type: NodeDependencyType.Dev,
@@ -176,7 +176,7 @@ export const e2ePlaywrightDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@playwright/test",
-    version: "^1.17.1",
+    version: "^1.22.2",
   },
   {
     type: NodeDependencyType.Dev,
@@ -186,6 +186,6 @@ export const e2ePlaywrightDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "playwright",
-    version: "^1.17.1",
+    version: "^1.22.2",
   },
 ];
