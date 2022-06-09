@@ -1,0 +1,22 @@
+import * as cdk from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import { EnvName } from "@enums/EnvName";
+import * as <%= classify(name) %> from "../<%= dasherize(name) %>-stack";
+
+describe("<%= classify(name) %> [Api]", () => {
+  const app = new cdk.App();
+  const stack = new <%= classify(name) %>.<%= classify(name) %>Stack(app, 'MyTestStack', {
+    envName: EnvName.Development
+  });
+
+  const template = Template.fromStack(stack);
+
+  it("should have GraphQL API on AppSync deployed", () => {
+    template.hasResource("AWS::AppSync::GraphQLApi", {
+      Properties: {
+        AuthenticationType: "AMAZON_COGNITO_USER_POOLS",
+        Name: `${EnvName.Development}-GraphQLApi`,
+      },
+    });
+  });
+});

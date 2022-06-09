@@ -1,8 +1,8 @@
-
 // ========================================================================
-// Authentication: Amazon Cognito
+// API: AppSync
 // ========================================================================
 
-const { cognitoUserPool: userPool } = new CognitoCdkConstruct(this, `${envName}-CognitoUserPool`, {
-   envName,
+new AppSyncCdkConstruct(this, `${envName}-AppSyncApi`, {
+  envName,
+  userPool,
 });
