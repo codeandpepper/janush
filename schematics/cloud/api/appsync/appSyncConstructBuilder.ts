@@ -24,7 +24,7 @@ export class AppSyncConstructBuilder {
     const cloudStackPath = `${Schematic.CLOUD}/lib/${this.projectName}-stack.ts`;
 
     const construct = fs
-      .readFileSync(path.join(__dirname, ".", "otherFiles/cloudStack/appSyncConstruct.template"))
+      .readFileSync(path.join(__dirname, "./otherFiles/cloudStack/appSyncConstruct.template"))
       .toString("utf-8");
 
     return {
