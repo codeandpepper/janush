@@ -1,0 +1,50 @@
+import * as appSync from "@aws-cdk/aws-appsync-alpha";
+import { aws_cognito as cognito, CfnOutput, StackProps } from "aws-cdk-lib";
+import { Construct } from "constructs";
+import { EnvName } from "@enums/EnvName";
+import { applyTagsToResource } from "../../utils/functions";
+import { ServicePurpose } from "../../enums/ServicePurpose";
+import * as path from "path";
+
+interface AppSyncProps {
+  envName: EnvName;
+  userPool: cognito.UserPool;
+}
+
+export class AppSyncCdkConstruct extends Construct{
+  public readonly graphQlApi: appSync.GraphqlApi;
+
+  constructor(
+    scope: Construct,
+    id: string,
+    { envName, userPool }: StackProps & AppSyncProps
+  ) {
+    super(scope, id);
+
+    const appSyncId = `${envName}-AppSyncApi`;
+
+    this.graphQlApi = new appSync.GraphqlApi(this, appSyncId, {
+      name: `${envName}-GraphQLApi`,
+      schema: appSync.Schema.fromAsset(path.join(__dirname, "schema.graphql")),
+      authorizationConfig: {
+        defaultAuthorization: {
+          authorizationType: appSync.AuthorizationType.USER_POOL,
+          userPoolConfig: {
+            userPool,
+          },
+        },
+      },
+      xrayEnabled: true,
+    });
+
+    new CfnOutput(this, `${envName}-GraphQLUrlExport`, {
+      exportName: `${envName}-GraphQLUrl`,
+      value: this.graphQlApi.graphqlUrl,
+    });
+
+    applyTagsToResource([this.graphQlApi], {
+      envName,
+      purpose: ServicePurpose.API,
+    });
+  }
+}

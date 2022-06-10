@@ -3,7 +3,6 @@ import {
   generateFakeUserData,
 } from "../support/methods/generate-data";
 import { authSelectors } from "../support/selectors/auth-selectors";
-import { indexPageSelectors } from "../support/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 

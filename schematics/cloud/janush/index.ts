@@ -42,6 +42,20 @@ export const cloudJanushGenerator = (options: Schema): Rule => {
         ]),
         MergeStrategy.Overwrite,
       ),
+      /*
+       * TODO add conditionals inside servicePurpose.ts.template based
+       *  on chosen elements in schema
+       * */
+      mergeWith(
+        apply(url("./otherFiles/servicePurpose"), [
+          applyTemplates({
+            ...options,
+            ...strings,
+          }),
+          move(`${Schematic.CLOUD}/enums`),
+        ]),
+        MergeStrategy.Overwrite,
+      ),
       schematic("applyPrettier", {}),
     ]);
   };
