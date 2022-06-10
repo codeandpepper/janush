@@ -41,6 +41,7 @@
     "@angular-devkit/schematics-cli": "^14.0.1",
     "@angular/cli": "^14.0.1",
     "@schematics/angular": "^14.0.1",
+    "ansi-colors": "^4.1.3",
     "arg": "^5.0.1",
     "esm": "^3.2.25",
     "lodash.isempty": "^4.4.0",
