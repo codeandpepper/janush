@@ -1,6 +1,6 @@
-import { Auth } from "aws-amplify";
 import { useState, VFC } from "react";
-import { useHistory } from "react-router-dom";
+import { Auth } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
 
 import { CognitoError } from "@interfaces/Cognito";
 import { CognitoErrorType } from "@janush-types/enums/Cognito";
@@ -12,7 +12,7 @@ import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 import { SignUpView } from "./SignUpView/SignUpView";
 
 const SignUp: VFC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [error, setError] = useState<Nullable<CognitoError>>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -32,8 +32,8 @@ const SignUp: VFC = () => {
         },
       });
 
-      history.push(Paths.VERIFY_EMAIL_PATH, {
-        email,
+      navigate(Paths.VERIFY_EMAIL_PATH, {
+        state: email,
       });
     } catch (err: unknown) {
       if (isCognitoError(err)) {

@@ -18,6 +18,6 @@ export const Router: VFC = () => {
       <Route path={Paths.FORGOT_PASSWORD_PATH} element={ForgotPassword} />
       <Route path={Paths.RESET_PASSWORD_PATH} element={ResetPassword} /><% } %>
       <Route path="/" element={IndexPage} />
-    </Switch>
+    </Routes>
   );
 };

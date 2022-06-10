@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import { Auth } from "aws-amplify";
 import { MemoryHistory } from "history";
-import { MemoryRouter, Route, Router } from "react-router-dom";
+import { MemoryRouter, Router } from "react-router-dom";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
 import { Paths } from "@routing/paths";
@@ -23,12 +23,15 @@ const setupHistory: MemoryHistory = {
   listen: jest.fn(),
 };
 
-const mockHistoryPush = jest.fn();
+const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useHistory: () => ({
-    push: mockHistoryPush,
+  useNavigate: () => mockNavigate,
+  useLocation: () => ({
+    state: {
+      email: "test@test.com",
+    },
   }),
 }));
 
@@ -37,26 +40,16 @@ beforeEach(() => {
 });
 
 const setup = async (history?: MemoryHistory) => {
-  const innerContent = (
-    <Route
-      path="/"
-      component={VerifyEmail}
-      location={{
-        key: "tempKey",
-        pathname: "/",
-        search: "",
-        state: { email: "test@test.com" },
-        hash: "",
-      }}
-    />
-  );
-
   render(
     <ThemeProvider>
       {history ? (
-        <Router history={history}>{innerContent}</Router>
+        <Router location={Paths.VERIFY_EMAIL_PATH} navigator={history}>
+          <VerifyEmail />
+        </Router>
       ) : (
-        <MemoryRouter>{innerContent}</MemoryRouter>
+        <MemoryRouter>
+          <VerifyEmail />
+        </MemoryRouter>
       )}
     </ThemeProvider>
   );
@@ -106,7 +99,7 @@ describe("<VerifyEmail />", () => {
     });
 
     await waitFor(() =>
-      expect(mockHistoryPush).toBeCalledWith(Paths.SIGN_IN_PATH)
+      expect(mockNavigate).toBeCalledWith(Paths.SIGN_IN_PATH)
     );
   });
 });
@@ -140,6 +133,6 @@ it("should display an error on failure", async () => {
   const errorMessage = await screen.findByText(message);
   expect(errorMessage).toBeInTheDocument();
   await waitFor(() =>
-    expect(mockHistoryPush).not.toBeCalledWith(Paths.SIGN_IN_PATH)
+    expect(mockNavigate).not.toBeCalledWith(Paths.SIGN_IN_PATH)
   );
 });
