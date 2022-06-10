@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { Paths } from "@routing/paths";
-import { Routes } from "@routing/Routes";
+import { Router } from "@routing/Routes";
 import { createDefaultTheme } from "@themes/defaultTheme";
 
 describe("<Routes />", () => {
@@ -24,7 +24,7 @@ describe("<Routes />", () => {
       <ThemeProvider theme={createDefaultTheme()}>
         <MemoryRouter initialEntries={[Paths.BASE]}>
           <Suspense fallback={<div>{suspenseTitle}</div>}>
-            <Routes />
+            <Router />
           </Suspense>
         </MemoryRouter>
       </ThemeProvider>
