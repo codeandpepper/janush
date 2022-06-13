@@ -1,5 +1,5 @@
 import { lazy, VFC } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 <% if (isAuth) { %>import { Paths } from "@routing/paths";<% } %>
 
 const IndexPage = lazy(() => import("./routes/Index/IndexPage"));
@@ -9,15 +9,15 @@ const VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));
 const ForgotPassword = lazy(() => import("./routes/ForgotPassword/ForgotPassword"));
 const ResetPassword = lazy(() => import("./routes/ResetPassword/ResetPassword"));<% } %>
 
-export const Routes: VFC = () => {
+export const Router: VFC = () => {
   return (
-    <Switch>
-      <% if (isAuth) { %><Route path={Paths.SIGN_IN_PATH} component={SignIn} />
-      <Route path={Paths.SIGN_UP_PATH} component={SignUp} />
-      <Route path={Paths.VERIFY_EMAIL_PATH} component={VerifyEmail} />
-      <Route path={Paths.FORGOT_PASSWORD_PATH} component={ForgotPassword} />
-      <Route path={Paths.RESET_PASSWORD_PATH} component={ResetPassword} /><% } %>
-      <Route path="/" component={IndexPage} />
-    </Switch>
+    <Routes>
+      <% if (isAuth) { %><Route path={Paths.SIGN_IN_PATH} element={<SignIn />} />
+      <Route path={Paths.SIGN_UP_PATH} element={<SignUp />} />
+      <Route path={Paths.VERIFY_EMAIL_PATH} element={<VerifyEmail />} />
+      <Route path={Paths.FORGOT_PASSWORD_PATH} element={<ForgotPassword />} />
+      <Route path={Paths.RESET_PASSWORD_PATH} element={<ResetPassword />} /><% } %>
+      <Route path="/" element={<IndexPage />} />
+    </Routes>
   );
 };
