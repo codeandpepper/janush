@@ -1,3 +1,4 @@
+import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import arg from "arg";
 import { spawn } from "child_process";
 import path from "path";
@@ -70,20 +71,22 @@ function parseArgumentsIntoOptions(rawArgs: string[]): CLIOptions {
 
 function encodeCommand(command: string, options: CLIOptions) {
   return Object.entries(options).reduce((prev, [key, value]) => {
-    if (!value || key === COMMAND) {
+    const formattedKey = dasherize(key);
+
+    if (!value || formattedKey === COMMAND) {
       return prev;
     }
 
     const flags = ["e2e", "is-auto-generated", "skip-install"];
 
-    if (flags.includes(key)) {
-      return `${prev} --${key}`;
+    if (flags.includes(formattedKey)) {
+      return `${prev} --${formattedKey}`;
     }
 
     if (Array.isArray(value)) {
-      return prev + value.reduce((prev, curr) => prev + ` --${key}=${curr}`, " ");
+      return prev + value.reduce((prev, curr) => prev + ` --${formattedKey}=${curr}`, " ");
     }
-    return prev + ` --${key}=${value}`;
+    return prev + ` --${formattedKey}=${value}`;
   }, command);
 }
 
