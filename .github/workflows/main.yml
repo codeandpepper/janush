@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install schematics CLI
-        run: npm install --location=global @angular-devkit/schematics-cli
+        run: npm install --location=global @angular-devkit/schematics-cli@latest
       - name: Build schematics
         run: npm run build
       - name: Link npm package
