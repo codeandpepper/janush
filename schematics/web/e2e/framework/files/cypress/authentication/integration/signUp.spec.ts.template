@@ -9,8 +9,7 @@ const user: FakeUserData = generateFakeUserData();
 
 describe("Sign up page test suite", () => {
   before(() => {
-    cy.visit("/sign-up");
-    cy.checkThatURLContains("/sign-up");
+    cy.visitPageCheckURL("sign-up");
   });
 
   it("User is able to see password after clicking show password icon", () => {
@@ -115,15 +114,6 @@ describe("Sign up page test suite", () => {
     cy.clickOn(authSelectors.buttons.resendEmail);
     cy.checkTheStateOfElement(authSelectors.buttons.resendEmail, "disabled");
     cy.clickOn(authSelectors.buttons.backToSignIn);
-    cy.checkThatURLContains("/sign-in");
-  });
-
-  it("User is able to sign in and then sign out with provided credentials", () => {
-    cy.confirmUserSignUp(user.email.correct);
-    cy.fillSignInForm(user.email.correct, user.password.correct);
-    cy.clickOn(authSelectors.buttons.signIn);
-    cy.clickOn(indexPageSelectors.buttons.signOut);
-    cy.clickOn(indexPageSelectors.buttons.signIn);
     cy.checkThatURLContains("/sign-in");
   });
 
