@@ -17,5 +17,6 @@ namespace Cypress {
     createUserWithPassword(email: string);
     addUserToSpecificGroup(email: string, group: string);
     createAdminWithPassword(email: string);
+    visitPageCheckURL(specificPage: string);
   }
 }
