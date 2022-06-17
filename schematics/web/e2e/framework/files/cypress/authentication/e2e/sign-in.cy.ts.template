@@ -8,7 +8,7 @@ const user: FakeUserData = generateFakeUserData();
 
 describe("Sign in page test suite", () => {
   before(() => {
-    cy.visitPageCheckURL("sign-up");
+    cy.visitPageCheckURL("sign-in");
   });
 
   it("User is able to see password after clicking show password icon", () => {
