@@ -66,9 +66,3 @@ Cypress.Commands.add("visitPageCheckURL", (specificPage) => {
   cy.visit(specificPage);
   cy.url().should("include", specificPage);
 });
-
-Cypress.Commands.add("checkValidation", (validationText: string) => {
-  cy.get(authSelectors.containers.validationError)
-  .contains(validationText)
-  .should("be.visible");
-});
