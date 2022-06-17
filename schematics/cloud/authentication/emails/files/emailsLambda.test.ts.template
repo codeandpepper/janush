@@ -31,7 +31,7 @@ const basicEvent = {
 };
 
 process.env.bucketName = "s3Bucket";
-process.env.defaultDomain = "https://janush.app";
+process.env.WEB_APP_URL = "https://janush.app";
 
 describe("authorizationEmailsLambda", () => {
   describe("generateCodeLink()", () => {
@@ -42,7 +42,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        `${process.env.defaultDomain}/create-new-password?username=test%40test.com&code={####}`
+        `${process.env.WEB_APP_URL}/create-new-password?username=test%40test.com&code={####}`
       );
     });
 
@@ -53,7 +53,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        `${process.env.defaultDomain}/confirm-signup?username=test%40test.com&code={####}`
+        `${process.env.WEB_APP_URL}/confirm-signup?username=test%40test.com&code={####}`
       );
     });
 
@@ -64,7 +64,7 @@ describe("authorizationEmailsLambda", () => {
       );
 
       expect(link).toEqual(
-        `${process.env.defaultDomain}/confirm-signup?username=test%40test.com&code={####}`
+        `${process.env.WEB_APP_URL}/confirm-signup?username=test%40test.com&code={####}`
       );
     });
   });
