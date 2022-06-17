@@ -1,9 +1,10 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Auth } from "aws-amplify";
 import { MemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router-dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
+import { Paths } from "@routing/paths";
 
 import SignUp from "./SignUp";
 
@@ -13,7 +14,9 @@ const setup = async (history?: MemoryHistory) => {
   render(
     <ThemeProvider>
       {history ? (
-        <Router history={history}>{innerContent}</Router>
+        <Router location={Paths.SIGN_UP_PATH} navigator={history}>
+          {innerContent}
+        </Router>
       ) : (
         <MemoryRouter>{innerContent}</MemoryRouter>
       )}

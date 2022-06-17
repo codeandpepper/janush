@@ -3,6 +3,6 @@
 // Authentication: Amazon Cognito
 // ========================================================================
 
-new CognitoCdkConstruct(this, `${envName}-CognitoUserPool`, {
+const { cognitoUserPool: userPool } = new CognitoCdkConstruct(this, `${envName}-CognitoUserPool`, {
    envName,
 });

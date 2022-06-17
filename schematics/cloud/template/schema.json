@@ -8,14 +8,14 @@
       "type": "array",
       "description": "Modules",
       "uniqueItems": true,
-      "default": ["authentication"],
+      "default": ["authentication", "api"],
       "x-prompt": {
         "message": "[CLOUD] Which modules would you like to use? You can add this later.",
         "type": "list",
-        "items": ["authentication"]
+        "items": ["authentication", "api"]
       }
     },
-    "skipInstall": {
+    "skip-install": {
       "type": "boolean",
       "description": "A boolean value that will decide to download all dependencies.",
       "default": false

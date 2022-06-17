@@ -1,15 +1,18 @@
 import { FC } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { SuspenseProvider } from "@features/SuspenseProvider/SuspenseProvider";
 import { ThemeProvider } from "@features/ThemeProvider/ThemeProvider";
+<% if (isAuth) { %>import { UserProvider } from "@features/UserProvider/UserProvider";<% } %>
 
 export const Providers: FC = ({ children }) => {
   return (
     <ThemeProvider>
-        <Router>
+      <% if (isAuth) { %><UserProvider><% } %>
+        <BrowserRouter>
           <SuspenseProvider>{children}</SuspenseProvider>
-        </Router>
+        </BrowserRouter>
+      <% if (isAuth) { %></UserProvider><% } %>
     </ThemeProvider>
   );
 };

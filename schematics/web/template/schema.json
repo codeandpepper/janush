@@ -15,7 +15,7 @@
         "items": ["authentication"]
       }
     },
-    "skipInstall": {
+    "skip-install": {
       "type": "boolean",
       "description": "A boolean value that will decide to download all dependencies.",
       "default": false

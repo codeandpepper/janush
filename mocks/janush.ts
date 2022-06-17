@@ -6,6 +6,7 @@ export const emptyJanush: Janush = {
   cloud: {
     module: {
       [Module.AUTHENTICATION]: false,
+      [Module.API]: false,
     },
   },
   web: {
@@ -20,6 +21,7 @@ export const moduleJanush: Janush = {
   cloud: {
     module: {
       [Module.AUTHENTICATION]: true,
+      [Module.API]: true,
     },
   },
   web: {
