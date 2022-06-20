@@ -23,11 +23,11 @@ describe("generateEmailFromS3Template", () => {
   it("should return emailContent", async () => {
     const s3 = new S3();
 
-    const result = await generateEmailFromS3Template(
-      s3,
-      EmailTemplate.EMAIL_VERIFICATION,
-      [[/\$AppName\$/, "TestApp"]]
-    );
+    const result = await generateEmailFromS3Template(s3,{
+       templateName: EmailTemplate.EMAIL_VERIFICATION,
+       bucketName: "test-bucket",
+       reformedReplacements: [[/\$AppName\$/, "TestApp"]],
+     });
 
     expect(result).toEqual("TestApp email verification");
   });

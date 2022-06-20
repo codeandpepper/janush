@@ -9,34 +9,34 @@ const lodash = {
 const lodashTypes = {
   type: NodeDependencyType.Dev,
   name: "@types/lodash",
-  version: "^4.14.177",
+  version: "^4.14.182",
 };
 
 export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@typescript-eslint/eslint-plugin",
-    version: "^4.29.2",
+    version: "^4.31.1",
   },
   {
     type: NodeDependencyType.Dev,
     name: "@typescript-eslint/parser",
-    version: "^4.29.2",
+    version: "^4.31.1",
   },
   {
     type: NodeDependencyType.Dev,
     name: "eslint",
-    version: "^7.25.0",
+    version: "^7.32.0",
   },
   {
     type: NodeDependencyType.Dev,
     name: "eslint-config-prettier",
-    version: "^8.3.0",
+    version: "^8.5.0",
   },
   {
     type: NodeDependencyType.Dev,
     name: "eslint-plugin-prettier",
-    version: "^3.4.0",
+    version: "^4.0.0",
   },
   {
     type: NodeDependencyType.Dev,
@@ -51,7 +51,7 @@ export const janushTemplateNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "typescript",
-    version: "^4.2.4",
+    version: "^4.7.3",
   },
   {
     type: NodeDependencyType.Dev,
@@ -98,12 +98,12 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Default,
     name: "@hookform/resolvers",
-    version: "^2.8.1",
+    version: "^2.9.0",
   },
   {
     type: NodeDependencyType.Default,
     name: "aws-amplify",
-    version: "^4.2.10",
+    version: "^4.3.24",
   },
   {
     type: NodeDependencyType.Default,
@@ -125,17 +125,17 @@ export const webJanushAuthenticationNodeDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Default,
     name: "react-hook-form",
-    version: "^7.15.4",
+    version: "^7.31.3",
   },
   {
     type: NodeDependencyType.Default,
     name: "yup",
-    version: "^0.32.9",
+    version: "^0.32.11",
   },
   {
     type: NodeDependencyType.Dev,
     name: "@types/react-helmet",
-    version: "^6.1.2",
+    version: "^6.1.5",
   },
 ];
 

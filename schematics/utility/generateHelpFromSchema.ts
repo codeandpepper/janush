@@ -1,4 +1,4 @@
-import { colors } from "@angular/cli/utilities/color";
+import { cyan } from "ansi-colors";
 
 import { readJson } from "./jsonFilesUtils";
 
@@ -45,8 +45,8 @@ const getCommandsHelpFromSchema = (relativePath: string): string => {
 
   commandsHelp.forEach(({ command, alias, description }) => {
     helpContent += alias
-      ? `  ${colors.cyan(command)} (${alias}) ${description}\n`
-      : `  ${colors.cyan(command)} ${description}\n`;
+      ? `  ${cyan(command)} (${alias}) ${description}\n`
+      : `  ${cyan(command)} ${description}\n`;
   });
 
   return helpContent;

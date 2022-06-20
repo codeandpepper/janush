@@ -4,6 +4,7 @@ import { S3 } from "aws-sdk";
 import { CognitoMessageTriggerSource } from "../../../enums/CognitoMessageTriggerSource";
 import { EmailTemplate } from "../../../enums/EmailTemplate";
 import { generateEmailFromS3Template } from "./utils";
+import { handleError } from "../../../utils/handleError";
 
 const s3 = new S3();
 
@@ -31,7 +32,7 @@ export const generateCodeLink = (
     }
   })();
 
-  return `${defaultDomain}/${path}?username=${encodeURIComponent(
+  return `${process.env.WEB_APP_URL}/${path}?username=${encodeURIComponent(
     email
   )}&code={####}`;
 };
@@ -64,12 +65,16 @@ export const handler: CustomMessageTriggerHandler = async (
 
       const activationLink = generateCodeLink(triggerSource, email);
 
+      const reformedReplacements: [RegExp, string][] = [
+        [/%ACTIVATION%/g, activationLink],
+      ];
+
       event.response.emailSubject = "<%= classify(name) %> | Verify account";
-      event.response.emailMessage = await generateEmailFromS3Template(
-        s3,
-        EmailTemplate.EMAIL_VERIFICATION,
-        [[/%ACTIVATION%/g, activationLink]]
-      );
+      event.response.emailMessage = await generateEmailFromS3Template(s3, {
+        bucketName: process.env.EMAIL_TEMPLATES_BUCKET_NAME!,
+        templateName: EmailTemplate.EMAIL_VERIFICATION,
+        reformedReplacements,
+      });
     } else if (triggerSource === CognitoMessageTriggerSource.ForgotPassword) {
       const {
         request: {
@@ -79,21 +84,25 @@ export const handler: CustomMessageTriggerHandler = async (
 
       const resetLink = generateCodeLink(triggerSource, email);
 
+      const reformedReplacements: [RegExp, string][] = [
+        [/%RESETPASSWORD%/g, resetLink],
+      ];
+
       event.response.emailSubject = "<%= classify(name) %> | Reset password";
-      event.response.emailMessage = await generateEmailFromS3Template(
-        s3,
-        EmailTemplate.RESET_PASSWORD,
-        [[/%RESETPASSWORD%/g, resetLink]]
-      );
+      event.response.emailMessage = await generateEmailFromS3Template(s3, {
+        templateName: EmailTemplate.RESET_PASSWORD,
+        bucketName: process.env.TEMPLATE_BUCKET_NAME!,
+        reformedReplacements,
+      });
     }
   } catch (e) {
-    console.log(
-      `Error occurred while fetching event ${event.triggerSource}. I am going to send default Email message!`
-    );
-    console.error(e);
+    handleError(e);
+    handleError(
+      new Error(
+        `Error occurred while fetching event ${event.triggerSource}. I am going to send default Email message!`
+      )
+    )
   }
 
   callback(null, event);
 };
-
-exports.customMessageTriggerHandler = handler;

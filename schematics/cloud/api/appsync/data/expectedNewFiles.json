@@ -1,1 +1,5 @@
-["/cloud/lib/api/appSyncCdkConstruct.ts", "/cloud/lib/api/appSyncCdkConstruct.test.ts"]
+[
+  "/cloud/lib/api/appSyncCdkConstruct.ts",
+  "/cloud/lib/api/appSyncCdkConstruct.test.ts",
+  "/cloud/lib/api/schema.graphql"
+]
