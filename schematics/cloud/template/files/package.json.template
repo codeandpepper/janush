@@ -4,6 +4,10 @@
   "bin": {
     "cloud": "bin/<%= dasherize(name) %>.js"
   },
+    "engines": {
+      "node": "16.x.x",
+      "npm": "8.x.x"
+    },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
