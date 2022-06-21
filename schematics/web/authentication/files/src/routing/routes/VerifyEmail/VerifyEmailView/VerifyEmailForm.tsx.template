@@ -11,20 +11,25 @@ import { isCognitoError } from "@utils/isCognitoError/isCognitoError";
 
 interface IProps {
   email: string;
-}
-
-interface IVerifyEmailState {
   code: string;
 }
 
-export const VerifyEmailForm: VFC<IProps> = ({ email }) => {
+interface IVerifyEmailState {
+  codeValue: string;
+}
+
+export const VerifyEmailForm: VFC<IProps> = ({ email, code }) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-  const { handleSubmit, control } = useForm<IVerifyEmailState>();
+  const { handleSubmit, control } = useForm<IVerifyEmailState>({
+    defaultValues: {
+      codeValue: code,
+    },
+  });
 
-  const submit = async ({ code }: IVerifyEmailState) => {
+  const submit = async ({ codeValue }: IVerifyEmailState) => {
     try {
-      await Auth.confirmSignUp(email, code);
+      await Auth.confirmSignUp(email, codeValue);
 
       navigate(Paths.SIGN_IN_PATH);
     } catch (err: unknown) {
@@ -39,17 +44,18 @@ export const VerifyEmailForm: VFC<IProps> = ({ email }) => {
   return (
     <Form onSubmit={handleSubmit(submit)}>
       <Controller
-        name="code"
+        name="codeValue"
         control={control}
         render={({ field }) => (
           <TextField
             onChange={field.onChange}
-            autoComplete="code"
+            autoComplete="codeValue"
             inputProps={{ "data-testid": "verification-code-input" }}
             autoFocus
             label="Verification code"
             error={!!message}
             helperText={message}
+            defaultValue={code}
           />
         )}
       />
