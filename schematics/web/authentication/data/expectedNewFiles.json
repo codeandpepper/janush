@@ -13,6 +13,7 @@
   "/web/src/routing/routes/SignIn/SignInView/SignInForm/styles.ts",
   "/web/src/routing/routes/SignUp/SignUp.test.tsx",
   "/web/src/routing/routes/SignUp/SignUp.tsx",
+  "/web/src/routing/routes/SignUpSuccess/SignUpSuccess.tsx",
   "/web/src/routing/routes/SignUp/SignUpView/SignUpView.tsx",
   "/web/src/routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm.tsx",
   "/web/src/routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm.test.tsx",

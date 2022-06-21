@@ -32,9 +32,7 @@ const SignUp: VFC = () => {
         },
       });
 
-      navigate(Paths.VERIFY_EMAIL_PATH, {
-        state: email,
-      });
+      navigate(Paths.SIGN_UP_PATH_SUCCESS);
     } catch (err: unknown) {
       if (isCognitoError(err)) {
         if (err.code === CognitoErrorType.UsernameExistsException) {
