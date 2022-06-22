@@ -86,12 +86,13 @@ export const handler: CustomMessageTriggerHandler = async (
 
       const reformedReplacements: [RegExp, string][] = [
         [/%RESETPASSWORD%/g, resetLink],
+        [/%EMAIL%/g, email],
       ];
 
       event.response.emailSubject = "<%= classify(name) %> | Reset password";
       event.response.emailMessage = await generateEmailFromS3Template(s3, {
         templateName: EmailTemplate.RESET_PASSWORD,
-        bucketName: process.env.TEMPLATE_BUCKET_NAME!,
+        bucketName: process.env.EMAIL_TEMPLATES_BUCKET_NAME!,
         reformedReplacements,
       });
     }
