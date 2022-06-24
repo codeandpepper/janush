@@ -31,7 +31,7 @@ export class EmailsCdkConstruct extends Construct {
         entry: path.join(__dirname, "./emailsLambda.ts"),
         environment: {
           EMAIL_TEMPLATES_BUCKET_NAME: emailTemplatesBucket.bucketName,
-          WEB_APP_URL: process.env.WEB_APP_URL || "https://janush.app",
+          WEB_APP_URL: process.env.WEB_APP_URL ?? "https://janush.app",
         },
         initialPolicy: [
           new iam.PolicyStatement({
