@@ -19,8 +19,8 @@ const SignUpSuccess: VFC = () => {
             Account creation
           </Typography>
           <Typography variant="body1" textAlign="center" gutterBottom>
-            Your account has been created You can close this page now. We have
-            sent next instructions to your email
+            Your account has been created. You can close this page now. We have
+            sent next instructions to your email.
           </Typography>
           <Link to={Paths.BASE} underline="none">
             <Button color="primary" variant="text" fullWidth>
