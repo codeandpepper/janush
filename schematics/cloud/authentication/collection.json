@@ -12,6 +12,11 @@
       "description": "AWS cognito custom message emails.",
       "factory": "./emails/index#cloudAuthenticationEmailsGenerator",
       "schema": "./emails/schema.json"
+    },
+    "cloud.authentication.idP": {
+      "aliases": ["cloud.auth.idP"],
+      "description": "AWS additional identity providers.",
+      "factory": "./idP/index#cloudAuthenticationIdentityProviderGenerator"
     }
   }
 }

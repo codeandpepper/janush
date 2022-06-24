@@ -1,0 +1,31 @@
+import { aws_cognito as cognito } from "aws-cdk-lib";
+
+import { EnvName } from "@enums/EnvName";
+
+import { CognitoUserPoolCdkConstruct } from "../cognitoUserPoolCdkConstruct";
+
+export const appleIdentityProvider = (
+  construct: CognitoUserPoolCdkConstruct,
+  envName: EnvName
+): cognito.UserPoolIdentityProviderApple => {
+  const clientId = process.env.IDENTITY_PROVIDER_APPLE_CLIENT_ID;
+  const keyId = process.env.IDENTITY_PROVIDER_APPLE_KEY_ID;
+  const privateKey = process.env.IDENTITY_PROVIDER_APPLE_PRIVATE_KEY;
+  const teamId = process.env.IDENTITY_PROVIDER_APPLE_TEAM_ID;
+
+  return new cognito.UserPoolIdentityProviderApple(
+    construct,
+    `${envName}-CognitoUserPoolIdentityProviderApple`,
+    {
+      clientId,
+      keyId,
+      privateKey,
+      teamId,
+      userPool: construct.userPool,
+      attributeMapping: {
+        email: cognito.ProviderAttribute.APPLE_EMAIL,
+      },
+      scopes: ["name", "email"],
+    }
+  );
+};

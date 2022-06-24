@@ -1,0 +1,22 @@
+export interface IProcessEnv {
+  <% if (emails) { %>EMAIL_TEMPLATE_BUCKET_NAME: string;<% } %>
+  <% if (isFacebook) { %>IDENTITY_PROVIDER_FACEBOOK_CLIENT_ID: string;
+  IDENTITY_PROVIDER_FACEBOOK_CLIENT_SECRET: string;<% } %>
+  <% if (isGoogle) { %>IDENTITY_PROVIDER_GOOGLE_CLIENT_ID: string;
+  IDENTITY_PROVIDER_GOOGLE_CLIENT_SECRET: string;<% } %>
+  <% if (isApple) { %>IDENTITY_PROVIDER_APPLE_CLIENT_ID: string;
+  IDENTITY_PROVIDER_APPLE_KEY_ID: string;
+  IDENTITY_PROVIDER_APPLE_PRIVATE_KEY: string;
+  IDENTITY_PROVIDER_APPLE_TEAM_ID: string;<% } %>
+  <% if (idP.length) { %>USER_POOL_REDIRECT_SIGN_IN: string;
+  USER_POOL_REDIRECT_SIGN_OUT: string;<% } %>
+}
+
+declare global {
+  namespace NodeJS {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface ProcessEnv extends IProcessEnv {}
+  }
+}
+
+export {};

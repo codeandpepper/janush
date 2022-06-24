@@ -1,5 +1,6 @@
 [
   "/web/src/awsConfig.ts",
+  "/web/src/envConfig.ts",
   "/web/src/features/UserProvider/UserProvider.tsx",
   "/web/src/features/UserProvider/useUserContext.tsx",
   "/web/src/layouts/AuthLayout/AuthLayout.tsx",
@@ -59,5 +60,6 @@
   "/web/src/utils/isCognitoError/isCognitoError.test.ts",
   "/web/src/utils/isCognitoError/isCognitoError.ts",
   "/web/src/utils/validation/passwordValidation.ts",
-  "/web/src/utils/validation/validateMaxStringLength.ts"
+  "/web/src/utils/validation/validateMaxStringLength.ts",
+  "/web/.env.example"
 ]

@@ -1,0 +1,3 @@
+<% if (isFacebook) { %>export * from "./facebookIdentityProvider";<% } %>
+<% if (isGoogle) { %>export * from "./googleIdentityProvider";<% } %>
+<% if (isApple) { %>export * from "./appleIdentityProvider";<% } %>
