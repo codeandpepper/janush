@@ -109,3 +109,43 @@ CREATE awesome-app/web/src/setupTests.ts (241 bytes)
 ```
 
 7. Use it as a starting point to develop your application
+
+## Running Cloud infrastructure in generated project
+
+1. Go to `cloud` directory and fill credentials in `.env` file.
+ Required environmental variables are listed in
+`.env.example`
+2. When the project will be generated, go to cloud and use
+```bash
+npm run cdk bootstrap
+```
+It will translate TypeScript code to CloudFormation syntax understandable by AWS
+3. Use the command below to deploy app to the cloud. Please, make sure that
+you have configured secrets in `~/.aws/credentials`
+```bash
+npm run cdk deploy
+```
+4. After deploying the terminal should show following variables
+```bash
+<app name>.deveAppSyncApideveGraphQLUrlExport<some hash code>
+<app name>.deveCognitoUserPoolCognitoIdentityPoolExport<some hash code>
+<app name>.deveCognitoUserPoolCognitoUserPoolClientIdExport<some hash code>
+<app name>.deveCognitoUserPoolCognitoUserPoolIdExport<some hash code>
+```
+
+Please, these values in order to run web app
+
+## Running generated web app locally
+
+The web application has been created in React. In order to run it, please create
+`.env` file from `.env.example` by copy it
+
+1. Use the variables that appeared after deploy. If you lost it, please
+find them in AWS Management Console
+2. Use the command
+```bash
+npm start
+```
+to run app
+
+The web application should display immediately in browser

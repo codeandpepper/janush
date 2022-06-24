@@ -29,9 +29,7 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockNavigate,
   useLocation: () => ({
-    state: {
-      email: "test@test.com",
-    },
+   search: "?username=test@test.com&code=123456",
   }),
 }));
 
@@ -43,7 +41,7 @@ const setup = async (history?: MemoryHistory) => {
   render(
     <ThemeProvider>
       {history ? (
-        <Router location={Paths.VERIFY_EMAIL_PATH} navigator={history}>
+        <Router location={Paths.CONFIRM_SIGN_UP} navigator={history}>
           <VerifyEmail />
         </Router>
       ) : (
@@ -98,9 +96,7 @@ describe("<VerifyEmail />", () => {
       fireEvent.click(buttonText);
     });
 
-    await waitFor(() =>
-      expect(mockNavigate).toBeCalledWith(Paths.SIGN_IN_PATH)
-    );
+    await waitFor(() => expect(mockNavigate).toBeCalled());
   });
 });
 
