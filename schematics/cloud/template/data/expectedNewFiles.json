@@ -11,5 +11,6 @@
   "/cloud/package.json",
   "/cloud/tsconfig.json",
   "/cloud/.env.example",
+  "/cloud/.env.default",
   "/cloud/root.graphql"
 ]
