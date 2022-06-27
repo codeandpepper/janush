@@ -23,10 +23,10 @@ Boolean options do not take arguments e.g. --skip-install option sets its flag t
 
 OPTION | ALIAS | TYPE | DEFAULT VALUE | DESCRIPTION
 -------|-------|------|---------------|------------
---name | --n | string | janush-app | Sets application name.
---types | --t | object | {cloud, web} | Sets application types to be installed.
+--name | -n | string | janush-app | Sets application name.
+--types | -t | object | {cloud, web} | Sets application types to be installed.
 <span style={{ whiteSpace: 'nowrap' }}>--is-auto-generated</span> | | boolean | false | Outputs, if created by deployment bot.
---skip-install | --s | boolean | false | Skip installing dependencies.
---version | --v | boolean | false | Outputs Janush version.
---help | --h | boolean | false | Outputs short Janush help.
+--skip-install | -s | boolean | false | Skip installing dependencies.
+--version | -v | boolean | false | Outputs Janush version.
+--help | -h | boolean | false | Outputs short Janush help.
 
