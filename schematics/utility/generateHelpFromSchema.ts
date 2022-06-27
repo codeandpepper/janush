@@ -30,7 +30,7 @@ const generateHelpFromSchema = (relativePath: string): CommandHelp[] => {
     const commandHelp: CommandHelp = {
       command: `--${propertyName}`,
       ...(!!aliases && {
-        alias: aliases.map((alias) => "--" + alias).join(", "),
+        alias: aliases.map((alias) => "-" + alias).join(", "),
       }),
       description: description,
     };
