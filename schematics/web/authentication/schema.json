@@ -23,6 +23,12 @@
           { "value": "Apple", "label": "Apple" }
         ]
       }
+    },
+    "userManagement": {
+      "type": "boolean",
+      "description": "Add user management feature",
+      "default": true,
+      "x-prompt": "[WEB] Do you want add user management feature?"
     }
   },
   "required": []
