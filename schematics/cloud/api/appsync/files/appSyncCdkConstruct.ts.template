@@ -5,6 +5,7 @@ import { EnvName } from "@enums/EnvName";
 import { applyTagsToResource } from "../../utils/functions";
 import { ServicePurpose } from "../../enums/ServicePurpose";
 import * as path from "path";
+import { UsersCdkConstruct } from "../authentication/users/usersCdkConstruct";
 
 interface AppSyncProps {
   envName: EnvName;

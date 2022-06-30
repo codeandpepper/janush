@@ -17,6 +17,12 @@
       "aliases": ["cloud.auth.idP"],
       "description": "AWS additional identity providers.",
       "factory": "./idP/index#cloudAuthenticationIdentityProviderGenerator"
+    },
+    "cloud.authentication.userGroups": {
+      "aliases": ["cloud.auth.userGroups"],
+      "description": "AWS User Groups in Cognito.",
+      "factory": "./emails/index#cloudCognitoGroupsGenerator",
+      "schema": "./createUserGroups/schema.json"
     }
   }
 }

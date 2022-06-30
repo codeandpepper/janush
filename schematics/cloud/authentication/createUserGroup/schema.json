@@ -1,0 +1,13 @@
+{
+  "$id": "CloudCognitoGroupsSchematics",
+  "title": "Cloud Cognito Groups Schema",
+  "type": "object",
+  "description": "Creates Cognito Groups.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "default": "janush-app"
+    }
+  }
+}
