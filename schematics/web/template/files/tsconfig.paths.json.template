@@ -11,6 +11,7 @@
       "@layouts/*": ["./src/layouts/*"],
       "@routing/*": ["./src/routing/*"],
       "@themes/*": ["./src/themes/*"],
+      "@validations/*": ["./src/validations/*"]
     }
   }
 }

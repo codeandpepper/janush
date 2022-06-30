@@ -4,6 +4,12 @@ export enum Paths {
   SIGN_UP_PATH = "/sign-up",
   SIGN_UP_PATH_SUCCESS = "/sign-up/success",
   CONFIRM_SIGN_UP = "/confirm-signup",
+  // TODO add dynamic rendering in janush app 
+  USERS_ADMINISTRATION_PATH = "/users-administration",
+  USERS_ADMINISTRATION_USERS_PATH = "/users-administration/users",
+  USERS_ADMINISTRATION_USERS_USER_DETAILS_PATH = "/users-administration/users/:userId",
+  USERS_ADMINISTRATION_GROUPS_PATH = "/users-administration/groups",
+  USERS_ADMINISTRATION_GROUPS_GROUP_DETAILS_PATH = "/users-administration/groups/:groupId",
   FORGOT_PASSWORD_PATH = "/forgot-password",
   RESET_PASSWORD_PATH = "/create-new-password",<% } %>
 }

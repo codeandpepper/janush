@@ -7,7 +7,11 @@ import { useUserContext } from "@features/UserProvider/useUserContext";
 import { NavLink } from "react-router-dom";
 import { Paths } from "@routing/paths";<% } %>
 
-export const TopAppBar: VFC = () => {
+interface Props {
+  showLogo?: boolean;
+}
+
+export const TopAppBar: VFC<Props> = ({ showLogo = true }) => {
   <% if (isAuth) { %>const { user } = useUserContext();
 
   const signOut = async () => {
@@ -19,8 +23,8 @@ export const TopAppBar: VFC = () => {
   };<% } %>
   return (
     <AppBar position="static">
-      <Toolbar>
-        <Logo />
+      <Toolbar sx={{ display: "flex" }}>
+        {showLogo && <Logo />}
         <% if (isAuth) { %>{user ? (
           <Button data-testid="sign-out-button-in-top-app-bar" onClick={signOut} color="inherit">
             Sign out
