@@ -9,6 +9,7 @@ import expectedCloudJanushFiles from "@janush-schematics/cloud/janush/data/expec
 import expectedCloudTemplateFiles from "@janush-schematics/cloud/template/data/expectedNewFiles.json";
 // Web files
 import expectedWebAuthFiles from "@janush-schematics/web/authentication/data/expectedNewFiles.json";
+import expectedWebUserManagementFiles from "@janush-schematics/web/authentication/userManagement/data/expectedNewFiles.json";
 import expectedWebJanushFiles from "@janush-schematics/web/janush/data/expectedNewFiles.json";
 import expectedWebTemplateFiles from "@janush-schematics/web/template/data/expectedNewFiles.json";
 
@@ -36,6 +37,7 @@ const expectedWebFiles = [
   ...expectedWebTemplateFiles,
   ...expectedWebJanushFiles,
   ...expectedWebAuthFiles,
+  ...expectedWebUserManagementFiles,
 ];
 const expectedCloudFiles = [
   ...expectedCloudTemplateFiles,

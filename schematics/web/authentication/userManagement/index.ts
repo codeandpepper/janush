@@ -23,8 +23,6 @@ import { Schema } from "../schema";
 export const userManagementGenerator = (options: Schema): Rule => {
   const isAuth = options.modules.includes(Module.AUTHENTICATION);
 
-  console.log("options", options);
-
   return (_tree: Tree, _context: SchematicContext) => {
     return chain([
       mergeWith(
