@@ -52,8 +52,6 @@ describe("userManagement", () => {
       )
       .toPromise();
 
-    console.log(tree.files);
-
     // we want to create this 2 files
     expect(tree.files).not.toIncludeSome(
       expectedWebUserManagementFiles.filter(
