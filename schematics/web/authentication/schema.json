@@ -12,7 +12,7 @@
     "userManagement": {
       "type": "boolean",
       "description": "Add user management feature",
-      "default": true,
+      "default": false,
       "x-prompt": "[WEB] Do you want add user management feature?"
     },
     "idP": {
