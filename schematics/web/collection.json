@@ -16,6 +16,10 @@
       "factory": "./authentication/index#webAuthenticationGenerator",
       "schema": "./authentication/schema.json"
     },
+    "web.userManagement": {
+      "description": "User Management",
+      "factory": "./authentication/userManagement/index#userManagementGenerator"
+    },
     "web.idP": {
       "description": "Additional identity providers",
       "factory": "./authentication/idP/index#identityProvidersGenerator"

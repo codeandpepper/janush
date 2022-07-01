@@ -12,6 +12,7 @@ export const tsConfigExtender = (tree: Tree) => {
         "@interfaces/*": ["./src/interfaces/*"],
         "@janush-types/*": ["./src/types/*"],
         "@utils/*": ["./src/utils/*"],
+        "@validations/*": ["./src/validations/*"],
       },
     },
   });

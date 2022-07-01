@@ -9,6 +9,12 @@
       "description": "The name of the application",
       "default": "janush-app"
     },
+    "userManagement": {
+      "type": "boolean",
+      "description": "Add user management feature",
+      "default": true,
+      "x-prompt": "[WEB] Do you want add user management feature?"
+    },
     "idP": {
       "type": "array",
       "description": "Sets additional identity providers for user pool.",
@@ -23,12 +29,6 @@
           { "value": "Apple", "label": "Apple" }
         ]
       }
-    },
-    "userManagement": {
-      "type": "boolean",
-      "description": "Add user management feature",
-      "default": true,
-      "x-prompt": "[WEB] Do you want add user management feature?"
     }
   },
   "required": []

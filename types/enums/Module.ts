@@ -1,6 +1,7 @@
 export enum Module {
   AUTHENTICATION = "authentication",
   API = "api",
+  USER_MANAGEMENT = "userManagement",
 }
 
 export enum IdentityProviders {

@@ -41,6 +41,7 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
         MergeStrategy.Default,
       ),
       options.idP.length ? schematic(WebSchematic.IDP, options) : noop(),
+      options.userManagement ? schematic(WebSchematic.USER_MANAGEMENT, options) : noop(),
       packageJsonExtender,
       tsConfigExtender,
     ]);
