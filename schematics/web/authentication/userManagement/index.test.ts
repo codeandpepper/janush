@@ -52,6 +52,13 @@ describe("userManagement", () => {
       )
       .toPromise();
 
-    expect(tree.files).not.toIncludeSome(expectedWebUserManagementFiles);
+    console.log(tree.files);
+
+    // we want to create this 2 files
+    expect(tree.files).not.toIncludeSome(
+      expectedWebUserManagementFiles.filter(
+        (item) => item !== "/web/src/routing/Routes.tsx" && item !== "/web/src/routing/paths.ts",
+      ),
+    );
   });
 });

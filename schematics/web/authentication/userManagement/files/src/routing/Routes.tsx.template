@@ -9,7 +9,6 @@ const SignUpSuccess = lazy(() =>
   import("./routes/SignUpSuccess/SignUpSuccess")
 );
 const VerifyEmail = lazy(() => import("./routes/VerifyEmail/VerifyEmail"));
-// TODO add dynamic rendering in janush app 
 const Users = lazy(() => import("./routes/UsersAdministration/Users/Users"));
 const UserDetails = lazy(() =>
   import("./routes/UsersAdministration/Users/UserDetails/UserDetails")

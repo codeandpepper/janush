@@ -1,8 +1,8 @@
 [
   "/web/src/layouts/Modals/FormModalLayout/FormModalLayout.tsx",
   "/web/src/layouts/UsersAdministrationLayout/UsersAdministrationLayout.tsx",
-  "/web/src/routing/routes/Routes.tsx",
-  "/web/src/routing/routes/paths.ts",
+  "/web/src/routing/Routes.tsx",
+  "/web/src/routing/paths.ts",
   "/web/src/routing/routes/UsersAdministration/Groups/Groups.tsx",
   "/web/src/routing/routes/UsersAdministration/Groups/GroupDetails/GroupDetails.tsx",
   "/web/src/routing/routes/UsersAdministration/Groups/GroupsTable/GroupsTable.tsx",
