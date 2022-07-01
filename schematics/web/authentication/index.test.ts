@@ -4,6 +4,7 @@ import { SchematicTestRunner } from "@angular-devkit/schematics/testing";
 import * as path from "path";
 
 import expectedAuthFiles from "@janush-schematics/web/authentication/data/expectedNewFiles.json";
+import expectedWebUserManagementFiles from "@janush-schematics/web/authentication/userManagement/data/expectedNewFiles.json";
 import expectedJanushFiles from "@janush-schematics/web/janush/data/expectedNewFiles.json";
 import expectedTemplateFiles from "@janush-schematics/web/template/data/expectedNewFiles.json";
 import { emptyJanush } from "@mocks/janush";
@@ -30,6 +31,7 @@ describe("web", () => {
       ...expectedTemplateFiles,
       ...expectedJanushFiles,
       ...expectedAuthFiles,
+      ...expectedWebUserManagementFiles,
     ]);
   });
 

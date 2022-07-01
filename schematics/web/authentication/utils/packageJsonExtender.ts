@@ -16,6 +16,7 @@ export const packageJsonExtender = (tree: Tree) => {
         "@layouts/(.*)": "<rootDir>/src/layouts/$1",
         "@routing/(.*)": "<rootDir>/src/routing/$1",
         "@themes/(.*)": "<rootDir>/src/themes/$1",
+        "@validations/(.*)": "<rootDir>/src/validations/$1",
       },
     },
   });
