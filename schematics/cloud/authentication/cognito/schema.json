@@ -40,7 +40,8 @@
         "type": "list",
         "items": [
           {
-            "value": "defaultGroups", "label": "Default Cognito Groups (Admin group)"
+            "value": "defaultGroups",
+            "label": "Default Cognito Groups (Admin group)"
           }
         ]
       }
