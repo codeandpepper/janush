@@ -1,1 +1,5 @@
-["/cloud/lib/authentication/createUserGroup/defaultGroups.ts"]
+[
+  "/cloud/lib/authentication/createUserGroup/createUserGroupCdkConstruct.ts",
+  "/cloud/lib/authentication/createUserGroup/createUserGroupCdkConstruct.test.ts",
+  "/cloud/lib/authentication/createUserGroup/defaultGroups.ts"
+]

@@ -9,6 +9,10 @@ export enum IdentityProviders {
   APPLE = "Apple",
 }
 
+export enum UsersManagement {
+  DEFAULT_GROUPS = "defaultGroups",
+}
+
 export enum E2ERunner {
   CYPRESS = "Cypress",
   PLAYWRIGHT = "Playwright",

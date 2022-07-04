@@ -10,6 +10,7 @@ export enum CloudSchematic {
   AUTHENTICATION = "cloud.authentication",
   AUTHENTICATION_EMAILS = "cloud.authentication.emails",
   AUTHENTICATION_IDP = "cloud.authentication.idP",
+  AUTHENTICATION_USERS_MANAGEMENT = "cloud.authentication.usersManagement",
   CI = "cloud.ci",
   API = "cloud.api.appsync",
 }

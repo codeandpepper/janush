@@ -1,0 +1,35 @@
+import * as cdk from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+
+import { EnvName } from "@enums/EnvName";
+
+import * as <%= classify(name) %> from "../../<%= dasherize(name) %>-stack";
+import { defaultPermissions } from "./defaultGroups";
+
+describe("Create User Group Stack [Auth]", () => {
+  const region = process.env.CDK_DEFAULT_REGION ?? process.env.AWS_REGION;
+
+  if (!region) {
+    throw new Error('"region" required!');
+  }
+
+  const app = new cdk.App();
+  const stack = new <%= classify(name) %>.<%= classify(name) %>Region(app, "MyTestStack", {
+    envName: EnvName.Development,
+    env: {
+      region,
+    },
+  });
+
+  const template = Template.fromStack(stack);
+
+  it("should have default user pool permissions", () => {
+    defaultPermissions.forEach((permission) => {
+      template.hasResource("AWS::Cognito::UserPoolGroup", {
+        Properties: {
+          GroupName: permission.name,
+        },
+      });
+    });
+  });
+});
