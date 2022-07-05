@@ -17,9 +17,7 @@
       "x-prompt": {
         "message": "[CLOUD] Which users group features would you like to add?",
         "type": "list",
-        "items": [
-          { "value": "defaultGroups", "label": "default Admin group" }
-        ]
+        "items": [{ "value": "defaultGroups", "label": "default Admin group" }]
       }
     }
   }

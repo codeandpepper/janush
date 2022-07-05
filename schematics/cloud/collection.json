@@ -19,5 +19,9 @@
       "hidden": true
     }
   },
-  "extends": ["./authentication/collection.json", "./api/collection.json", "./usersManagement/collection.json"]
+  "extends": [
+    "./authentication/collection.json",
+    "./api/collection.json",
+    "./usersManagement/collection.json"
+  ]
 }
