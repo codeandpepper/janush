@@ -6,7 +6,7 @@ import {
   MergeStrategy,
   mergeWith,
   move,
-  // noop,
+  noop,
   Rule,
   schematic,
   SchematicContext,
@@ -16,7 +16,7 @@ import {
 
 import { UserGroups } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
-// import { CreateUserGroupBuilder } from "@janush-schematics/cloud/usersManagement/createUserGroup/createUserGroupBuilder";
+import { CreateUserGroupBuilder } from "@janush-schematics/cloud/usersManagement/createUserGroup/createUserGroupBuilder";
 import { readJanushJSON } from "@utility/janushJson";
 
 import { Schema } from "./schema";
@@ -25,7 +25,7 @@ export const cloudCognitoGroupsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
     const name = strings.dasherize(janushFile.name);
-    // const constructBuilder = new CreateUserGroupBuilder(name);
+    const constructBuilder = new CreateUserGroupBuilder(name);
 
     options.name = name;
     options.defaultGroups = options.userGroups.includes(UserGroups.DEFAULT_GROUPS);
@@ -42,7 +42,7 @@ export const cloudCognitoGroupsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       schematic("applyPrettier", {}),
-      // options.defaultGroups ? constructBuilder.addToStack() : noop(),
+      options.defaultGroups ? constructBuilder.addToStack() : noop(),
     ]);
   };
 };
