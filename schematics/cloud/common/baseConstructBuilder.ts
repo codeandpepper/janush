@@ -7,7 +7,7 @@ import path from "path";
 
 import { Schematic } from "@enums/Schematic";
 import { ConstructContextBase } from "@janush-schematics/cloud/interfaces/constructContextBase.interface";
-import { ConstrucctInfo } from "@janush-schematics/cloud/interfaces/constructInfo.interface";
+import { ConstructInfo } from "@janush-schematics/cloud/interfaces/constructInfo.interface";
 import { getEndCloseBraceTokenInConstructor } from "@utility/helpers";
 
 interface ConstructChangeRules {
@@ -29,7 +29,7 @@ export class BaseConstructBuilder {
     const cloudStackPath = `${Schematic.CLOUD}/lib/${this.projectName}-stack.ts`;
 
     const construct = fs
-      .readFileSync(path.join(currentDirectory, injectedContextPath))
+      .readFileSync(path.join(injectedContextPath, currentDirectory))
       .toString("utf-8");
 
     return {
@@ -42,7 +42,7 @@ export class BaseConstructBuilder {
   protected addConstruct = (
     tree: Tree,
     context: ConstructContextBase,
-    constructInfo: ConstrucctInfo,
+    constructInfo: ConstructInfo,
   ): ConstructChangeRules => {
     const cloudStackCode = tree.read(context.cloudStackPath);
 

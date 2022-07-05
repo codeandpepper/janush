@@ -29,22 +29,6 @@
           { "value": "Apple", "label": "Apple" }
         ]
       }
-    },
-    "usersManagement": {
-      "type": "array",
-      "description": "Cognito Users Management CRUD operations using AppSync resolvers.",
-      "uniqueItems": true,
-      "default": ["defaultGroups"],
-      "x-prompt": {
-        "message": "[CLOUD] Which users management resources do you want to add?",
-        "type": "list",
-        "items": [
-          {
-            "value": "defaultGroups",
-            "label": "Default Cognito Groups (Admin group)"
-          }
-        ]
-      }
     }
   }
 }

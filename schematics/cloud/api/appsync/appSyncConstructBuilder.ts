@@ -7,43 +7,6 @@ export class AppSyncConstructBuilder extends BaseConstructBuilder {
     super(projectName);
   }
 
-  // private addConstructToStackRules = (
-  //   tree: Tree,
-  //   context: ConstructContextBase,
-  // ): AppSyncConstructChangeRules => {
-  //   const cloudStackText = tree.read(context.cloudStackPath);
-  //
-  //   if (!cloudStackText) {
-  //     throw new FileDoesNotExistException(context.projectName);
-  //   }
-  //
-  //   const sourceCloudStackText = cloudStackText.toString("utf-8");
-  //
-  //   const sourceFile = ts.createSourceFile(
-  //     context.cloudStackPath,
-  //     sourceCloudStackText,
-  //     ts.ScriptTarget.Latest,
-  //     true,
-  //   );
-  //
-  //   const stackEndCloseBraceToken = getEndCloseBraceTokenInConstructor(sourceFile);
-  //
-  //   const constructChange = new InsertChange(
-  //     context.cloudStackPath,
-  //     stackEndCloseBraceToken.getStart(),
-  //     context.construct,
-  //   );
-  //
-  //   const importChange = insertImport(
-  //     sourceFile,
-  //     context.cloudStackPath,
-  //     "AppSyncCdkConstruct",
-  //     "./api/appSyncCdkConstruct",
-  //   ) as InsertChange;
-  //
-  //   return { constructChange, importChange };
-  // };
-
   addToCloudStack = (): Rule => {
     return (tree: Tree) => {
       const context = this.createContext(
@@ -51,6 +14,7 @@ export class AppSyncConstructBuilder extends BaseConstructBuilder {
         "./otherFiles/cloudStack/appSyncConstruct.template",
       );
       const { constructChange, importChange } = this.addConstruct(tree, context, {
+        destinationPathFile: context.cloudStackPath,
         symbolName: "AppSyncCdkConstruct",
         fileName: "./api/appSyncCdkConstruct",
       });

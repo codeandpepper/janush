@@ -2,7 +2,7 @@
 // API: AppSync
 // ========================================================================
 
-new AppSyncCdkConstruct(this, `${envName}-AppSyncApi`, {
+const { graphQlApi } = new AppSyncCdkConstruct(this, `${envName}-AppSyncApi`, {
   envName,
   userPool,
 });

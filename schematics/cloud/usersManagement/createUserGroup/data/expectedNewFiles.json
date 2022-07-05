@@ -1,0 +1,5 @@
+[
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroupCdkConstruct.ts",
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroupCdkConstruct.test.ts",
+  "/cloud/lib/usersManagement/createUserGroup/defaultGroups.ts"
+]

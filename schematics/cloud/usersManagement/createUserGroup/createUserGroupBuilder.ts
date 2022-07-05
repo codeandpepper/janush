@@ -1,5 +1,6 @@
 import { Rule, Tree } from "@angular-devkit/schematics";
 
+import { Schematic } from "@enums/Schematic";
 import { BaseConstructBuilder } from "@janush-schematics/cloud/common/baseConstructBuilder";
 
 export class CreateUserGroupBuilder extends BaseConstructBuilder {
@@ -14,8 +15,9 @@ export class CreateUserGroupBuilder extends BaseConstructBuilder {
         "./otherFiles/createUserGroupConstruct.template",
       );
       const { constructChange, importChange } = this.addConstruct(tree, context, {
+        destinationPathFile: `${Schematic.CLOUD}/lib/api/appSyncCdkConstruct.ts`,
         symbolName: "CreateUserGroupCdkConstruct",
-        fileName: "./createUserGroup/createUserGroupCdkConstruct",
+        fileName: "./usersManagement/createUserGroup/createUserGroupCdkConstruct",
       });
       const declarationRecorder = tree.beginUpdate(context.cloudStackPath);
       declarationRecorder.insertLeft(constructChange.pos, constructChange.toAdd);

@@ -14,7 +14,7 @@ import {
   url,
 } from "@angular-devkit/schematics";
 
-import { IdentityProviders, UsersManagement } from "@enums/Module";
+import { IdentityProviders } from "@enums/Module";
 import { CloudSchematic, Schematic } from "@enums/Schematic";
 import { Janush } from "@interfaces/Janush";
 import { readJanushJSON } from "@utility/janushJson";
@@ -23,7 +23,6 @@ import { Schema } from "./schema";
 import { addCognitoConstructToCloudStack, addEnvironmentValidation } from "./utils";
 
 const { FACEBOOK, GOOGLE, APPLE } = IdentityProviders;
-const { DEFAULT_GROUPS } = UsersManagement;
 const checkModuleExists = (janush: Janush) =>
   Object.entries(janush.cloud.module).some(([_, moduleExist]) => moduleExist);
 
@@ -38,7 +37,6 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
     options.isFacebook = options.idP.includes(FACEBOOK);
     options.isGoogle = options.idP.includes(GOOGLE);
     options.isApple = options.idP.includes(APPLE);
-    options.defaultGroups = options.usersManagement.includes(DEFAULT_GROUPS);
 
     return chain([
       !checkModuleExists(janushFile)
@@ -80,9 +78,6 @@ export const cloudAuthenticationCognitoGenerator = (options: Schema): Rule => {
       addCognitoConstructToCloudStack(name),
       options.emails ? schematic(CloudSchematic.AUTHENTICATION_EMAILS, { name }) : noop(),
       options.idP.length ? schematic(CloudSchematic.AUTHENTICATION_IDP, options) : noop(),
-      options.usersManagement.length
-        ? schematic(CloudSchematic.AUTHENTICATION_USERS_MANAGEMENT, options)
-        : noop(),
       schematic("applyPrettier", {}),
     ]);
   };

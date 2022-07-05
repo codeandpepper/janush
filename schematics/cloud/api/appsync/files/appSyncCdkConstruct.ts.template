@@ -38,6 +38,12 @@ export class AppSyncCdkConstruct extends Construct{
       xrayEnabled: true,
     });
 
+    new UsersCdkConstruct(this, `${envName}-cognitoUsers`, {
+      envName,
+      userPool,
+      graphQlApi: this.graphQlApi,
+    });
+
     new CfnOutput(this, `${envName}-GraphQLUrlExport`, {
       exportName: `${envName}-GraphQLUrl`,
       value: this.graphQlApi.graphqlUrl,
