@@ -28,9 +28,16 @@ The request is sent using Amplify
 2. The user should be redirected to the main page
 
 ### Forget Password
+
 1. Got to the `forget password` page
 2. Write an user email and submit resending email verification
 3. The user should be redirected to confirmation page
+
+### Cognito User Groups
+
+When Cognito Groups are created, by default `admin` group is generated 
+and added to `AWS Cognito`. You can check it out in AWS Management 
+Console in Cognito service.
 
 
 ## API
@@ -44,4 +51,12 @@ to the single one by using
 npm run schema:merge
 ```
 
+## Users Management
 
+The module is related to admin panel that generated app can use in order to manage users in Cognito. It is mainly about 
+user groups. They can be used as a roles or permissions to the system. 
+
+### Create User Groups
+
+Cognito has a feature to group to assign users to groups. If you select creating users management module then it will 
+generate `admin` group

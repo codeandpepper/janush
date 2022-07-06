@@ -12,7 +12,7 @@
       "x-prompt": {
         "message": "[CLOUD] Which modules would you like to use? You can add this later.",
         "type": "list",
-        "items": ["authentication", "api"]
+        "items": ["authentication", "api", "usersManagement"]
       }
     },
     "skip-install": {
