@@ -14,7 +14,7 @@ export const authSelectors = {
     resendEmail: "resend-email-button",
     backToSignIn: "back-to-sign-in-button",
     forgotPassword: "forgot-password-button",
-    send: "send-forgotten-password-button",
+    sendForgottenPassword: "send-forgotten-password-button",
   },
   containers: {
     validationError: "p.Mui-error",
