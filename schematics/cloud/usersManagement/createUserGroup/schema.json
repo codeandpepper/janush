@@ -8,17 +8,6 @@
       "type": "string",
       "description": "The name of the application",
       "default": "janush-app"
-    },
-    "userGroups": {
-      "type": "array",
-      "description": "Resources related to users management.",
-      "uniqueItems": true,
-      "default": ["defaultGroups"],
-      "x-prompt": {
-        "message": "[CLOUD] Which users group features would you like to add?",
-        "type": "list",
-        "items": [{ "value": "defaultGroups", "label": "default Admin group" }]
-      }
     }
   }
 }

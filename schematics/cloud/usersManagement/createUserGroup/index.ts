@@ -6,7 +6,6 @@ import {
   MergeStrategy,
   mergeWith,
   move,
-  noop,
   Rule,
   schematic,
   SchematicContext,
@@ -14,7 +13,6 @@ import {
   url,
 } from "@angular-devkit/schematics";
 
-import { UserGroups } from "@enums/Module";
 import { Schematic } from "@enums/Schematic";
 import { CreateUserGroupBuilder } from "@janush-schematics/cloud/usersManagement/createUserGroup/createUserGroupBuilder";
 import { readJanushJSON } from "@utility/janushJson";
@@ -28,7 +26,6 @@ export const cloudCognitoGroupsGenerator = (options: Schema): Rule => {
     const constructBuilder = new CreateUserGroupBuilder(name);
 
     options.name = name;
-    options.defaultGroups = options.userGroups.includes(UserGroups.DEFAULT_GROUPS);
 
     return chain([
       mergeWith(
@@ -42,7 +39,7 @@ export const cloudCognitoGroupsGenerator = (options: Schema): Rule => {
         MergeStrategy.Overwrite,
       ),
       schematic("applyPrettier", {}),
-      options.defaultGroups ? constructBuilder.addToStack() : noop(),
+      constructBuilder.addToStack(),
     ]);
   };
 };

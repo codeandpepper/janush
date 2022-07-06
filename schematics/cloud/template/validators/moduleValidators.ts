@@ -5,4 +5,5 @@ export const isEmptyModules = (options: Schema) => options.modules.length === 0;
 export const isAuthenticationModule = (options: Schema) =>
   options.modules.includes(Module.AUTHENTICATION);
 export const isApiModule = (options: Schema) => options.modules.includes(Module.API);
-export const isUsersManagementModule = (options: Schema) => options.modules.includes(Module.API);
+export const isUsersManagementModule = (options: Schema) =>
+  options.modules.includes(Module.USERS_MANAGEMENT);
