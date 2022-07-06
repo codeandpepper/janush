@@ -1,0 +1,3 @@
+<% if (idP.includes("Facebook")) { %>export * from "./FacebookIcon";<% } %>
+<% if (idP.includes("Google")) { %>export * from "./GoogleIcon";<% } %>
+<% if (idP.includes("Apple")) { %>export * from "./AppleIcon";<% } %>

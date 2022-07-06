@@ -1,0 +1,48 @@
+import { Box, Button, Typography } from "@mui/material";
+import { useCallback, VFC } from "react";
+import { Auth } from "aws-amplify";
+import { CognitoHostedUIIdentityProvider as Providers } from "@aws-amplify/auth";
+import { 
+  <% if (idP.includes("Facebook")) { %>FacebookIcon,<% } %>
+  <% if (idP.includes("Google")) { %>GoogleIcon,<% } %>
+  <% if (idP.includes("Apple")) { %>AppleIcon<% } %> 
+  } from "@components/icons";
+import { rgbaColors } from "@themes/palette";
+
+const providers = [
+  <% if (idP.includes("Facebook")) { %>{ name: "Facebook", provider: Providers.Facebook, Icon: <FacebookIcon /> },<% } %>
+  <% if (idP.includes("Google")) { %>{ name: "Google", provider: Providers.Google, Icon: <GoogleIcon /> },<% } %>
+  <% if (idP.includes("Apple")) { %>{ name: "Apple", provider: Providers.Apple, Icon: <AppleIcon /> },<% } %>
+];
+
+export const FederatedSignIn: VFC = () => {
+  const handleFederatedSignIn = useCallback(
+    (provider: Providers) => () => Auth.federatedSignIn({ provider }),
+    []
+  );
+
+  return providers.length ? (
+    <Box display="flex" flexDirection="column" mt={3} gap={1}>
+      <Typography align="center">Or continue with...</Typography>
+      <Box display="flex" mt={2} gap={2}>
+        {providers.map(({ name, provider, Icon }) => (
+          <Button
+            key={provider}
+            data-testid={`sign-in-button-${name}`}
+            variant="outlined"
+            color="inherit"
+            startIcon={Icon}
+            fullWidth
+            onClick={handleFederatedSignIn(provider)}
+            sx={{
+              textTransform: "capitalize",
+              borderColor: rgbaColors.grey.lighter,
+            }}
+          >
+            {name}
+          </Button>
+        ))}
+      </Box>
+    </Box>
+  ) : null;
+};

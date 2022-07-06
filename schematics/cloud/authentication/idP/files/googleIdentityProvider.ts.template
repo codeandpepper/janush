@@ -1,0 +1,27 @@
+import { aws_cognito as cognito } from "aws-cdk-lib";
+
+import { EnvName } from "@enums/EnvName";
+
+import { CognitoUserPoolCdkConstruct } from "../cognitoUserPoolCdkConstruct";
+
+export const googleIdentityProvider = (
+  construct: CognitoUserPoolCdkConstruct,
+  envName: EnvName
+): cognito.UserPoolIdentityProviderGoogle => {
+  const clientId = process.env.IDENTITY_PROVIDER_GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.IDENTITY_PROVIDER_GOOGLE_CLIENT_SECRET;
+
+  return new cognito.UserPoolIdentityProviderGoogle(
+    construct,
+    `${envName}-CognitoUserPoolIdentityProviderGoogle`,
+    {
+      clientId,
+      clientSecret,
+      userPool: construct.userPool,
+      attributeMapping: {
+        email: cognito.ProviderAttribute.GOOGLE_EMAIL,
+      },
+      scopes: ["profile", "email"],
+    }
+  );
+};

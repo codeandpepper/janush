@@ -3,6 +3,7 @@ import { VFC } from "react";
 import { Helmet } from "react-helmet";
 
 import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
+<% if (idP.length) { %>import { FederatedSignIn } from "@components/FederatedSignIn/FederatedSignIn";<% } %>
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
 
@@ -35,7 +36,8 @@ export const SignInView: VFC<Props> = ({ error, loading, onSignIn }) => {
             data-testid="forgot-password-button"
           >
           </Link>
-        </Box>
+        </Box>       
+        <% if (idP.length) { %><FederatedSignIn /><% } %>
       </Container>
       <AuthBottomBar
         text="Don't have an account?"

@@ -88,3 +88,15 @@ export const addCognitoConstructToCloudStack = (projectName: string): Rule => {
     return tree;
   };
 };
+
+export const addEnvironmentValidation = (): Rule => {
+  return (tree: Tree): Tree => {
+    const filePath = `${Schematic.CLOUD}/bin/index.ts`;
+
+    const { pos, toAdd } = new InsertChange(filePath, 0, `import "./environment";`);
+
+    const updatedTree = tree.beginUpdate(filePath).insertLeft(pos, toAdd);
+    tree.commitUpdate(updatedTree);
+    return tree;
+  };
+};

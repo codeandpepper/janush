@@ -6,7 +6,9 @@ import {
   MergeStrategy,
   mergeWith,
   move,
+  noop,
   Rule,
+  schematic,
   SchematicContext,
   Tree,
   url,
@@ -14,7 +16,7 @@ import {
 import { addPackageJsonDependency } from "@schematics/angular/utility/dependencies";
 
 import { WEB_PACKAGE_JSON_PATH } from "@consts/index";
-import { Schematic } from "@enums/Schematic";
+import { Schematic, WebSchematic } from "@enums/Schematic";
 import { webJanushAuthenticationNodeDependencies } from "@utils/dependencies";
 
 import { Schema } from "./schema";
@@ -36,8 +38,9 @@ export const webAuthenticationGenerator = (options: Schema): Rule => {
           }),
           move(Schematic.WEB),
         ]),
-        MergeStrategy.Overwrite,
+        MergeStrategy.Default,
       ),
+      options.idP.length ? schematic(WebSchematic.IDP, options) : noop(),
       packageJsonExtender,
       tsConfigExtender,
     ]);

@@ -1,4 +1,4 @@
-import { aws_cognito as cognito, CfnOutput, StackProps } from "aws-cdk-lib";
+import { aws_cognito as cognito, CfnOutput, StackProps<% if (idP.length) { %>, Stack<% } %> } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 import { EnvName } from "../../enums/EnvName";
@@ -20,11 +20,10 @@ export class CognitoCdkConstruct extends Construct {
   ) {
     super(scope, id);
 
-    const { userPool, userPoolClient } = new CognitoUserPoolCdkConstruct(
-      this,
-      `${envName}-CognitoUserPool`,
-      { envName }
-    );
+    const { userPool, userPoolClient<% if (idP.length) { %>, userPoolDomain<% } %> } =
+      new CognitoUserPoolCdkConstruct(this, `${envName}-CognitoUserPool`, {
+        envName,
+      });
 
     this.cognitoUserPool = userPool;
 
@@ -53,6 +52,13 @@ export class CognitoCdkConstruct extends Construct {
       exportName: "cognitoUserPoolClientId<%= classify(name) %>",
       value: userPoolClient.userPoolClientId,
     });
+
+    <% if (idP.length) { %>new CfnOutput(this, "CognitoUserPoolDomainExport", {
+      exportName: "cognitoUserPoolDomain<%= classify(name) %>",
+      value: `${userPoolDomain.domainName}.auth.${
+        Stack.of(this).region
+      }.amazoncognito.com`,
+    });<% } %> 
 
     applyTagsToResource(
       [userPool, userPoolClient, identityPool, identityPoolRoleAttachment],

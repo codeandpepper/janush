@@ -14,6 +14,21 @@
       "description": "Email custom messages trigger",
       "default": true,
       "x-prompt": "[CLOUD] Do you want add an auth emails template?"
+    },
+    "idP": {
+      "type": "array",
+      "description": "Sets additional identity providers for user pool.",
+      "uniqueItems": true,
+      "default": [],
+      "x-prompt": {
+        "message": "[CLOUD] Do you want add more identity providers? (each provider requires an active developer account).",
+        "type": "list",
+        "items": [
+          { "value": "Facebook", "label": "Facebook" },
+          { "value": "Google", "label": "Google" },
+          { "value": "Apple", "label": "Apple" }
+        ]
+      }
     }
   }
 }

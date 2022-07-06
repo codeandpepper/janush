@@ -15,6 +15,10 @@
       "description": "Auth structure for web app",
       "factory": "./authentication/index#webAuthenticationGenerator",
       "schema": "./authentication/schema.json"
+    },
+    "web.idP": {
+      "description": "Additional identity providers",
+      "factory": "./authentication/idP/index#identityProvidersGenerator"
     }
   },
   "extends": ["./e2e/collection.json"]

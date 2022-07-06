@@ -6,6 +6,11 @@ import {
 import { Construct } from "constructs";
 
 import { EnvName } from "../../enums/EnvName";
+<% if (idP.length) { %>import {
+  <% if (isFacebook) { %>facebookIdentityProvider,<% } %>
+  <% if (isGoogle) { %>googleIdentityProvider,<% } %>
+  <% if (isApple) { %>appleIdentityProvider,<% } %>
+} from "./identityProviders";<% } %>
 
 interface CognitoUserPoolProps {
   envName: EnvName;
@@ -14,6 +19,11 @@ interface CognitoUserPoolProps {
 export class CognitoUserPoolCdkConstruct extends Construct {
   public userPool: cognito.UserPool;
   public userPoolClient: cognito.UserPoolClient;
+  <% if (idP.length) { %>public userPoolDomain: cognito.UserPoolDomain;<% } %>
+  <% if (isFacebook) { %>public userPoolIdentityProviderFacebook: cognito.UserPoolIdentityProviderFacebook;<% } %>
+  <% if (isGoogle) { %>public userPoolIdentityProviderGoogle: cognito.UserPoolIdentityProviderGoogle;<% } %>
+  <% if (isApple) { %>public userPoolIdentityProviderApple: cognito.UserPoolIdentityProviderApple;<% } %>
+  
   constructor(
     scope: Construct,
     id: string,
@@ -53,12 +63,42 @@ export class CognitoUserPoolCdkConstruct extends Construct {
         disableOAuth: false,
         supportedIdentityProviders: [
           cognito.UserPoolClientIdentityProvider.COGNITO,
+          <% if (isFacebook) { %>cognito.UserPoolClientIdentityProvider.FACEBOOK,<% } %>
+          <% if (isGoogle) { %>cognito.UserPoolClientIdentityProvider.GOOGLE,<% } %>
+          <% if (isApple) { %>cognito.UserPoolClientIdentityProvider.APPLE,<% } %>
         ],
+        <% if (idP.length) { %>oAuth: {
+          callbackUrls: [process.env.USER_POOL_REDIRECT_SIGN_IN],
+          logoutUrls: [process.env.USER_POOL_REDIRECT_SIGN_OUT],
+        },<% } %>
         preventUserExistenceErrors: true,
         userPool: this.userPool,
       }
     );
 
+    <% if (isFacebook) { %>this.userPoolIdentityProviderFacebook = facebookIdentityProvider(
+      this,
+      envName
+    );<% } %>
+    <% if (isGoogle) { %>this.userPoolIdentityProviderGoogle = googleIdentityProvider(this, envName);<% } %>
+    <% if (isApple) { %>this.userPoolIdentityProviderApple = appleIdentityProvider(this, envName);<% } %>
+
+    <% if (idP.length) { %>this.userPoolDomain = new cognito.UserPoolDomain(
+      this,
+      `${envName}-CognitoUserPoolDomain`,
+      {
+        userPool: this.userPool,
+        cognitoDomain: {
+          domainPrefix: "<%= dasherize(name) %>-<%= timeStamp %>",
+        },
+      }
+    );<% } %>
+
     this.userPoolClient.node.addDependency(this.userPool);
+    <% if (isFacebook) { %>this.userPoolClient.node.addDependency(
+      this.userPoolIdentityProviderFacebook
+    );<% } %>
+    <% if (isGoogle) { %>this.userPoolClient.node.addDependency(this.userPoolIdentityProviderGoogle);<% } %>
+    <% if (isApple) { %>this.userPoolClient.node.addDependency(this.userPoolIdentityProviderApple);<% } %>
   }
 }

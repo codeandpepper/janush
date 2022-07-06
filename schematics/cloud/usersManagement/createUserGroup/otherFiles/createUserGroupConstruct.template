@@ -1,0 +1,5 @@
+new CreateUserGroupCdkConstruct(this, `${envName}-cognitoCreateGroup`, {
+  envName,
+  userPool: userPool,
+  graphQlApi: graphQlApi,
+});
