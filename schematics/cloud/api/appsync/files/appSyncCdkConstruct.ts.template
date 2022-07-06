@@ -5,7 +5,6 @@ import { EnvName } from "@enums/EnvName";
 import { applyTagsToResource } from "../../utils/functions";
 import { ServicePurpose } from "../../enums/ServicePurpose";
 import * as path from "path";
-import { UsersCdkConstruct } from "../authentication/users/usersCdkConstruct";
 
 interface AppSyncProps {
   envName: EnvName;
@@ -36,12 +35,6 @@ export class AppSyncCdkConstruct extends Construct{
         },
       },
       xrayEnabled: true,
-    });
-
-    new UsersCdkConstruct(this, `${envName}-cognitoUsers`, {
-      envName,
-      userPool,
-      graphQlApi: this.graphQlApi,
     });
 
     new CfnOutput(this, `${envName}-GraphQLUrlExport`, {
