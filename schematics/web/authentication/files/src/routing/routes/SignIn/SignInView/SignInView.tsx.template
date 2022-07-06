@@ -3,6 +3,7 @@ import { VFC } from "react";
 import { Helmet } from "react-helmet";
 
 import { AuthBottomBar } from "@components/AuthBottomBar/AuthBottomBar";
+import { FederatedSignIn } from "@components/FederatedSignIn/FederatedSignIn";
 import { AuthLayout } from "@layouts/AuthLayout/AuthLayout";
 import { Paths } from "@routing/paths";
 
@@ -29,12 +30,13 @@ export const SignInView: VFC<Props> = ({ error, loading, onSignIn }) => {
             Sign in
           </Typography>
           <SignInForm error={error} loading={loading} onSubmit={onSignIn} />
-          <Link to={Paths.FORGOT_PASSWORD_PATH} underline="none">
+          <Link to={Paths.FORGOT_PASSWORD_PATH} underline="none" data-testid="forgot-password-button">
             <Typography textAlign="end" mt={2} mr={2}>
               Forgot Password?
             </Typography>
           </Link>
         </Box>
+        <FederatedSignIn />
       </Container>
       <AuthBottomBar
         text="Don't have an account?"
