@@ -51,4 +51,12 @@ to the single one by using
 npm run schema:merge
 ```
 
+## Users Management
 
+The module is related to admin panel that generated app can use in order to manage users in Cognito. It is mainly about 
+user groups. They can be used as a roles or permissions to the system. 
+
+### Create User Groups
+
+Cognito has a feature to group to assign users to groups. If you select creating users management module then it will 
+generate `admin` group
