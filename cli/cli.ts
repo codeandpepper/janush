@@ -44,6 +44,7 @@ function parseArgumentsIntoOptions(rawArgs: string[]): CLIOptions {
       "-c": "--command",
       "-d": "--debug",
       "-n": "--name",
+      "-i": "--is-auto-generated",
       "-s": "--skip-install",
       "-t": "--types",
       "-v": "--version",

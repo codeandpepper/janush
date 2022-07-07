@@ -19,13 +19,13 @@ janush optionNameOrAlias=requiredArg[optionalArg] [options]
 
 Boolean options do not take arguments e.g. --skip-install option sets its flag to true. If neither option is supplied, the flag remains in its default state, as listed in the [Options Overview](#options-overview).
 
-## Options Overview 
+## Options Overview
 
 OPTION | ALIAS | TYPE | DEFAULT VALUE | DESCRIPTION
 -------|-------|------|---------------|------------
 --name | -n | string | janush-app | Sets application name.
 --types | -t | object | {cloud, web} | Sets application types to be installed.
-<span style={{ whiteSpace: 'nowrap' }}>--is-auto-generated</span> | | boolean | false | Outputs, if created by deployment bot.
+<span style={{ whiteSpace: 'nowrap' }}>--is-auto-generated</span> | -i | boolean | false | Outputs, if created by deployment bot.
 --skip-install | -s | boolean | false | Skip installing dependencies.
 --version | -v | boolean | false | Outputs Janush version.
 --help | -h | boolean | false | Outputs short Janush help.
