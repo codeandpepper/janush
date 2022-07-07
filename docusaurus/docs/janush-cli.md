@@ -13,7 +13,8 @@ janush optionNameOrAlias=requiredArg[optionalArg] [options]
 
 - Some of options are obligatory and if not supplied, the appropriate prompt shows on screena after running command.
 - Most options have aliases. Aliases are shown in the [Options Overview](#options-overview) for specific.
-- Both option names and aliases are prefixed with a double dash (--).
+- Option names are prefixed with a double dash (--).
+- Each alias is prefixed with a single dash (-).
 
 ### Boolean options
 
@@ -26,7 +27,7 @@ OPTION | ALIAS | TYPE | DEFAULT VALUE | DESCRIPTION
 --name | -n | string | janush-app | Sets application name.
 --types | -t | object | {cloud, web} | Sets application types to be installed.
 <span style={{ whiteSpace: 'nowrap' }}>--is-auto-generated</span> | -i | boolean | false | Outputs, if created by deployment bot.
---skip-install | -s | boolean | false | Skip installing dependencies.
+--skip-install | -s | boolean | false | Skips installing dependencies.
 --version | -v | boolean | false | Outputs Janush version.
 --help | -h | boolean | false | Outputs short Janush help.
 

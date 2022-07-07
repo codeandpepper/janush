@@ -8,12 +8,12 @@
       "type": "array",
       "description": "Modules",
       "uniqueItems": true,
-      "default": ["authentication", "api"],
       "x-prompt": {
         "message": "[CLOUD] Which modules would you like to use? You can add this later.",
         "type": "list",
         "items": ["authentication", "api", "usersManagement"]
-      }
+      },
+      "default": ["authentication", "api", "usersManagement"]
     },
     "skip-install": {
       "type": "boolean",
