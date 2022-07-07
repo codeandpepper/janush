@@ -1,8 +1,6 @@
  Janush ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) [![Test application generation](https://github.com/codeandpepper/janush/actions/workflows/main.yml/badge.svg)](https://github.com/codeandpepper/janush/actions/workflows/main.yml)
 # Janush
 
-
-
 ## Quick Overview
 Janush is web based application for rapid setup and configure application with predefined sections:
     - Security
@@ -16,8 +14,8 @@ We are using [serverless services on AWS](https://aws.amazon.com/serverless/#Ser
 
 ### Requirements
 Package | Version
---- | --- 
-Node.js | 16.x.x 
+--- | ---
+Node.js | 16.x.x
 
 ### Install Janush CLI
 You can install the project directly with the following command:
@@ -47,9 +45,9 @@ npm run build
 npm link
 ```
 and then easily use it:
-``` 
+```
 janush --name=fancy-app --types={web,cloud}
-``` 
+```
 <p>New application based on Janush schematcis can be created in following ways:</p>
 
 ``` schematics .:app --debug=false ```
@@ -67,7 +65,7 @@ This option creating application in *interactive* mode its mean, that every conf
  ## Steps to run application
  - Go to web or cloud folder inside generated application
  - execute `` npm ``
- - run `` npm start `` 
+ - run `` npm start ``
   - It may happend that `` npm start `` will throw error:
   ```
 
@@ -108,7 +106,7 @@ Loggin and sign up doesn't works by default - some configuration need to be comp
 https://tomastrajan.medium.com/total-guide-to-custom-angular-schematics-5c50cf90cdb4
 # Debug schematics
 
-Run command 
+Run command
 ``` node --inspect-brk $(which schematics) .:app --name=test123 --debug=false  ```
 1. Open chrome://inspect (for Chrome)
 2. Click on *Open deicated DevTools for Node*
@@ -118,18 +116,6 @@ Run command
 # Test e2e
 
 ### `` npm run test ``
-
- If **babel-jest** is missing error is generated:
- 
-```
-    The react-scripts package provided by Create React App requires a dependency:
-
-    "babel-jest": "^26.6.0"
-```
-
-
-It may happend that error above is visible. It's indicating that babel is not installed, for fix this problem 
-** npm install babel-jest@26.6.0 -g **
 
 Successfull output should look as follow:
  ```PASS  src/components/PasswordField/PasswordField.test.tsx (235.068 s)
@@ -145,85 +131,6 @@ Successfull output should look as follow:
     PASS  src/App.test.tsx
 ```
 
--------------------------------------------------|---------|----------|---------|---------|-------------------
-File                                             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
--------------------------------------------------|---------|----------|---------|---------|-------------------
-All files                                        |   92.72 |    83.33 |   89.47 |   95.48 |
- src                                             |     100 |      100 |     100 |     100 |
-  App.tsx                                        |     100 |      100 |     100 |     100 |
- src/components/AuthBottomBar                    |     100 |      100 |     100 |     100 |
-  AuthBottomBar.tsx                              |     100 |      100 |     100 |     100 |
- src/components/EmailField                       |     100 |      100 |     100 |     100 |
-  EmailField.tsx                                 |     100 |      100 |     100 |     100 |
- src/components/Form                             |     100 |      100 |     100 |     100 |
-  Form.tsx                                       |     100 |      100 |     100 |     100 |
- src/components/Link                             |     100 |      100 |     100 |     100 |
-  Link.tsx                                       |     100 |      100 |     100 |     100 |
- src/components/PasswordField                    |    90.9 |      100 |      80 |      90 |
-  PasswordField.tsx                              |    90.9 |      100 |      80 |      90 | 36
- src/components/TextField                        |     100 |      100 |     100 |     100 |
-  TextField.tsx                                  |     100 |      100 |     100 |     100 |
- src/consts                                      |     100 |      100 |     100 |     100 |
-  index.ts                                       |     100 |      100 |     100 |     100 |
- src/interfaces                                  |       0 |        0 |       0 |       0 |
-  Cognito.ts                                     |       0 |        0 |       0 |       0 |
-  User.ts                                        |       0 |        0 |       0 |       0 |
- src/layouts/AuthLayout                          |     100 |      100 |     100 |     100 |
-  AuthLayout.tsx                                 |     100 |      100 |     100 |     100 |
-  styles.ts                                      |     100 |      100 |     100 |     100 |
- src/layouts/Logo                                |     100 |      100 |     100 |     100 |
-  Logo.tsx                                       |     100 |      100 |     100 |     100 |
-  styles.ts                                      |     100 |      100 |     100 |     100 |
- src/layouts/PageLayout                          |     100 |      100 |     100 |     100 |
-  PageLayout.tsx                                 |     100 |      100 |     100 |     100 |
- src/layouts/TopAppBar                           |   57.14 |       50 |      50 |   57.14 |
-  TopAppBar.tsx                                  |   57.14 |       50 |      50 |   57.14 | 14-17
- src/routing                                     |   66.66 |      100 |   33.33 |    87.5 |
-  Routes.tsx                                     |   66.66 |      100 |   33.33 |    87.5 | 7
-  paths.ts                                       |       0 |        0 |       0 |       0 |
- src/routing/routes/ConfirmSignUp                |     100 |      100 |     100 |     100 |
-  ConfirmSignUp.tsx                              |     100 |      100 |     100 |     100 |
- src/routing/routes/Index                        |     100 |      100 |     100 |     100 |
-  IndexPage.tsx                                  |     100 |      100 |     100 |     100 |
- src/routing/routes/SignIn                       |   93.33 |       50 |     100 |   93.33 |
-  SignIn.tsx                                     |   93.33 |       50 |     100 |   93.33 | 30
- src/routing/routes/SignIn/SignInView            |     100 |      100 |     100 |     100 |
-  SignInView.tsx                                 |     100 |      100 |     100 |     100 |y
- src/routing/routes/SignIn/SignInView/SignInForm |     100 |       75 |     100 |     100 |
-  SignInForm.tsx                                 |     100 |       75 |     100 |     100 | 73
-  signInFormValidationSchema.ts                  |     100 |      100 |     100 |     100 |
-  styles.ts                                      |     100 |      100 |     100 |     100 |
- src/routing/routes/SignUp                       |   94.11 |       75 |     100 |     100 |
-  SignUp.tsx                                     |   94.11 |       75 |     100 |     100 | 18
- src/routing/routes/SignUp/SignUpView            |     100 |      100 |     100 |     100 |
-  SignUpView.tsx                                 |     100 |      100 |     100 |     100 |
- src/routing/routes/SignUp/SignUpView/SignUpForm |     100 |      100 |     100 |     100 |
-  SignUpForm.tsx                                 |     100 |      100 |     100 |     100 |
-  formValidationSchema.ts                        |     100 |      100 |     100 |     100 |
-  styles.ts                                      |     100 |      100 |     100 |     100 |
- src/routing/routes/VerifyEmail                  |   85.71 |       50 |     100 |   91.66 |
-  VerifyEmail.tsx                                |   83.33 |       50 |     100 |    90.9 | 29
-  styles.ts                                      |     100 |      100 |     100 |     100 |
- src/themes                                      |     100 |       50 |     100 |     100 |
-  defaultTheme.ts                                |     100 |      100 |     100 |     100 |
-  palette.ts                                     |     100 |       50 |     100 |     100 | 18
- src/types/enums                                 |       0 |        0 |       0 |       0 |
-  Cognito.ts                                     |       0 |        0 |       0 |       0 |
-  HubEvent.ts                                    |       0 |        0 |       0 |       0 |
- src/types/useful                                |       0 |        0 |       0 |       0 |
-  Nullable.ts                                    |       0 |        0 |       0 |       0 |
-  index.ts                                       |       0 |        0 |       0 |       0 |
- src/utils/formDataTestId                        |     100 |      100 |     100 |     100 |
-  formDataTestId.ts                              |     100 |      100 |     100 |     100 |
- src/utils/hooks                                 |     100 |      100 |     100 |     100 |
-  useQuery.ts                                    |     100 |      100 |     100 |     100 |
- src/utils/validation                            |     100 |    66.66 |     100 |     100 |
-  passwordValidation.ts                          |     100 |      100 |     100 |     100 |
-  validateMaxStringLength.ts                     |     100 |    66.66 |     100 |     100 | 1
--------------------------------------------------|---------|----------|---------|---------|-------------------
- 
-
-
 # AWS
 ## Setup AWS for Janush app
 ## Requirements
@@ -231,7 +138,7 @@ All files                                        |   92.72 |    83.33 |   89.47 
 
 ### [CDK](https://www.npmjs.com/package/aws-cdk)
 
-First install [AWS CDK v2](https://www.npmjs.com/package/aws-cdk) 
+First install [AWS CDK v2](https://www.npmjs.com/package/aws-cdk)
 
 ### Install the AWS CDK
 Install the AWS CDK Toolkit globally using the following Node Package Manager command.
@@ -257,12 +164,12 @@ Then:
 
 ``` npm run cdk bootstrap ```
 
- And finally 
+ And finally
 
  ``` npm run cdk deploy ```
 
 
- To connect newly generated app, following data need to be update inside 
+ To connect newly generated app, following data need to be update inside
 
 ```
 import Amplify, { Auth } from "aws-amplify";
@@ -300,10 +207,9 @@ It will return data with identity pool Id, and identity pool name. **identityPoo
 
 ## Get region
 
-`` aws configure get region `` 
+`` aws configure get region ``
 
  ![Getting identity id](https://janush-docs.s3.eu-central-1.amazonaws.com/images/get-region.gif)
-
 
 ## Get user pool
 
@@ -320,14 +226,9 @@ Web client Id is under App Settings inside cognito settings
 
 More on AWS configuration can be cound in here: [AWS Configuration](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 
-
 ## What’s Included?
 
 Your environment will have everything you need to build a modern single-page React app with built-in Identity/AuthN/AuthZ features.
-
-
-
-
 
 ## Contributing
 
