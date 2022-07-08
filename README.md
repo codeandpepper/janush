@@ -28,14 +28,18 @@ The application will be available under the command `janush`
 
 ### Local development
 
+Currently, to generate a project, you must first  run the `npm install` command, after that `npm run build` and 
+finally `npm link`. After going through these steps you'll be able to generate project in
+every directory
+
 ```sh
 npm install -g @angular-devkit/schematics-cli
 
-schematics .:app --debug=false
-schematics .:application --name=fancy-app --types={web,cloud} --debug=false
+npm install
+npm run build
+npm link
+janush --name=fancy-app --types={web,cloud}
 ```
-
-Currently, to generate a project, you must first  run the `npm install` command and after `npm run build`. In root directory you can create your own project via schematic commands.
 
 #### Linking to local npm repositories
 
@@ -48,15 +52,6 @@ and then easily use it:
 ```
 janush --name=fancy-app --types={web,cloud}
 ```
-<p>New application based on Janush schematcis can be created in following ways:</p>
-
-``` schematics .:app --debug=false ```
-
-This option creating application in *interactive* mode its mean, that every configuration input (name, types, debug) will be choosen during interactive wizard
- ![Setup new app in interactive mode](https://janush-docs.s3.eu-central-1.amazonaws.com/images/interactive-setup.gif)
-
-
-- `` schematics .:application --name=fancy-app --types={web,cloud} --debug=false ``
 
  Above command generated new application inside *janush* app folder
 
