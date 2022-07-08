@@ -42,3 +42,14 @@ Janush supports a superset of the latest JavaScript standard (ES2015+)
 
 In order to get correct content of template files the best bet would be to generate project and modify its files.
 If everything is tested and working properly, you should manually make all changes to the template files to the janush project.
+
+### How to build and use CLI locally instead of npm?
+
+There is a possibility to use the latest version locally. Please use commands 
+```shell
+npm install
+npm run build
+npm link
+```
+
+The proof that you are using local library instead of npm library can be version from `package.json`
