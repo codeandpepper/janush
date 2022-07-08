@@ -117,19 +117,17 @@ Run command
 
 ### `` npm run test ``
 
-Successfull output should look as follow:
- ```PASS  src/components/PasswordField/PasswordField.test.tsx (235.068 s)
-    PASS  src/routing/routes/SignIn/SignIn.test.tsx (237.66 s)
-    PASS  src/routing/routes/SignUp/SignUp.test.tsx (239.08 s)
-    PASS  src/routing/routes/ConfirmSignUp/ConfirmSignUp.test.tsx
-    PASS  src/routing/Routes.test.tsx
-    PASS  src/components/AuthBottomBar/AuthBottomBar.test.tsx
-    PASS  src/layouts/PageLayout/PageLayout.test.tsx
-    PASS  src/routing/routes/SignUp/SignUpView/SignUpForm/SignUpForm.test.tsx (7.965 s)
-    PASS  src/utils/formDataTestId/formDataTestId.test.ts
-    PASS  src/routing/routes/VerifyEmail/VerifyEmail.test.tsx (13.736 s)
-    PASS  src/App.test.tsx
+ If **babel-jest** is missing error is generated:
+ 
 ```
+    The react-scripts package provided by Create React App requires a dependency:
+
+    "babel-jest": "^26.6.0"
+```
+
+
+It may happend that error above is visible. It's indicating that babel is not installed, for fix this problem 
+** npm install babel-jest@26.6.0 -g **
 
 # AWS
 ## Setup AWS for Janush app

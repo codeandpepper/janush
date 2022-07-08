@@ -33,12 +33,6 @@ The request is sent using Amplify
 2. Write an user email and submit resending email verification
 3. The user should be redirected to confirmation page
 
-### Cognito User Groups
-
-When Cognito Groups are created, by default `admin` group is generated 
-and added to `AWS Cognito`. You can check it out in AWS Management 
-Console in Cognito service.
-
 
 ## API
 
@@ -60,3 +54,12 @@ user groups. They can be used as a roles or permissions to the system.
 
 Cognito has a feature to group to assign users to groups. If you select creating users management module then it will 
 generate `admin` group
+
+As an example, the mutation below is responsible for creating user groups in Cognito. 
+You can simply test it in AWS AppSync console or Postman
+
+```graphql
+mutation createUserGroup {
+    createUserGroup(group: { groupName: "testGroup" })
+}
+```

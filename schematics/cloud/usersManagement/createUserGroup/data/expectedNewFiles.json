@@ -1,4 +1,8 @@
 [
   "/cloud/lib/usersManagement/createUserGroup/createUserGroupCdkConstruct.ts",
-  "/cloud/lib/usersManagement/createUserGroup/defaultGroups.ts"
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroupCdkConstruct.test.ts",
+  "/cloud/lib/usersManagement/createUserGroup/defaultGroups.ts",
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroup.graphql",
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroupLambda.ts",
+  "/cloud/lib/usersManagement/createUserGroup/createUserGroupLambda.test.ts"
 ]

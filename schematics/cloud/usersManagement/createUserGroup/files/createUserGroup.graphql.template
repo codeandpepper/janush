@@ -1,0 +1,15 @@
+input UserGroupInput {
+  groupName: String!
+  description: String
+}
+
+extend type Mutation {
+  """
+  Create a user group to cognito for creating new role in the club
+  Arguments:
+  - role as a string (required)
+  Returns:
+  - Boolean (true for success)
+  """
+  createUserGroup(group: UserGroupInput!): Boolean!
+}
