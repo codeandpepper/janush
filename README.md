@@ -1,8 +1,6 @@
  Janush ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) [![Test application generation](https://github.com/codeandpepper/janush/actions/workflows/main.yml/badge.svg)](https://github.com/codeandpepper/janush/actions/workflows/main.yml)
 # Janush
 
-
-
 ## Quick Overview
 Janush is web based application for rapid setup and configure application with predefined sections:
     - Security
@@ -16,8 +14,8 @@ We are using [serverless services on AWS](https://aws.amazon.com/serverless/#Ser
 
 ### Requirements
 Package | Version
---- | --- 
-Node.js | 16.x.x 
+--- | ---
+Node.js | 16.x.x
 
 ### Install Janush CLI
 You can install the project directly with the following command:
@@ -47,9 +45,9 @@ npm run build
 npm link
 ```
 and then easily use it:
-``` 
+```
 janush --name=fancy-app --types={web,cloud}
-``` 
+```
 <p>New application based on Janush schematcis can be created in following ways:</p>
 
 ``` schematics .:app --debug=false ```
@@ -67,7 +65,7 @@ This option creating application in *interactive* mode its mean, that every conf
  ## Steps to run application
  - Go to web or cloud folder inside generated application
  - execute `` npm ``
- - run `` npm start `` 
+ - run `` npm start ``
   - It may happend that `` npm start `` will throw error:
   ```
 
@@ -108,7 +106,7 @@ Loggin and sign up doesn't works by default - some configuration need to be comp
 https://tomastrajan.medium.com/total-guide-to-custom-angular-schematics-5c50cf90cdb4
 # Debug schematics
 
-Run command 
+Run command
 ``` node --inspect-brk $(which schematics) .:app --name=test123 --debug=false  ```
 1. Open chrome://inspect (for Chrome)
 2. Click on *Open deicated DevTools for Node*
@@ -138,7 +136,7 @@ It may happend that error above is visible. It's indicating that babel is not in
 
 ### [CDK](https://www.npmjs.com/package/aws-cdk)
 
-First install [AWS CDK v2](https://www.npmjs.com/package/aws-cdk) 
+First install [AWS CDK v2](https://www.npmjs.com/package/aws-cdk)
 
 ### Install the AWS CDK
 Install the AWS CDK Toolkit globally using the following Node Package Manager command.
@@ -164,12 +162,12 @@ Then:
 
 ``` npm run cdk bootstrap ```
 
- And finally 
+ And finally
 
  ``` npm run cdk deploy ```
 
 
- To connect newly generated app, following data need to be update inside 
+ To connect newly generated app, following data need to be update inside
 
 ```
 import Amplify, { Auth } from "aws-amplify";
@@ -207,10 +205,9 @@ It will return data with identity pool Id, and identity pool name. **identityPoo
 
 ## Get region
 
-`` aws configure get region `` 
+`` aws configure get region ``
 
  ![Getting identity id](https://janush-docs.s3.eu-central-1.amazonaws.com/images/get-region.gif)
-
 
 ## Get user pool
 
@@ -227,14 +224,9 @@ Web client Id is under App Settings inside cognito settings
 
 More on AWS configuration can be cound in here: [AWS Configuration](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 
-
 ## What’s Included?
 
 Your environment will have everything you need to build a modern single-page React app with built-in Identity/AuthN/AuthZ features.
-
-
-
-
 
 ## Contributing
 

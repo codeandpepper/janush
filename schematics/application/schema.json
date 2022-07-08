@@ -32,12 +32,13 @@
     },
     "is-auto-generated": {
       "type": "boolean",
+      "aliases": ["i"],
       "description": "Outputs, if created by deployment bot.",
       "default": false
     },
     "skip-install": {
-      "aliases": ["s"],
       "type": "boolean",
+      "aliases": ["s"],
       "description": "Skip installing dependencies.",
       "default": false
     },
