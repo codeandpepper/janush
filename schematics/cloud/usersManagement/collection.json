@@ -2,9 +2,13 @@
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "cloud.usersManagement.createGroups": {
-      "aliases": ["cloud.usersManagement"],
       "description": "Creating User Groups in AWS Cognito.",
-      "factory": "./createUserGroup/index#cloudCognitoGroupsGenerator",
+      "factory": "./createUserGroup/index#cloudCreateCognitoGroupsGenerator",
+      "schema": "./createUserGroup/schema.json"
+    },
+    "cloud.usersManagement.getGroups": {
+      "description": "Listing Cognito Groups.",
+      "factory": "./createUserGroup/index#cloudGetCognitoGroupsGenerator",
       "schema": "./createUserGroup/schema.json"
     }
   }

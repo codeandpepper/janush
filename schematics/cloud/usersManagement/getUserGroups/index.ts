@@ -14,16 +14,17 @@ import {
 } from "@angular-devkit/schematics";
 
 import { Schematic } from "@enums/Schematic";
-import { CreateUserGroupBuilder } from "@janush-schematics/cloud/usersManagement/createUserGroup/createUserGroupBuilder";
+import { GetUserGroupsBuilder } from "@janush-schematics/cloud/usersManagement/getUserGroups/getUserGroupsBuilder";
 import { readJanushJSON } from "@utility/janushJson";
 
 import { Schema } from "./schema";
 
-export const cloudCreateCognitoGroupsGenerator = (options: Schema): Rule => {
+export const cloudGetCognitoGroupsGenerator = (options: Schema): Rule => {
   return (tree: Tree, _context: SchematicContext) => {
     const janushFile = readJanushJSON(tree);
     const name = strings.dasherize(janushFile.name);
-    const constructBuilder = new CreateUserGroupBuilder(name);
+
+    const constructBuilder = new GetUserGroupsBuilder(name);
 
     options.name = name;
 
@@ -34,7 +35,7 @@ export const cloudCreateCognitoGroupsGenerator = (options: Schema): Rule => {
             ...options,
             ...strings,
           }),
-          move(`${Schematic.CLOUD}/lib/usersManagement/createUserGroup`),
+          move(`${Schematic.CLOUD}/lib/usersManagement/getUserGroups`),
         ]),
         MergeStrategy.Overwrite,
       ),
