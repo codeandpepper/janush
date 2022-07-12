@@ -8,8 +8,8 @@
     },
     "cloud.usersManagement.getGroups": {
       "description": "Listing Cognito Groups.",
-      "factory": "./createUserGroup/index#cloudGetCognitoGroupsGenerator",
-      "schema": "./createUserGroup/schema.json"
+      "factory": "./getUserGroups/index#cloudGetCognitoGroupsGenerator",
+      "schema": "./getUserGroups/schema.json"
     }
   }
 }
