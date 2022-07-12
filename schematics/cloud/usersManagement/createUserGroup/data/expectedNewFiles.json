@@ -5,7 +5,7 @@
   "/cloud/lib/usersManagement/createUserGroup/createUserGroup.graphql",
   "/cloud/lib/usersManagement/createUserGroup/createUserGroupLambda.ts",
   "/cloud/lib/usersManagement/createUserGroup/createUserGroupLambda.test.ts",
-  "/cloud/lib/usersManagement/getUserGroups/getUserGroupCdkConstruct.ts",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsCdkConstruct.ts",
   "/cloud/lib/usersManagement/getUserGroups/getUserGroups.graphql",
   "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.test.ts",
   "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.ts"

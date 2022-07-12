@@ -63,3 +63,17 @@ mutation createUserGroup {
     createUserGroup(group: { groupName: "testGroup" })
 }
 ```
+
+### Get User Groups
+
+There is a possibility to list Cognito groups. The exemplary query in AppSync is presented below
+
+```graphql
+query MyQuery {
+  allUserGroups {
+    Description
+    Precedence
+    GroupName
+  }
+}
+```
