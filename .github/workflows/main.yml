@@ -47,7 +47,7 @@ jobs:
       - name: Link npm package
         run: npm link
       - name: Generate application
-        run: janush --name=janush-auto-generated-app --types={web,cloud} --modules={authentication,api} --e2e --e2e-module=Cypress --skip-install --is-auto-generated
+        run: janush --name=janush-auto-generated-app --types={web,cloud} --modules={authentication,api, usersManagement} --e2e --e2e-module=Cypress --skip-install --is-auto-generated
       - name: Upload generated application
         uses: actions/upload-artifact@master
         with:
