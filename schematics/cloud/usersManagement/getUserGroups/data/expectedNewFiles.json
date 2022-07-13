@@ -1,7 +1,6 @@
 [
-  "/cloud/lib/usersManagement/getUserGroup/getUserGroupsCdkConstruct.ts",
-  "/cloud/lib/usersManagement/getUserGroup/getUserGroups.graphql",
-  "/cloud/lib/usersManagement/getUserGroup/getUserGroupsCdkConstruct.test.ts",
-  "/cloud/lib/usersManagement/getUserGroup/getUserGroupsLambda.ts",
-  "/cloud/lib/usersManagement/getUserGroup/getUserGroupsLambda.test.ts"
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsCdkConstruct.ts",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroups.graphql",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.ts",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.test.ts"
 ]

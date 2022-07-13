@@ -4,7 +4,8 @@ import path from "path";
 
 import expectedJanushFiles from "@janush-schematics/cloud/janush/data/expectedNewFiles.json";
 import expectedTemplateFiles from "@janush-schematics/cloud/template/data/expectedNewFiles.json";
-import expectedUsersManagementFiles from "@janush-schematics/cloud/usersManagement/createUserGroup/data/expectedNewFiles.json";
+import expectedCreateUsersManagementFiles from "@janush-schematics/cloud/usersManagement/createUserGroup/data/expectedNewFiles.json";
+import expectedGetUsersManagementFiles from "@janush-schematics/cloud/usersManagement/getUserGroups/data/expectedNewFiles.json";
 import { moduleJanush } from "@mocks/janush";
 import * as janush from "@utility/janushJson";
 
@@ -30,7 +31,8 @@ describe("cloud.usersManagement", () => {
     expect(templateTree.files).toHaveEqualElements([
       ...expectedJanushFiles,
       ...expectedTemplateFiles,
-      ...expectedUsersManagementFiles,
+      ...expectedCreateUsersManagementFiles,
+      ...expectedGetUsersManagementFiles,
     ]);
   });
 
@@ -39,6 +41,6 @@ describe("cloud.usersManagement", () => {
       .runSchematicAsync("cloud", { name: "janush-app", modules: [] }, Tree.empty())
       .toPromise();
 
-    expect(templateTree.files).not.toContain([...expectedUsersManagementFiles]);
+    expect(templateTree.files).not.toContain([...expectedCreateUsersManagementFiles]);
   });
 });
