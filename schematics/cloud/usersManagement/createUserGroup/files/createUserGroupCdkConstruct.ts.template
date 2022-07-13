@@ -8,7 +8,7 @@ import {
 } from "aws-cdk-lib";
 import * as appSync from "@aws-cdk/aws-appsync-alpha";
 import * as path from "path";
-import { DEFAULT_LAMBDA_RUNTIME } from "@consts/index";
+import { DEFAULT_LAMBDA_RUNTIME } from "../../../consts/index";
 import { defaultPermissions } from "./defaultGroups";
 
 interface CreateGroupProps {

@@ -1,0 +1,6 @@
+[
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsCdkConstruct.ts",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroups.graphql",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.ts",
+  "/cloud/lib/usersManagement/getUserGroups/getUserGroupsLambda.test.ts"
+]

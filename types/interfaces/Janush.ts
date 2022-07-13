@@ -6,6 +6,7 @@ export interface Janush {
     module: {
       [Module.AUTHENTICATION]: boolean;
       [Module.API]: boolean;
+      [Module.USERS_MANAGEMENT]: boolean;
     };
   };
   web: {

@@ -9,7 +9,7 @@ import * as janush from "@utility/janushJson";
 
 const collectionPath = path.join(__dirname, "../../../collection.json");
 
-describe("cloud.usersManagement.getUsers", () => {
+describe("cloud.usersManagement.getUserGroups", () => {
   let runner: SchematicTestRunner;
   beforeEach(() => {
     runner = new SchematicTestRunner("schematics", collectionPath);
@@ -17,10 +17,10 @@ describe("cloud.usersManagement.getUsers", () => {
     jest.spyOn(janush, "updateJanushJSON").mockImplementation();
   });
 
-  it("should check inserted construct to stack", async () => {
-    const importStatement = `import { CreateUserGroupCdkConstruct } from './usersManagement/createUserGroup/createUserGroupCdkConstruct'`;
+  it("should check inserted GetUserGroupsConstruct to stack", async () => {
+    const importStatement = `import { GetUserGroupsCdkConstruct } from './usersManagement/getUserGroups/getUserGroupsCdkConstruct'`;
 
-    const usersManagementConstructStatement = "new CreateUserGroupCdkConstruct";
+    const usersManagementConstructStatement = "new GetUserGroupsCdkConstruct";
 
     jest.spyOn(janush, "readJanushJSON").mockReturnValue(moduleJanush);
 

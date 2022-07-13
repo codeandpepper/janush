@@ -1,0 +1,5 @@
+new GetUserGroupsCdkConstruct(this, `${envName}-cognitoListGroups`, {
+  envName,
+  userPool,
+  graphQlApi: graphQlApi,
+});

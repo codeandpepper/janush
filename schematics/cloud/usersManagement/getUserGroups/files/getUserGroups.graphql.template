@@ -1,0 +1,15 @@
+type UserGroup {
+  GroupName: String!
+  Description: String
+  Precedence: Int
+}
+
+extend type Query {
+  """
+  List all user groups available in database
+  Returns
+  - name: string
+  - description: string (optional)
+  """
+  allUserGroups: [UserGroup]
+}

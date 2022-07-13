@@ -1,8 +1,8 @@
 {
   "$id": "CloudCreateCognitoGroupsSchematics",
-  "title": "Create Cloud Cognito Groups Schema",
+  "title": "Get Cloud Cognito Groups Schema",
   "type": "object",
-  "description": "Creates Cognito Groups.",
+  "description": "Get Cognito Groups.",
   "properties": {
     "name": {
       "type": "string",
