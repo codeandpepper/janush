@@ -1,11 +1,11 @@
 import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-import * as <%= classify(name) %> from "../../<%= dasherize(name) %>-region-stack";
+import * as <%= classify(name) %> from "../../<%= dasherize(name) %>-stack";
 import { EnvName } from "@enums/EnvName";
 import { defaultPermissions } from "./defaultGroups";
 
 describe("Create User Group Stack [Auth]", () => {
-  process.CDK_DEFAULT_REGION="eu-west-1"
+  process.env.CDK_DEFAULT_REGION="eu-west-1"
   const region = process.env.CDK_DEFAULT_REGION;
 
   if (!region) {
