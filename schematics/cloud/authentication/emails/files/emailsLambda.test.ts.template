@@ -1,7 +1,6 @@
 import { CustomMessageTriggerEvent } from "aws-lambda";
-// eslint-disable-next-line import/namespace
-import * as AWSMock from "aws-sdk-mock";
-import * as LambdaTester from "lambda-tester";
+import AWSMock from "aws-sdk-mock";
+import LambdaTester from "lambda-tester";
 
 import { CognitoMessageTriggerSource } from "@enums/CognitoMessageTriggerSource";
 
