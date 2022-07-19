@@ -71,7 +71,7 @@ Do you want add more identity providers? (each provider requires an active devel
 1. Go to `cloud` directory and fill credentials in `.env` file.
  Required environmental variables are listed in
 `.env.example`
-2. When the project will be generated, go to the `cloud` directory. The command will merge all `.graphql` files into `lib/api/schema.graphql`
+2. When the project will be generated, go to the `cloud` directory. The command `npm run schema:merge` will merge all `.graphql` files into `lib/api/schema.graphql`
 3. The following command will bootstrap application in cloud
 ```bash
 npm run cdk bootstrap
