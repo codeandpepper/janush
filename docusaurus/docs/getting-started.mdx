@@ -71,17 +71,18 @@ Do you want add more identity providers? (each provider requires an active devel
 1. Go to `cloud` directory and fill credentials in `.env` file.
  Required environmental variables are listed in
 `.env.example`
-2. When the project will be generated, go to cloud and use
+2. When the project will be generated, go to cloud and use. The command will merge all `.graphql` into `lib/api/schema.graphql`
+3. The following command will bootstrap application in cloud
 ```bash
 npm run cdk bootstrap
 ```
 It will translate TypeScript code to CloudFormation syntax understandable by AWS
-3. Use the command below to deploy app to the cloud. Please, make sure that
+4. Use the command below to deploy app to the cloud. Please, make sure that
 you have configured secrets in `~/.aws/credentials`
 ```bash
 npm run cdk deploy
 ```
-4. After deploying the terminal should show following variables
+5. After deploying the terminal should show following variables
 ```bash
 <app name>.deveAppSyncApideveGraphQLUrlExport<some hash code>
 <app name>.deveCognitoUserPoolCognitoIdentityPoolExport<some hash code>
