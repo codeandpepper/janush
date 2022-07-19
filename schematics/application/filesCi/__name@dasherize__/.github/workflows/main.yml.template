@@ -70,6 +70,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.REGION }}
           mask-aws-account-id: 'false'
+      - name: merge graphql schemas
+        run: npm run schema:merge
       - uses: ./.github/actions/cognito
         env:
           # Lambda name creation required
