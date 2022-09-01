@@ -1,8 +1,9 @@
+import { authSelectors } from "../support/selectors/auth-selectors";
 import {
   FakeUserData,
   generateFakeUserData,
 } from "../support/methods/generate-data";
-import { authSelectors } from "../support/selectors/auth-selectors";
+import { indexPageSelectors } from "../support/selectors/index-page";
 
 const user: FakeUserData = generateFakeUserData();
 
@@ -100,23 +101,21 @@ describe("Sign up page test suite", () => {
     cy.checkValidation("Passwords must match");
   });
 
-  it("User is able to sign up, click on the resend email button", () => {
+  it("User is able to sign up correctly and go back to the home page", () => {
     cy.clearElement(authSelectors.inputs.password);
     cy.typeText(authSelectors.inputs.password, user.password.correct);
     cy.clickOn(authSelectors.buttons.signUp);
-    cy.checkThatURLContains("/verify-email");
+    cy.checkThatURLContains("/sign-up/success");
     cy.checkIfTextIsShown(
-      authSelectors.texts.emailOnVerifyEmailPage,
-      user.email.correct
+      authSelectors.texts.signUpSuccessPageTitle,
+      "Account creation"
     );
-    cy.checkTheStateOfElement(authSelectors.buttons.resendEmail, "enabled");
-    cy.clickOn(authSelectors.buttons.resendEmail);
-    cy.checkTheStateOfElement(authSelectors.buttons.resendEmail, "disabled");
-    cy.clickOn(authSelectors.buttons.backToSignIn);
-    cy.checkThatURLContains("/sign-in");
+    cy.clickOn(authSelectors.buttons.signUpSuccessPageBackButton);
+    cy.checkTheStateOfElement(indexPageSelectors.buttons.logo, "visible");
   });
 
   it("User is not able to create two accounts with the same email address", () => {
+    cy.clickOn(indexPageSelectors.buttons.signIn);
     cy.clickOn(authSelectors.buttons.goToSignUpPage);
     cy.checkThatURLContains("/sign-up");
     cy.fillSignUpForm(user.email.correct, user.password.correct);

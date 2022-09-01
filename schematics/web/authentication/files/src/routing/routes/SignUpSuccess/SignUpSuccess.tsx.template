@@ -15,6 +15,7 @@ const SignUpSuccess: VFC = () => {
             gutterBottom
             variant="h4"
             textAlign="center"
+            data-testid="sign-up-success-page-title"
           >
             Account creation
           </Typography>
@@ -23,7 +24,12 @@ const SignUpSuccess: VFC = () => {
             sent next instructions to your email.
           </Typography>
           <Link to={Paths.BASE} underline="none">
-            <Button color="primary" variant="text" fullWidth>
+            <Button
+              data-testid="sign-up-success-page-back-button"
+              color="primary"
+              variant="text"
+              fullWidth
+            >
               Back to homepage
             </Button>
           </Link>

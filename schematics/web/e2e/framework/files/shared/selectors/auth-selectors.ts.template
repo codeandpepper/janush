@@ -11,16 +11,16 @@ export const authSelectors = {
     signIn: "sign-in-button",
     goToSignUpPage: "go-to-sign-up-page-button",
     goToSignInPage: "go-to-sign-in-page-button",
-    resendEmail: "resend-email-button",
     backToSignIn: "back-to-sign-in-button",
     forgotPassword: "forgot-password-button",
     sendForgottenPassword: "send-forgotten-password-button",
+    signUpSuccessPageBackButton: "sign-up-success-page-back-button",
   },
   containers: {
     validationError: "p.Mui-error",
     incorrectEmailOrPassword: "incorrect-email-or-password",
   },
   texts: {
-    emailOnVerifyEmailPage: "email-on-verify-email-page",
+    signUpSuccessPageTitle: "sign-up-success-page-title",
   },
 } as const;

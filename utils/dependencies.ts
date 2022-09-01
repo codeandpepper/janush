@@ -143,7 +143,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@cypress/code-coverage",
-    version: "^3.9.12",
+    version: "^3.10.0",
   },
   {
     type: NodeDependencyType.Dev,
@@ -153,7 +153,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "cypress",
-    version: "^10.0.3",
+    version: "^10.7.0",
   },
   {
     type: NodeDependencyType.Dev,
@@ -163,7 +163,7 @@ export const e2eCypressDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@faker-js/faker",
-    version: "^6.3.1",
+    version: "^7.5.0",
   },
   {
     type: NodeDependencyType.Dev,
@@ -191,7 +191,7 @@ export const e2ePlaywrightDependencies: NodeDependency[] = [
   {
     type: NodeDependencyType.Dev,
     name: "@faker-js/faker",
-    version: "^6.3.1",
+    version: "^7.5.0",
   },
   {
     type: NodeDependencyType.Dev,
